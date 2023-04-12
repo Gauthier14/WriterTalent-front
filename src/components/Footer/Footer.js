@@ -1,8 +1,12 @@
-import './styles.scss';
+import './Footer.scss';
 
 function Footer() {
   return (
-    <h1>MAIN</h1>
+    <footer>
+      <button type="button">Mentions légales</button>
+      <button type="button">Qui sommes-nous ?</button>
+      <button type="button">Nous contacter</button>
+    </footer>
   );
 }
 

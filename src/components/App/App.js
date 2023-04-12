@@ -2,8 +2,7 @@
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
-
-import "./styles.css";
+import "./App.scss";
 
 function App() {
   return (
