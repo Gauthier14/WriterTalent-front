@@ -37,7 +37,8 @@
     "react/jsx-uses-react": "off",
     "react/react-in-jsx-scope": "off",
     "import/no-extraneous-dependencies": "off",
-    "react/function-component-definition": "off"
+    "react/function-component-definition": "off",
+    "quotes": "off"
   },
   "settings": {
     "import/resolver": {

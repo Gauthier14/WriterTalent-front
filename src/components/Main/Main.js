@@ -1,17 +1,21 @@
 /* eslint-disable max-len */
+import { Container } from "react-bootstrap";
 import "./Main.scss";
 
 function Main() {
   return (
-    <>
-      <article>
+    <Container fluid>
+      <article className="container">
         <p>
           Sur ce site, nous offrons l'opportunité de lire le travail des
           écrivains en herbes qui aiment partager le fruit de leur imagination
           avec une communauté dans le but d'obtenir des commentaires
-          constructifs. Vous pouvez également partager vos œuvres en ligne tels
-          que des essais, des romans, des nouvelles, des poèmes et d'autres
-          genres et surtout lire toutes les publications. Tout est GRATUIT !.
+          constructifs.
+        </p>
+        <p>
+          Vous pouvez également partager vos œuvres en ligne tels que des
+          essais, des romans, des nouvelles, des poèmes et d'autres genres et
+          surtout lire toutes les publications. Tout est GRATUIT !
         </p>
         <p>
           Pour ajouter vos propres écrits, il vous suffit de vous inscrire et/ou
@@ -26,69 +30,70 @@ function Main() {
           une excellente lecture !
         </p>
       </article>
-      <div>
-        <section>
-          <div>Lisez, Ecrivez, Aimez</div>
+      <button type="button" className="surprise">Surprenez-moi !</button>
+      <div className="container-main">
+        <section className="left">
+          <div className="slogan">Lisez, Ecrivez, Aimez !</div>
         </section>
-        <section>
-          <div>
-            <h2>Les plus lus</h2>
-            <button type="button">Surprenez-moi !</button>
+        <section className="right">
+        
+          <div className="bestRead">
+            <h2 >Les plus lus</h2>
           </div>
           <ul>
             <h3>Un cadeau de deux mains</h3>
-            <span>Roman</span>
-            <span>Policier</span>
+            <span className="genre">Roman</span>
+            <span className="style">Policier</span>
             <span>
               <img src="" alt="Logo like" />
             </span>
-            <span>986</span>
+            <span className="nbLikes">986</span>
           </ul>
 
           <ul>
-            <h3>Ouh ! Choya !</h3>
-            <span>Théatre</span>
-            <span>Humour</span>
+            <h3>Un cadeau de deux mains</h3>
+            <span className="genre">Roman</span>
+            <span className="style">Policier</span>
             <span>
               <img src="" alt="Logo like" />
             </span>
-            <span>860</span>
+            <span className="nbLikes">986</span>
           </ul>
 
           <ul>
-            <h3>Le bar à Thym</h3>
-            <span>BD</span>
-            <span>Humour</span>
+            <h3>Un cadeau de deux mains</h3>
+            <span className="genre">Roman</span>
+            <span className="style">Policier</span>
             <span>
               <img src="" alt="Logo like" />
             </span>
-            <span>823</span>
+            <span className="nbLikes">986</span>
           </ul>
 
           <ul>
-            <h3>Blanche-Dèche et les 7 radins</h3>
-            <span>Conte</span>
-            <span>Aventure</span>
+            <h3>Un cadeau de deux mains</h3>
+            <span className="genre">Roman</span>
+            <span className="style">Policier</span>
             <span>
               <img src="" alt="Logo like" />
             </span>
-            <span>716</span>
+            <span className="nbLikes">986</span>
           </ul>
 
           <ul>
-            <h3>Imagine...</h3>
-            <span>Poème</span>
-            <span>SF</span>
+            <h3>Un cadeau de deux mains</h3>
+            <span className="genre">Roman</span>
+            <span className="style">Policier</span>
             <span>
               <img src="" alt="Logo like" />
             </span>
-            <span>621</span>
+            <span className="nbLikes">986</span>
           </ul>
 
           <button type="button">Voir plus</button>
         </section>
       </div>
-    </>
+    </Container>
   );
 }
 

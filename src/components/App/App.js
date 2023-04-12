@@ -1,4 +1,6 @@
 /* eslint-disable quotes */
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
@@ -6,11 +8,11 @@ import "./App.scss";
 
 function App() {
   return (
-    <div className="app">
+    <Container className="app">
       <Header />
       <Main />
       <Footer />
-    </div>
+    </Container>
   );
 }
 

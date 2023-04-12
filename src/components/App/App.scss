@@ -1,10 +1,16 @@
 @import "~bootstrap/scss/bootstrap";
+// @import "./src/components/Header/Header.scss";
+// @import "./src/components/Main/Main.scss";
+// @import "./src/components/Footer/Footer.scss";
 .app {
-  width: 500px;
-  margin: 1em auto;
-  text-align: center;
+   display: flex;
+   flex-direction: column;
 }
+@media screen and (max-width: 768px) {
+	.app{
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
+	}
 
-.app img {
-  max-width: 150px;
-}

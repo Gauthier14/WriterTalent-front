@@ -1,0 +1,309 @@
+$background-color_1: #494444;
+$background-color_2: #ffffff;
+$background-color_3: #faf6f6b6;
+$background-color_4: #f9f9f9;
+$background-color_5: #ccc;
+
+@keyframes page-1-anim {
+	from {
+		transform: rotateY(0deg) translateZ(1px);
+	}
+	to {
+		transform: rotateY(-360deg) translateZ(1px);
+	}
+}
+@keyframes page-2-anim {
+	from {
+		transform: rotateY(-18deg) translateZ(1px);
+	}
+	to {
+		transform: rotateY(-378deg) translateZ(1px);
+	}
+}
+@keyframes page-3-anim {
+	from {
+		transform: rotateY(-36deg) translateZ(1px);
+	}
+	to {
+		transform: rotateY(-396deg) translateZ(1px);
+	}
+}
+@keyframes page-4-anim {
+	from {
+		transform: rotateY(-54deg) translateZ(1px);
+	}
+	to {
+		transform: rotateY(-414deg) translateZ(1px);
+	}
+}
+@keyframes page-5-anim {
+	from {
+		transform: rotateY(-72deg) translateZ(1px);
+	}
+	to {
+		transform: rotateY(-432deg) translateZ(1px);
+	}
+}
+@keyframes page-6-anim {
+	from {
+		transform: rotateY(-90deg) translateZ(1px);
+	}
+	to {
+		transform: rotateY(-450deg) translateZ(1px);
+	}
+}
+@keyframes page-7-anim {
+	from {
+		transform: rotateY(-108deg) translateZ(1px);
+	}
+	to {
+		transform: rotateY(-468deg) translateZ(1px);
+	}
+}
+@keyframes page-8-anim {
+	from {
+		transform: rotateY(-126deg) translateZ(1px);
+	}
+	to {
+		transform: rotateY(-486deg) translateZ(1px);
+	}
+}
+@keyframes page-9-anim {
+	from {
+		transform: rotateY(-144deg) translateZ(1px);
+	}
+	to {
+		transform: rotateY(-504deg) translateZ(1px);
+	}
+}
+@keyframes page-10-anim {
+	from {
+		transform: rotateY(-162deg) translateZ(1px);
+	}
+	to {
+		transform: rotateY(-522deg) translateZ(1px);
+	}
+}
+@keyframes page-11-anim {
+	from {
+		transform: rotateY(-180deg) translateZ(1px);
+	}
+	to {
+		transform: rotateY(-540deg) translateZ(1px);
+	}
+}
+@keyframes page-12-anim {
+	from {
+		transform: rotateY(-198deg) translateZ(1px);
+	}
+	to {
+		transform: rotateY(-558deg) translateZ(1px);
+	}
+}
+@keyframes page-13-anim {
+	from {
+		transform: rotateY(-216deg) translateZ(1px);
+	}
+	to {
+		transform: rotateY(-576deg) translateZ(1px);
+	}
+}
+@keyframes page-14-anim {
+	from {
+		transform: rotateY(-234deg) translateZ(1px);
+	}
+	to {
+		transform: rotateY(-594deg) translateZ(1px);
+	}
+}
+@keyframes page-15-anim {
+	from {
+		transform: rotateY(-252deg) translateZ(1px);
+	}
+	to {
+		transform: rotateY(-612deg) translateZ(1px);
+	}
+}
+@keyframes page-16-anim {
+	from {
+		transform: rotateY(-270deg) translateZ(1px);
+	}
+	to {
+		transform: rotateY(-630deg) translateZ(1px);
+	}
+}
+@keyframes page-17-anim {
+	from {
+		transform: rotateY(-288deg) translateZ(1px);
+	}
+	to {
+		transform: rotateY(-648deg) translateZ(1px);
+	}
+}
+@keyframes page-18-anim {
+	from {
+		transform: rotateY(-306deg) translateZ(1px);
+	}
+	to {
+		transform: rotateY(-666deg) translateZ(1px);
+	}
+}
+@keyframes page-19-anim {
+	from {
+		transform: rotateY(-324deg) translateZ(1px);
+	}
+	to {
+		transform: rotateY(-684deg) translateZ(1px);
+	}
+}
+@keyframes page-20-anim {
+	from {
+		transform: rotateY(-342deg) translateZ(1px);
+	}
+	to {
+		transform: rotateY(-702deg) translateZ(1px);
+	}
+}
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+body {
+	background-color: $background-color_1;
+}
+.book-loader {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+.book {
+	position: relative;
+	width: 90vw;
+	height: 25vw;
+	font-size: 5vh;
+	margin: 50% 25% 50% 25%;
+	transform: rotateX(4deg);
+	transform-style: preserve-3d;
+	&:before {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 50%;
+		height: 100%;
+		background-color: $background-color_2;
+		box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+		transform: rotateY(0deg);
+		transform-origin: left center;
+	}
+}
+.page {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 50%;
+	height: 100%;
+	background-color: $background-color_3;
+	border: solid rgba(197, 127, 35, 0.719) 0.5vh;
+	box-shadow: 0 0 001em rgba(184, 122, 35, 0.308), 0 0.5em 1em rgba(184, 122, 35, 0.5);
+	transform-style: preserve-3d;
+	&:before {
+		position: absolute;
+		top: 0;
+		left: 2;
+		width: 100%;
+		height: 100%;
+		background-color: $background-color_4;
+		box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+		transform: translateZ(1px);
+	}
+	&:after {
+		position: absolute;
+		top: 0;
+		right: 0;
+		width: 1px;
+		height: 100%;
+		background-color: $background-color_5;
+	}
+}
+.page-1 {
+	transform: rotateY(0deg) translateZ(1px);
+	animation: page-1-anim 15s linear infinite alternate;
+}
+.page-2 {
+	transform: rotateY(-18deg) translateZ(1px);
+	animation: page-2-anim 15s linear infinite alternate;
+}
+.page-3 {
+	transform: rotateY(-36deg) translateZ(1px);
+	animation: page-3-anim 15s linear infinite alternate;
+}
+.page-4 {
+	transform: rotateY(-54deg) translateZ(1px);
+	animation: page-4-anim 15s linear infinite alternate;
+}
+.page-5 {
+	transform: rotateY(-72deg) translateZ(1px);
+	animation: page-5-anim 15s linear infinite alternate;
+}
+.page-6 {
+	transform: rotateY(-90deg) translateZ(1px);
+	animation: page-6-anim 15s linear infinite alternate;
+}
+.page-7 {
+	transform: rotateY(-108deg) translateZ(1px);
+	animation: page-7-anim 15s linear infinite alternate;
+}
+.page-8 {
+	transform: rotateY(-126deg) translateZ(1px);
+	animation: page-8-anim 15s linear infinite alternate;
+}
+.page-9 {
+	transform: rotateY(-144deg) translateZ(1px);
+	animation: page-9-anim 15s linear infinite alternate;
+}
+.page-10 {
+	transform: rotateY(-162deg) translateZ(1px);
+	animation: page-10-anim 15s linear infinite alternate;
+}
+.page-11 {
+	transform: rotateY(-180deg) translateZ(1px);
+	animation: page-11-anim 15s linear infinite alternate;
+}
+.page-12 {
+	transform: rotateY(-198deg) translateZ(1px);
+	animation: page-12-anim 15s linear infinite alternate;
+}
+.page-13 {
+	transform: rotateY(-216deg) translateZ(1px);
+	animation: page-13-anim 15s linear infinite alternate;
+}
+.page-14 {
+	transform: rotateY(-234deg) translateZ(1px);
+	animation: page-14-anim 15s linear infinite alternate;
+}
+.page-15 {
+	transform: rotateY(-252deg) translateZ(1px);
+	animation: page-15-anim 15s linear infinite alternate;
+}
+.page-16 {
+	transform: rotateY(-270deg) translateZ(1px);
+	animation: page-16-anim 15s linear infinite alternate;
+}
+.page-17 {
+	transform: rotateY(-288deg) translateZ(1px);
+	animation: page-17-anim 15s linear infinite alternate;
+}
+.page-18 {
+	transform: rotateY(-306deg) translateZ(1px);
+	animation: page-18-anim 15s linear infinite alternate;
+}
+.page-19 {
+	transform: rotateY(-324deg) translateZ(1px);
+	animation: page-19-anim 15s linear infinite alternate;
+}
+.page-20 {
+	transform: rotateY(-342deg) translateZ(1px);
+	animation: page-20-anim 15s linear infinite alternate;
+}
