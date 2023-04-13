@@ -1,46 +1,39 @@
-.navbar {
-  background: url("/src/assets/images/banniere1.jpeg") center no-repeat;
-  background-size: cover;
+.menu-wrap .menu,
+.menu-wrap .drop-menu {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
 }
-.navbar h1 {
-  background: rgba(255, 255, 255, 0.25);
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-  -webkit-backdrop-filter: blur(4px);
-          backdrop-filter: blur(4px);
+.menu-wrap .menu {
+  display: flex;
 }
-@media (max-width: 360px) {
-  .navbar h1 {
-    font-size: 1.2rem;
-  }
+.menu-wrap .menu .menu-item {
+  display: inline-block;
+  background-color: #4285f4;
+  position: relative;
 }
-@media (max-width: 560px) {
-  .navbar h1 {
-    font-size: 1.5rem;
-  }
+.menu-wrap .menu .menu-item a {
+  text-decoration: none;
+  padding: 6px 10px;
+  color: #fff;
+  display: block;
 }
-.navbar .logo {
-  width: 80px;
-  height: 80px;
-  border-radius: 1em;
+.menu-wrap .menu .menu-item:hover .drop-menu {
+  display: block;
 }
-@media (max-width: 360px) {
-  .navbar .logo {
-    width: 30px;
-    height: 30px;
-  }
+.menu-wrap .drop-menu {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  min-width: 100px;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
 }
-@media (max-width: 768px) {
-  .navbar .logo {
-    width: 50px;
-    height: 50px;
-  }
+.menu-wrap .drop-menu .drop-menu-item {
+  width: 100%;
 }
-.navbar .nav-item {
-  background-color: #d1c0d0;
-  border-radius: 0.6em;
-  font-weight: 500;
+.menu-wrap .drop-menu .drop-menu-item a {
+  color: #555;
 }
-.navbar .nav-item:hover {
-  background-color: aliceblue;
-  transition: 0.5s;
+.menu-wrap .drop-menu .drop-menu-item:hover {
+  background-color: #eee;
 }/*# sourceMappingURL=Header.css.map */

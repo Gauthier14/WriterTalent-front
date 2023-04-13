@@ -1,6 +1,5 @@
 /* eslint-disable quotes */
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
+import Container from "react-bootstrap/Container";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
