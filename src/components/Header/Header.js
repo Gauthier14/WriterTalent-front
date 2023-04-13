@@ -1,21 +1,38 @@
 import "./Header.scss";
-import logo from '../../assets/images/logo.png'
 import { useState } from "react";
-import {GiBookshelf} from 'react-icons/gi';
-import {ImCross} from 'react-icons/im';
+import { GiBookshelf } from "react-icons/gi";
+import { ImCross } from "react-icons/im";
+import logo from "../../assets/images/logo.png";
+
 function Header() {
   const [toggleMenu, setToggleMenu] = useState(false);
   return (
     <header>
-      <div className="logo"><img src={logo}/></div>
+      <div className="logo">
+        <img src={logo} alt="logo writerTalent" />
+      </div>
       <div className="title">
         <h1>WriterTalent</h1>
       </div>
       <div className="contain-toggle">
-        <GiBookshelf size={30} className="toggle-btn"/>
+        <GiBookshelf
+          size={40}
+          className="show-btn"
+          onClick={() => {
+            setToggleMenu(!toggleMenu);
+            console.log(toggleMenu);
+          }}
+        />
       </div>
       <nav className="menu-wrap">
-        <ImCross/>
+        <ImCross
+          className="close-btn"
+          size={30}
+          onClick={() => {
+            setToggleMenu(!toggleMenu);
+            console.log(toggleMenu);
+          }}
+        />
         <ul className="menu">
           <li className="menu-item">Accueil</li>
           <li className="menu-item">Charte du site</li>
