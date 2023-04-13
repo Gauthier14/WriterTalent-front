@@ -1,10 +1,7 @@
-import Header from "../Header/Header";
-import Footer from "../Footer/Footer";
 import "./Charte.scss";
 
 function Charte() {
   return (
-    <Header />
     <section>
       <p>
         Respectez les autres membres du site. Les insultes, le harcèlement, la
@@ -133,7 +130,6 @@ function Charte() {
         échanger avec d’autres passionnés.
       </p>
     </section>
-    <Footer />
   );
 }
 
