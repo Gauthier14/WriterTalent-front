@@ -1,12 +1,12 @@
-@import 'src/styles/_vars.scss';
+@import "src/styles/_vars.scss";
 
-main{
+main {
   display: flex;
   flex-direction: column;
   & > * {
     margin: 2rem;
   }
-  // & > * = All elements on the main 
+  // & > * = All elements on the main
   article {
     background-color: $background-color_1;
     border-radius: 0.5em;
@@ -20,7 +20,12 @@ main{
     display: flex;
     flex-direction: column;
     align-items: center;
-
+    @media screen and (min-width: 760px) {
+      display: inline-flex;
+      gap: 1em;
+      flex-direction: row;
+      justify-content: space-between;
+    }
     .left {
       margin: 0 0 2em 0;
       padding: 1em;
@@ -32,30 +37,45 @@ main{
       border-radius: 1em;
       box-sizing: border-box;
       width: 100%;
-      min-height: 200px;
+      min-height: 300px;
+      @media screen and (min-width: 760px) {
+        flex: 1;
+        margin: 0;
+        align-self: stretch;
+      }
       .slogan {
         max-width: fit-content; // deactivates the entire width of the element
-        font-style: italic ;
+        font-style: italic;
         font-size: 1.5em;
         padding: 0.3em;
         background: rgba(255, 255, 255, 0.466);
         -webkit-backdrop-filter: blur(1px);
         backdrop-filter: blur(1px);
         border-radius: 0.3em;
-        &:nth-child(2){
+        @media screen and (min-width: 760px) {
+          font-size: 2.3em;
+        }
+        &:nth-child(2) {
           align-self: center;
         }
-        &:last-child{
+        &:last-child {
           align-self: end;
         }
       }
     }
     .right {
+      width: 100%;
       display: flex;
       flex-direction: column;
       justify-content: center;
       box-sizing: border-box;
       background-color: $background-color_2;
+      @media screen and (min-width: 760px) {
+        display: inline-flex;
+        flex: 1;
+        height: 100%;
+        margin: 0;
+      }
       .bestRead {
         display: flex;
         flex-direction: column;
@@ -66,10 +86,10 @@ main{
         h2 {
           text-transform: uppercase;
           font-size: 2em;
-          margin-top:0.5em
+          margin-top: 0.5em;
         }
       }
-      
+
       ul {
         padding: 0.5em;
         background-color: $bg_list;
@@ -77,7 +97,7 @@ main{
         display: flex;
         flex-direction: column;
         align-items: center;
-        & > *{
+        & > * {
           margin-bottom: 0.6em;
         }
         li {
@@ -85,7 +105,7 @@ main{
           justify-content: space-between;
           flex-direction: column;
           align-items: center;
-          & > *{
+          & > * {
             margin-bottom: 0.5em;
           }
           h3 {
@@ -94,13 +114,13 @@ main{
             font-size: 1.5rem;
             text-align: center;
           }
-          p{
+          p {
             display: flex;
             align-items: center;
             border-bottom: $main_color_dark 1px solid;
-            padding-bottom: 1em ;
+            padding-bottom: 1em;
           }
-          &:last-child p{
+          &:last-child p {
             border-bottom: none;
           }
           span {
@@ -119,9 +139,21 @@ main{
         }
       }
     }
-    
   }
-
+  .scroll-button {
+    position: fixed;
+    bottom: 1em;
+    right: 1em;
+    color: aliceblue;
+    display: inline-block;
+    padding: 0.1em;
+    font-weight: bold;
+    font-size: 2em;
+    background-color: $main_color_dark;
+    border-radius: 0.2em;
+    cursor: pointer;
+    z-index: 5;
+  }
 }
 //   @media screen and (max-width: 1400px) {
 //     .container-main {
@@ -164,7 +196,7 @@ main{
 //       width: 100%;
 //     }
 //   }
-  
+
 //   @media screen and (max-width: 767px) {
 //     .right {
 //       margin-top: 2em;
@@ -180,7 +212,7 @@ main{
 //       margin: 0;
 //     }
 //   }
-  
+
 //   @media screen and (max-width: 495px) {
 //     .right {
 //       margin-top: 5em;
@@ -227,7 +259,7 @@ main{
 //       margin: 0;
 //     }
 //   }
-  
+
 //   @media screen and (max-width: 368px) {
 //     .right {
 //       margin-top: 18em;
@@ -244,8 +276,3 @@ main{
 //       margin: 0;
 //     }
 //   }
-
-
-
-
-

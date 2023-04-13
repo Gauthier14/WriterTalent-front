@@ -1,11 +1,17 @@
 /* eslint-disable max-len */
-import {BsFillHandThumbsUpFill} from 'react-icons/bs'
-import Button from '../Button/Button';
+import { BsFillHandThumbsUpFill, BsArrowBarUp } from "react-icons/bs";
+import Button from "../Button/Button";
 import "./Main.scss";
 
 function Main() {
   return (
     <main>
+      <BsArrowBarUp
+        className="scroll-button"
+        onClick={() => {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }}
+      />
       <article>
         <p>
           Sur ce site, nous offrons l'opportunité de lire le travail des
@@ -34,13 +40,13 @@ function Main() {
 
       <div className="container-main">
         <section className="left">
-          <span className="slogan">Lisez,</span> 
-          <span className="slogan">Ecrivez,</span> 
+          <span className="slogan">Lisez,</span>
+          <span className="slogan">Ecrivez,</span>
           <span className="slogan">Aimez !</span>
         </section>
         <section className="right">
           <div className="bestRead">
-            <Button label='Surprenez-moi !' link='#' />
+            <Button label="Surprenez-moi !" link="#" />
             <h2>Les plus lus</h2>
           </div>
           <ul>
@@ -49,8 +55,8 @@ function Main() {
               <p>
                 <span className="genre">Poésie</span>
                 <span className="style">Aventure</span>
-                <BsFillHandThumbsUpFill size={30} color='#42D11F'/>
-                <span className="nbLikes" >986</span>
+                <BsFillHandThumbsUpFill size={30} color="#42D11F" />
+                <span className="nbLikes">986</span>
               </p>
             </li>
             <li>
@@ -58,8 +64,8 @@ function Main() {
               <p>
                 <span className="genre">Roman</span>
                 <span className="style">Policier</span>
-                <BsFillHandThumbsUpFill size={30} color='#42D11F'/>
-                <span className="nbLikes" >979</span>
+                <BsFillHandThumbsUpFill size={30} color="#42D11F" />
+                <span className="nbLikes">979</span>
               </p>
             </li>
             <li>
@@ -67,8 +73,8 @@ function Main() {
               <p>
                 <span className="genre">Conte</span>
                 <span className="style">Humour</span>
-                <BsFillHandThumbsUpFill size={30} color='#42D11F'/>
-                <span className="nbLikes" >814</span>
+                <BsFillHandThumbsUpFill size={30} color="#42D11F" />
+                <span className="nbLikes">814</span>
               </p>
             </li>
             <li>
@@ -76,11 +82,11 @@ function Main() {
               <p>
                 <span className="genre">Théâtre</span>
                 <span className="style">Humour</span>
-                <BsFillHandThumbsUpFill size={30} color='#42D11F'/>
-                <span className="nbLikes" >783</span>
+                <BsFillHandThumbsUpFill size={30} color="#42D11F" />
+                <span className="nbLikes">783</span>
               </p>
             </li>
-            <Button label='Voir plus' link='#' />
+            <Button label="Voir plus" link="#" />
           </ul>
         </section>
       </div>

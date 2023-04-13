@@ -5,7 +5,7 @@ import { ImCross } from "react-icons/im";
 import logo from "../../assets/images/logo.png";
 
 function Header() {
-  const [toggleMenu, setToggleMenu] = useState(false);
+  const [toggleMenu, setToggleMenu] = useState(true);
   return (
     <header>
       <div className="logo">
@@ -24,7 +24,7 @@ function Header() {
           }}
         />
       </div>
-      <nav className="menu-wrap">
+      <nav className={toggleMenu ? "menu-wrap" : "menu-wrap menu-wrap-hide"}>
         <ImCross
           className="close-btn"
           size={30}
