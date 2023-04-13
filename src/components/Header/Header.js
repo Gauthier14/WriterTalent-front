@@ -1,16 +1,21 @@
 import "./Header.scss";
-import banner from "../../assets/images/banniere1.jpeg";
-
+import logo from '../../assets/images/logo.png'
+import { useState } from "react";
+import {GiBookshelf} from 'react-icons/gi';
+import {ImCross} from 'react-icons/im';
 function Header() {
+  const [toggleMenu, setToggleMenu] = useState(false);
   return (
-    <header
-      className="navbar mb-5 rounded-bottom p-3 w-100"
-      style={{
-        background: `url(${banner}) center no-repeat`,
-        backgroundSize: "cover",
-      }}
-    >
+    <header>
+      <div className="logo"><img src={logo}/></div>
+      <div className="title">
+        <h1>WriterTalent</h1>
+      </div>
+      <div className="contain-toggle">
+        <GiBookshelf size={30} className="toggle-btn"/>
+      </div>
       <nav className="menu-wrap">
+        <ImCross/>
         <ul className="menu">
           <li className="menu-item">Accueil</li>
           <li className="menu-item">Charte du site</li>

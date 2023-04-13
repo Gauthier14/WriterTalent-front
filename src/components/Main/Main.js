@@ -1,11 +1,12 @@
 /* eslint-disable max-len */
-import { Container } from "react-bootstrap";
+import {BsFillHandThumbsUpFill} from 'react-icons/bs'
+import Button from '../Button/Button';
 import "./Main.scss";
 
 function Main() {
   return (
-    <Container fluid>
-      <article className="container">
+    <main>
+      <article>
         <p>
           Sur ce site, nous offrons l'opportunité de lire le travail des
           écrivains en herbes qui aiment partager le fruit de leur imagination
@@ -30,70 +31,60 @@ function Main() {
           une excellente lecture !
         </p>
       </article>
-      <button type="button" className="surprise">Surprenez-moi !</button>
+
       <div className="container-main">
         <section className="left">
-          <div className="slogan">Lisez, Ecrivez, Aimez !</div>
+          <span className="slogan">Lisez,</span> 
+          <span className="slogan">Ecrivez,</span> 
+          <span className="slogan">Aimez !</span>
         </section>
         <section className="right">
-        
           <div className="bestRead">
-            <h2 >Les plus lus</h2>
+            <Button label='Surprenez-moi !' link='#' />
+            <h2>Les plus lus</h2>
           </div>
           <ul>
-            <h3>Un cadeau de deux mains</h3>
-            <span className="genre">Roman</span>
-            <span className="style">Policier</span>
-            <span>
-              <img src="" alt="Logo like" />
-            </span>
-            <span className="nbLikes">986</span>
+            <li>
+              <h3>Le loir est cher</h3>
+              <p>
+                <span className="genre">Poésie</span>
+                <span className="style">Aventure</span>
+                <BsFillHandThumbsUpFill size={30} color='#42D11F'/>
+                <span className="nbLikes" >986</span>
+              </p>
+            </li>
+            <li>
+              <h3>Un cadeau de deux mains</h3>
+              <p>
+                <span className="genre">Roman</span>
+                <span className="style">Policier</span>
+                <BsFillHandThumbsUpFill size={30} color='#42D11F'/>
+                <span className="nbLikes" >979</span>
+              </p>
+            </li>
+            <li>
+              <h3>J'aime (pas) les choux de bruxelles !</h3>
+              <p>
+                <span className="genre">Conte</span>
+                <span className="style">Humour</span>
+                <BsFillHandThumbsUpFill size={30} color='#42D11F'/>
+                <span className="nbLikes" >814</span>
+              </p>
+            </li>
+            <li>
+              <h3>Je t'épate ! L'eusses-tu cru ?</h3>
+              <p>
+                <span className="genre">Théâtre</span>
+                <span className="style">Humour</span>
+                <BsFillHandThumbsUpFill size={30} color='#42D11F'/>
+                <span className="nbLikes" >783</span>
+              </p>
+            </li>
+            <Button label='Voir plus' link='#' />
           </ul>
-
-          <ul>
-            <h3>Un cadeau de deux mains</h3>
-            <span className="genre">Roman</span>
-            <span className="style">Policier</span>
-            <span>
-              <img src="" alt="Logo like" />
-            </span>
-            <span className="nbLikes">986</span>
-          </ul>
-
-          <ul>
-            <h3>Un cadeau de deux mains</h3>
-            <span className="genre">Roman</span>
-            <span className="style">Policier</span>
-            <span>
-              <img src="" alt="Logo like" />
-            </span>
-            <span className="nbLikes">986</span>
-          </ul>
-
-          <ul>
-            <h3>Un cadeau de deux mains</h3>
-            <span className="genre">Roman</span>
-            <span className="style">Policier</span>
-            <span>
-              <img src="" alt="Logo like" />
-            </span>
-            <span className="nbLikes">986</span>
-          </ul>
-
-          <ul>
-            <h3>Un cadeau de deux mains</h3>
-            <span className="genre">Roman</span>
-            <span className="style">Policier</span>
-            <span>
-              <img src="" alt="Logo like" />
-            </span>
-            <span className="nbLikes">986</span>
-          </ul>
-
-          <button type="button">Voir plus</button>
         </section>
       </div>
-    </Container>
+    </main>
   );
 }
 

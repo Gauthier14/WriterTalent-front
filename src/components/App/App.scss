@@ -1,16 +1,13 @@
-@import "~bootstrap/scss/bootstrap";
+
 // @import "./src/components/Header/Header.scss";
 // @import "./src/components/Main/Main.scss";
 // @import "./src/components/Footer/Footer.scss";
+@import url(https://fonts.bunny.net/css?family=besley:400,500,700);
 .app {
-   display: flex;
-   flex-direction: column;
+font-family: 'Besley', serif;
+  min-width: 390px;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  font-size: 1em;
 }
-@media screen and (max-width: 768px) {
-	.app{
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-		}
-	}
-
