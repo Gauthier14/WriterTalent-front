@@ -1,11 +1,25 @@
-import './Footer.scss';
+import { Button } from "react-bootstrap";
+import "./Footer.scss";
 
 function Footer() {
   return (
-    <footer>
-      <button type="button" className="mentions">Mentions légales</button>
-      <button type="button" className="weAre">Qui sommes-nous ?</button>
-      <button type="button" className="contact">Nous contacter</button>
+    <footer
+      className="d-flex justify-content-evenly align-items-center flex-wrap p-3 gap-2"
+      style={{
+        backgroundImage: `url(${require("/src/assets/images/banniere2.jpeg")})`,
+        position: "relative",
+        bottom: 0,
+        left: 0,
+        right: 0,
+        marginTop: "8em"
+      }}
+    >
+    
+      <Button href="#" style={{backgroundColor: "#b6b6c4", color:"black", border:"none"}}>Mentions Légales</Button>
+      <Button href="#" style={{backgroundColor: "#b6b6c4", color:"black", border:"none"}}>Qui sommes-nous ?</Button>
+      <Button href="#" style={{backgroundColor: "#b6b6c4", color:"black", border:"none"}}>Nous contacter</Button>
+
+      
     </footer>
   );
 }
