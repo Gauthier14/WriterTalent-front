@@ -18,7 +18,7 @@ function Header() {
       className="navbar mb-5 rounded-bottom p-3 w-100"
     >
       <Row className="w-100">
-        <Col lg={12} className="d-flex">
+        <Col lg={12} md={10} sm={10} xs={10} className="d-flex">
           <img src={logo} alt="Logo Writer Talent" className="logo" />
           <Navbar.Brand href="#" className="flex-fill text-center">
             <h1 className="text-center d-inline-block p-2 rounded-3 m-0">
@@ -26,25 +26,23 @@ function Header() {
             </h1>
           </Navbar.Brand>
         </Col>
-      </Row>
 
-      <Navbar.Toggle
-        aria-controls="offcanvasNavbar-expand-lg"
-        className="nav-item"
-      />
-      <Navbar.Offcanvas
-        id="offcanvasNavbar-expand-lg"
-        aria-labelledby="offcanvasNavbarLabel-expand-lg"
-        placement="end"
-      >
-        <Offcanvas.Header closeButton className="">
-          <Offcanvas.Title id="offcanvasNavbarLabel-expand-lg">
-            Menu
-          </Offcanvas.Title>
-        </Offcanvas.Header>
+        <Col lg={12} md={2} sm={2} xs={2} className="d-flex">
+          <Navbar.Toggle
+            aria-controls="offcanvasNavbar-expand-lg"
+            className="nav-item"
+          />
+          <Navbar.Offcanvas
+            id="offcanvasNavbar-expand-lg"
+            aria-labelledby="offcanvasNavbarLabel-expand-lg"
+            placement="end"
+          >
+            <Offcanvas.Header closeButton className="">
+              <Offcanvas.Title id="offcanvasNavbarLabel-expand-lg">
+                Menu
+              </Offcanvas.Title>
+            </Offcanvas.Header>
 
-        <Row className="w-100">
-          <Col lg={12} className="d-flex">
             <Offcanvas.Body className="col-lg-12">
               <Nav className="w-100 d-flex justify-content-between mt-4">
                 <Nav.Link href="#action1" className="nav-item">
@@ -94,9 +92,9 @@ function Header() {
                     <Button variant="outline-success">Rechercher</Button>
                   </Form> */}
             </Offcanvas.Body>
-          </Col>
-        </Row>
-      </Navbar.Offcanvas>
+          </Navbar.Offcanvas>
+        </Col>
+      </Row>
     </Navbar>
   );
 }
