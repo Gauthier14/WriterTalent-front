@@ -1,7 +1,7 @@
 /* eslint-disable quotes */
 
 import Header from "../Header/Header";
-import Main from "../Main/Main";
+//import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
 import "./App.scss";
 import BookElement from "../BookElement/BookElement";
