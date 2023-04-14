@@ -6,8 +6,7 @@ import "./Register.scss";
 function Register() {
   return (
     <main className="register">
-      <section className="container">
-        <div className="form-container">
+      <section className="form-container"> 
           <h2>FORMULAIRE D'INSCRIPTION</h2>
           <form>
             <label htmlFor="nom">Nom :</label>
@@ -87,7 +86,7 @@ function Register() {
             <p className="info" />
             <Button label="S'inscrire" link="#" width="100%" />
           </form>
-        </div>
+      
       </section>
     </main>
   );

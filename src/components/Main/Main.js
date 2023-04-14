@@ -6,14 +6,14 @@ import "./Main.scss";
 
 function Main() {
   return (
-    <main>
+    <main className="homeMain">
       <BsArrowBarUp
         className="scroll-button"
         onClick={() => {
           window.scrollTo({ top: 0, behavior: "smooth" });
         }}
       />
-      <ButtonGoWriter />
+      {/* <ButtonGoWriter /> */}
       <article>
         <p>
           Sur ce site, nous offrons l'opportunité de lire le travail des
@@ -49,7 +49,7 @@ function Main() {
         <section className="right">
           <div className="bestRead">
             <Button label="Surprenez-moi !" link="#" />
-            <h2>Les plus lus</h2>
+            <h2>Les plus aimés</h2>
           </div>
           <ul>
             <li>

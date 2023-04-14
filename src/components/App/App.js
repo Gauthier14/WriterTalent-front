@@ -1,38 +1,38 @@
 /* eslint-disable quotes */
-
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
+import Charte from "../Charte/Charte";
+import PageList from "../PageList/PageList";
 import Footer from "../Footer/Footer";
 import "./App.scss";
-// import Charte from "../Charte/Charte";
+
 import Register from "../Register/Register";
+import { Routes, Route } from "react-router-dom";
+
 // import Loader from "../Loader/Loader";
 // import PageList from "../PageList/PageList";
 // import ButtonGoWriter from "../ButtonGoWriter/ButtonGoWriter";
 
 function App() {
-  const [posts, setPosts] = useState([]);
-  useEffect(() => {
-    axios
-      .get("https://my.api.mockaroo.com/post.json?key=8f5bac10")
-      .then((response) => {
-        setPosts([...response.data]);
-      });
-  }, []);
   return (
     <div className="app">
       <Header />
+      <Routes>
+      <Route path="/" element={<Main />} />
+      <Route path="/charte" element={<Charte />} />
+      {/* <Route path="/nouveautes" element={<PageList />} /> */}
+        <Route path="/register" element={<Register />} />
+      </Routes>
       {/* <ButtonGoWriter /> */}
-      {/* <Register /> */}
+
       {/* posts !== [] ? <PageList posts={posts} /> : <Loader /> */}
-   
+
       {/* <Register /> */}
       {/* posts !== [] ? <PageList posts={posts} /> : <Loader /> */}
 
-      <Main />
-
+      {/*<Main />*/}
       <Footer />
     </div>
   );

@@ -1,13 +1,13 @@
-/* eslint-disable max-len */
+// /* eslint-disable max-len */
 
-import "./Main.scss";
+// import "./Main.scss";
 
-function Main() {
-  return (
-    <main>
+// function Main() {
+//   return (
+//     <main>
       
-    </main>
-  );
-}
+//     </main>
+//   );
+// }
 
-export default Main;
+// export default Main;

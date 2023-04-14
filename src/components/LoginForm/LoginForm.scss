@@ -1,0 +1,36 @@
+@use 'src/styles/vars';
+
+.login-form {
+  
+  &-element {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.5em;
+    border-radius: 1em;
+    @media screen and (min-width: 760px) {
+      width: 200px;
+    }
+  }
+
+  &-message {
+    margin: .3em 1em;
+  }
+
+  &-logged {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  &-button {
+    font-size: 1em;
+    color: #fff;
+    background-color: #000;
+    border-radius: .3em;
+    border: 0;
+    padding: 0.3em;
+    height: 2.5em;
+    width: 100%;
+  }
+}

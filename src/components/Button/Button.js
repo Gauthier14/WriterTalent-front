@@ -49,7 +49,7 @@ Button.propTypes = {
   color: PropTypes.string,
   label: PropTypes.string.isRequired,
   link: PropTypes.string.isRequired,
-  width: PropTypes.string.isRequired,
+  width: PropTypes.string,
 };
 
 export default Button;
