@@ -7,7 +7,7 @@ import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
 import "./App.scss";
 // import Charte from "../Charte/Charte";
-// import Register from "../Register/Register";
+import Register from "../Register/Register";
 // import Loader from "../Loader/Loader";
 // import PageList from "../PageList/PageList";
 // import ButtonGoWriter from "../ButtonGoWriter/ButtonGoWriter";
@@ -25,16 +25,11 @@ function App() {
     <div className="app">
       <Header />
       {/* <ButtonGoWriter /> */}
-
-
-
       {/* <Register /> */}
       {/* posts !== [] ? <PageList posts={posts} /> : <Loader /> */}
    
-
       {/* <Register /> */}
       {/* posts !== [] ? <PageList posts={posts} /> : <Loader /> */}
-
 
       <Main />
 
