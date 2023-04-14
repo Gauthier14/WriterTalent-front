@@ -24,10 +24,8 @@ function App() {
     <div className="app">
       <Header />
 
-
       <Register />
       {/* posts !== [] ? <PageList posts={posts} /> : <Loader /> */}
-     
 
       {/* <Main /> */}
 
