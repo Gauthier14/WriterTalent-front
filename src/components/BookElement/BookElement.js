@@ -9,7 +9,7 @@ function BookElement({
 }) {
   const extract = `${content.slice(0, 200)} ...`;
   return (
-    <div className="book">
+    <div className="book-post">
       <p className="extract">{extract}</p>
       <p className="nb_likes-views">
         <span><BsFillHandThumbsUpFill />{nbLikes}</span>

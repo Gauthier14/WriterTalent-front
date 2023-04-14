@@ -1,8 +1,17 @@
-@use 'reset';
-@use 'vars';
+@use "reset";
+@use "vars";
+@import "./vars";
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+}
 
 body {
-  font-family: 'Besley', serif;
+  font-family: "Besley", serif;
+  background-color: $bg-color_fail;
 }
 // * {
 //   border: ;
