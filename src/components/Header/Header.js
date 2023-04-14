@@ -62,6 +62,7 @@ function Header() {
               </li>
             </ul>
           </li>
+          <li className="menu-item">Auteurs</li>
           <li className="menu-item">Profil</li>
           <li className="menu-item">Se connecter</li>
         </ul>
