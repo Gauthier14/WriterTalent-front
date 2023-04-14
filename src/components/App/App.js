@@ -3,13 +3,14 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Header from "../Header/Header";
-// import Main from "../Main/Main";
+import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
 import "./App.scss";
 // import Charte from "../Charte/Charte";
-import Register from "../Register/Register";
-import Loader from "../Loader/Loader";
-import PageList from "../PageList/PageList";
+// import Register from "../Register/Register";
+// import Loader from "../Loader/Loader";
+// import PageList from "../PageList/PageList";
+// import ButtonGoWriter from "../ButtonGoWriter/ButtonGoWriter";
 
 function App() {
   const [posts, setPosts] = useState([]);
@@ -23,13 +24,14 @@ function App() {
   return (
     <div className="app">
       <Header />
+      {/* <ButtonGoWriter /> */}
 
 
-      <Register />
+      {/* <Register /> */}
       {/* posts !== [] ? <PageList posts={posts} /> : <Loader /> */}
-     
+   
 
-      {/* <Main /> */}
+      <Main />
 
       <Footer />
     </div>

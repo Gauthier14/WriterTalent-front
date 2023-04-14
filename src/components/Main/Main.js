@@ -1,6 +1,7 @@
 /* eslint-disable max-len */
 import { BsFillHandThumbsUpFill, BsArrowBarUp } from "react-icons/bs";
 import Button from "../Button/Button";
+import ButtonGoWriter from "../ButtonGoWriter/ButtonGoWriter"
 import "./Main.scss";
 
 function Main() {
@@ -12,6 +13,7 @@ function Main() {
           window.scrollTo({ top: 0, behavior: "smooth" });
         }}
       />
+      <ButtonGoWriter />
       <article>
         <p>
           Sur ce site, nous offrons l'opportunité de lire le travail des
