@@ -32,11 +32,11 @@ function App() {
     <div className="app">
       <Header />
 
-      {/* <Register /> */}
+      <Register />
 
-      {posts.map((post) => (
+      {/* {posts.map((post) => (
         <BookElement {...post} />
-      ))}
+      ))} */}
       {/* <Main /> */}
 
       <Footer />

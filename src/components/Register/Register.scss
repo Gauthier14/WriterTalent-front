@@ -8,81 +8,79 @@
 body {
   background-color: #f2f2f2;
 }
-.register{
+.register {
   display: flex;
-  flex-wrap: wrap;
+  // flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-
 
   .form-container {
     flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    max-width: 85%;
-    margin: 2vw;
-    background-color: #975b29c2;
-    padding: 2vh 4vw;
+    background-color: hsla(36, 66%, 45%, 0.356);
+    -webkit-backdrop-filter: blur(1px);
+    backdrop-filter: blur(1px);
+    padding: 2em;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  }
-  h1 {
-    margin: 2vh;
-    text-align: center;
-    font-size: calc(1em + 2vw);
-  }
-  form {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-  }
-  label {
-    margin: 1vh;
-  }
-  input[type="text"] {
-    padding: 1vh;
-    border: 0.1em black solid;
-    border-radius: 3px;
-    background-color: #f2f2f2;
-  }
-  input[type="email"] {
-    padding: 1vh;
-    border: 0.1em black solid;
-    border-radius: 3px;
-    background-color: #f2f2f2;
-  }
-  input[type="password"] {
-    padding: 1vh;
-    border: 0.1em black solid;
-    border-radius: 3px;
-    background-color: #f2f2f2;
-  }
-  .password-errors {
-    color: $fail_data;
-    font-size: 0.8em;
-    margin-top: 0.5em;
-    span.valid {
-      color: $color_validation;
+    h2 {
+      text-align: center;
+      font-size: 1.5em;
+      margin-bottom: 1em;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+    }
+    label {
+      margin: 1vh;
+    }
+    input[type="text"] {
+      padding: 1vh;
+      border: 0.1em black solid;
+      border-radius: 3px;
+      background-color: #f2f2f2;
+    }
+    input[type="email"] {
+      padding: 1vh;
+      border: 0.1em black solid;
+      border-radius: 3px;
+      background-color: #f2f2f2;
+    }
+    input[type="password"] {
+      padding: 1vh;
+      border: 0.1em black solid;
+      border-radius: 3px;
+      background-color: #f2f2f2;
+      margin-bottom: 1em;
+   }
+    .password-errors {
+      color: $fail_data;
+      font-size: 0.8em;
+      margin-top: 0.5em;
+      span.valid {
+        color: $color_validation;
+      }
     }
   }
+}
 
-  .btn-register {
-    display: flex;
-    justify-content: center;
-    margin: 1em;
+
+.image-container {
+  background-image: url('src/assets/images/formulaire_inscription.png');
+  display: flex;
+  align-items: center;
+
+  img {
+    max-width: 100%;
+    height: auto;
   }
 }
 
-.image-container {
-  flex: 1;
-  max-width: 45vw;
-  margin: 2vw;
-}
-img {
-  max-width: 100%;
-  height: auto;
-}
 @media screen and (max-width: 768px) {
   .container {
     flex-direction: column;

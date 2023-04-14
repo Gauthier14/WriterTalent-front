@@ -76,7 +76,7 @@ function Register() {
               </span>
               <br />
             </span>
-            <label fothtml="confirmPassword">Confirmer le mot de passe :</label>
+            <label fothtml="confirmPassword">Confirmez le mot de passe :</label>
             <input
               type="password"
               placeholder="Confirmez votre mot de passe"
@@ -89,7 +89,7 @@ function Register() {
           </form>
         </div>
         <section className="image-container">
-          <img src="https://via.placeholder.com/400x400" alt="Image" />
+          
         </section>
       </section>
     </main>
