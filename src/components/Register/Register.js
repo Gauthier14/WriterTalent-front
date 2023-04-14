@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable quotes */
 import Button from "../Button/Button";
 import "./Register.scss";
@@ -7,10 +8,9 @@ function Register() {
     <main className="register">
       <section className="container">
         <div className="form-container">
-        <h2>FORMULAIRE D'INSCRIPTION</h2>
+          <h2>FORMULAIRE D'INSCRIPTION</h2>
           <form>
-            
-            <label fothtml="nom">Nom :</label>
+            <label htmlFor="nom">Nom :</label>
             <input
               type="text"
               placeholder="Entrez votre nom"
@@ -19,7 +19,7 @@ function Register() {
               required
             />
 
-            <label forhtml="prenom">Prénom :</label>
+            <label htmlFor="prenom">Prénom :</label>
             <input
               type="text"
               placeholder="Entrez votre prénom"
@@ -28,7 +28,7 @@ function Register() {
               required
             />
 
-            <label fothtml="prenom">Nom d'auteur:</label>
+            <label htmlFor="prenom">Nom d'auteur:</label>
             <input
               type="text"
               placeholder="Entrez votre nom d'auteur"
@@ -37,7 +37,7 @@ function Register() {
               required
             />
 
-            <label fothtml="email">Email :</label>
+            <label htmlFor="email">Email :</label>
             <input
               type="email"
               placeholder="Entrez une adresse mail valide"
@@ -46,7 +46,7 @@ function Register() {
               required
             />
 
-            <label fothtml="password">Mot de passe :</label>
+            <label htmlFor="password">Mot de passe :</label>
             <input
               type="password"
               placeholder="Entrez votre mot de passe"
@@ -76,7 +76,7 @@ function Register() {
               </span>
               <br />
             </span>
-            <label fothtml="confirmPassword">Confirmez le mot de passe :</label>
+            <label htmlFor="confirmPassword">Confirmez le mot de passe :</label>
             <input
               type="password"
               placeholder="Confirmez votre mot de passe"
@@ -84,11 +84,10 @@ function Register() {
               name="confirmPassword"
               required
             />
-            <p className="info"></p>
-            <Button label="S'inscrire" link="#" className="btn-register"/>
+            <p className="info" />
+            <Button label="S'inscrire" link="#" width="100%" />
           </form>
         </div>
-       
       </section>
     </main>
   );

@@ -26,10 +26,15 @@ function App() {
       <Header />
       {/* <ButtonGoWriter /> */}
 
+<<<<<<< HEAD
 
       {/* <Register /> */}
       {/* posts !== [] ? <PageList posts={posts} /> : <Loader /> */}
    
+=======
+      <Register />
+      {/* posts !== [] ? <PageList posts={posts} /> : <Loader /> */}
+>>>>>>> 27b73a410ff2ce47b326222ab13bc005619164a1
 
       <Main />
 
