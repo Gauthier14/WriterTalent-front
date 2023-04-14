@@ -1,11 +1,19 @@
 import "./Header.scss";
-import { useState } from "react";
+import axios from "axios";
+import { useState, useEffect } from "react";
 import { GiBookshelf } from "react-icons/gi";
 import { ImCross } from "react-icons/im";
+import { Link } from "react-router-dom";
 import logo from "../../assets/images/logo.png";
 
 function Header() {
   const [toggleMenu, setToggleMenu] = useState(true);
+  const [genres, setGenres] = useState([]);
+  useEffect(() => {
+    axios.get("http://localhost:8000/api/genres").then((response) => {
+      setGenres([...response]);
+    });
+  }, []);
   return (
     <header>
       <div className="logo">
@@ -40,15 +48,11 @@ function Header() {
           <li className="menu-item">
             Genre
             <ul className="drop-menu">
-              <li className="drop-menu-item">
-                <a href="#">Roman</a>
-              </li>
-              <li className="drop-menu-item">
-                <a href="#">Policier</a>
-              </li>
-              <li className="drop-menu-item">
-                <a href="#">Théâtre</a>
-              </li>
+              {genres.map((genre) => {
+                <li className="drop-menu-item" key={genre.id}>
+                  <Link to={genre.name.toLowercase()}>Roman</Link>
+                </li>;
+              })}
             </ul>
           </li>
           <li className="menu-item">
@@ -63,8 +67,8 @@ function Header() {
             </ul>
           </li>
           <li className="menu-item">Auteurs</li>
-          <li className="menu-item">Profil</li>
           <li className="menu-item">Se connecter</li>
+          <li className="menu-item">Inscription</li>
         </ul>
       </nav>
     </header>
