@@ -10,6 +10,7 @@ function Button({
   color = "#fff",
   label,
   link,
+  width = "fit-content",
 }) {
   const [isHover, setIsHover] = useState(false);
 
@@ -23,6 +24,7 @@ function Button({
   const style = {
     backgroundColor: `${bgColor}`,
     color: `${color}`,
+    width: `${width}`,
   };
   const styleHover = {
     backgroundColor: `${bgHoverColor}`,
@@ -47,6 +49,7 @@ Button.propTypes = {
   color: PropTypes.string,
   label: PropTypes.string.isRequired,
   link: PropTypes.string.isRequired,
+  width: PropTypes.string.isRequired,
 };
 
 export default Button;
