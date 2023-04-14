@@ -7,6 +7,7 @@
 }
 body {
   background-color: #f2f2f2;
+  color: #000;
 }
 .register {
   display: flex;
@@ -19,9 +20,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    background-color: hsla(36, 66%, 45%, 0.356);
-    -webkit-backdrop-filter: blur(1px);
-    backdrop-filter: blur(1px);
+    background-color: $bg-color_register;
     padding: 2em;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -32,6 +31,7 @@ body {
     }
 
     form {
+      opacity: none;
       display: flex;
       flex-direction: column;
       justify-content: space-evenly;
@@ -57,7 +57,7 @@ body {
       border-radius: 3px;
       background-color: #f2f2f2;
       margin-bottom: 1em;
-   }
+    }
     .password-errors {
       color: $fail_data;
       font-size: 0.8em;
@@ -69,17 +69,16 @@ body {
   }
 }
 
+// .image-container {
+//   background-image: url('src/assets/images/formulaire_inscription.png');
+//   // display: flex;
+//   // align-items: center;
 
-.image-container {
-  background-image: url('src/assets/images/formulaire_inscription.png');
-  display: flex;
-  align-items: center;
-
-  img {
-    max-width: 100%;
-    height: auto;
-  }
-}
+//   img {
+//     max-width: 100%;
+//     height: auto;
+//   }
+// }
 
 @media screen and (max-width: 768px) {
   .container {
@@ -96,10 +95,5 @@ body {
   }
   h1 {
     font-size: calc(1em + 5vw);
-  }
-  img {
-    max-width: 80%;
-    justify-content: center;
-    align-items: center;
   }
 }

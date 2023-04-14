@@ -88,9 +88,7 @@ function Register() {
             <Button label="S'inscrire" link="#" className="btn-register"/>
           </form>
         </div>
-        <section className="image-container">
-          
-        </section>
+       
       </section>
     </main>
   );
