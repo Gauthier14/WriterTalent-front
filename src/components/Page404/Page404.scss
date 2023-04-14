@@ -19,12 +19,12 @@ $background-color_1: #000000;
 	box-sizing: border-box;
 }
 html {
-	background-color: $background-color_1;
+	background-color: $bg-color_fail;
 	height: 100%;
 	margin: 0;
 }
 body {
-	background-color: $background-color_1;
+	background-color: $bg-color_fail;
 	height: 100%;
 	margin: 0;
 	display: flex;
