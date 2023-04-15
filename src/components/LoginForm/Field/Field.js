@@ -6,14 +6,14 @@ import './Field.scss';
 
 // == Composant
 const Field = ({
-  value,
-  type,
-  name,
-  placeholder,
-  onChange,
+  // value,
+  // type,
+  // name,
+  // placeholder,
+  // onChange,
 }) => {
   const handleChange = (evt) => {
-    onChange(evt.target.value, name);
+    // onChange(evt.target.value, name);
   };
 
   const inputId = `field-${name}`;
@@ -23,13 +23,13 @@ const Field = ({
       <input
         // React - state
         value={value}
-        onChange={handleChange}
+        // onChange={handleChange}
         // infos de base
         id={inputId}
         type={type}
         className="field-input"
         placeholder={placeholder}
-        name={name}
+        // name={name}
       />
 
       <label
