@@ -5,6 +5,7 @@ import { Routes, Route, useParams } from "react-router-dom";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Charte from "../Charte/Charte";
+import Authors from "../Authors/Authors"
 import MentionsLegales from "../MentionsLegales/MentionsLegales";
 import QuiSommesNous from "../QuiSommesNous/QuiSommesNous";
 import NousContacter from "../NousContacter/NousContacter";
@@ -32,7 +33,7 @@ function App() {
         <Route path="/qui-sommes-nous" element={<QuiSommesNous />} />
         <Route path="/nous-contacter" element={<NousContacter />} />
         <Route path="/:param/:id" element={<PageList />} />
-        <Route path="/authors" element={<PageList />} />
+        <Route path="/authors" element={<Authors />} />
         <Route path="*" element={<Page404 />} />
       </Routes>
       {/* <ButtonGoWriter /> */}

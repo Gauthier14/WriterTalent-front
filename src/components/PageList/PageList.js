@@ -5,7 +5,7 @@ import "./PageList.scss";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import BookElement from "../BookElement/BookElement";
-import AuthorItem from "../AuthorItem/AuthorItem";
+import AuthorItem from "../Authors/Authors";
 
 function PageList() {
   const [postsGenre, setPostsGenre] = useState([]);
