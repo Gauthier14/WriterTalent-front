@@ -1,4 +1,5 @@
 /* eslint-disable quotes */
+import img404 from "src/assets/images/livre404.png";
 import Button from "../Button/Button";
 
 import "./Page404.scss";
@@ -7,7 +8,7 @@ function Page404() {
   return (
     <main>
       <section className="image">
-        <img src="src/assets/images/livre404.png" alt="Livre ouvert" />
+        <img src={img404} alt="Livre ouvert" />
       </section>
       <section className="text">
         <div>

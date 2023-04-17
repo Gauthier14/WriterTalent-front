@@ -4,50 +4,52 @@ import axios from "axios";
 import "./PageList.scss";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router";
+import { Link } from "react-router-dom";
 import BookElement from "../BookElement/BookElement";
 import AuthorItem from "../AuthorItem/AuthorItem";
 
 function PageList() {
   const [postsGenre, setPostsGenre] = useState([]);
   const [postsUnivers, setPostsUnivers] = useState([]);
-  const [authorList, setAuthorList] = useState([]);
+  // const [authorList, setAuthorList] = useState([]);
   const { id, param } = useParams();
   console.table(postsGenre);
-  console.log(param, id);
+
   useEffect(() => {
     axios
       .get(`http://localhost:8000/api/${param}/${id}/posts`)
       .then((response) => {
         switch (param) {
           case "genre":
+            console.log(response);
             setPostsGenre([...response.data]);
             break;
-          case "univers":
+          case "category":
             setPostsUnivers([...response.data]);
             break;
           default:
             break;
         }
       });
-  }, []);
-  useEffect(() => {
-    axios.get(`http://localhost:8000/api/user`).then((response) => {
+  }, [postsGenre]);
+
+  /* useEffect(() => {
+    axios.get(`http://localhost:8000/api/users/authors`).then((response) => {
       setAuthorList([...response.data]);
     });
-  }, [authorList]);
+  }, []); */
 
   return (
     <main className="page-list">
-      {postsGenre.map((post) => (
-        <BookElement {...post} />
-      ))}
+      {postsGenre !== [] &&
+        postsGenre.map((post) => (
+          <BookElement {...post} link={`/post/${post.id}`} />
+        ))}
 
-      {postsUnivers.map((post) => (
-        <BookElement {...post} />
-      ))}
-      {authorList.map((author) => (
-        <AuthorItem {...author} />
-      ))}
+      {postsUnivers !== [] &&
+        postsUnivers.map((post) => (
+          <BookElement {...post} link={`/post/${post.id}`} />
+        ))}
     </main>
   );
 }

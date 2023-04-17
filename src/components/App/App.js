@@ -31,7 +31,7 @@ function App() {
         <Route path="/mentions-legales" element={<MentionsLegales />} />
         <Route path="/qui-sommes-nous" element={<QuiSommesNous />} />
         <Route path="/nous-contacter" element={<NousContacter />} />
-        <Route path="/:param/:id" element={<PageList />} />
+        <Route path="/:param/:id/posts" element={<PageList />} />
         <Route path="/authors" element={<PageList />} />
         <Route path="*" element={<Page404 />} />
       </Routes>

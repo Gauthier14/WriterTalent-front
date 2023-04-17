@@ -81,7 +81,7 @@ function NavMenu() {
                   setToggleMenu(!toggleMenu);
                 }}
               >
-                <Link to={`/univers/${category.id}`}> {category.name} </Link>
+                <Link to={`/category/${category.id}`}> {category.name} </Link>
               </li>
             ))}
           </ul>

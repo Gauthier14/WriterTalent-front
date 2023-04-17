@@ -14,23 +14,7 @@ $background-color_1: #000000;
     box-shadow: 0.5em 0em 0.8em rgb(163, 105, 105);
   }
 }
-* {
-  box-sizing: border-box;
-}
-html {
-  background-color: vars.$bg-color_fail;
-  height: 100%;
-  margin: 0;
-}
-body {
-  background-color: vars.$bg-color_fail;
-  height: 100%;
-  margin: 0;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  flex-wrap: wrap;
-}
+
 img {
   width: 100%;
 }
