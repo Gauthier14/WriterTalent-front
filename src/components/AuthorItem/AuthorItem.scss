@@ -1,4 +1,81 @@
-@use "src/styles/_vars.scss";
-
 .author-item {
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	align-items: center;
+}
+.book-author {
+	margin: 1em;
+	display: flex;
+	width: 10em;
+	transform: translate3d(0, 0, 0);
+	ul {
+		text-align: center;
+		color: #fff;
+		text-transform: uppercase;
+		line-height: 8em;
+		display: block;
+		position: relative;
+		width: 10em;
+		height: 15em;
+		margin: 0em;
+		padding: 0;
+		list-style: none;
+		perspective-origin: 0 50% 0;
+		perspective: 800px;
+		-webkit-transform: translate3d(0, 0, 0);
+		>li {
+			display: block;
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 10em;
+			height: 15em;
+			padding: 0;
+			margin: 0;
+			background-image: -webkit-gradient( linear, left top, right top, from(#000000), to(#ededed) );
+			background-image: -webkit-linear-gradient( left, #000000 0%, #000000 90%, #ededed 100% );
+			background-image: -moz-linear-gradient( left, #000000 0%, #000000 90%, #ededed 100% );
+			background-image: -ms-linear-gradient( left, #000000 0%, #000000 90%, #ededed 100% );
+			background-image: -o-linear-gradient( left, #000000 0%, #000000 90%, #ededed 100% );
+			background-image: linear-gradient( to right, #000000 0%, #000000 90%, #ededed 100% );
+			transform-origin: 0 50% 0;
+			transform-style: preserve-3d;
+			transition: all 0.5s cubic-bezier(0.25, 1, 0.25, 1);
+		}
+	}
+	&:hover {
+		.page1-author {
+			transform: rotateY(-34deg);
+		}
+		.page2-author {
+			transform: rotateY(-27deg);
+		}
+		.page3-author {
+			transform: rotateY(-15deg);
+		}
+		.cover-author {
+			transform: rotateY(-40deg);
+		}
+	}
+}
+.cover-author {
+	z-index: 2 !important;
+	display: block;
+	width: 200px;
+	height: 300px;
+	background: #333 !important;
+	transform: rotateY(0deg) translateZ(0px);
+}
+.page1-author {
+	display: none;
+	transform: rotateY(20deg) translateZ(-1px);
+}
+.page2-author {
+	display: none;
+	transform: rotateY(30deg) translateZ(-2px);
+}
+.page3-author {
+	display: none;
+	transform: rotateY(40deg) translateZ(-3px);
 }

@@ -2,6 +2,7 @@
 import PropTypes, { object } from "prop-types";
 import "./PageList.scss";
 import BookElement from "../BookElement/BookElement";
+import AuthorItem from "../AuthorItem/AuthorItem";
 
 function PageList({ posts = [], authors = [] }) {
   return (
@@ -10,7 +11,7 @@ function PageList({ posts = [], authors = [] }) {
         <BookElement {...post} />
       ))}
       {authors.map((author) => (
-        <BookElement {...author} />
+        <AuthorItem {...author} />
       ))}
     </main>
   );
