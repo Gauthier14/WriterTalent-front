@@ -65,7 +65,7 @@ function NavMenu() {
                   setToggleMenu(!toggleMenu);
                 }}
               >
-                <Link to={genre.id}> {genre.name} </Link>
+                <Link to={`/genres/${genre.id}`}> {genre.name} </Link>
               </li>
             ))}
           </ul>
@@ -81,7 +81,7 @@ function NavMenu() {
                   setToggleMenu(!toggleMenu);
                 }}
               >
-                <Link to={category.slug}> {category.name} </Link>
+                <Link to={`/univers/${category.id}`}> {category.name} </Link>
               </li>
             ))}
           </ul>
