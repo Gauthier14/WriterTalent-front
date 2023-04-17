@@ -5,7 +5,7 @@ import Button from "../Button/Button";
 
 function ButtonGoWriter() {
   return (
-    <main>
+    <main className="buttonGoWritter">
       <div className="typewriter">
         <div className="slide">
           <i></i>

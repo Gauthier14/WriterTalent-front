@@ -10,6 +10,7 @@ function Button({
   color = "#fff",
   label,
   link,
+  linkTarget = "",
   width = "fit-content",
 }) {
   const [isHover, setIsHover] = useState(false);
@@ -33,12 +34,15 @@ function Button({
   };
   return (
     <button
-      style={isHover ? styleHover : style}
+      className="custom-btn"
       type="button"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
+      style={isHover ? styleHover : style}
     >
-      <Link to={link}>{label}</Link>
+      <Link to={link} target={linkTarget}>
+        {label}
+      </Link>
     </button>
   );
 }
@@ -49,6 +53,7 @@ Button.propTypes = {
   color: PropTypes.string,
   label: PropTypes.string.isRequired,
   link: PropTypes.string.isRequired,
+  linkTarget: PropTypes.string,
   width: PropTypes.string,
 };
 

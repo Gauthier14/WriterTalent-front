@@ -1,12 +1,12 @@
 /* eslint-disable max-len */
 import { BsFillHandThumbsUpFill, BsArrowBarUp } from "react-icons/bs";
 import Button from "../Button/Button";
-import ButtonGoWriter from "../ButtonGoWriter/ButtonGoWriter"
-import "./Main.scss";
+import ButtonGoWriter from "../ButtonGoWriter/ButtonGoWriter";
+import "./Home.scss";
 
-function Main() {
+function Home() {
   return (
-    <main className="homeMain">
+    <main className="home-main">
       <BsArrowBarUp
         className="scroll-button"
         onClick={() => {
@@ -96,4 +96,4 @@ function Main() {
   );
 }
 
-export default Main;
+export default Home;

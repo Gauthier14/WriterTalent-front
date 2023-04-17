@@ -1,9 +1,6 @@
 @import "src/styles/_vars.scss";
 
-.mainMentions {
-  display: flex;
-  flex-direction: column;
-
+.single-page {
   section {
     background-color: $bg_text_infos;
     border-radius: 0.5em;
@@ -12,12 +9,16 @@
     border: 1px solid #ccc;
     h1 {
       text-align: center;
-      font-size: 1.9em;
+      font-style: italic;
+      font-size: 2em;
     }
     p {
       line-height: 1.5;
       letter-spacing: 0.08em;
       margin: 2em;
     }
+  }
+  .contact {
+    text-align: center;
   }
 }

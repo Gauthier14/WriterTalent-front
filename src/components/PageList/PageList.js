@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import BookElement from "../BookElement/BookElement";
-import AuthorItem from "../AuthorItem/AuthorItem";
+import AuthorItem from "../Authors/Authors";
 
 function PageList() {
   const [postsGenre, setPostsGenre] = useState([]);
