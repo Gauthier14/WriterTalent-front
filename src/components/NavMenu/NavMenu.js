@@ -65,7 +65,7 @@ function NavMenu() {
                   setToggleMenu(!toggleMenu);
                 }}
               >
-                <Link to={`/genres/${genre.id}`}> {genre.name} </Link>
+                <Link to={`/genre/${genre.id}`}> {genre.name} </Link>
               </li>
             ))}
           </ul>
@@ -92,7 +92,7 @@ function NavMenu() {
             setToggleMenu(!toggleMenu);
           }}
         >
-          <Link to="#"> Auteurs </Link>
+          <Link to="/authors"> Auteurs </Link>
         </li>
         {isLogged ? (
           <li className="menu-item">

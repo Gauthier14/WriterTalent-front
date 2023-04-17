@@ -1,7 +1,7 @@
 /* eslint-disable quotes */
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useParams } from "react-router-dom";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Charte from "../Charte/Charte";
@@ -22,12 +22,29 @@ function App() {
   const [postsGenre, setPostsGenre] = useState([]);
   const [postsUnivers, setPostsUnivers] = useState([]);
   const [postsAuthor, setPostsAuthor] = useState([]);
-  const param = useEffect(() => {
-    axios.get("http://localhost:8000/api/genres").then((response) => {
-      setGenres([...response.data]);
-    });
-  }, []);
-
+  const { params } = useParams();
+  console.log(params.id);
+  /* useEffect(() => {
+    axios
+      .get(`http://localhost:8000/api/genre/${param}/posts`)
+      .then((response) => {
+        setPostsGenre([...response.data]);
+      });
+  }, [postsGenre]);
+  useEffect(() => {
+    axios
+      .get(`http://localhost:8000/api/univers/${param}/posts`)
+      .then((response) => {
+        setPostsUnivers([...response.data]);
+      });
+  }, [postsUnivers]);
+  useEffect(() => {
+    axios
+      .get(`http://localhost:8000/api/author/${param}/posts`)
+      .then((response) => {
+        setPostsAuthor([...response.data]);
+      });
+  }, [postsAuthor]); */
   return (
     <div className="app">
       <Header />
@@ -36,7 +53,6 @@ function App() {
         <Route path="/charte" element={<Charte />} />
         <Route path="/nouveautes" element={<PageList />} />
         <Route path="/register" element={<Register />} />
-
         <Route path="/mentions-legales" element={<MentionsLegales />} />
         <Route path="/qui-sommes-nous" element={<QuiSommesNous />} />
         <Route path="/nous-contacter" element={<NousContacter />} />
@@ -45,8 +61,10 @@ function App() {
           path="/univers/:id"
           element={<PageList posts={postsUnivers} />}
         />
-        <Route path="/author/:id" element={<PageList posts={postsAuthor} />} />
-
+        <Route
+          path="/author/:id"
+          element={<PageList authors={postsAuthor} />}
+        />
       </Routes>
       {/* <ButtonGoWriter /> */}
 
