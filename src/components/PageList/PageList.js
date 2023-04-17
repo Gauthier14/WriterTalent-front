@@ -5,6 +5,7 @@ import "./PageList.scss";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import BookElement from "../BookElement/BookElement";
+import AuthorItem from "../AuthorItem/AuthorItem";
 
 function PageList() {
   const [postsGenre, setPostsGenre] = useState([]);
@@ -40,11 +41,12 @@ function PageList() {
       {postsGenre.map((post) => (
         <BookElement {...post} />
       ))}
+
       {postsUnivers.map((post) => (
         <BookElement {...post} />
       ))}
       {authorList.map((author) => (
-        <Author {...author} />
+        <AuthorItem {...author} />
       ))}
     </main>
   );
