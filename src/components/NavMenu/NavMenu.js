@@ -2,75 +2,24 @@ import "./NavMenu.scss";
 import { ImCross } from "react-icons/im";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 import LoginForm from "../LoginForm/LoginForm";
 
 function NavMenu() {
   const [toggleMenu, setToggleMenu] = useState(true);
+  const [genres, setGenres] = useState([]);
+  const [categories, setCategories] = useState([]);
+  useEffect(() => {
+    axios.get("http://localhost:8000/api/genres").then((response) => {
+      setGenres([...response.data]);
+    });
+  }, []);
+  useEffect(() => {
+    axios.get("http://localhost:8000/api/categories").then((response) => {
+      setCategories([...response.data]);
+    });
+  }, []);
   const isLogged = false;
-  const genres = [
-    {
-      id: 26,
-      name: "Roman",
-      slug: "roman",
-    },
-    {
-      id: 27,
-      name: "Poésie",
-      slug: "poesie",
-    },
-    {
-      id: 28,
-      name: "Théatre",
-      slug: "theatre",
-    },
-    {
-      id: 29,
-      name: "Conte",
-      slug: "conte",
-    },
-    {
-      id: 30,
-      name: "Nouvelle",
-      slug: "nouvelle",
-    },
-    {
-      id: 33,
-      name: "TEST",
-      slug: "test",
-    },
-  ];
-  const categories = [
-    {
-      id: 26,
-      name: "Fantastique",
-      slug: "fantastique",
-    },
-    {
-      id: 27,
-      name: "S. F",
-      slug: "science-fiction",
-    },
-    {
-      id: 28,
-      name: "Aventure",
-      slug: "aventure",
-    },
-    {
-      id: 29,
-      name: "Policier",
-      slug: "policier",
-    },
-    {
-      id: 30,
-      name: "Historique",
-      slug: "historique",
-    },
-    {
-      id: 33,
-      name: "Scientifique",
-      slug: "scientifique",
-    },
-  ];
   return (
     <nav className={toggleMenu ? "menu-wrap" : "menu-wrap menu-wrap-hide"}>
       <ImCross
@@ -116,7 +65,7 @@ function NavMenu() {
                   setToggleMenu(!toggleMenu);
                 }}
               >
-                <Link to={genre.slug}> {genre.name} </Link>
+                <Link to={genre.id}> {genre.name} </Link>
               </li>
             ))}
           </ul>
@@ -170,9 +119,7 @@ function NavMenu() {
         ) : (
           <li className="menu-item">
             <Link to="#"> Se connecter </Link>
-            <ul className="drop-menu">
-              <LoginForm />
-            </ul>
+            <ul className="drop-menu">{/* <LoginForm /> */}</ul>
           </li>
         )}
         {isLogged ? (

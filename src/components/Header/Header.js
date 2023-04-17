@@ -6,12 +6,6 @@ import logo from "../../assets/images/logo.png";
 import NavMenu from "../NavMenu/NavMenu";
 
 function Header() {
-  /* const [genres, setGenres] = useState([]);
-  useEffect(() => {
-    axios.get("http://localhost:8000/api/genres").then((response) => {
-      setGenres([...response]);
-    });
-  }, []); */
   const [toggleMenu, setToggleMenu] = useState(true);
   return (
     <header>
