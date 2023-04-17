@@ -13,38 +13,13 @@ import Footer from "../Footer/Footer";
 import "./App.scss";
 
 import Register from "../Register/Register";
+import Page404 from "../Page404/Page404";
 
 // import Loader from "../Loader/Loader";
 // import PageList from "../PageList/PageList";
 // import ButtonGoWriter from "../ButtonGoWriter/ButtonGoWriter";
 
 function App() {
-  const [postsGenre, setPostsGenre] = useState([]);
-  const [postsUnivers, setPostsUnivers] = useState([]);
-  const [postsAuthor, setPostsAuthor] = useState([]);
-  const { params } = useParams();
-  console.log(params.id);
-  /* useEffect(() => {
-    axios
-      .get(`http://localhost:8000/api/genre/${param}/posts`)
-      .then((response) => {
-        setPostsGenre([...response.data]);
-      });
-  }, [postsGenre]);
-  useEffect(() => {
-    axios
-      .get(`http://localhost:8000/api/univers/${param}/posts`)
-      .then((response) => {
-        setPostsUnivers([...response.data]);
-      });
-  }, [postsUnivers]);
-  useEffect(() => {
-    axios
-      .get(`http://localhost:8000/api/author/${param}/posts`)
-      .then((response) => {
-        setPostsAuthor([...response.data]);
-      });
-  }, [postsAuthor]); */
   return (
     <div className="app">
       <Header />
@@ -56,15 +31,9 @@ function App() {
         <Route path="/mentions-legales" element={<MentionsLegales />} />
         <Route path="/qui-sommes-nous" element={<QuiSommesNous />} />
         <Route path="/nous-contacter" element={<NousContacter />} />
-        <Route path="/genre/:id" element={<PageList posts={postsGenre} />} />
-        <Route
-          path="/univers/:id"
-          element={<PageList posts={postsUnivers} />}
-        />
-        <Route
-          path="/author/:id"
-          element={<PageList authors={postsAuthor} />}
-        />
+        <Route path="/:param/:id" element={<PageList />} />
+        <Route path="/authors" element={<PageList />} />
+        <Route path="*" element={<Page404 />} />
       </Routes>
       {/* <ButtonGoWriter /> */}
 

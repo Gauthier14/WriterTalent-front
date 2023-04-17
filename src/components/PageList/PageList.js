@@ -1,16 +1,50 @@
 /* eslint-disable react/require-default-props */
 import PropTypes, { object } from "prop-types";
+import axios from "axios";
 import "./PageList.scss";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router";
 import BookElement from "../BookElement/BookElement";
 
-function PageList({ posts = [], authors = [] }) {
+function PageList() {
+  const [postsGenre, setPostsGenre] = useState([]);
+  const [postsUnivers, setPostsUnivers] = useState([]);
+  const [authorList, setAuthorList] = useState([]);
+  const { id, param } = useParams();
+  console.table(postsGenre);
+  console.log(param, id);
+  useEffect(() => {
+    axios
+      .get(`http://localhost:8000/api/${param}/${id}/posts`)
+      .then((response) => {
+        switch (param) {
+          case "genre":
+            setPostsGenre([...response.data]);
+            break;
+          case "univers":
+            setPostsUnivers([...response.data]);
+            break;
+          default:
+            break;
+        }
+      });
+  }, []);
+  useEffect(() => {
+    axios.get(`http://localhost:8000/api/user`).then((response) => {
+      setAuthorList([...response.data]);
+    });
+  }, [authorList]);
+
   return (
     <main className="page-list">
-      {posts.map((post) => (
+      {postsGenre.map((post) => (
         <BookElement {...post} />
       ))}
-      {authors.map((author) => (
-        <BookElement {...author} />
+      {postsUnivers.map((post) => (
+        <BookElement {...post} />
+      ))}
+      {authorList.map((author) => (
+        <Author {...author} />
       ))}
     </main>
   );
