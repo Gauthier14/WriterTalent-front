@@ -27,9 +27,9 @@ function App() {
       <Route path="/charte" element={<Charte />} />
       {/* <Route path="/nouveautes" element={<PageList />} /> */}
         <Route path="/register" element={<Register />} />
-        <Route path="/MentionsLegales" element={<MentionsLegales />} />
-        <Route path="/QuiSommesNous" element={<QuiSommesNous />} />
-        <Route path="/NousContacter" element={<NousContacter />} />
+        <Route path="/mentions-legales" element={<MentionsLegales />} />
+        <Route path="/qui-sommes-nous" element={<QuiSommesNous />} />
+        <Route path="/nous-contacter" element={<NousContacter />} />
       </Routes>
       {/* <ButtonGoWriter /> */}
 
