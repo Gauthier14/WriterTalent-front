@@ -6,19 +6,19 @@ function Footer() {
     <footer>
       <Button
         label="Mentions Légales"
-        link="#"
+        link="/MentionsLegales"
         bgColor="rgba(255, 255, 255, 0.466)"
         color="#000"
       />
       <Button
         label="Qui sommes-nous ?"
-        link="#"
+        link="/QuiSommesNous"
         bgColor="rgba(255, 255, 255, 0.466)"
         color="#000"
       />
       <Button
         label="Nous contacter"
-        link="#"
+        link="/NousContacter"
         bgColor="rgba(255, 255, 255, 0.466)"
         color="#000"
       />

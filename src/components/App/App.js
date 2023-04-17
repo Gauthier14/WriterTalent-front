@@ -4,6 +4,9 @@ import axios from "axios";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Charte from "../Charte/Charte";
+import MentionsLegales from "../MentionsLegales/MentionsLegales";
+import QuiSommesNous from "../QuiSommesNous/QuiSommesNous";
+// import NousContacter from "../NousContacter/NousContacter";
 import PageList from "../PageList/PageList";
 import Footer from "../Footer/Footer";
 import "./App.scss";
@@ -24,6 +27,9 @@ function App() {
       <Route path="/charte" element={<Charte />} />
       {/* <Route path="/nouveautes" element={<PageList />} /> */}
         <Route path="/register" element={<Register />} />
+        <Route path="/MentionsLegales" element={<MentionsLegales />} />
+        <Route path="/QuiSommesNous" element={<QuiSommesNous />} />
+        {/* <Route path="/NousContacter" element={<NousContacter />} /> */}
       </Routes>
       {/* <ButtonGoWriter /> */}
 
