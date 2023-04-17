@@ -5,13 +5,66 @@ function Authors() {
     <section className="author-item">
       <div className="book-author">
         <ul>
-          <li className="cover-author"> <a href link="#">Donald Duck</a> </li>
-          <li className="page-author page3-author"></li>
-          <li className="page-author page2-author"></li>
-          <li className="page-author page1-author"></li>
+          <li className="cover-author">
+            <a className="author-link" href link="#">
+              Donald Duck
+            </a>
+          </li>
+          <li className="page-author page3-author" />
+          <li className="page-author page2-author" />
+          <li className="page-author page1-author" />
         </ul>
       </div>
-      </section>
+
+      <div className="book-author">
+        <ul>
+          <li className="cover-author">
+            <a className="author-link" href link="#">
+              Donald Duck
+            </a>
+          </li>
+          <li className="page-author page3-author" />
+          <li className="page-author page2-author" />
+          <li className="page-author page1-author" />
+        </ul>
+      </div>
+      <div className="book-author">
+        <ul>
+          <li className="cover-author">
+            <a className="author-link" href link="#">
+              Donald Duck
+            </a>
+          </li>
+          <li className="page-author page3-author" />
+          <li className="page-author page2-author" />
+          <li className="page-author page1-author" />
+        </ul>
+      </div>
+      <div className="book-author">
+        <ul>
+          <li className="cover-author">
+            <a className="author-link" href link="#">
+              Donald Duck
+            </a>
+          </li>
+          <li className="page-author page3-author" />
+          <li className="page-author page2-author" />
+          <li className="page-author page1-author" />
+        </ul>
+      </div>
+      <div className="book-author">
+        <ul>
+          <li className="cover-author">
+            <a className="author-link" href link="#">
+              Donald Duck
+            </a>
+          </li>
+          <li className="page-author page3-author" />
+          <li className="page-author page2-author" />
+          <li className="page-author page1-author" />
+        </ul>
+      </div>
+    </section>
   );
 }
 
