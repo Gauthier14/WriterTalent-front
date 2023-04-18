@@ -9,7 +9,9 @@ import {
   setCategoriesInState,
   setToggleMenu,
 } from "../../actions/menu";
+import { getTextFieldLogin, loginUser, logout } from "../../actions/user";
 import LoginForm from "../LoginForm/LoginForm";
+import MenuItem from "./MenuItem";
 
 function NavMenu() {
   const dispatch = useDispatch();
@@ -17,6 +19,8 @@ function NavMenu() {
   const categories = useSelector((state) => state.menu.categories);
   const menuVisibility = useSelector((state) => state.menu.visible);
   const isLogged = useSelector((state) => state.user.logged);
+  const email = useSelector((state) => state.user.email);
+  const password = useSelector((state) => state.user.password);
   useEffect(() => {
     axios
       .get("http://localhost:8000/api/genres")
@@ -50,43 +54,27 @@ function NavMenu() {
         }}
       />
       <ul className="menu">
-        <li
-          className="menu-item"
-          onClick={() => {
-            setToggleMenu(!toggleMenu);
-          }}
-        >
+        <MenuItem>
           <Link to="/"> Accueil </Link>
-        </li>
-        <li
+        </MenuItem>
+        <MenuItem
           className="menu-item"
           onClick={() => {
-            setToggleMenu(!toggleMenu);
+            dispatch(setToggleMenu());
           }}
         >
           <Link to="/charte"> Charte du site </Link>
-        </li>
-        <li
-          className="menu-item"
-          onClick={() => {
-            setToggleMenu(!toggleMenu);
-          }}
-        >
+        </MenuItem>
+        <MenuItem>
           <Link to="/nouveautes"> Nouveautés </Link>
-        </li>
+        </MenuItem>
         <li className="menu-item">
           <Link> Genre </Link>
           <ul className="drop-menu">
             {genres.map((genre) => (
-              <li
-                className="drop-menu-item"
-                key={genre.id}
-                onClick={() => {
-                  setToggleMenu(!toggleMenu);
-                }}
-              >
+              <MenuItem className="drop-menu-item" key={genre.id}>
                 <Link to={`/genre/${genre.id}`}> {genre.name} </Link>
-              </li>
+              </MenuItem>
             ))}
           </ul>
         </li>
@@ -94,74 +82,52 @@ function NavMenu() {
           <Link> Univers </Link>
           <ul className="drop-menu">
             {categories.map((category) => (
-              <li
-                className="drop-menu-item"
-                key={category.id}
-                onClick={() => {
-                  setToggleMenu(!toggleMenu);
-                }}
-              >
+              <MenuItem className="drop-menu-item" key={category.id}>
                 <Link to={`/category/${category.id}`}> {category.name} </Link>
-              </li>
+              </MenuItem>
             ))}
           </ul>
         </li>
-        <li
-          className="menu-item"
-          onClick={() => {
-            setToggleMenu(!toggleMenu);
-          }}
-        >
+        <MenuItem>
           <Link to="/authors"> Auteurs </Link>
-        </li>
+        </MenuItem>
         {isLogged ? (
           <li className="menu-item">
             <Link to="#"> Profil </Link>
             <ul className="drop-menu">
-              <li
-                className="drop-menu-item"
-                onClick={() => {
-                  setToggleMenu(!toggleMenu);
-                }}
-              >
+              <MenuItem className="drop-menu-item">
                 <Link>Favoris</Link>
-              </li>
-              <li
-                className="drop-menu-item"
-                onClick={() => {
-                  setToggleMenu(!toggleMenu);
-                }}
-              >
+              </MenuItem>
+              <MenuItem className="drop-menu-item">
                 <Link>Mes écrits</Link>
-              </li>
+              </MenuItem>
             </ul>
           </li>
         ) : (
           <li className="menu-item">
             <Link to="#"> Se connecter </Link>
             <ul className="drop-menu">
-              <LoginForm />
+              <LoginForm
+                changeField={getTextFieldLogin}
+                email={email}
+                password={password}
+                handleLogin={loginUser}
+              />
             </ul>
           </li>
         )}
         {isLogged ? (
-          <li
-            className="menu-item"
+          <MenuItem
             onClick={() => {
-              setToggleMenu(!toggleMenu);
+              dispatch(logout());
             }}
           >
             <Link to="/register"> Déconnexion </Link>
-          </li>
+          </MenuItem>
         ) : (
-          <li
-            className="menu-item"
-            onClick={() => {
-              setToggleMenu(!toggleMenu);
-            }}
-          >
+          <MenuItem>
             <Link to="/register"> Inscription </Link>
-          </li>
+          </MenuItem>
         )}
       </ul>
     </nav>

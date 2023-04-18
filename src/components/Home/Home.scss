@@ -14,7 +14,7 @@
     border: 1px solid #ccc;
     p {
       line-height: 1.5;
-      text-indent: 10px
+      text-indent: 10px;
     }
   }
   .container-main {
@@ -23,7 +23,7 @@
     align-items: center;
     @media screen and (min-width: 760px) {
       display: inline-flex;
-      gap: 1em;
+      gap: 3em;
       flex-direction: row;
       justify-content: space-between;
     }
@@ -122,7 +122,6 @@
             align-items: center;
             border-bottom: $main_color_dark 1px solid;
             padding-bottom: 1em;
-            
           }
           &:last-child p {
             border-bottom: none;
@@ -135,7 +134,7 @@
             padding: 0.3em 0.7em;
             background-color: $bg_style_genre;
             border-radius: 0.5em;
-            color:#ffffff
+            color: #ffffff;
           }
           .nbLikes {
             background-color: $bg_likes;
@@ -144,19 +143,5 @@
         }
       }
     }
-  }
-  .scroll-button {
-    position: fixed;
-    bottom: 0;
-    right: 0;
-    color: aliceblue;
-    display: inline-block;
-    padding: 0.1em;
-    font-weight: bold;
-    font-size: 2em;
-    background-color: $main_color_dark;
-    border-radius: 0.2em;
-    cursor: pointer;
-    z-index: 5;
   }
 }

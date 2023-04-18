@@ -2,6 +2,7 @@
 /* eslint-disable quotes */
 
 import { Routes, Route, useParams } from "react-router-dom";
+import { BsArrowBarUp } from "react-icons/bs";
 import Header from "../Header/Header";
 import Home from "../Home/Home";
 import Charte from "../Charte/Charte";
@@ -12,7 +13,6 @@ import NousContacter from "../NousContacter/NousContacter";
 import PageList from "../PageList/PageList";
 import Footer from "../Footer/Footer";
 import "./App.scss";
-
 import Register from "../Register/Register";
 import Page404 from "../Page404/Page404";
 import SinglePage from "../SinglePage/SinglePage";
@@ -74,6 +74,12 @@ function App() {
 
       {/* <Main /> */}
       <Footer />
+      <BsArrowBarUp
+        className="scroll-button"
+        onClick={() => {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }}
+      />
     </div>
   );
 }

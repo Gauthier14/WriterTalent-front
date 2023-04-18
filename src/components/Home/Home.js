@@ -7,12 +7,6 @@ import "./Home.scss";
 function Home() {
   return (
     <main className="home-main">
-      <BsArrowBarUp
-        className="scroll-button"
-        onClick={() => {
-          window.scrollTo({ top: 0, behavior: "smooth" });
-        }}
-      />
       {/* <ButtonGoWriter /> */}
       <article>
         <p>
@@ -35,8 +29,8 @@ function Home() {
           lire la Charte d'utilisation.
         </p>
         <p>
-          Nous vous souhaitons une bonne visite sur 'WriterTalent' et
-          une excellente lecture !
+          Nous vous souhaitons une bonne visite sur 'WriterTalent' et une
+          excellente lecture !
         </p>
       </article>
 
