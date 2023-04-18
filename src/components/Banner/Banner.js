@@ -7,7 +7,7 @@ function Banner() {
   return (
     <Container className="banner" fluid>
       <Row>
-        <Col><img src="" alt="Logo WriterTalent" /></Col>
+        <Col><img src="" alt="Logo représentant une main qui tient une plume et qui écrit Write Talent. La pointe de la plume brille comme une étoile." /></Col>
         <Col><h1>WriterTalent</h1></Col>
       </Row>
     </Container>

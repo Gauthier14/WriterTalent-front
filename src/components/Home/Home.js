@@ -32,10 +32,10 @@ function Home() {
         </p>
         <p>
           Soyez créatifs et inspirés dans vos écrits. Nous vous invitons à bien
-          lire la Charte d'utilisation du site.
+          lire la Charte d'utilisation.
         </p>
         <p>
-          Nous vous souhaitons une bonne visite sur notre site 'WriterTalent' et
+          Nous vous souhaitons une bonne visite sur 'WriterTalent' et
           une excellente lecture !
         </p>
       </article>
@@ -88,7 +88,7 @@ function Home() {
                 <span className="nbLikes">783</span>
               </p>
             </li>
-            <Button label="Voir plus" link="#" />
+            <Button label="Lire plus d'histoires" link="#" />
           </ul>
         </section>
       </div>

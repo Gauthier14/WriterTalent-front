@@ -8,6 +8,7 @@ function Button({
   bgColor = "#333",
   bgHoverColor = "#6e6d6d",
   color = "#fff",
+  backdropFilter ="true",
   label,
   link,
   linkTarget = "",
@@ -25,6 +26,7 @@ function Button({
   const style = {
     backgroundColor: `${bgColor}`,
     color: `${color}`,
+    backdropfilter:`${backdropFilter}`,
     width: `${width}`,
   };
   const styleHover = {
@@ -51,6 +53,7 @@ Button.propTypes = {
   bgColor: PropTypes.string,
   bgHoverColor: PropTypes.string,
   color: PropTypes.string,
+  backdropfilter: PropTypes.boolean,
   label: PropTypes.string.isRequired,
   link: PropTypes.string.isRequired,
   linkTarget: PropTypes.string,

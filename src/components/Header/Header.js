@@ -10,7 +10,7 @@ function Header() {
   return (
     <header>
       <div className="logo">
-        <img src={logo} alt="logo writerTalent" />
+        <img src={logo} alt="Logo représentant une main qui tient une plume et qui écrit Write Talent. La pointe de la plume brille comme une étoile." />
       </div>
       <div className="title">
         <h1> WriterTalent </h1>

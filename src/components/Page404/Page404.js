@@ -8,7 +8,7 @@ function Page404() {
   return (
     <main className="page-404">
       <section>
-        <img src={img404} alt="Livre ouvert" />
+        <img src={img404} alt="Livre ouvert posé à l'horizontale, les pages feuilletées" />
       </section>
       <section className="text">
         <div>
