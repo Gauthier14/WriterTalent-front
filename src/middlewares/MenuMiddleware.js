@@ -12,7 +12,7 @@ const postsMiddleware = (store) => (next) => (action) => {
       axios
         .get("http://localhost:8000/api/genres")
         .then((response) => {
-          store.dispatch(setGenresInState([...response.data]));
+          store.dispatch(setGenresInState(response.data));
         })
         .catch((error) => {
           // le serveur nous retourne 401 si les identifiants ne sont pas bons
@@ -28,7 +28,7 @@ const postsMiddleware = (store) => (next) => (action) => {
           }, */
         })
         .then((response) => {
-          store.dispatch(setCategoriesInState([...response.data]));
+          store.dispatch(setCategoriesInState(response.data));
         })
         .catch((error) => {
           // le serveur nous retourne 401 si les identifiants ne sont pas bons
