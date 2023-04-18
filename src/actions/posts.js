@@ -35,10 +35,6 @@ export const setAllUserPublishedPostsInState = (postList) => ({
   posts: postList,
 });
 
-export const getRecentPostsFromApi = () => ({
-  type: GET_RECENT_POSTS_FROM_API,
-});
-
 /**
  * @param {Array} Posts - List of user favorites posts
  */
@@ -46,13 +42,3 @@ export const setRecentPostsInState = (RecentPosts) => ({
   type: SET_RECENT_POSTS_IN_STATE,
   RecentPosts: RecentPosts,
 });
-
-/**
- * @param {Array} Posts - List of user favorites posts
- */
-export const setRecentPostsInState = (RecentPosts) => ({
-  type: SET_RECENT_POSTS_IN_STATE,
-  RecentPosts: RecentPosts,
-});
-
-recentPosts;

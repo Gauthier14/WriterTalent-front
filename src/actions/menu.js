@@ -12,7 +12,7 @@ export const SET_CATEGORIES_IN_STATE = "SET_CATEGORIES_IN_STATE";
 /**
  * @returns {object} Contains the type of the action for hide or show menu
  */
-export const toggleMenu = () => ({
+export const setToggleMenu = () => ({
   type: TOGGLE_MENU,
 });
 

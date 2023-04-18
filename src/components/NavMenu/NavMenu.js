@@ -1,36 +1,52 @@
 import "./NavMenu.scss";
-import { ImCross } from "react-icons/im";
-import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 import axios from "axios";
+import { useEffect } from "react";
+import { Link } from "react-router-dom";
+import { ImCross } from "react-icons/im";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  setGenresInState,
+  setCategoriesInState,
+  setToggleMenu,
+} from "../../actions/menu";
 import LoginForm from "../LoginForm/LoginForm";
 
 function NavMenu() {
-  const [genres, setGenres] = useState([]);
-  const [categories, setCategories] = useState([]);
-  const toggleMenu = useSelector((state) => state.menu.visible);
-  const isLoaded = useSelector((state) => state.posts.allUserPosts);
-  const isLogged = useSelector((state) => state.user.logged);
   const dispatch = useDispatch();
+  const genres = useSelector((state) => state.menu.genres);
+  const categories = useSelector((state) => state.menu.categories);
+  const menuVisibility = useSelector((state) => state.menu.visible);
+  const isLogged = useSelector((state) => state.user.logged);
   useEffect(() => {
-    axios.get("http://localhost:8000/api/genres").then((response) => {
-      setGenres([...response.data]);
-    });
+    axios
+      .get("http://localhost:8000/api/genres")
+      .then((response) => {
+        dispatch(setGenresInState(response.data));
+      })
+      .catch((error) => {
+        // le serveur nous retourne 401 si les identifiants ne sont pas bons
+        console.log(error);
+      });
   }, []);
   useEffect(() => {
-    axios.get("http://localhost:8000/api/categories").then((response) => {
-      setCategories([...response.data]);
-    });
+    axios
+      .get("http://localhost:8000/api/categories")
+      .then((response) => {
+        dispatch(setCategoriesInState(response.data));
+      })
+      .catch((error) => {
+        // le serveur nous retourne 401 si les identifiants ne sont pas bons
+        console.log(error);
+      });
   }, []);
-  const isLogged = false;
+
   return (
-    <nav className={toggleMenu ? "menu-wrap" : "menu-wrap menu-wrap-hide"}>
+    <nav className={!menuVisibility ? "menu-wrap" : "menu-wrap menu-wrap-hide"}>
       <ImCross
         className="close-btn"
         size={30}
         onClick={() => {
-          setToggleMenu(!toggleMenu);
+          dispatch(setToggleMenu());
         }}
       />
       <ul className="menu">
