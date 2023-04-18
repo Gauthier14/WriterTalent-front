@@ -9,7 +9,7 @@
   margin: 2em 5em 7em 5em;
   display: flex;
   width: 13em;
-  transform: translate3d(0, 0, 0);
+  transform: perspective(20em) rotateX(10deg);
 }
 
 .book-author ul {
@@ -49,31 +49,31 @@
   background-image: -webkit-linear-gradient(
     left,
     #000000 0%,
-    #000000 90%,
+    #685605bd 90%,
     #ededed 100%
   );
   background-image: -moz-linear-gradient(
     left,
     #000000 0%,
-    #000000 90%,
+    #685605bd 90%,
     #ededed 100%
   );
   background-image: -ms-linear-gradient(
     left,
     #000000 0%,
-    #000000 90%,
+    #685605bd 90%,
     #ededed 100%
   );
   background-image: -o-linear-gradient(
     left,
     #000000 0%,
-    #000000 90%,
+    #685605bd 90%,
     #ededed 100%
   );
   background-image: linear-gradient(
     to right,
     #000000 0%,
-    #000000 90%,
+    #685605bd 90%,
     #ededed 100%
   );
   transform-origin: 0 50% 0;
@@ -101,6 +101,10 @@
   content: "Voir les écrits de ";
   color: #ecba16;
   margin-bottom: 1em;
+}
+
+.span-published{
+color:silver
 }
 
 .cover-author {
