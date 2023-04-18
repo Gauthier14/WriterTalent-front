@@ -1,6 +1,6 @@
 /* eslint-disable quotes */
 export const initialState = {
-  visible: true,
+  visible: false,
   genres: [],
   categories: [],
 };
