@@ -1,10 +1,11 @@
+/* eslint-disable comma-dangle */
 /* eslint-disable quotes */
 import axios from "axios";
 import { loginSuccess, LOGIN_USER, getTextFieldLogin } from "../actions/user";
-import { getFavoriteRecipesFromApi } from "../actions/posts";
+// import { getFavoriteRecipesFromApi } from "../actions/posts";
 
 const userMiddleware = (store) => (next) => (action) => {
-  console.log("authenticateMiddleware action reçue : " + action);
+  // console.log("authenticateMiddleware action reçue : " + action);
   switch (action.type) {
     case LOGIN_USER:
       axios
@@ -17,12 +18,13 @@ const userMiddleware = (store) => (next) => (action) => {
             loginSuccess(
               response.data.logged,
               response.data.pseudo,
+              response.data.userId,
               response.data.token
             )
           );
           store.dispatch(getTextFieldLogin("", "email"));
           store.dispatch(getTextFieldLogin("", "password"));
-          store.dispatch(getFavoriteRecipesFromApi());
+          // store.dispatch(getFavoriteRecipesFromApi());
         })
         .catch((error) => {
           // le serveur nous retourne 401 si les identifiants ne sont pas bons

@@ -1,5 +1,10 @@
 import axios from "axios";
-import { GET_GENRES_FROM_API } from "../actions/menu";
+import {
+  GET_GENRES_FROM_API,
+  setCategoriesInState,
+  GET_CATEGORIES_FROM_API,
+  setGenresInState,
+} from "../actions/menu";
 
 const postsMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
@@ -7,23 +12,23 @@ const postsMiddleware = (store) => (next) => (action) => {
       axios
         .get("http://localhost:8000/api/genres")
         .then((response) => {
-          store.dispatch(SetAllUserPostsInState(response.data));
+          store.dispatch(setGenresInState([...response.data]));
         })
         .catch((error) => {
           // le serveur nous retourne 401 si les identifiants ne sont pas bons
           console.log(error);
         });
       break;
-    case GET_CATEGORIES_IN_STATE:
+    case GET_CATEGORIES_FROM_API:
       axios
-        .get("http://localhost:3001/favorites", {
-          headers: {
+        .get("http://localhost:8000/api/categories", {
+          /* headers: {
             // nom du header: valeur
             Authorization: `Bearer ${store.getState().user.token}`,
-          },
+          }, */
         })
         .then((response) => {
-          store.dispatch(setRecentPostsInState(response.data.favorites));
+          store.dispatch(setCategoriesInState([...response.data]));
         })
         .catch((error) => {
           // le serveur nous retourne 401 si les identifiants ne sont pas bons

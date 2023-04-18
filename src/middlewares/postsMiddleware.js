@@ -1,16 +1,16 @@
 import axios from "axios";
 import {
   GET_RECENT_POSTS_FROM_API,
-  GET_ALL_USER_POSTS_FROM_API,
+  GET_ALL_USER_PUBLISHED_POSTS_FROM_API,
   SetAllUserPostsInState,
   setRecentPostsInState,
 } from "../actions/posts";
 
 const postsMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
-    case GET_ALL_USER_POSTS_FROM_API:
+    case GET_ALL_USER_PUBLISHED_POSTS_FROM_API:
       axios
-        .get("http://localhost:3001/posts")
+        .get("http://localhost:8000/api/post/{id}/published")
         .then((response) => {
           store.dispatch(SetAllUserPostsInState(response.data));
         })
@@ -21,7 +21,7 @@ const postsMiddleware = (store) => (next) => (action) => {
       break;
     case GET_RECENT_POSTS_FROM_API:
       axios
-        .get("http://localhost:3001/favorites", {
+        .get("http://localhost:8000/favorites", {
           headers: {
             // nom du header: valeur
             Authorization: `Bearer ${store.getState().user.token}`,

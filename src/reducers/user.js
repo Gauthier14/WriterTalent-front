@@ -1,10 +1,11 @@
 /* eslint-disable quotes */
 export const initialState = {
   logged: false,
-  email: '',
-  password: '',
-  pseudo: '',
-  token: '',
+  userId: "",
+  email: "",
+  password: "",
+  pseudo: "",
+  token: "",
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -18,6 +19,7 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         logged: action.loggedStatus,
+        userId: action.userId,
         pseudo: action.userPseudo,
         token: action.userToken,
       };

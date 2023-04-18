@@ -7,7 +7,6 @@ import axios from "axios";
 import LoginForm from "../LoginForm/LoginForm";
 
 function NavMenu() {
-  const [toggleMenu, setToggleMenu] = useState(true);
   const [genres, setGenres] = useState([]);
   const [categories, setCategories] = useState([]);
   const toggleMenu = useSelector((state) => state.menu.visible);
