@@ -1,0 +1,19 @@
+// @import "./src/components/Header/Header.scss";
+// @import "./src/components/Main/Main.scss";
+// @import "./src/components/Footer/Footer.scss";
+@import url(https://fonts.bunny.net/css?family=besley:400,500,700);
+.app {
+  font-family: "Besley", serif;
+  min-width: 390px;
+  max-width: 1024px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: auto;
+  font-size: 1em;
+  min-height: 100vh;
+  main {
+    width: 100%;
+    padding: 1em;
+  }
+}

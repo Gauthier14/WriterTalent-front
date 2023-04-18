@@ -1,0 +1,143 @@
+.author-item {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.book-author {
+  margin: 2em 5em 7em 5em;
+  display: flex;
+  width: 13em;
+  transform: perspective(20em) rotateX(10deg);
+}
+
+.book-author ul {
+  text-align: center;
+  color: #fff;
+  text-transform: uppercase;
+  display: block;
+  position: relative;
+  width: 10em;
+  height: 15em;
+  margin: 0em;
+  padding: 0;
+  list-style: none;
+  perspective-origin: 0 50% 0;
+  perspective: 800px;
+  -webkit-transform: translate3d(0, 0, 0);
+}
+
+.book-author ul > li {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 15em;
+  width: 13em;
+  padding: 0;
+  margin: 0;
+  background-image: -webkit-gradient(
+    linear,
+    left top,
+    right top,
+    from(#000000),
+    to(#ededed)
+  );
+  background-image: -webkit-linear-gradient(
+    left,
+    #000000 0%,
+    #685605bd 90%,
+    #ededed 100%
+  );
+  background-image: -moz-linear-gradient(
+    left,
+    #000000 0%,
+    #685605bd 90%,
+    #ededed 100%
+  );
+  background-image: -ms-linear-gradient(
+    left,
+    #000000 0%,
+    #685605bd 90%,
+    #ededed 100%
+  );
+  background-image: -o-linear-gradient(
+    left,
+    #000000 0%,
+    #685605bd 90%,
+    #ededed 100%
+  );
+  background-image: linear-gradient(
+    to right,
+    #000000 0%,
+    #685605bd 90%,
+    #ededed 100%
+  );
+  transform-origin: 0 50% 0;
+  transform-style: preserve-3d;
+  transition: all 0.5s cubic-bezier(0.25, 1, 0.25, 1);
+}
+.cover-authors {
+  font-size: 1.5em;
+  padding: 1em;
+  line-height: 2em;
+}
+
+.author-link {
+  color: #fff;
+  cursor: grab;
+  text-decoration: none;
+  padding: 1em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.author-link:hover::before {
+  content: "Voir les écrits de ";
+  color: #ecba16;
+  margin-bottom: 1em;
+}
+
+.span-published{
+color:silver
+}
+
+.cover-author {
+  z-index: 2 !important;
+  background: #8f7c4a !important;
+  transform: rotateY(0deg) translateZ(0px);
+  word-break: break-word;
+}
+.page1-author {
+  display: none;
+  transform: rotateY(20deg) translateZ(-1px);
+}
+.page2-author {
+  display: none;
+  transform: rotateY(30deg) translateZ(-2px);
+}
+.page3-author {
+  display: none;
+  transform: rotateY(40deg) translateZ(-3px);
+}
+
+.book-author:hover .page1-author {
+  transform: rotateY(-34deg);
+}
+
+.book-author:hover .page2-author {
+  transform: rotateY(-27deg);
+}
+
+.book-author:hover .page3-author {
+  transform: rotateY(-15deg);
+}
+
+.book-author:hover .cover-author {
+  transform: rotateY(-40deg);
+}

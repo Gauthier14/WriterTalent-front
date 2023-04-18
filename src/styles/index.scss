@@ -1,9 +1,21 @@
-@use 'reset';
-@use 'vars';
+@use "reset";
+@use "vars";
+@import "./vars";
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+}
 
 body {
-  font-family: sans-serif;
+  font-family: "Besley", serif;
+  background-color: $main-light-color;
 }
+// * {
+//   border: ;
+// }
 
 /* 
   // or you can import your own font

@@ -1,0 +1,95 @@
+@import "src/styles/_vars.scss";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.register {
+  margin: 1em auto;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .form-container {
+    min-width: 80%;
+    display: flex;
+    flex-direction: column;
+    background-color: $bg-color_register;
+    padding: 2em;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    h2 {
+      text-align: center;
+      font-size: 1.5em;
+      margin-bottom: 1em;
+    }
+
+    form {
+      opacity: none;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+    }
+    label {
+      margin: 1vh;
+    }
+    input[type="text"] {
+      padding: 1vh;
+      border: 0.1em black solid;
+      border-radius: 3px;
+      background-color: #f2f2f2;
+    }
+    input[type="email"] {
+      padding: 1vh;
+      border: 0.1em black solid;
+      border-radius: 3px;
+      background-color: #f2f2f2;
+    }
+    input[type="password"] {
+      padding: 1vh;
+      border: 0.1em black solid;
+      border-radius: 3px;
+      background-color: #f2f2f2;
+      margin-bottom: 1em;
+    }
+    .password-errors {
+      color: $fail_data;
+      font-size: 0.8em;
+      margin-top: 0.5em;
+      span.valid {
+        color: $color_validation;
+      }
+    }
+  }
+}
+
+// .image-container {
+//   background-image: url('src/assets/images/formulaire_inscription.png');
+//   // display: flex;
+//   // align-items: center;
+
+//   img {
+//     max-width: 100%;
+//     height: auto;
+//   }
+// }
+
+@media screen and (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .form-container {
+    max-width: 80vw;
+    margin: 5vw;
+  }
+  .image-container {
+    max-width: 80vw;
+    margin: 5vw;
+  }
+  h1 {
+    font-size: calc(1em + 5vw);
+  }
+}
