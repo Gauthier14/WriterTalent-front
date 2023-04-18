@@ -1,6 +1,7 @@
 import "./NavMenu.scss";
 import { ImCross } from "react-icons/im";
 import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import LoginForm from "../LoginForm/LoginForm";
@@ -9,6 +10,10 @@ function NavMenu() {
   const [toggleMenu, setToggleMenu] = useState(true);
   const [genres, setGenres] = useState([]);
   const [categories, setCategories] = useState([]);
+  const toggleMenu = useSelector((state) => state.menu.visible);
+  const isLoaded = useSelector((state) => state.posts.allUserPosts);
+  const isLogged = useSelector((state) => state.user.logged);
+  const dispatch = useDispatch();
   useEffect(() => {
     axios.get("http://localhost:8000/api/genres").then((response) => {
       setGenres([...response.data]);
@@ -119,7 +124,9 @@ function NavMenu() {
         ) : (
           <li className="menu-item">
             <Link to="#"> Se connecter </Link>
-            <ul className="drop-menu">{/* <LoginForm /> */}</ul>
+            <ul className="drop-menu">
+              <LoginForm />
+            </ul>
           </li>
         )}
         {isLogged ? (
