@@ -1,51 +1,31 @@
+/* eslint-disable comma-dangle */
 /* eslint-disable react/require-default-props */
 import PropTypes, { object } from "prop-types";
-import axios from "axios";
-import "./PageList.scss";
-import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
 import { useParams } from "react-router";
-// import { Link } from "react-router-dom";
+import { getAllPostsPerCategoryOrGenreFromApi } from "../../actions/posts";
 import BookElement from "../BookElement/BookElement";
 // import AuthorItem from "../Authors/Authors";
+import "./PageList.scss";
 
 function PageList() {
-  const [postsGenre, setPostsGenre] = useState([]);
-  const [postsUnivers, setPostsUnivers] = useState([]);
-  // const [authorList, setAuthorList] = useState([]);
   const { id, param } = useParams();
-  console.table(postsGenre);
+  const dispatch = useDispatch();
+  const postsGenre = useSelector((state) => state.posts.publishedPostsPerGenre);
+  const postsCategory = useSelector(
+    (state) => state.posts.publishedPostsPerCategory
+  );
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:8000/api/${param}/${id}/posts`)
-      .then((response) => {
-        switch (param) {
-          case "genre":
-            console.log(response);
-            setPostsGenre([...response.data]);
-            break;
-          case "category":
-            setPostsUnivers([...response.data]);
-            break;
-          default:
-            break;
-        }
-      });
-  }, [postsGenre]);
-
-  /* useEffect(() => {
-    axios.get(`http://localhost:8000/api/users/authors`).then((response) => {
-      setAuthorList([...response.data]);
-    });
-  }, []); */
-
+    dispatch(getAllPostsPerCategoryOrGenreFromApi(param, id));
+  });
   return (
     <main className="page-list">
       {postsGenre.map((post) => (
         <BookElement {...post} link={`/post/${post.id}`} />
       ))}
-
-      {postsUnivers.map((post) => (
+      {postsCategory.map((post) => (
         <BookElement {...post} link={`/post/${post.id}`} />
       ))}
     </main>

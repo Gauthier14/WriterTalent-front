@@ -1,3 +1,4 @@
+/* eslint-disable brace-style */
 import axios from "axios";
 import {
   GET_RECENT_POSTS_FROM_API,
@@ -5,8 +6,7 @@ import {
   GET_ALL_SAVED_USER_POSTS_FROM_API,
   GET_ALL_FAVORITE_USER_POSTS_FROM_API,
   GET_ALL_READ_LATER_USER_POSTS_FROM_API,
-  GET_ALL_POSTS_PER_GENRE_FROM_API,
-  GET_ALL_POSTS_PER_CATEGORY_FROM_API,
+  GET_ALL_POSTS_PER_CATEGORY_OR_GENRE_FROM_API,
   setAllPostsPerCategoryInState,
   setAllPostsPerGenreInState,
   setAllSavedUserPostsInState,
@@ -96,25 +96,15 @@ const postsMiddleware = (store) => (next) => (action) => {
         });
       break;
 
-    case GET_ALL_POSTS_PER_CATEGORY_FROM_API:
+    case GET_ALL_POSTS_PER_CATEGORY_OR_GENRE_FROM_API:
       axios
-        .get(`http://localhost:8000/api/category/${action.categoryId}/posts`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        })
+        .get(`http://localhost:8000/api/${action.param}/${action.id}/posts`)
         .then((response) => {
-          store.dispatch(setAllPostsPerCategoryInState(response.data));
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-      break;
-    case GET_ALL_POSTS_PER_GENRE_FROM_API:
-      axios
-        .get(`http://localhost:8000/api/genre/${action.genreId}/posts`)
-        .then((response) => {
-          store.dispatch(setAllPostsPerGenreInState(response.data));
+          if (action.param === "category") {
+            store.dispatch(setAllPostsPerCategoryInState(response.data));
+          } else if (action.param === "genre") {
+            store.dispatch(setAllPostsPerGenreInState(response.data));
+          }
         })
         .catch((error) => {
           console.log(error);
