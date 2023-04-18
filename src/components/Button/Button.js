@@ -5,14 +5,14 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 
 function Button({
-  bgColor = "#333",
-  bgHoverColor = "#6e6d6d",
-  color = "#fff",
-  backdropFilter = true,
+  bgColor,
+  bgHoverColor,
+  color,
+  backdropFilter,
   label,
   link,
-  linkTarget = "",
-  width = "fit-content",
+  linkTarget,
+  width,
 }) {
   const [isHover, setIsHover] = useState(false);
 
@@ -61,4 +61,12 @@ Button.propTypes = {
   width: PropTypes.string,
 };
 
+Button.defaultProps = {
+  bgColor: "#333",
+  bgHoverColor: "#6e6d6d",
+  color: "#fff",
+  backdropFilter: true,
+  linkTarget: "",
+  width: "fit-content",
+};
 export default Button;

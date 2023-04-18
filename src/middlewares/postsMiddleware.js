@@ -71,7 +71,7 @@ const postsMiddleware = (store) => (next) => (action) => {
 
     case GET_RECENT_POSTS_FROM_API:
       axios
-        .get("http://localhost:8000/api/", {})
+        .get("http://localhost:8000/api/posts/recent", {})
         .then((response) => {
           store.dispatch(setRecentPostsInState(response.data));
         })

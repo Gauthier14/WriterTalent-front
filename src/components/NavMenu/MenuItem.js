@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 import { setToggleMenu } from "../../actions/menu";
 
-const MenuItem = ({ children, className = "menu-item" }) => {
+const MenuItem = ({ children, className }) => {
   const dispatch = useDispatch();
   return (
     <li
@@ -11,7 +11,8 @@ const MenuItem = ({ children, className = "menu-item" }) => {
       onClick={() => {
         dispatch(setToggleMenu());
       }}
-    >{children}
+    >
+      {children}
     </li>
   );
 };
@@ -21,4 +22,7 @@ MenuItem.propTypes = {
   className: PropTypes.string,
 };
 
+MenuItem.defaultProps = {
+  className: "menu-item",
+};
 export default MenuItem;
