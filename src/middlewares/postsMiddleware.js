@@ -21,7 +21,7 @@ const postsMiddleware = (store) => (next) => (action) => {
       break;
     case GET_RECENT_POSTS_FROM_API:
       axios
-        .get("http://localhost:8000/favorites", {
+        .get("http://localhost:8000/api/favorites", {
           headers: {
             // nom du header: valeur
             Authorization: `Bearer ${store.getState().user.token}`,
