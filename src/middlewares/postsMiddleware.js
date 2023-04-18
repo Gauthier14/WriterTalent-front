@@ -18,6 +18,7 @@ import {
 
 const postsMiddleware = (store) => (next) => (action) => {
   const userId = store.getState().user.id;
+  const token = localStorage.getItem("token");
   switch (action.type) {
     case GET_ALL_USER_PUBLISHED_POSTS_FROM_API:
       axios
@@ -40,7 +41,7 @@ const postsMiddleware = (store) => (next) => (action) => {
         .get(`http://localhost:8000/api/user/${userId}/posts/toread`, {
           headers: {
             // nom du header: valeur
-            Authorization: `Bearer ${store.getState().user.token}`,
+            Authorization: `Bearer ${token}`,
           },
         })
         .then((response) => {
@@ -56,7 +57,7 @@ const postsMiddleware = (store) => (next) => (action) => {
         .get(`http://localhost:8000/api/user/${userId}/posts/saved`, {
           headers: {
             // nom du header: valeur
-            Authorization: `Bearer ${store.getState().user.token}`,
+            Authorization: `Bearer ${token}`,
           },
         })
         .then((response) => {
@@ -84,7 +85,7 @@ const postsMiddleware = (store) => (next) => (action) => {
       axios
         .get(`http://localhost:8000/api/user/${userId}/favorites`, {
           headers: {
-            Authorization: `Bearer ${store.getState().user.token}`,
+            Authorization: `Bearer ${token}`,
           },
         })
         .then((response) => {
@@ -99,7 +100,7 @@ const postsMiddleware = (store) => (next) => (action) => {
       axios
         .get(`http://localhost:8000/api/category/${action.categoryId}/posts`, {
           headers: {
-            Authorization: `Bearer ${store.getState().user.token}`,
+            Authorization: `Bearer ${token}`,
           },
         })
         .then((response) => {

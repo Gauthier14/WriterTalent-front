@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-wrap-multilines */
 /* eslint-disable quotes */
 
-import { Routes, Route, useParams } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { BsArrowBarUp } from "react-icons/bs";
 import Header from "../Header/Header";
 import Home from "../Home/Home";

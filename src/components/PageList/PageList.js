@@ -4,9 +4,9 @@ import axios from "axios";
 import "./PageList.scss";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import BookElement from "../BookElement/BookElement";
-import AuthorItem from "../Authors/Authors";
+// import AuthorItem from "../Authors/Authors";
 
 function PageList() {
   const [postsGenre, setPostsGenre] = useState([]);
@@ -41,15 +41,13 @@ function PageList() {
 
   return (
     <main className="page-list">
-      {postsGenre !== [] &&
-        postsGenre.map((post) => (
-          <BookElement {...post} link={`/post/${post.id}`} />
-        ))}
+      {postsGenre.map((post) => (
+        <BookElement {...post} link={`/post/${post.id}`} />
+      ))}
 
-      {postsUnivers !== [] &&
-        postsUnivers.map((post) => (
-          <BookElement {...post} link={`/post/${post.id}`} />
-        ))}
+      {postsUnivers.map((post) => (
+        <BookElement {...post} link={`/post/${post.id}`} />
+      ))}
     </main>
   );
 }

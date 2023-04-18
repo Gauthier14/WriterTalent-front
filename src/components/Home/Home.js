@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
-import { BsFillHandThumbsUpFill, BsArrowBarUp } from "react-icons/bs";
+import { BsFillHandThumbsUpFill } from "react-icons/bs";
 import Button from "../Button/Button";
-import ButtonGoWriter from "../ButtonGoWriter/ButtonGoWriter";
+// import ButtonGoWriter from "../ButtonGoWriter/ButtonGoWriter";
 import "./Home.scss";
 
 function Home() {

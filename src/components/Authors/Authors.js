@@ -1,14 +1,15 @@
 import "./Authors.scss";
+import { Link } from "react-router-dom";
 
 function Authors() {
   return (
-    <section className="author-item">
+    <section className="author-items">
       <div className="book-author">
         <ul>
           <li className="cover-author">
-            <a className="author-link" href link="#">
-              Donald Duck 
-            </a>
+            <Link className="author-link" to="#">
+              Donald Duck
+            </Link>
             <span className="span-published">546 publications</span>
           </li>
           <li className="page-author page3-author" />
@@ -19,9 +20,9 @@ function Authors() {
       <div className="book-author">
         <ul>
           <li className="cover-author">
-            <a className="author-link" href link="#">
+            <Link className="author-link" to="#">
               Mickey Mouse
-            </a>
+            </Link>
             <span className="span-published">357 publications</span>
           </li>
           <li className="page-author page3-author" />
@@ -32,9 +33,9 @@ function Authors() {
       <div className="book-author">
         <ul>
           <li className="cover-author">
-            <a className="author-link" href link="#">
+            <Link className="author-link" to="#">
               Marion Bross
-            </a>
+            </Link>
             <span className="span-published">218 publications</span>
           </li>
           <li className="page-author page3-author" />
@@ -45,9 +46,9 @@ function Authors() {
       <div className="book-author">
         <ul>
           <li className="cover-author">
-            <a className="author-link" href link="#">
-              Bob l'Eponge 
-            </a>
+            <Link className="author-link" to="#">
+              Bob l'Eponge
+            </Link>
             <span className="span-published">91 publications</span>
           </li>
           <li className="page-author page3-author" />
@@ -58,21 +59,22 @@ function Authors() {
       <div className="book-author">
         <ul>
           <li className="cover-author">
-            <a className="author-link" href link="#">
-              Cendrillon 
-            </a>
+            <Link className="author-link" to="#">
+              Cendrillon
+            </Link>
             <span className="span-published">46 publications</span>
           </li>
           <li className="page-author page3-author" />
           <li className="page-author page2-author" />
           <li className="page-author page1-author" />
         </ul>
-      </div><div className="book-author">
+      </div>
+      <div className="book-author">
         <ul>
           <li className="cover-author">
-            <a className="author-link" href link="#">
+            <Link className="author-link" to="#">
               Spider-Man
-            </a>
+            </Link>
             <span className="span-published">20 publications</span>
           </li>
           <li className="page-author page3-author" />
@@ -81,7 +83,6 @@ function Authors() {
         </ul>
       </div>
     </section>
-
   );
 }
 

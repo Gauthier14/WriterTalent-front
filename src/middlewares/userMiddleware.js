@@ -1,7 +1,13 @@
 /* eslint-disable comma-dangle */
 /* eslint-disable quotes */
 import axios from "axios";
-import { loginSuccess, LOGIN_USER, getTextFieldLogin } from "../actions/user";
+import {
+  loginSuccess,
+  LOGIN_USER,
+  getTextFieldLogin,
+  GET_ALL_AUTHORS,
+  setAllAthorsInState,
+} from "../actions/user";
 // import { getFavoriteRecipesFromApi } from "../actions/posts";
 
 const userMiddleware = (store) => (next) => (action) => {
@@ -22,9 +28,21 @@ const userMiddleware = (store) => (next) => (action) => {
               response.data.token
             )
           );
+          localStorage.setItem("token", response.data.token);
           store.dispatch(getTextFieldLogin("", "email"));
           store.dispatch(getTextFieldLogin("", "password"));
           // store.dispatch(getFavoriteRecipesFromApi());
+        })
+        .catch((error) => {
+          // le serveur nous retourne 401 si les identifiants ne sont pas bons
+          console.log(error);
+        });
+      break;
+    case GET_ALL_AUTHORS:
+      axios
+        .post("http://localhost:3001/api/users/authors")
+        .then((response) => {
+          store.dispatch(setAllAthorsInState([response.data]));
         })
         .catch((error) => {
           // le serveur nous retourne 401 si les identifiants ne sont pas bons

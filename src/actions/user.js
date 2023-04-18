@@ -3,9 +3,11 @@
 
 // --- action types ---
 export const GET_TEXT_FIELDS_LOGIN = "GET_TEXT_FIELDS_LOGIN";
-export const LOGIN_USER = 'LOGIN_USER';
-export const LOGOUT = 'LOGOUT';
-export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
+export const LOGIN_USER = "LOGIN_USER";
+export const LOGOUT = "LOGOUT";
+export const GET_ALL_AUTHORS = "GET_ALL_AUTHORS";
+export const SET_ALL_AUTHORS_IN_STATE = "SET_ALL_AUTHORS_IN_STATE";
 
 // --- action creators ---
 
@@ -35,4 +37,12 @@ export const loginSuccess = (status, pseudo, token) => ({
 
 export const logout = () => ({
   type: LOGOUT,
+});
+
+/**
+ * @param {Array} Posts - List of user saved posts
+ */
+export const setAllAthorsInState = (authorList) => ({
+  type: SET_ALL_AUTHORS_IN_STATE,
+  authorList: authorList,
 });

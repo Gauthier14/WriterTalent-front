@@ -108,10 +108,14 @@ function NavMenu() {
             <Link to="#"> Se connecter </Link>
             <ul className="drop-menu">
               <LoginForm
-                changeField={getTextFieldLogin}
+                changeField={(inputValue, inputName) => {
+                  dispatch(getTextFieldLogin(inputValue, inputName));
+                }}
                 email={email}
                 password={password}
-                handleLogin={loginUser}
+                handleLogin={() => {
+                  dispatch(loginUser());
+                }}
               />
             </ul>
           </li>
