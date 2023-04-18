@@ -1,6 +1,6 @@
+/* eslint-disable react/jsx-wrap-multilines */
 /* eslint-disable quotes */
-import { useEffect, useState } from "react";
-import axios from "axios";
+
 import { Routes, Route, useParams } from "react-router-dom";
 import Header from "../Header/Header";
 import Home from "../Home/Home";
