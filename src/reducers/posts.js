@@ -21,12 +21,22 @@ const reducer = (state = initialState, action = {}) => {
     case "SET_RECENT_POSTS_IN_STATE":
       return {
         ...state,
-        favorites: [...action.favoritePosts],
+        recentPublishedPosts: [...action.recentPosts],
       };
-    case "SET_ALL_PUBLISHED_POSTS_IN_STATE":
+    case "SET_ALL_USER_SAVED_POSTS_IN_STATE":
       return {
         ...state,
-        recentPublishedPosts: [...action.recentPosts],
+        userSavedPosts: [...action.savedPosts],
+      };
+    case "SET_ALL_READ_LATER_USER_POSTS_IN_STATE":
+      return {
+        ...state,
+        userReadLaterPosts: [...action.readLaterPosts],
+      };
+    case "SET_ALL_POSTS_PER_GENRE_IN_STATE":
+      return {
+        ...state,
+        publishedPostsPerGenre: [...action.postsPerGenre],
       };
     default:
       return state;
