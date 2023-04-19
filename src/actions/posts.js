@@ -26,13 +26,11 @@ export const GET_ALL_FAVORITE_USER_POSTS_FROM_API =
 export const SET_ALL_FAVORITE_USER_POSTS_IN_STATE =
   "SET_ALL_FAVORITE_USER_POSTS_IN_STATE";
 
-export const GET_ALL_POSTS_PER_GENRE_FROM_API =
-  "GET_ALL_POSTS_PER_GENRE_FROM_API";
+// actions for posts classed per genre or category
+export const GET_ALL_POSTS_PER_CATEGORY_OR_GENRE_FROM_API =
+  "GET_ALL_POSTS_PER_CATEGORY_FROM_API";
 export const SET_ALL_POSTS_PER_GENRE_IN_STATE =
   "SET_ALL_POSTS_PER_GENRE_IN_STATE";
-
-export const GET_ALL_POSTS_PER_CATEGORY_FROM_API =
-  "GET_ALL_POSTS_PER_CATEGORY_FROM_API";
 export const SET_ALL_POSTS_PER_CATEGORY_IN_STATE =
   "SET_ALL_POSTS_PER_CATEGORY_IN_STATE";
 
@@ -82,10 +80,11 @@ export const setAllFavoriteUserPostsInState = (favoritePosts) => ({
   favoritePosts: favoritePosts,
 });
 
-// actions for posts per genre
-export const getAllPostsPerGenreFromApi = (genreId) => ({
-  type: GET_ALL_POSTS_PER_GENRE_FROM_API,
-  genreId: genreId,
+// actions for posts per genre or category
+export const getAllPostsPerCategoryOrGenreFromApi = (param, Id) => ({
+  type: GET_ALL_POSTS_PER_CATEGORY_OR_GENRE_FROM_API,
+  id: Id,
+  param: param,
 });
 
 /**
@@ -96,11 +95,6 @@ export const setAllPostsPerGenreInState = (postsPerGenre) => ({
   postsPerGenre: postsPerGenre,
 });
 
-// actions for posts per category
-export const getAllPostsPerCategoryFromApi = (categoryId) => ({
-  type: GET_ALL_POSTS_PER_CATEGORY_FROM_API,
-  categoryId: categoryId,
-});
 /**
  * @param {Array} Posts - List of user saved posts
  */

@@ -21,7 +21,7 @@ export const setToggleMenu = () => ({
  * @returns {object} Contains the type of the action and payload for updating state of genres
  */
 export const setGenresInState = (genreList) => ({
-  type: TOGGLE_MENU,
+  type: SET_GENRES_IN_STATE,
   genreList: genreList,
 });
 
@@ -30,6 +30,6 @@ export const setGenresInState = (genreList) => ({
  * @returns {object} Contains the type of the action and payload for updating state of genres
  */
 export const setCategoriesInState = (categoryList) => ({
-  type: TOGGLE_MENU,
+  type: SET_CATEGORIES_IN_STATE,
   categoryList: categoryList,
 });
