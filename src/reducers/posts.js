@@ -1,4 +1,6 @@
 /* eslint-disable quotes */
+import { EditorState } from "draft-js";
+
 export const initialState = {
   loaded: false,
   userPublishedPosts: [],
@@ -10,6 +12,7 @@ export const initialState = {
   recentPublishedPosts: [],
   mostLikedPosts: [],
   randomPost: {},
+  editor: EditorState.createEmpty(),
 };
 
 const reducer = (state = initialState, action = {}) => {

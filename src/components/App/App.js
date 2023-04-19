@@ -17,7 +17,6 @@ import "./App.scss";
 import Register from "../Register/Register";
 import Page404 from "../Page404/Page404";
 import SinglePage from "../SinglePage/SinglePage";
-
 import Editor from "../Editor/Editor";
 
 // import Loader from "../Loader/Loader";
@@ -34,13 +33,10 @@ function App() {
   }, [pathname]);
   return (
     <div className="app">
-      {/* <Header /> */}
+      <Header />
 
-      <Editor
-       
-      />
-
-      {/* <Routes>
+      <Routes>
+        <Route path="/edit" element={<Editor />} />
         <Route path="/" element={<Home />} />
         <Route
           path="/charte"
@@ -87,7 +83,7 @@ function App() {
         onClick={() => {
           scrollToTop();
         }}
-      /> */}
+      />
     </div>
   );
 }

@@ -12,7 +12,9 @@ const LikedItem = ({ id, title, genre, categories, nbLikes }) => (
     <p>
       <span className="genre">{genre.name}</span>
       {categories.map((category) => (
-        <span className="category">{category.name}</span>
+        <span className="category" key={category.id}>
+          {category.name}
+        </span>
       ))}
     </p>
     <p>
@@ -25,7 +27,7 @@ const LikedItem = ({ id, title, genre, categories, nbLikes }) => (
 LikedItem.propTypes = {
   id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
-  categories: PropTypes.object.isRequired,
+  categories: PropTypes.array.isRequired,
   genre: PropTypes.object.isRequired,
   nbLikes: PropTypes.number.isRequired,
 };
