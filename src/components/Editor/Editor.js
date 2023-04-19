@@ -12,11 +12,11 @@ function Editor() {
       <div className="editor-container">
         <CKEditor
           editor={ClassicEditor}
-          data={editorState}
-          onChange={(event, editor) => {
-            const data = editor.getData();
-            dispatch(updateEditorState(data));
-          }}
+          // data={editorState}
+          // onChange={(event, editor) => {
+          //   const data = editor.getData();
+          //   dispatch(updateEditorState(data));
+          // }}
         />
       </div>
       <div>

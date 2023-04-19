@@ -18,6 +18,7 @@ import Register from "../Register/Register";
 import Page404 from "../Page404/Page404";
 import SinglePage from "../SinglePage/SinglePage";
 import Editor from "../Editor/Editor";
+import TextTesting from "../TextTesting/TextTesting";
 
 // import Loader from "../Loader/Loader";
 // import PageList from "../PageList/PageList";
@@ -37,6 +38,7 @@ function App() {
 
       <Routes>
         <Route path="/edit" element={<Editor />} />
+        <Route path="/edits" element={<TextTesting />} />
         <Route path="/" element={<Home />} />
         <Route
           path="/charte"
