@@ -5,7 +5,6 @@ export const initialState = {
   email: "",
   password: "",
   pseudo: "",
-  token: "",
   authors: [],
 };
 
@@ -23,7 +22,6 @@ const reducer = (state = initialState, action = {}) => {
         logged: action.loggedStatus,
         userId: action.userId,
         pseudo: action.userPseudo,
-        token: action.userToken,
       };
     case "LOGOUT":
       return {

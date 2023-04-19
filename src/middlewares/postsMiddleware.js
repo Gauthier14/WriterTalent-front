@@ -22,12 +22,7 @@ const postsMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
     case GET_ALL_USER_PUBLISHED_POSTS_FROM_API:
       axios
-        .get(`http://localhost:8000/api/user/${userId}/posts/published`, {
-          headers: {
-            // nom du header: valeur
-            Authorization: `Bearer ${store.getState().user.token}`,
-          },
-        })
+        .get(`http://localhost:8000/api/user/${userId}/posts/published`)
         .then((response) => {
           store.dispatch(setAllUserPublishedPostsInState(response.data));
         })
@@ -71,7 +66,7 @@ const postsMiddleware = (store) => (next) => (action) => {
 
     case GET_RECENT_POSTS_FROM_API:
       axios
-        .get("http://localhost:8000/api/posts/recent", {})
+        .get("http://localhost:8000/api/posts/recent")
         .then((response) => {
           store.dispatch(setRecentPostsInState(response.data));
         })

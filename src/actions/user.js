@@ -28,11 +28,11 @@ export const getTextFieldLogin = (inputValue, name) => ({
   inputName: name,
 });
 
-export const loginSuccess = (status, pseudo, token) => ({
+export const loginSuccess = (status, pseudo, userId) => ({
   type: LOGIN_SUCCESS,
   loggedStatus: status,
   userPseudo: pseudo,
-  userToken: token,
+  userId: userId,
 });
 
 export const logout = () => ({

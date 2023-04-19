@@ -15,7 +15,7 @@ const userMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
     case LOGIN_USER:
       axios
-        .post("http://localhost:3001/login", {
+        .post("http://localhost:8000/api/login_check", {
           email: store.getState().user.email,
           password: store.getState().user.password,
         })
@@ -24,8 +24,7 @@ const userMiddleware = (store) => (next) => (action) => {
             loginSuccess(
               response.data.logged,
               response.data.pseudo,
-              response.data.userId,
-              response.data.token
+              response.data.userId
             )
           );
           localStorage.setItem("token", response.data.token);
