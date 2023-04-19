@@ -1,11 +1,20 @@
 /* eslint-disable max-len */
 
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import Button from "../Button/Button";
-import RecentItem from "../RecentItem/RecentItem";
+import LikedItem from "../LikedItem/LikedItem";
 // import ButtonGoWriter from "../ButtonGoWriter/ButtonGoWriter";
 import "./Home.scss";
+import { getRecentPostsFromApi } from "../../actions/posts";
 
 function Home() {
+  const dispatch = useDispatch();
+  const recentPosts = useSelector((state) => state.posts.recentPublishedPosts);
+  const recentPostsForHome = recentPosts.filter((post, index) => index < 3);
+  useEffect(() => {
+    dispatch(getRecentPostsFromApi());
+  }, []);
   return (
     <main className="home-main">
       {/* <ButtonGoWriter /> */}
@@ -47,11 +56,16 @@ function Home() {
             <h2>Les plus aimés</h2>
           </div>
           <ul>
-            <RecentItem />
-            <RecentItem />
-            <RecentItem />
-            <RecentItem />
-            <Button label="Lire plus d'histoires" link="#" />
+            {recentPostsForHome.map((post) => (
+              <LikedItem key={post.id} {...post} />
+            ))}
+            <Button
+              label="Lire plus d'histoires"
+              link="/nouveautes"
+              onClick={() => {
+                dispatch(getRecentPostsFromApi());
+              }}
+            />
           </ul>
         </section>
       </div>

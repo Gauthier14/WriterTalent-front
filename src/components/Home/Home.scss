@@ -93,7 +93,7 @@
       }
 
       ul {
-        padding: 0.5em;
+        padding: 1em;
         background-color: $bg_list;
         list-style: none;
         display: flex;
@@ -108,6 +108,9 @@
           justify-content: space-between;
           flex-direction: column;
           align-items: center;
+          border-bottom-width: thick;
+          border-bottom: $main_color_dark 1px solid;
+          width: 100%;
           & > * {
             margin-bottom: 0.5em;
           }
@@ -120,8 +123,9 @@
           p {
             display: flex;
             align-items: center;
-            border-bottom: $main_color_dark 1px solid;
+            flex-wrap: wrap;
             padding-bottom: 1em;
+            justify-content: center;
           }
           &:last-child p {
             border-bottom: none;
@@ -135,6 +139,9 @@
             background-color: $bg_style_genre;
             border-radius: 0.5em;
             color: #ffffff;
+          }
+          .category {
+            background-color: $bg_style_category;
           }
           .nbLikes {
             background-color: $bg_likes;

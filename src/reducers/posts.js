@@ -8,6 +8,8 @@ export const initialState = {
   publishedPostsPerGenre: [],
   publishedPostsPerCategory: [],
   recentPublishedPosts: [],
+  mostLikedPosts: [],
+  randomPost: {},
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -42,6 +44,16 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         publishedPostsPerGenre: [...action.postsPerCategory],
+      };
+    case "SET_ALL_MOST_LIKED_POSTS_IN_STATE":
+      return {
+        ...state,
+        mostLikedPosts: [...action.likedPosts],
+      };
+    case "SET_RANDOM_POST_IN_STATE":
+      return {
+        ...state,
+        randomPost: [...action.random],
       };
     default:
       return state;

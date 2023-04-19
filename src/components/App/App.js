@@ -1,8 +1,9 @@
 /* eslint-disable react/jsx-wrap-multilines */
 /* eslint-disable quotes */
 
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import { BsArrowBarUp } from "react-icons/bs";
+import { useEffect } from "react";
 import Header from "../Header/Header";
 import Home from "../Home/Home";
 import Charte from "../Charte/Charte";
@@ -22,6 +23,13 @@ import SinglePage from "../SinglePage/SinglePage";
 // import ButtonGoWriter from "../ButtonGoWriter/ButtonGoWriter";
 
 function App() {
+  const { pathname } = useLocation();
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+  useEffect(() => {
+    scrollToTop();
+  }, [pathname]);
   return (
     <div className="app">
       <Header />
@@ -77,7 +85,7 @@ function App() {
       <BsArrowBarUp
         className="scroll-button"
         onClick={() => {
-          window.scrollTo({ top: 0, behavior: "smooth" });
+          scrollToTop();
         }}
       />
     </div>

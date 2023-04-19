@@ -5,7 +5,10 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ImCross } from "react-icons/im";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllPostsPerCategoryOrGenreFromApi } from "../../actions/posts";
+import {
+  getAllPostsPerCategoryOrGenreFromApi,
+  getRecentPostsFromApi,
+} from "../../actions/posts";
 import {
   setGenresInState,
   setCategoriesInState,
@@ -14,6 +17,7 @@ import {
 import { getTextFieldLogin, loginUser, logout } from "../../actions/user";
 import LoginForm from "../LoginForm/LoginForm";
 import MenuItem from "./MenuItem";
+import DropMenuItem from "./DropMenuItem";
 
 function NavMenu() {
   const dispatch = useDispatch();
@@ -59,34 +63,30 @@ function NavMenu() {
         <MenuItem>
           <Link to="/"> Accueil </Link>
         </MenuItem>
-        <MenuItem
-          className="menu-item"
-          onClick={() => {
-            dispatch(setToggleMenu());
-          }}
-        >
+        <MenuItem className="menu-item">
           <Link to="/charte"> Charte du site </Link>
         </MenuItem>
         <MenuItem>
-          <Link to="/nouveautes"> Nouveautés </Link>
+          <Link
+            to="/nouveautes"
+            onClick={() => {
+              dispatch(getRecentPostsFromApi());
+            }}
+          >
+            Nouveautés
+          </Link>
         </MenuItem>
         <li className="menu-item">
           <Link> Genre </Link>
           <ul className="drop-menu">
             {genres.map((genre) => (
-              <MenuItem className="drop-menu-item" key={genre.id}>
-                <Link
-                  to={`/genre/${genre.id}/posts`}
-                  onClick={() => {
-                    dispatch(setToggleMenu());
-                    dispatch(
-                      getAllPostsPerCategoryOrGenreFromApi("genre", genre.id)
-                    );
-                  }}
-                >
-                  {genre.name}
-                </Link>
-              </MenuItem>
+              <DropMenuItem
+                className="drop-menu-item"
+                key={genre.id}
+                param="genre"
+                id={genre.id}
+                label={genre.name}
+              />
             ))}
           </ul>
         </li>
@@ -94,26 +94,25 @@ function NavMenu() {
           <Link> Univers </Link>
           <ul className="drop-menu">
             {categories.map((category) => (
-              <MenuItem className="drop-menu-item" key={category.id}>
-                <Link
-                  to={`/category/${category.id}/posts`}
-                  onClick={() => {
-                    dispatch(
-                      getAllPostsPerCategoryOrGenreFromApi(
-                        "category",
-                        category.id
-                      )
-                    );
-                  }}
-                >
-                  {category.name}
-                </Link>
-              </MenuItem>
+              <DropMenuItem
+                className="drop-menu-item"
+                key={category.id}
+                param="category"
+                id={category.id}
+                label={category.name}
+              />
             ))}
           </ul>
         </li>
         <MenuItem>
-          <Link to="/authors"> Auteurs </Link>
+          <Link
+            to="/authors"
+            onClick={() => {
+              dispatch(logout());
+            }}
+          >
+            Auteurs
+          </Link>
         </MenuItem>
         {isLogged ? (
           <li className="menu-item">

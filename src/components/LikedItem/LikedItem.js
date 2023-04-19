@@ -2,34 +2,35 @@
 /* eslint-disable react/require-default-props */
 import PropTypes from "prop-types";
 import { BsFillHandThumbsUpFill } from "react-icons/bs";
+import { Link } from "react-router-dom";
 
-const RecentItem = ({ title, genre, category, nbLikes }) => (
+const LikedItem = ({ id, title, genre, categories, nbLikes }) => (
   <li>
-    <h3>{title}</h3>
+    <Link to={`/post/${id}`}>
+      <h3>{title}</h3>
+    </Link>
     <p>
-      <span className="genre">{genre}</span>
-      <span className="Category">{category}</span>
+      <span className="genre">{genre.name}</span>
+      {categories.map((category) => (
+        <span className="category">{category.name}</span>
+      ))}
+    </p>
+    <p>
       <BsFillHandThumbsUpFill size={30} color="#42D11F" />
       <span className="nbLikes">{nbLikes}</span>
     </p>
   </li>
 );
 
-RecentItem.propTypes = {
-  title: PropTypes.string,
-  category: PropTypes.string,
-  genre: PropTypes.string,
-  nbLikes: PropTypes.number,
+LikedItem.propTypes = {
+  id: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
+  categories: PropTypes.object.isRequired,
+  genre: PropTypes.object.isRequired,
+  nbLikes: PropTypes.number.isRequired,
 };
 
-RecentItem.defaultProps = {
-  title: "Le loir est cher",
-  genre: "Roman",
-  category: "Fantastique",
-  nbLikes: 50,
-};
-
-export default RecentItem;
+export default LikedItem;
 /* <li>
   <h3>Le loir est cher</h3>
   <p>

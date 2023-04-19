@@ -7,6 +7,7 @@ import {
   GET_ALL_FAVORITE_USER_POSTS_FROM_API,
   GET_ALL_READ_LATER_USER_POSTS_FROM_API,
   GET_ALL_POSTS_PER_CATEGORY_OR_GENRE_FROM_API,
+  GET_ALL_MOST_LIKED_POSTS_FROM_API,
   setAllPostsPerCategoryInState,
   setAllPostsPerGenreInState,
   setAllSavedUserPostsInState,
@@ -14,6 +15,7 @@ import {
   setAllUserPublishedPostsInState,
   setAllFavoriteUserPostsInState,
   setAllReadLaterUserPostsInState,
+  setAllMostLikedPostsInState,
 } from "../actions/posts";
 
 const postsMiddleware = (store) => (next) => (action) => {
@@ -100,6 +102,16 @@ const postsMiddleware = (store) => (next) => (action) => {
           } else if (action.param === "genre") {
             store.dispatch(setAllPostsPerGenreInState(response.data));
           }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      break;
+    case GET_ALL_MOST_LIKED_POSTS_FROM_API:
+      axios
+        .get(`http://localhost:8000/api/${action.param}/${action.id}/posts`)
+        .then((response) => {
+          store.dispatch(setAllMostLikedPostsInState(response.data));
         })
         .catch((error) => {
           console.log(error);
