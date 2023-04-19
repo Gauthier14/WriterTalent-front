@@ -18,6 +18,8 @@ import Register from "../Register/Register";
 import Page404 from "../Page404/Page404";
 import SinglePage from "../SinglePage/SinglePage";
 
+import Editor from "../Editor/Editor";
+
 // import Loader from "../Loader/Loader";
 // import PageList from "../PageList/PageList";
 // import ButtonGoWriter from "../ButtonGoWriter/ButtonGoWriter";
@@ -32,8 +34,13 @@ function App() {
   }, [pathname]);
   return (
     <div className="app">
-      <Header />
-      <Routes>
+      {/* <Header /> */}
+
+      <Editor
+       
+      />
+
+      {/* <Routes>
         <Route path="/" element={<Home />} />
         <Route
           path="/charte"
@@ -73,21 +80,14 @@ function App() {
         <Route path="/authors" element={<Authors />} />
         <Route path="*" element={<Page404 />} />
       </Routes>
-      {/* <ButtonGoWriter /> */}
 
-      {/* posts !== [] ? <PageList posts={posts} /> : <Loader /> */}
-
-      {/* <Register /> */}
-      {/* posts !== [] ? <PageList posts={posts} /> : <Loader /> */}
-
-      {/* <Main /> */}
       <Footer />
       <BsArrowBarUp
         className="scroll-button"
         onClick={() => {
           scrollToTop();
         }}
-      />
+      /> */}
     </div>
   );
 }
