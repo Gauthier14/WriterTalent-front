@@ -50,7 +50,6 @@
     "webpack-merge": "^5.8.0"
   },
   "dependencies": {
-    "@ckeditor/ckeditor5-build-classic": "^37.1.0",
     "@ckeditor/ckeditor5-react": "^6.0.0",
     "@lexical/react": "^0.10.0",
     "@redux-devtools/extension": "^3.2.5",
