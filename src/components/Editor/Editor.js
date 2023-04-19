@@ -8,22 +8,20 @@ function Editor() {
   const dispatch = useDispatch();
   const editorState = useSelector((state) => state.editor.editorState);
   return (
-    <main className="editor">
-      <div className="editor-container">
-        <CKEditor
-          editor={ClassicEditor}
-          // data={editorState}
-          // onChange={(event, editor) => {
-          //   const data = editor.getData();
-          //   dispatch(updateEditorState(data));
-          // }}
-        />
-      </div>
-      <div>
+    <div className="editor-container">
+      <CKEditor
+        editor={ClassicEditor}
+        data={editorState}
+        onChange={(event, editor) => {
+          const data = editor.getData();
+          dispatch(updateEditorState(data));
+        }}
+      />
+    </div>
+    /* <div>
         <h2>Content</h2>
         <p>{parse(editorState)}</p>
-      </div>
-    </main>
+      </div> */
   );
 }
 
