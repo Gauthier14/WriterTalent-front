@@ -34,7 +34,9 @@ function BookElement({
         <h2>{title}</h2>
         <p className="tag">{genre.name}</p>
         {categories.map((category) => (
-          <p className="tag">{category.name}</p>
+          <p className="tag" key={category.id}>
+            {category.name}
+          </p>
         ))}
       </div>
     </div>

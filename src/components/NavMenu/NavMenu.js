@@ -1,9 +1,11 @@
+/* eslint-disable comma-dangle */
 import "./NavMenu.scss";
 import axios from "axios";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ImCross } from "react-icons/im";
 import { useDispatch, useSelector } from "react-redux";
+import { getAllPostsPerCategoryOrGenreFromApi } from "../../actions/posts";
 import {
   setGenresInState,
   setCategoriesInState,
@@ -73,7 +75,17 @@ function NavMenu() {
           <ul className="drop-menu">
             {genres.map((genre) => (
               <MenuItem className="drop-menu-item" key={genre.id}>
-                <Link to={`/genre/${genre.id}`}> {genre.name} </Link>
+                <Link
+                  to={`/genre/${genre.id}/posts`}
+                  onClick={() => {
+                    dispatch(setToggleMenu());
+                    dispatch(
+                      getAllPostsPerCategoryOrGenreFromApi("genre", genre.id)
+                    );
+                  }}
+                >
+                  {genre.name}
+                </Link>
               </MenuItem>
             ))}
           </ul>
@@ -83,7 +95,19 @@ function NavMenu() {
           <ul className="drop-menu">
             {categories.map((category) => (
               <MenuItem className="drop-menu-item" key={category.id}>
-                <Link to={`/category/${category.id}`}> {category.name} </Link>
+                <Link
+                  to={`/category/${category.id}/posts`}
+                  onClick={() => {
+                    dispatch(
+                      getAllPostsPerCategoryOrGenreFromApi(
+                        "category",
+                        category.id
+                      )
+                    );
+                  }}
+                >
+                  {category.name}
+                </Link>
               </MenuItem>
             ))}
           </ul>

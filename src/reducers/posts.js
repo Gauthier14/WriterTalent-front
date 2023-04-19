@@ -38,6 +38,11 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         publishedPostsPerGenre: [...action.postsPerGenre],
       };
+    case "SET_ALL_POSTS_PER_CATEGORY_IN_STATE":
+      return {
+        ...state,
+        publishedPostsPerGenre: [...action.postsPerCategory],
+      };
     default:
       return state;
   }

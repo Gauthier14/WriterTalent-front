@@ -1,33 +1,37 @@
+/* eslint-disable brace-style */
 /* eslint-disable comma-dangle */
 /* eslint-disable react/require-default-props */
 import PropTypes, { object } from "prop-types";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useSelector } from "react-redux";
 import { useParams } from "react-router";
-import { getAllPostsPerCategoryOrGenreFromApi } from "../../actions/posts";
+// import Loader from "../Loader/Loader";
 import BookElement from "../BookElement/BookElement";
 // import AuthorItem from "../Authors/Authors";
 import "./PageList.scss";
+import MessageEmptyResults from "../MessageEmptyResults/MessageEmptyResults";
 
 function PageList() {
   const { id, param } = useParams();
-  const dispatch = useDispatch();
+  console.log(`${param}/${id}`);
   const postsGenre = useSelector((state) => state.posts.publishedPostsPerGenre);
   const postsCategory = useSelector(
     (state) => state.posts.publishedPostsPerCategory
   );
-
-  useEffect(() => {
-    dispatch(getAllPostsPerCategoryOrGenreFromApi(param, id));
-  });
+  let posts = [];
+  if (postsCategory.length > 0) {
+    posts = postsCategory;
+  } else if (postsGenre.length > 0) {
+    posts = postsGenre;
+  }
   return (
     <main className="page-list">
-      {postsGenre.map((post) => (
-        <BookElement {...post} link={`/post/${post.id}`} />
-      ))}
-      {postsCategory.map((post) => (
-        <BookElement {...post} link={`/post/${post.id}`} />
-      ))}
+      {posts.length > 0 ? (
+        posts.map((post) => (
+          <BookElement key={post.id} {...post} link={`/post/${post.id}`} />
+        ))
+      ) : (
+        <MessageEmptyResults />
+      )}
     </main>
   );
 }
