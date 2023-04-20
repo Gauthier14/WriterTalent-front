@@ -1,5 +1,4 @@
 /* eslint-disable quotes */
-import { manageLocalStorage } from "../selectors/user";
 
 export const initialState = {
   userId: "",
