@@ -5,8 +5,8 @@ import {
   loginSuccess,
   LOGIN_USER,
   getTextFieldLogin,
-  GET_ALL_AUTHORS,
-  setAllAthorsInState,
+  GET_USER_INFOS_FROM_API,
+  setUserInfosInState,
 } from "../actions/user";
 // import { getFavoriteRecipesFromApi } from "../actions/posts";
 
@@ -15,19 +15,12 @@ const userMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
     case LOGIN_USER:
       axios
-        .post("http://localhost:8000/api/login_check", {
-          email: store.getState().user.email,
+        .post("http://kyllian-g-server.eddi.cloud:8443/api/login_check", {
+          username: store.getState().user.email,
           password: store.getState().user.password,
         })
         .then((response) => {
-          store.dispatch(
-            loginSuccess(
-              response.data.logged,
-              response.data.pseudo,
-              response.data.userId
-            )
-          );
-          localStorage.setItem("token", response.data.token);
+          store.dispatch(loginSuccess(response.data.token));
           store.dispatch(getTextFieldLogin("", "email"));
           store.dispatch(getTextFieldLogin("", "password"));
           // store.dispatch(getFavoriteRecipesFromApi());
@@ -37,11 +30,11 @@ const userMiddleware = (store) => (next) => (action) => {
           console.log(error);
         });
       break;
-    case GET_ALL_AUTHORS:
+    case GET_USER_INFOS_FROM_API:
       axios
-        .post("http://localhost:3001/api/users/authors")
+        .post("http://kyllian-g-server.eddi.cloud:8443/api/user/get")
         .then((response) => {
-          store.dispatch(setAllAthorsInState([response.data]));
+          store.dispatch(setUserInfosInState(response.data));
         })
         .catch((error) => {
           // le serveur nous retourne 401 si les identifiants ne sont pas bons

@@ -5,6 +5,9 @@
 export const GET_TEXT_FIELDS_LOGIN = "GET_TEXT_FIELDS_LOGIN";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGIN_USER = "LOGIN_USER";
+export const GET_USER_INFOS_FROM_API = "GET_USER_INFOS_FROM_API";
+export const SET_USER_INFOS_IN_STATE = "SET_USER_INFOS_IN_STATE";
+
 export const LOGOUT = "LOGOUT";
 export const GET_ALL_AUTHORS = "GET_ALL_AUTHORS";
 export const SET_ALL_AUTHORS_IN_STATE = "SET_ALL_AUTHORS_IN_STATE";
@@ -28,13 +31,22 @@ export const getTextFieldLogin = (inputValue, name) => ({
   inputName: name,
 });
 
-export const loginSuccess = (status, pseudo, userId) => ({
+export const loginSuccess = (token) => ({
   type: LOGIN_SUCCESS,
-  loggedStatus: status,
-  userPseudo: pseudo,
-  userId: userId,
+  token: token,
 });
 
+export const getAllAuthors = () => ({
+  type: GET_ALL_AUTHORS,
+});
+export const getUserInfosFromApi = () => ({
+  type: GET_USER_INFOS_FROM_API,
+});
+export const setUserInfosInState = (id, userName) => ({
+  type: SET_USER_INFOS_IN_STATE,
+  id: id,
+  userName: userName,
+});
 export const logout = () => ({
   type: LOGOUT,
 });

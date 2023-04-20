@@ -46,7 +46,7 @@ const reducer = (state = initialState, action = {}) => {
     case "SET_ALL_POSTS_PER_CATEGORY_IN_STATE":
       return {
         ...state,
-        publishedPostsPerGenre: [...action.postsPerCategory],
+        publishedPostsPerCategory: [...action.postsPerCategory],
       };
     case "SET_ALL_MOST_LIKED_POSTS_IN_STATE":
       return {

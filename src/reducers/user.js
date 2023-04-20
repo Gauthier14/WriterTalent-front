@@ -1,6 +1,6 @@
 /* eslint-disable quotes */
+
 export const initialState = {
-  logged: false,
   userId: "",
   email: "",
   password: "",
@@ -16,17 +16,11 @@ const reducer = (state = initialState, action = {}) => {
         [action.inputName]: action.textInput,
       };
     case "LOGIN_SUCCESS":
-      return {
-        ...state,
-        logged: action.loggedStatus,
-        userId: action.userId,
-        pseudo: action.userPseudo,
-      };
+      localStorage.setItem("token", action.token);
+      break;
     case "LOGOUT":
-      return {
-        ...state,
-        logged: false,
-      };
+      localStorage.removeItem("token");
+      break;
     case "SET_ALL_AUTHORS_IN_STATE":
       return {
         ...state,
@@ -35,6 +29,7 @@ const reducer = (state = initialState, action = {}) => {
     default:
       return state;
   }
+  return state;
 };
 
 export default reducer;

@@ -6,7 +6,9 @@ import { Link } from "react-router-dom";
 import { ImCross } from "react-icons/im";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  getAllPostsPerCategoryOrGenreFromApi,
+  getAllFavoriteUserPostsFromApi,
+  getAllMostLikedPostsFromApi,
+  getAllUserPublishedPostsFromApi,
   getRecentPostsFromApi,
 } from "../../actions/posts";
 import {
@@ -14,7 +16,12 @@ import {
   setCategoriesInState,
   setToggleMenu,
 } from "../../actions/menu";
-import { getTextFieldLogin, loginUser, logout } from "../../actions/user";
+import {
+  getAllAuthors,
+  getTextFieldLogin,
+  loginUser,
+  logout,
+} from "../../actions/user";
 import LoginForm from "../LoginForm/LoginForm";
 import MenuItem from "./MenuItem";
 import DropMenuItem from "./DropMenuItem";
@@ -24,12 +31,13 @@ function NavMenu() {
   const genres = useSelector((state) => state.menu.genres);
   const categories = useSelector((state) => state.menu.categories);
   const menuVisibility = useSelector((state) => state.menu.visible);
-  const isLogged = useSelector((state) => state.user.logged);
+  const isLogged = localStorage.getItem("token");
   const email = useSelector((state) => state.user.email);
   const password = useSelector((state) => state.user.password);
+  const userId = useSelector((state) => state.user.id);
   useEffect(() => {
     axios
-      .get("http://localhost:8000/api/genres")
+      .get("http://kyllian-g-server.eddi.cloud:8443/api/genres")
       .then((response) => {
         dispatch(setGenresInState(response.data));
       })
@@ -40,7 +48,7 @@ function NavMenu() {
   }, []);
   useEffect(() => {
     axios
-      .get("http://localhost:8000/api/categories")
+      .get("http://kyllian-g-server.eddi.cloud:8443/api/categories")
       .then((response) => {
         dispatch(setCategoriesInState(response.data));
       })
@@ -60,28 +68,25 @@ function NavMenu() {
         }}
       />
       <ul className="menu">
-        <MenuItem>
+        <MenuItem dispatchMethod={getAllMostLikedPostsFromApi}>
           <Link to="/"> Accueil </Link>
         </MenuItem>
-        <MenuItem className="menu-item">
+        <li
+          className="menu-item"
+          onClick={() => {
+            dispatch(setToggleMenu());
+          }}
+        >
           <Link to="/charte"> Charte du site </Link>
-        </MenuItem>
-        <MenuItem>
-          <Link
-            to="/nouveautes"
-            onClick={() => {
-              dispatch(getRecentPostsFromApi());
-            }}
-          >
-            Nouveautés
-          </Link>
+        </li>
+        <MenuItem dispatchMethod={getRecentPostsFromApi}>
+          <Link to="/nouveautes">Nouveautés</Link>
         </MenuItem>
         <li className="menu-item">
           <Link> Genre </Link>
           <ul className="drop-menu">
             {genres.map((genre) => (
               <DropMenuItem
-                className="drop-menu-item"
                 key={genre.id}
                 param="genre"
                 id={genre.id}
@@ -95,7 +100,6 @@ function NavMenu() {
           <ul className="drop-menu">
             {categories.map((category) => (
               <DropMenuItem
-                className="drop-menu-item"
                 key={category.id}
                 param="category"
                 id={category.id}
@@ -104,26 +108,31 @@ function NavMenu() {
             ))}
           </ul>
         </li>
-        <MenuItem>
-          <Link
-            to="/authors"
-            onClick={() => {
-              dispatch(logout());
-            }}
-          >
-            Auteurs
-          </Link>
+        <MenuItem dispatchMethod={getAllAuthors}>
+          <Link to="/authors">Auteurs</Link>
         </MenuItem>
         {isLogged ? (
           <li className="menu-item">
             <Link to="#"> Profil </Link>
             <ul className="drop-menu">
-              <MenuItem className="drop-menu-item">
+              <li
+                className="drop-menu-item"
+                onClick={() => {
+                  dispatch(setToggleMenu());
+                  dispatch(getAllFavoriteUserPostsFromApi(userId));
+                }}
+              >
                 <Link>Favoris</Link>
-              </MenuItem>
-              <MenuItem className="drop-menu-item">
+              </li>
+              <li
+                className="drop-menu-item"
+                onClick={() => {
+                  dispatch(setToggleMenu());
+                  dispatch(getAllUserPublishedPostsFromApi(userId));
+                }}
+              >
                 <Link>Mes écrits</Link>
-              </MenuItem>
+              </li>
             </ul>
           </li>
         ) : (
@@ -143,18 +152,21 @@ function NavMenu() {
             </ul>
           </li>
         )}
+        {/* TODO Route API pour la deconexion Déconnexion */}
         {isLogged ? (
-          <MenuItem
-            onClick={() => {
-              dispatch(logout());
-            }}
-          >
-            <Link to="/register"> Déconnexion </Link>
+          <MenuItem dispatchMethod={logout} className="menu-item">
+            <Link to="/" />
+            Déconnexion
           </MenuItem>
         ) : (
-          <MenuItem>
+          <li
+            className="menu-item"
+            onClick={() => {
+              dispatch(setToggleMenu());
+            }}
+          >
             <Link to="/register"> Inscription </Link>
-          </MenuItem>
+          </li>
         )}
       </ul>
     </nav>

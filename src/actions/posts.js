@@ -43,7 +43,11 @@ export const SET_ALL_POSTS_PER_CATEGORY_IN_STATE =
   "SET_ALL_POSTS_PER_CATEGORY_IN_STATE";
 
 // actions creators ---
-// actions for saved posts
+// actions for published posts of one user
+export const getAllUserPublishedPostsFromApi = (userId) => ({
+  type: GET_ALL_USER_PUBLISHED_POSTS_FROM_API,
+  userId: userId,
+});
 /**
  * @param {Array} Posts - List of all user published posts
  */
@@ -83,6 +87,10 @@ export const setAllReadLaterUserPostsInState = (readLaterPosts) => ({
 });
 
 // actions for favorite posts
+export const getAllFavoriteUserPostsFromApi = (userId) => ({
+  type: GET_ALL_FAVORITE_USER_POSTS_FROM_API,
+  userId: userId,
+});
 /**
  * @param {Array} Posts - List of user favorites posts
  */

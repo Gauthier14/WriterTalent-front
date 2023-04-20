@@ -1,7 +1,6 @@
-@use 'src/styles/vars';
+@use "src/styles/vars";
 
 .login-form {
-  
   &-element {
     display: flex;
     flex-direction: column;
@@ -14,7 +13,7 @@
   }
 
   &-message {
-    margin: .3em 1em;
+    margin: 0.3em 1em;
   }
 
   &-logged {
@@ -24,15 +23,20 @@
   }
 
   &-button {
-    font-size: 1em;
+    font-weight: bold;
     color: #fff;
     background-color: #000;
-    border-radius: .3em;
+    border-radius: 0.3em;
     border: 0;
     padding: 0.3em;
     width: 100%;
-    &:not(:last-child){
+    &:not(:last-child) {
       margin-bottom: 0.3em;
+    }
+    a {
+      padding: 1em;
+      font-weight: bold;
+      color: #fff !important;
     }
   }
 }

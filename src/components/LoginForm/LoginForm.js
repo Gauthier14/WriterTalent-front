@@ -1,10 +1,14 @@
 /* eslint-disable object-curly-newline */
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import Field from "./Field/Field";
 
 import "./LoginForm.scss";
+import { setToggleMenu } from "../../actions/menu";
 
 const LoginForm = ({ email, password, changeField, handleLogin }) => {
+  const dispatch = useDispatch();
   const handleSubmit = (evt) => {
     evt.preventDefault();
     handleLogin();
@@ -34,12 +38,19 @@ const LoginForm = ({ email, password, changeField, handleLogin }) => {
           Se connecter
         </button>
         <button type="submit" className="login-form-button">
-          Pas de compte ?
+          <Link
+            to="/register"
+            onClick={() => {
+              dispatch(setToggleMenu());
+            }}
+          >
+            Pas de compte ?
+          </Link>
         </button>
 
-        <button type="submit" className="login-form-button">
+        {/* <button type="submit" className="login-form-button">
           Identifiants oubliés
-        </button>
+        </button> */}
       </form>
     </div>
   );
