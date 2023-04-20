@@ -5,7 +5,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 0.5em;
+    padding: 1em;
     border-radius: 1em;
     @media screen and (min-width: 760px) {
       width: 200px;
@@ -23,15 +23,21 @@
   }
 
   &-button {
-    font-weight: bold;
+    font-weight: 700;
     color: #fff;
     background-color: #000;
     border-radius: 0.3em;
     border: 0;
-    padding: 0.3em;
+    padding: 0.5em;
     width: 100%;
+    transition: 0.3s;
+    font-size: 1em;
     &:not(:last-child) {
       margin-bottom: 0.3em;
+    }
+    &:hover {
+      background-color: #bdbd74;
+      color: #000;
     }
     a {
       padding: 1em;

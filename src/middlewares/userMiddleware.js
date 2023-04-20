@@ -2,12 +2,14 @@
 /* eslint-disable quotes */
 import axios from "axios";
 import {
-  loginSuccess,
   LOGIN_USER,
   getTextFieldLogin,
   GET_USER_INFOS_FROM_API,
   setUserInfosInState,
+  getUserInfosFromApi,
 } from "../actions/user";
+import { manageLocalStorage } from "../selectors/user";
+import { setToggleMenu } from "../actions/menu";
 // import { getFavoriteRecipesFromApi } from "../actions/posts";
 
 const userMiddleware = (store) => (next) => (action) => {
@@ -20,10 +22,11 @@ const userMiddleware = (store) => (next) => (action) => {
           password: store.getState().user.password,
         })
         .then((response) => {
-          store.dispatch(loginSuccess(response.data.token));
+          manageLocalStorage("set", "token", response.data.token);
           store.dispatch(getTextFieldLogin("", "email"));
           store.dispatch(getTextFieldLogin("", "password"));
-          // store.dispatch(getFavoriteRecipesFromApi());
+          store.dispatch(setToggleMenu());
+          store.dispatch(getUserInfosFromApi());
         })
         .catch((error) => {
           // le serveur nous retourne 401 si les identifiants ne sont pas bons

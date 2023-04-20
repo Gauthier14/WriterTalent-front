@@ -1,27 +1,19 @@
 /* eslint-disable comma-dangle */
 import "./NavMenu.scss";
-import axios from "axios";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ImCross } from "react-icons/im";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getAllFavoriteUserPostsFromApi,
-  getAllMostLikedPostsFromApi,
   getAllUserPublishedPostsFromApi,
-  getRecentPostsFromApi,
 } from "../../actions/posts";
 import {
-  setGenresInState,
-  setCategoriesInState,
   setToggleMenu,
+  getCategoriesFromApi,
+  getGenresFromApi,
 } from "../../actions/menu";
-import {
-  getAllAuthors,
-  getTextFieldLogin,
-  loginUser,
-  logout,
-} from "../../actions/user";
+import { getTextFieldLogin, loginUser, logout } from "../../actions/user";
 import LoginForm from "../LoginForm/LoginForm";
 import MenuItem from "./MenuItem";
 import DropMenuItem from "./DropMenuItem";
@@ -31,31 +23,15 @@ function NavMenu() {
   const genres = useSelector((state) => state.menu.genres);
   const categories = useSelector((state) => state.menu.categories);
   const menuVisibility = useSelector((state) => state.menu.visible);
-  const isLogged = localStorage.getItem("token");
+  const isLogged = useSelector((state) => state.user.isLogged);
   const email = useSelector((state) => state.user.email);
   const password = useSelector((state) => state.user.password);
   const userId = useSelector((state) => state.user.id);
   useEffect(() => {
-    axios
-      .get("http://kyllian-g-server.eddi.cloud:8443/api/genres")
-      .then((response) => {
-        dispatch(setGenresInState(response.data));
-      })
-      .catch((error) => {
-        // le serveur nous retourne 401 si les identifiants ne sont pas bons
-        console.log(error);
-      });
+    dispatch(getGenresFromApi());
   }, []);
   useEffect(() => {
-    axios
-      .get("http://kyllian-g-server.eddi.cloud:8443/api/categories")
-      .then((response) => {
-        dispatch(setCategoriesInState(response.data));
-      })
-      .catch((error) => {
-        // le serveur nous retourne 401 si les identifiants ne sont pas bons
-        console.log(error);
-      });
+    dispatch(getCategoriesFromApi());
   }, []);
 
   return (
@@ -68,18 +44,13 @@ function NavMenu() {
         }}
       />
       <ul className="menu">
-        <MenuItem dispatchMethod={getAllMostLikedPostsFromApi}>
+        <MenuItem>
           <Link to="/"> Accueil </Link>
         </MenuItem>
-        <li
-          className="menu-item"
-          onClick={() => {
-            dispatch(setToggleMenu());
-          }}
-        >
+        <MenuItem>
           <Link to="/charte"> Charte du site </Link>
-        </li>
-        <MenuItem dispatchMethod={getRecentPostsFromApi}>
+        </MenuItem>
+        <MenuItem>
           <Link to="/nouveautes">Nouveautés</Link>
         </MenuItem>
         <li className="menu-item">
@@ -108,7 +79,7 @@ function NavMenu() {
             ))}
           </ul>
         </li>
-        <MenuItem dispatchMethod={getAllAuthors}>
+        <MenuItem>
           <Link to="/authors">Auteurs</Link>
         </MenuItem>
         {isLogged ? (
@@ -154,19 +125,14 @@ function NavMenu() {
         )}
         {/* TODO Route API pour la deconexion Déconnexion */}
         {isLogged ? (
-          <MenuItem dispatchMethod={logout} className="menu-item">
-            <Link to="/" />
+          <MenuItem>
+            <Link to="/" onClick={dispatch(logout())} />
             Déconnexion
           </MenuItem>
         ) : (
-          <li
-            className="menu-item"
-            onClick={() => {
-              dispatch(setToggleMenu());
-            }}
-          >
+          <MenuItem>
             <Link to="/register"> Inscription </Link>
-          </li>
+          </MenuItem>
         )}
       </ul>
     </nav>

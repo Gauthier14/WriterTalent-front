@@ -16,6 +16,10 @@ export const setToggleMenu = () => ({
   type: TOGGLE_MENU,
 });
 
+export const getGenresFromApi = () => ({
+  type: GET_GENRES_FROM_API,
+});
+
 /**
  * @param {array} visibility - List of all genres of posts
  * @returns {object} Contains the type of the action and payload for updating state of genres
@@ -23,6 +27,10 @@ export const setToggleMenu = () => ({
 export const setGenresInState = (genreList) => ({
   type: SET_GENRES_IN_STATE,
   genreList: genreList,
+});
+
+export const getCategoriesFromApi = () => ({
+  type: GET_CATEGORIES_FROM_API,
 });
 
 /**
