@@ -1,6 +1,8 @@
 /* eslint-disable quotes */
+import { manageLocalStorage } from "../selectors/user";
 
 export const initialState = {
+  isLogged: manageLocalStorage("get", "token") !== null,
   userId: "",
   email: "",
   password: "",
@@ -15,12 +17,6 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         [action.inputName]: action.textInput,
       };
-    case "LOGIN_SUCCESS":
-      localStorage.setItem("token", action.token);
-      break;
-    case "LOGOUT":
-      localStorage.removeItem("token");
-      break;
     case "SET_ALL_AUTHORS_IN_STATE":
       return {
         ...state,
@@ -29,7 +25,6 @@ const reducer = (state = initialState, action = {}) => {
     default:
       return state;
   }
-  return state;
 };
 
 export default reducer;

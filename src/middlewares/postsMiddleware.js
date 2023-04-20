@@ -1,3 +1,4 @@
+/* eslint-disable comma-dangle */
 /* eslint-disable brace-style */
 import axios from "axios";
 import {
