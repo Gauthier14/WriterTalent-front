@@ -1,10 +1,11 @@
+/* eslint-disable comma-dangle */
 /* eslint-disable react/jsx-wrap-multilines */
 /* eslint-disable quotes */
 
 import { Routes, Route, useLocation } from "react-router-dom";
 import { BsArrowBarUp } from "react-icons/bs";
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import Header from "../Header/Header";
 import Home from "../Home/Home";
 import Charte from "../Charte/Charte";

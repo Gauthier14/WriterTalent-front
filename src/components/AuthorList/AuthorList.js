@@ -4,7 +4,6 @@
 import { useEffect } from "react";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
-import PropTypes, { object } from "prop-types";
 import Loader from "../Loader/Loader";
 import AuthorItem from "./AuthorItem";
 import { setAllAthorsInState } from "../../actions/user";
@@ -21,7 +20,7 @@ function AuthorList() {
       })
       .catch((error) => {
         // le serveur nous retourne 401 si les identifiants ne sont pas bons
-        console.log(error);
+        console.warn(error);
       });
   }, []);
   return (
