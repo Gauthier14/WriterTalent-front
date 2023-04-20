@@ -1,17 +1,20 @@
+/* eslint-disable comma-dangle */
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { useParams } from "react-router";
 import PageList from "../PageList/PageList";
 import { getAllPostsPerCategoryOrGenreFromApi } from "../../actions/posts";
 
-function GenreList() {
+function AuthorPosts() {
   const dispatch = useDispatch();
-  const postsGenre = useSelector((state) => state.posts.publishedPostsPerGenre);
+  const postsCategory = useSelector(
+    (state) => state.posts.publishedPostsPerCategory
+  );
   const { id } = useParams();
   useEffect(() => {
-    dispatch(getAllPostsPerCategoryOrGenreFromApi("genre", id));
+    dispatch(getAllPostsOfOneAuthor(id));
   }, [id]);
-  return <PageList posts={postsGenre} />;
+  return <PageList posts={postsCategory} />;
 }
 
-export default GenreList;
+export default AuthorPosts;

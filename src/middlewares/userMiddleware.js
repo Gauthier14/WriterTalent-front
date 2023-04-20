@@ -3,10 +3,12 @@
 import axios from "axios";
 import {
   LOGIN_USER,
-  getTextFieldLogin,
+  GET_ALL_AUTHORS,
   GET_USER_INFOS_FROM_API,
+  getTextFieldLogin,
   setUserInfosInState,
   getUserInfosFromApi,
+  setAllAthorsInState,
 } from "../actions/user";
 import { manageLocalStorage } from "../selectors/user";
 import { setToggleMenu } from "../actions/menu";
@@ -35,13 +37,24 @@ const userMiddleware = (store) => (next) => (action) => {
       break;
     case GET_USER_INFOS_FROM_API:
       axios
-        .post("http://kyllian-g-server.eddi.cloud:8443/api/user/get")
+        .get("http://kyllian-g-server.eddi.cloud:8443/api/user/get")
         .then((response) => {
           store.dispatch(setUserInfosInState(response.data));
         })
         .catch((error) => {
           // le serveur nous retourne 401 si les identifiants ne sont pas bons
           console.log(error);
+        });
+      break;
+    case GET_ALL_AUTHORS:
+      axios
+        .get("http://kyllian-g-server.eddi.cloud:8443/api/users/authors")
+        .then((response) => {
+          store.dispatch(setAllAthorsInState(response.data));
+        })
+        .catch((error) => {
+          // le serveur nous retourne 401 si les identifiants ne sont pas bons
+          console.warn(error);
         });
       break;
     default:

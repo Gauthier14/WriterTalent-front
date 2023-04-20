@@ -5,7 +5,6 @@ const defaultState = {
 };
 
 const reducer = (state = defaultState, action = {}) => {
-  console.log(state);
   switch (action.type) {
     case "UPDATE_EDITOR_STATE":
       return {

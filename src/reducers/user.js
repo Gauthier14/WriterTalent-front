@@ -2,7 +2,6 @@
 import { manageLocalStorage } from "../selectors/user";
 
 export const initialState = {
-  isLogged: manageLocalStorage("get", "token") !== null,
   userId: "",
   email: "",
   password: "",

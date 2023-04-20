@@ -5,28 +5,24 @@ import { Link } from "react-router-dom";
 import { ImCross } from "react-icons/im";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  getAllFavoriteUserPostsFromApi,
-  getAllUserPublishedPostsFromApi,
-} from "../../actions/posts";
-import {
   setToggleMenu,
   getCategoriesFromApi,
   getGenresFromApi,
 } from "../../actions/menu";
-import { getTextFieldLogin, loginUser, logout } from "../../actions/user";
+import { getTextFieldLogin, loginUser } from "../../actions/user";
 import LoginForm from "../LoginForm/LoginForm";
 import MenuItem from "./MenuItem";
 import DropMenuItem from "./DropMenuItem";
+import { manageLocalStorage } from "../../selectors/user";
 
 function NavMenu() {
   const dispatch = useDispatch();
   const genres = useSelector((state) => state.menu.genres);
   const categories = useSelector((state) => state.menu.categories);
   const menuVisibility = useSelector((state) => state.menu.visible);
-  const isLogged = useSelector((state) => state.user.isLogged);
+  const isLogged = manageLocalStorage("get", "token") !== null;
   const email = useSelector((state) => state.user.email);
   const password = useSelector((state) => state.user.password);
-  const userId = useSelector((state) => state.user.id);
   useEffect(() => {
     dispatch(getGenresFromApi());
   }, []);
@@ -59,8 +55,7 @@ function NavMenu() {
             {genres.map((genre) => (
               <DropMenuItem
                 key={genre.id}
-                param="genre"
-                id={genre.id}
+                pathname={`/genre/${genre.id}/posts`}
                 label={genre.name}
               />
             ))}
@@ -72,9 +67,8 @@ function NavMenu() {
             {categories.map((category) => (
               <DropMenuItem
                 key={category.id}
-                param="category"
-                id={category.id}
                 label={category.name}
+                pathname={`/category/${category.id}/posts`}
               />
             ))}
           </ul>
@@ -86,24 +80,8 @@ function NavMenu() {
           <li className="menu-item">
             <Link to="#"> Profil </Link>
             <ul className="drop-menu">
-              <li
-                className="drop-menu-item"
-                onClick={() => {
-                  dispatch(setToggleMenu());
-                  dispatch(getAllFavoriteUserPostsFromApi(userId));
-                }}
-              >
-                <Link>Favoris</Link>
-              </li>
-              <li
-                className="drop-menu-item"
-                onClick={() => {
-                  dispatch(setToggleMenu());
-                  dispatch(getAllUserPublishedPostsFromApi(userId));
-                }}
-              >
-                <Link>Mes écrits</Link>
-              </li>
+              <DropMenuItem label="Favoris" pathname="/user/posts/favorites" />
+              <DropMenuItem label="Mes écrits" pathname="/user/posts" />
             </ul>
           </li>
         ) : (
@@ -126,7 +104,7 @@ function NavMenu() {
         {/* TODO Route API pour la deconexion Déconnexion */}
         {isLogged ? (
           <MenuItem>
-            <Link to="/" onClick={dispatch(logout())} />
+            <Link to="/" onClick={manageLocalStorage("remove", "token")} />
             Déconnexion
           </MenuItem>
         ) : (

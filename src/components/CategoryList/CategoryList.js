@@ -12,8 +12,8 @@ function CategoryList() {
   );
   const { id } = useParams();
   useEffect(() => {
-    dispatch(getAllPostsPerCategoryOrGenreFromApi("genre", id));
-  }, []);
+    dispatch(getAllPostsPerCategoryOrGenreFromApi("category", id));
+  }, [id]);
   return <PageList posts={postsCategory} />;
 }
 
