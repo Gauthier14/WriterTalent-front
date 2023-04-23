@@ -20,6 +20,8 @@ import AuthorList from "../AuthorList/AuthorList";
 import GenreList from "../GenreList/GenreList";
 import CategoryList from "../CategoryList/CategoryList";
 import RecentPosts from "../RecentPosts/RecentPosts";
+import TextEditor from "../TextEditor/TextEditor";
+import ViewerPost from "../ViewerPost/ViewerPost";
 // import ButtonGoWriter from "../ButtonGoWriter/ButtonGoWriter";
 
 function App() {
@@ -72,6 +74,9 @@ function App() {
         <Route path="/genre/:id/posts" element={<GenreList />} />
         <Route path="/category/:id/posts" element={<CategoryList />} />
         <Route path="/authors" element={<AuthorList />} />
+        <Route path="/edit" element={<TextEditor />} />
+        <Route path="/view" element={<ViewerPost />} />
+
         <Route path="*" element={<Page404 />} />
       </Routes>
 

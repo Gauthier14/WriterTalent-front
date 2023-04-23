@@ -4680,6 +4680,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"draftjs-to-html@npm:^0.9.1":
+  version: 0.9.1
+  resolution: "draftjs-to-html@npm:0.9.1"
+  checksum: c22f42abfb2c2a86611ae6a5ea908d8cc3b1cf01de455435ef6551b4a1b2ee4f3cd190acad9282e766b964cf8c5c878a772b86769bdc4fc29357e2ab6b631612
+  languageName: node
+  linkType: hard
+
 "draftjs-utils@npm:^0.10.2":
   version: 0.10.2
   resolution: "draftjs-utils@npm:0.10.2"
@@ -8240,6 +8247,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"page-flip@npm:latest":
+  version: 2.0.7
+  resolution: "page-flip@npm:2.0.7"
+  checksum: 4d9b14dacd85d143f01635f4cfd3b4425141a5a8e86e0e35d751416bb602fe6447d995d3e65a64ec992f29315abb44253ebdb724c85586c402079ca6c5e234a5
+  languageName: node
+  linkType: hard
+
 "param-case@npm:^3.0.4":
   version: 3.0.4
   resolution: "param-case@npm:3.0.4"
@@ -9445,6 +9459,7 @@ __metadata:
     cssnano: ^5.1.15
     dotenv-flow: ^3.2.0
     draft-js: ^0.11.7
+    draftjs-to-html: ^0.9.1
     enzyme: ^3.11.0
     eslint: ^8.34.0
     eslint-config-airbnb: ^19.0.4
@@ -9465,6 +9480,7 @@ __metadata:
     react-dom: ^18.2.0
     react-draft-wysiwyg: ^1.15.0
     react-icons: ^4.8.0
+    react-pageflip: ^2.0.3
     react-redux: ^8.0.5
     react-router: ^6.10.0
     react-router-dom: ^6.10.0
@@ -9480,6 +9496,15 @@ __metadata:
     webpack-merge: ^5.8.0
   languageName: unknown
   linkType: soft
+
+"react-pageflip@npm:^2.0.3":
+  version: 2.0.3
+  resolution: "react-pageflip@npm:2.0.3"
+  dependencies:
+    page-flip: latest
+  checksum: 654736477317e5b12324c1f81827f747c42d2142b0a756b1bc066807a55bddfa92c37e5c2b4901f9656eb3cb404ded343248f15ae7fe0427f888201bd1fe5d36
+  languageName: node
+  linkType: hard
 
 "react-redux@npm:^8.0.5":
   version: 8.0.5
