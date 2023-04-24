@@ -6,7 +6,6 @@ export const GET_TEXT_FIELDS_LOGIN = "GET_TEXT_FIELDS_LOGIN";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGIN_USER = "LOGIN_USER";
 export const GET_USER_INFOS_FROM_API = "GET_USER_INFOS_FROM_API";
-export const SET_USER_INFOS_IN_STATE = "SET_USER_INFOS_IN_STATE";
 
 export const LOGOUT = "LOGOUT";
 export const GET_ALL_AUTHORS = "GET_ALL_AUTHORS";
@@ -42,11 +41,7 @@ export const getAllAuthors = () => ({
 export const getUserInfosFromApi = () => ({
   type: GET_USER_INFOS_FROM_API,
 });
-export const setUserInfosInState = (id, userName) => ({
-  type: SET_USER_INFOS_IN_STATE,
-  id: id,
-  userName: userName,
-});
+
 export const logout = () => ({
   type: LOGOUT,
 });
