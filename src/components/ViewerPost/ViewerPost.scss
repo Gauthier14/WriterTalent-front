@@ -1,17 +1,12 @@
 @import "src/styles/_vars.scss";
 .viewer {
-  width: 100%;
-  padding-right: 15px;
-  padding-left: 15px;
-  margin-right: auto;
-  margin-left: auto;
-  position: relative;
-  max-width: 1140px;
+  display: flex;
+  align-content: center;
+  align-items: center;
+  & > * {
+    flex-grow: 1;
+  }
   .stf__parent {
-    width: 100%;
-    max-width: 80%;
-    display: block;
-    padding: 1em;
     .demoPage {
       background-color: #afa6a6;
       padding: 1em;
