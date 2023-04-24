@@ -104,8 +104,17 @@ function NavMenu() {
         {/* TODO Route API pour la deconexion Déconnexion */}
         {isLogged ? (
           <MenuItem>
-            <Link to="/" onClick={manageLocalStorage("remove", "token")} />
-            Déconnexion
+            <Link
+              to="/"
+              onClick={() => {
+                manageLocalStorage("remove", "token");
+                manageLocalStorage("remove", "user_id");
+                manageLocalStorage("remove", "username");
+                manageLocalStorage("set", "logged", false);
+              }}
+            >
+              Déconnexion
+            </Link>
           </MenuItem>
         ) : (
           <MenuItem>

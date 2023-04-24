@@ -3,18 +3,16 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { useParams } from "react-router";
 import PageList from "../PageList/PageList";
-import { getAllPostsPerCategoryOrGenreFromApi } from "../../actions/posts";
+import { getAllUserPublishedPostsFromApi } from "../../actions/posts";
 
 function AuthorPosts() {
   const dispatch = useDispatch();
-  const postsCategory = useSelector(
-    (state) => state.posts.publishedPostsPerCategory
-  );
+  const postsAuthor = useSelector((state) => state.posts.userPublishedPosts);
   const { id } = useParams();
   useEffect(() => {
-    dispatch(getAllPostsOfOneAuthor(id));
+    dispatch(getAllUserPublishedPostsFromApi(id));
   }, [id]);
-  return <PageList posts={postsCategory} />;
+  return <PageList posts={postsAuthor} />;
 }
 
 export default AuthorPosts;

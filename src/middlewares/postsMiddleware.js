@@ -20,13 +20,12 @@ import {
 } from "../actions/posts";
 
 const postsMiddleware = (store) => (next) => (action) => {
-  const userId = store.getState().user.id;
   const token = localStorage.getItem("token");
   switch (action.type) {
     case GET_ALL_USER_PUBLISHED_POSTS_FROM_API:
       axios
         .get(
-          `http://kyllian-g-server.eddi.cloud:8443/api/user/${userId}/posts/published`
+          `http://kyllian-g-server.eddi.cloud:8443/api/user/${action.userId}/posts/published`
         )
         .then((response) => {
           console.log(response.data);
@@ -40,7 +39,7 @@ const postsMiddleware = (store) => (next) => (action) => {
     case GET_ALL_READ_LATER_USER_POSTS_FROM_API:
       axios
         .get(
-          `http://kyllian-g-server.eddi.cloud:8443/api/user/${userId}/posts/toread`,
+          `http://kyllian-g-server.eddi.cloud:8443/api/user/${action.userId}/posts/toread`,
           {
             headers: {
               // nom du header: valeur
@@ -60,7 +59,7 @@ const postsMiddleware = (store) => (next) => (action) => {
     case GET_ALL_SAVED_USER_POSTS_FROM_API:
       axios
         .get(
-          `http://kyllian-g-server.eddi.cloud:8443/api/user/${userId}/posts/saved`,
+          `http://kyllian-g-server.eddi.cloud:8443/api/user/${action.userId}/posts/saved`,
           {
             headers: {
               // nom du header: valeur
@@ -94,7 +93,7 @@ const postsMiddleware = (store) => (next) => (action) => {
     case GET_ALL_FAVORITE_USER_POSTS_FROM_API:
       axios
         .get(
-          `http://kyllian-g-server.eddi.cloud:8443/api/user/${userId}/favorites`,
+          `http://kyllian-g-server.eddi.cloud:8443/api/user/${action.userId}/favorites`,
           {
             headers: {
               Authorization: `Bearer ${token}`,

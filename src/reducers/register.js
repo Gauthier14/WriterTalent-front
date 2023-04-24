@@ -1,22 +1,25 @@
 /* eslint-disable quotes */
-
 export const initialState = {
+  username: "",
   email: "",
+  isValidEmail: false,
   password: "",
-  authors: [],
+  passwordAgain: "",
+  passwordShown: false,
+  passwordAgainShown: false,
 };
 
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
-    case "GET_TEXT_FIELDS_LOGIN":
+    case "GET_TEXT_FIELDS_REGISTER":
       return {
         ...state,
         [action.inputName]: action.textInput,
       };
-    case "SET_ALL_AUTHORS_IN_STATE":
+    case "TOGGLE_PASSWORD_SHOWN":
       return {
         ...state,
-        authors: action.authorList,
+        [action.inputName]: !state[action.inputName],
       };
     default:
       return state;
