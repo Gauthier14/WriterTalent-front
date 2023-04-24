@@ -20,7 +20,7 @@ function NavMenu() {
   const genres = useSelector((state) => state.menu.genres);
   const categories = useSelector((state) => state.menu.categories);
   const menuVisibility = useSelector((state) => state.menu.visible);
-  const isLogged = manageLocalStorage("get", "token") !== null;
+  const isLogged = manageLocalStorage("get", "logged");
   const email = useSelector((state) => state.user.email);
   const password = useSelector((state) => state.user.password);
   useEffect(() => {

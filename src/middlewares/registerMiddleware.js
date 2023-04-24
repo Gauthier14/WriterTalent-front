@@ -13,16 +13,11 @@ const registerMiddleware = (store) => (next) => (action) => {
           email: store.getState().register.email,
         })
         .then((response) => {
-          console.log("enregistrement réussi");
+          console.log(response);
         })
         .catch((error) => {
           // the server returns 401 if the identifiers are not correct
-          console.log(
-            store.getState().register.username,
-            store.getState().register.password,
-            store.getState().register.email,
-            error
-          );
+          console.log(error);
         });
       break;
     default:

@@ -28,7 +28,6 @@ const postsMiddleware = (store) => (next) => (action) => {
           `http://kyllian-g-server.eddi.cloud:8443/api/user/${action.userId}/posts/published`
         )
         .then((response) => {
-          console.log(response.data);
           store.dispatch(setAllUserPublishedPostsInState(response.data));
         })
         .catch((error) => {
@@ -48,7 +47,6 @@ const postsMiddleware = (store) => (next) => (action) => {
           }
         )
         .then((response) => {
-          console.log(response.data);
           store.dispatch(setAllReadLaterUserPostsInState(response.data));
         })
         .catch((error) => {
@@ -68,7 +66,6 @@ const postsMiddleware = (store) => (next) => (action) => {
           }
         )
         .then((response) => {
-          console.log(response.data);
           store.dispatch(setAllSavedUserPostsInState(response.data));
         })
         .catch((error) => {
@@ -81,7 +78,6 @@ const postsMiddleware = (store) => (next) => (action) => {
       axios
         .get("http://kyllian-g-server.eddi.cloud:8443/api/posts/recent")
         .then((response) => {
-          console.log(response.data);
           store.dispatch(setRecentPostsInState(response.data));
         })
         .catch((error) => {
@@ -101,7 +97,6 @@ const postsMiddleware = (store) => (next) => (action) => {
           }
         )
         .then((response) => {
-          console.log(response.data);
           store.dispatch(setAllFavoriteUserPostsInState(response.data));
         })
         .catch((error) => {
@@ -115,7 +110,6 @@ const postsMiddleware = (store) => (next) => (action) => {
           `http://kyllian-g-server.eddi.cloud:8443/api/${action.param}/${action.id}/posts`
         )
         .then((response) => {
-          console.log(response.data);
           if (action.param === "category") {
             store.dispatch(setAllPostsPerCategoryInState(response.data));
           } else if (action.param === "genre") {
@@ -132,7 +126,6 @@ const postsMiddleware = (store) => (next) => (action) => {
           `http://kyllian-g-server.eddi.cloud:8443/api/${action.param}/${action.id}/posts`
         )
         .then((response) => {
-          console.log(response.data);
           store.dispatch(setAllMostLikedPostsInState(response.data));
         })
         .catch((error) => {

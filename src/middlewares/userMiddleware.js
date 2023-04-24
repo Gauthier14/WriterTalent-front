@@ -45,7 +45,6 @@ const userMiddleware = (store) => (next) => (action) => {
           },
         })
         .then((response) => {
-          console.log(response.data.id, response.data.username);
           manageLocalStorage("set", "user_id", response.data.id);
           manageLocalStorage("set", "username", response.data.username);
         })
