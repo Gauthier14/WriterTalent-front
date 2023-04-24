@@ -20,13 +20,12 @@ import {
 } from "../actions/posts";
 
 const postsMiddleware = (store) => (next) => (action) => {
-  const userId = store.getState().user.id;
   const token = localStorage.getItem("token");
   switch (action.type) {
     case GET_ALL_USER_PUBLISHED_POSTS_FROM_API:
       axios
         .get(
-          `http://kyllian-g-server.eddi.cloud:8443/api/user/${userId}/posts/published`
+          `http://kyllian-g-server.eddi.cloud:8443/api/user/${action.userId}/posts/published`
         )
         .then((response) => {
           console.log(response.data);
