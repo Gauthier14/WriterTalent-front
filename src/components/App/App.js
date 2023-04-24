@@ -23,6 +23,8 @@ import RecentPosts from "../RecentPosts/RecentPosts";
 import TextEditor from "../TextEditor/TextEditor";
 import ViewerPost from "../ViewerPost/ViewerPost";
 import AuthorPosts from "../AuthorPosts/AuthorPosts";
+import ProfileScripts from "../ProfileScripts/ProfileScripts";
+import ProfileFavorites from "../ProfileFavorites/ProfileFavorites";
 // import ButtonGoWriter from "../ButtonGoWriter/ButtonGoWriter";
 
 function App() {
@@ -36,6 +38,7 @@ function App() {
   return (
     <div className="app">
       <Header />
+      
       <Routes>
         <Route path="/" element={<Home />} />
         <Route
@@ -75,9 +78,12 @@ function App() {
         <Route path="/genre/:id/posts" element={<GenreList />} />
         <Route path="/category/:id/posts" element={<CategoryList />} />
         <Route path="/posts/author/:id/" element={<AuthorPosts />} />
+        <Route path="/posts/user/:pseudo/" element={<ProfileScripts />} />
+        <Route path="/posts/favorites/:pseudo/" element={<ProfileFavorites />} />
         <Route path="/authors" element={<AuthorList />} />
         <Route path="/edit" element={<TextEditor />} />
         <Route path="/view" element={<ViewerPost />} />
+        
 
         <Route path="*" element={<Page404 />} />
       </Routes>
