@@ -2,6 +2,8 @@
 /* eslint-disable brace-style */
 import axios from "axios";
 import { SUBMIT_REGISTER } from "../actions/register";
+import { generateMessage, showMessage } from "../selectors/message";
+import { setMessageInfos } from "../actions/messages";
 
 const registerMiddleware = (store) => (next) => (action) => {
   switch (action.type) {

@@ -3,7 +3,7 @@ import { combineReducers } from "redux";
 import postsReducer from "./posts";
 import userReducer from "./user";
 import menuReducer from "./menu";
-import editorReducer from "./editor";
+import messagesReducer from "./messages";
 import viewerReducer from "./viewer";
 import regiterReducer from "./register";
 
@@ -11,7 +11,7 @@ const rootReducer = combineReducers({
   posts: postsReducer,
   user: userReducer,
   menu: menuReducer,
-  editor: editorReducer,
+  messages: messagesReducer,
   viewer: viewerReducer,
   register: regiterReducer,
 });

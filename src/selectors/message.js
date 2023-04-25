@@ -1,36 +1,44 @@
+/* eslint-disable operator-linebreak */
+/* eslint-disable comma-dangle */
 /* eslint-disable quotes */
-/* eslint-disable import/prefer-default-export */
-/* eslint-disable arrow-body-style */
-
-import { useLocation } from "react-router";
+/**
+ * @param {Number} Delay - Delay to show message
+ */
+export function showMessage(delay = 5000) {
+  document.querySelector(".message").style.display = "block";
+  window.setTimeout(() => {
+    document.querySelector(".message").style.display = "none";
+  }, delay);
+}
 
 /**
- * @param {Array} recipes - List of recipes
- * @return {string} - Welcome Message
+ * @param {String} dataType - Type of data sending or receving (login, login-infos, all-authors)
+ * @return {void}
  */
-export function emptyResults() {
-  const location = useLocation().pathname;
-  const second = String(location).indexOf("/", 1);
-  const value = String(location).substring(1, second);
-  let textMessage = "";
-  switch (value) {
-    case "category":
-      textMessage = "Pas d'écrits pour cette catégorie";
+export function generateMessage(dataType) {
+  let message = "";
+  switch (dataType) {
+    case "login":
+      message = "Connexion impossible, veuillez réessayer !";
       break;
-    case "genre":
-      textMessage = "Pas d'écrits pour ce genre";
+    case "login-infos":
+      message =
+        "Nous n'avons pas pus récupérer vos informations de connexion !";
       break;
-    case "nouveautes":
-      textMessage = "Pas de nouveautés cette semaine";
+    case "all-authors":
+      message =
+        "La liste des auteurs n'a pas pu être récupérée, Problème de connexion avec L'API !";
+      break;
+    case "genres":
+      message =
+        "La liste des genres n'a pas pu être récupérée, Problème de connexion avec L'API !";
+      break;
+    case "univers":
+      message =
+        "La liste des auniversn'a pas pu être récupérée, Problème de connexion avec L'API !";
       break;
     default:
       break;
   }
-  return textMessage;
-}
-
-export function errorMessage() {
-  let message;
-
   return message;
 }

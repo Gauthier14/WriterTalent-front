@@ -18,6 +18,8 @@ import {
   setAllReadLaterUserPostsInState,
   setAllMostLikedPostsInState,
 } from "../actions/posts";
+import { generateMessage, showMessage } from "../selectors/message";
+import { setMessageInfosInState } from "../actions/messages";
 
 const postsMiddleware = (store) => (next) => (action) => {
   const token = localStorage.getItem("token");
@@ -81,8 +83,14 @@ const postsMiddleware = (store) => (next) => (action) => {
           store.dispatch(setRecentPostsInState(response.data));
         })
         .catch((error) => {
-          // the server returns 401 if the identifiers are not correct
-          console.log(error);
+          store.dispatch(
+            setMessageInfosInState(
+              "Les écrits les plus récents n'ont pas pu être récupérés, problème de connexion avec l'API",
+              "warning",
+              error.message
+            )
+          );
+          showMessage();
         });
       break;
 
@@ -129,7 +137,16 @@ const postsMiddleware = (store) => (next) => (action) => {
           store.dispatch(setAllMostLikedPostsInState(response.data));
         })
         .catch((error) => {
-          console.log(error);
+          setTimeout(() => {
+            store.dispatch(
+              setMessageInfosInState(
+                "Les écrits les plus appréciés n'ont pas pu être récupérés, problème de connexion avec l'API",
+                "warning",
+                error.message
+              )
+            );
+            showMessage();
+          }, 12000);
         });
       break;
     default:

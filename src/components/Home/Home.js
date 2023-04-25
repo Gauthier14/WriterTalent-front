@@ -6,18 +6,27 @@ import Button from "../Button/Button";
 import LikedItem from "../LikedItem/LikedItem";
 // import ButtonGoWriter from "../ButtonGoWriter/ButtonGoWriter";
 import "./Home.scss";
-import { getRecentPostsFromApi } from "../../actions/posts";
+import { getAllMostLikedPostsFromApi } from "../../actions/posts";
+import Message from "../Message/Message";
 
 function Home() {
   const dispatch = useDispatch();
-  const recentPosts = useSelector((state) => state.posts.recentPublishedPosts);
-  const recentPostsForHome = recentPosts.filter((post, index) => index < 3);
+  const textMessage = useSelector((state) => state.messages.text);
+  const className = useSelector((state) => state.messages.class);
+  const serverMessage = useSelector((state) => state.messages.serverMessage);
+  const mostLikedPosts = useSelector((state) => state.posts.mostLikedPosts);
+  const likedPosts = mostLikedPosts.filter((post, index) => index < 3);
   useEffect(() => {
-    dispatch(getRecentPostsFromApi());
+    dispatch(getAllMostLikedPostsFromApi());
   }, []);
   return (
     <main className="home-main">
       {/* <ButtonGoWriter /> */}
+      <Message
+        text={textMessage}
+        otherClass={className}
+        serverMessage={serverMessage}
+      />
       <article>
         <p>
           Sur ce site, nous offrons l'opportunité de lire le travail des
@@ -56,16 +65,10 @@ function Home() {
             <h2>Les plus aimés</h2>
           </div>
           <ul>
-            {recentPostsForHome.map((post) => (
+            {likedPosts.map((post) => (
               <LikedItem key={post.id} {...post} />
             ))}
-            <Button
-              label="Lire plus d'histoires"
-              link="/nouveautes"
-              onClick={() => {
-                dispatch(getRecentPostsFromApi());
-              }}
-            />
+            <Button label="Lire plus d'histoires" link="/nouveautes" />
           </ul>
         </section>
       </div>
