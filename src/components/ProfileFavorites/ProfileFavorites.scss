@@ -34,12 +34,14 @@
       ul {
         margin-top: 0;
         margin-bottom: 0;
+        height:10em;
         list-style: none;
-
+        overflow-y: scroll;
+        
         li {
           display: flex;
           justify-content: space-between;
-          padding: 0.5em;
+          padding:1em;
           border-radius: 0.5em;
           background-color: #ffffff;
           box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);

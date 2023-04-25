@@ -28,6 +28,12 @@ function ProfileScripts() {
             <li>
               Ecrit 4 <FcReading size={30}  />
             </li>
+            <li>
+              Ecrit 5 <FcReading size={30}  />
+            </li>
+            <li>
+              Ecrit 6 <FcReading size={30}  />
+            </li>
           </ul>
         </div>
         <div className="awating-scripts">
@@ -55,6 +61,12 @@ function ProfileScripts() {
             </li>
             <li>
               Ecrit 4 <FaPenNib size={30}  />
+            </li>
+            <li>
+              Ecrit 5 <FaPenNib size={30}  />
+            </li>
+            <li>
+              Ecrit 5 <FaPenNib size={30}  />
             </li>
           </ul>
         </div>
