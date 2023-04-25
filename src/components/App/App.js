@@ -22,10 +22,13 @@ import CategoryList from "../CategoryList/CategoryList";
 import RecentPosts from "../RecentPosts/RecentPosts";
 import TextEditor from "../TextEditor/TextEditor";
 import ViewerPost from "../ViewerPost/ViewerPost";
+import Button from "../Button/Button";
+import { manageLocalStorage } from "../../selectors/user";
 // import ButtonGoWriter from "../ButtonGoWriter/ButtonGoWriter";
 
 function App() {
   const { pathname } = useLocation();
+  const logged = manageLocalStorage("get", "logged");
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -35,6 +38,7 @@ function App() {
   return (
     <div className="app">
       <Header />
+      {logged && <Button label="Rédiger un écrit" link="/user/post/new" />}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route
@@ -46,6 +50,7 @@ function App() {
           }
         />
         <Route path="/nouveautes" element={<RecentPosts />} />
+        <Route path="/user/post/new" element={<ViewerPost />} />
         <Route path="/register" element={<Register />} />
         <Route
           path="/mentions-legales"

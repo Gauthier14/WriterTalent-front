@@ -28,3 +28,19 @@ body {
     font-family: 'Roboto', sans-serif;
   }
 */
+/* width */
+::-webkit-scrollbar {
+  width: 0.5em;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px #ccc;
+  border-radius: 0.5em;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #b69c9c;
+  border-radius: 10px;
+}
