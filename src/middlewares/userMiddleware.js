@@ -16,6 +16,7 @@ import { setToggleMenu } from "../actions/menu";
 const userMiddleware = (store) => (next) => (action) => {
   // console.log("authenticateMiddleware action reçue : " + action);
   const token = manageLocalStorage("get", "token");
+  console.log(store.getState().user.email, store.getState().user.password);
   switch (action.type) {
     case LOGIN_USER:
       axios

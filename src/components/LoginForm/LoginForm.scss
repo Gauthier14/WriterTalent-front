@@ -5,11 +5,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 1em;
+    padding: 2em;
     border-radius: 1em;
-    @media screen and (min-width: 820px) {
-      width: 200px;
-    }
+    width: 100%;
   }
 
   &-message {
@@ -28,10 +26,13 @@
     background-color: #000;
     border-radius: 0.3em;
     border: 0;
-    padding: 0.5em;
+    padding: 0.7em;
     width: 100%;
     transition: 0.3s;
-    font-size: 1em;
+    font-size: 0.8em;
+    @media screen and (min-width: 820px) {
+      font-size: 1.2em;
+    }
     &:not(:last-child) {
       margin-bottom: 0.3em;
     }
