@@ -20,7 +20,7 @@ function NavMenu() {
   const genres = useSelector((state) => state.menu.genres);
   const categories = useSelector((state) => state.menu.categories);
   const menuVisibility = useSelector((state) => state.menu.visible);
-  const isLogged = manageLocalStorage("get", "token") !== null;
+  const isLogged = manageLocalStorage("get", "logged");
   const email = useSelector((state) => state.user.email);
   const password = useSelector((state) => state.user.password);
   useEffect(() => {
@@ -85,27 +85,24 @@ function NavMenu() {
             </ul>
           </li>
         ) : (
-          <li className="menu-item">
-            <Link to="#"> Se connecter </Link>
-            <ul className="drop-menu">
-              <LoginForm
-                changeField={(inputValue, inputName) => {
-                  dispatch(getTextFieldLogin(inputValue, inputName));
-                }}
-                email={email}
-                password={password}
-                handleLogin={() => {
-                  dispatch(loginUser());
-                }}
-              />
-            </ul>
-          </li>
+          <MenuItem>
+            <Link to="/login"> Se connecter </Link>
+          </MenuItem>
         )}
         {/* TODO Route API pour la deconexion Déconnexion */}
         {isLogged ? (
           <MenuItem>
-            <Link to="/" onClick={manageLocalStorage("remove", "token")} />
-            Déconnexion
+            <Link
+              to="/"
+              onClick={() => {
+                manageLocalStorage("remove", "token");
+                manageLocalStorage("remove", "user_id");
+                manageLocalStorage("remove", "username");
+                manageLocalStorage("set", "logged", false);
+              }}
+            >
+              Déconnexion
+            </Link>
           </MenuItem>
         ) : (
           <MenuItem>

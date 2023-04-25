@@ -20,7 +20,7 @@ const reducer = (state = initialState, action = {}) => {
     case "SET_ALL_USER_PUBLISHED_POSTS_IN_STATE":
       return {
         ...state,
-        userPublishedPosts: [...action.postList],
+        userPublishedPosts: [...action.posts],
         loaded: true,
       };
     case "SET_RECENT_POSTS_IN_STATE":

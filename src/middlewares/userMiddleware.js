@@ -6,7 +6,6 @@ import {
   GET_ALL_AUTHORS,
   GET_USER_INFOS_FROM_API,
   getTextFieldLogin,
-  setUserInfosInState,
   getUserInfosFromApi,
   setAllAthorsInState,
 } from "../actions/user";
@@ -16,6 +15,7 @@ import { setToggleMenu } from "../actions/menu";
 
 const userMiddleware = (store) => (next) => (action) => {
   // console.log("authenticateMiddleware action reçue : " + action);
+  const token = manageLocalStorage("get", "token");
   switch (action.type) {
     case LOGIN_USER:
       axios
@@ -25,6 +25,7 @@ const userMiddleware = (store) => (next) => (action) => {
         })
         .then((response) => {
           manageLocalStorage("set", "token", response.data.token);
+          manageLocalStorage("set", "logged", true);
           store.dispatch(getTextFieldLogin("", "email"));
           store.dispatch(getTextFieldLogin("", "password"));
           store.dispatch(setToggleMenu());
@@ -37,9 +38,15 @@ const userMiddleware = (store) => (next) => (action) => {
       break;
     case GET_USER_INFOS_FROM_API:
       axios
-        .get("http://kyllian-g-server.eddi.cloud:8443/api/user/get")
+        .get("http://kyllian-g-server.eddi.cloud:8443/api/user/get", {
+          headers: {
+            // nom du header: valeur
+            Authorization: `Bearer ${token}`,
+          },
+        })
         .then((response) => {
-          store.dispatch(setUserInfosInState(response.data));
+          manageLocalStorage("set", "user_id", response.data.id);
+          manageLocalStorage("set", "username", response.data.username);
         })
         .catch((error) => {
           // le serveur nous retourne 401 si les identifiants ne sont pas bons

@@ -1,92 +1,165 @@
+/* eslint-disable brace-style */
+/* eslint-disable comma-dangle */
+/* eslint-disable operator-linebreak */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable quotes */
-import Button from "../Button/Button";
+import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
+import PasswordChecklist from "react-password-checklist";
+import { useDispatch, useSelector } from "react-redux";
 import "./Register.scss";
+import {
+  getTextFieldRegister,
+  submitRegister,
+  togglePasswordShown,
+} from "../../actions/register";
+import { validateEmail, validatePassword } from "../../selectors/register";
 
 function Register() {
+  const dispatch = useDispatch();
+  const username = useSelector((state) => state.register.username);
+  const email = useSelector((state) => state.register.email);
+  const isValidEmail = validateEmail(email);
+
+  const password = useSelector((state) => state.register.password);
+  const isValidPassword = validatePassword(password);
+  const passwordAgain = useSelector((state) => state.register.passwordAgain);
+  const passwordShown = useSelector((state) => state.register.passwordShown);
+  const passwordAgainShown = useSelector(
+    (state) => state.register.passwordAgainShown
+  );
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (
+      isValidEmail &&
+      isValidPassword &&
+      passwordAgain !== "" &&
+      password !== "" &&
+      password === passwordAgain &&
+      username !== ""
+    ) {
+      dispatch(submitRegister());
+    } else {
+      console.log(
+        "Vérifiez que tous les champs sont remplis",
+        isValidPassword,
+        password
+      );
+    }
+  };
+
   return (
     <main className="register">
-      <section className="form-container"> 
-          <h2>FORMULAIRE D'INSCRIPTION</h2>
-          <form>
-            <label htmlFor="nom">Nom :</label>
-            <input
-              type="text"
-              placeholder="Entrez votre nom"
-              id="nom"
-              name="nom"
-              required
-            />
+      <section className="form-container">
+        <h2>FORMULAIRE D'INSCRIPTION</h2>
+        <form>
+          <label htmlFor="username">Nom d'utilisateur :</label>
+          <input
+            type="text"
+            placeholder="Entrez votre nom d'utilisateur"
+            id="username"
+            name="username"
+            required
+            value={username}
+            onChange={(event) => {
+              dispatch(getTextFieldRegister(event.target.value, "username"));
+            }}
+          />
 
-            <label htmlFor="prenom">Prénom :</label>
-            <input
-              type="text"
-              placeholder="Entrez votre prénom"
-              id="prenom"
-              name="prenom"
-              required
-            />
+          <label htmlFor="email">Email :</label>
+          <input
+            type="email"
+            placeholder="Entrez une adresse mail valide"
+            id="email"
+            name="email"
+            required
+            value={email}
+            onChange={(event) => {
+              dispatch(getTextFieldRegister(event.target.value, "email"));
+            }}
+          />
 
-            <label htmlFor="prenom">Nom d'auteur:</label>
+          <label htmlFor="password">Mot de passe :</label>
+          <div className="input-field">
             <input
-              type="text"
-              placeholder="Entrez votre nom d'auteur"
-              id="authorName"
-              name="authorName"
-              required
-            />
-
-            <label htmlFor="email">Email :</label>
-            <input
-              type="email"
-              placeholder="Entrez une adresse mail valide"
-              id="email"
-              name="email"
-              required
-            />
-
-            <label htmlFor="password">Mot de passe :</label>
-            <input
-              type="password"
+              type={passwordShown ? "text" : "password"}
               placeholder="Entrez votre mot de passe"
               id="password"
               name="password"
               required
+              value={password}
+              onChange={(event) => {
+                dispatch(getTextFieldRegister(event.target.value, "password"));
+              }}
             />
-            <span className="password-errors">
-              <span data-criterion="length">
-                Doit contenir au moins 10 caractères
-              </span>
-              <br />
-              <span data-criterion="lowercase">
-                Doit contenir au moins une lettre minuscule
-              </span>
-              <br />
-              <span data-criterion="uppercase">
-                Doit contenir au moins une lettre majuscule
-              </span>
-              <br />
-              <span data-criterion="number">
-                Doit contenir au moins un chiffres
-              </span>
-              <br />
-              <span data-criterion="special">
-                Doit contenir au moins un caractère spécial
-              </span>
-              <br />
-            </span>
-            <label htmlFor="confirmPassword">Confirmez le mot de passe :</label>
+            {passwordShown ? (
+              <AiFillEye
+                onClick={() => {
+                  dispatch(togglePasswordShown("passwordShown"));
+                }}
+              />
+            ) : (
+              <AiFillEyeInvisible
+                onClick={() => {
+                  dispatch(togglePasswordShown("passwordShown"));
+                }}
+              />
+            )}
+          </div>
+          <label htmlFor="passwordAgain">Confirmez votre mot de passe :</label>
+          <div className="input-field">
             <input
-              type="password"
+              type={passwordAgainShown ? "text" : "password"}
               placeholder="Confirmez votre mot de passe"
-              id="confirmPassword"
-              name="confirmPassword"
+              id="passwordAgain"
+              name="passwordAgain"
               required
+              value={passwordAgain}
+              onChange={(event) => {
+                dispatch(
+                  getTextFieldRegister(event.target.value, "passwordAgain")
+                );
+              }}
             />
-            <p className="info" />
-            <Button label="S'inscrire" link="#" width="100%" />
-          </form>
-      
+            {passwordAgainShown ? (
+              <AiFillEye
+                onClick={() => {
+                  dispatch(togglePasswordShown("passwordAgainShown"));
+                }}
+              />
+            ) : (
+              <AiFillEyeInvisible
+                onClick={() => {
+                  dispatch(togglePasswordShown("passwordAgainShown"));
+                }}
+              />
+            )}
+          </div>
+          <PasswordChecklist
+            rules={[
+              "minLength",
+              "lowercase",
+              "capital",
+              "number",
+              "specialChar",
+              "match",
+            ]}
+            minLength={10}
+            value={password}
+            valueAgain={passwordAgain}
+            messages={{
+              minLength: "Doit contenir au moins 10 caractères.",
+              lowercase: "Doit contenir au moins une lettre minuscules",
+              capital: "Doit contenir au moins une lettre majuscule.",
+              number: "Doit contenir au moins un chiffre.",
+              specialChar: "Doit contenir au moins un caractère spécial.",
+              match: "Les critères sont respectés.",
+            }}
+          />
+          <button className="submit" type="submit">
+            S'inscrire
+          </button>
+        </form>
       </section>
     </main>
   );

@@ -5,13 +5,14 @@ import userReducer from "./user";
 import menuReducer from "./menu";
 import editorReducer from "./editor";
 import viewerReducer from "./viewer";
-
+import regiterReducer from "./register";
 const rootReducer = combineReducers({
   posts: postsReducer,
   user: userReducer,
   menu: menuReducer,
   editor: editorReducer,
   viewer: viewerReducer,
+  register: regiterReducer,
 });
 
 export default rootReducer;

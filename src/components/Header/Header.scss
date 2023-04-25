@@ -10,7 +10,7 @@ header {
   grid-template-columns: 1fr 3fr 0.8fr;
   text-align: center;
   grid-template-areas: "logo title menu";
-  @media screen and (min-width: 760px) {
+  @media screen and (min-width: 820px) {
     grid-template-columns: 0.5fr 4fr;
     grid-template-rows: 2fr 1fr;
     grid-template-areas:
@@ -23,7 +23,7 @@ header {
     img {
       width: 50px;
       border-radius: 0.5em;
-      @media screen and (min-width: 760px) {
+      @media screen and (min-width: 820px) {
         width: 70px;
         border-radius: 1em;
       }
@@ -43,7 +43,7 @@ header {
       -webkit-backdrop-filter: blur(1px);
       backdrop-filter: blur(0.5px);
       border-radius: 0.5em;
-      @media screen and (min-width: 760px) {
+      @media screen and (min-width: 820px) {
         font-size: 2em;
       }
     }
@@ -58,7 +58,7 @@ header {
       border-radius: 0.5em;
       padding: 0.3em;
       cursor: pointer;
-      @media screen and (min-width: 760px) {
+      @media screen and (min-width: 820px) {
         display: none;
       }
     }
