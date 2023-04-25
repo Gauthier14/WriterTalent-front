@@ -4,6 +4,7 @@ import { GrInProgress } from "react-icons/gr"; // awaiting
 import { RiDraftFill } from "react-icons/ri"; // draft
 import { FaPenNib } from "react-icons/fa"; // write
 import { FcReading } from "react-icons/fc"; // read
+import { BsFillHandThumbsUpFill, BsEyeFill } from "react-icons/bs";
 
 import "./ProfileScripts.scss";
 
@@ -20,6 +21,11 @@ function ProfileScripts() {
               <h3>
                 Titre à rallonge pour tester le rendu 1<FcReading size={35} />
               </h3>
+              <div className="views-likes">
+              <span className="nbViews"><BsFillHandThumbsUpFill />59</span>
+              <span className="nbLikes"><BsEyeFill />56</span>
+            
+              </div>
 
               <span className="genre">Roman</span>
               <span className="category">Aventure</span>
@@ -29,6 +35,11 @@ function ProfileScripts() {
               <h3>
                 Titre à rallonge pour tester le rendu 2 <FcReading size={35} />
               </h3>
+              <div className="views-likes">
+              <span className="nbViews"><BsFillHandThumbsUpFill />59</span>
+              <span className="nbLikes"><BsEyeFill />56</span>
+            
+              </div>
 
               <span className="genre">Roman</span>
               <span className="category">Aventure</span>
@@ -38,7 +49,11 @@ function ProfileScripts() {
               <h3>
                 Titre à rallonge pour tester le rendu 3<FcReading size={35} />
               </h3>
-
+              <div className="views-likes">
+              <span className="nbViews"><BsFillHandThumbsUpFill />59</span>
+              <span className="nbLikes"><BsEyeFill />56</span>
+            
+              </div>
               <span className="genre">Roman</span>
               <span className="category">Aventure</span>
               <span className="category">Drame</span>
@@ -47,6 +62,11 @@ function ProfileScripts() {
               <h3>
                 Titre à rallonge pour tester le rendu 3<FcReading size={35} />
               </h3>
+              <div className="views-likes">
+              <span className="nbViews"><BsFillHandThumbsUpFill />59</span>
+              <span className="nbLikes"><BsEyeFill />56</span>
+            
+              </div>
               <span className="genre">Roman</span>
               <span className="category">Aventure</span>
               <span className="category">Drame</span>
@@ -55,6 +75,11 @@ function ProfileScripts() {
               <h3>
                 Titre à rallonge pour tester le rendu 3<FcReading size={35} />
               </h3>
+              <div className="views-likes">
+              <span className="nbViews"><BsFillHandThumbsUpFill />59</span>
+              <span className="nbLikes"><BsEyeFill />56</span>
+            
+              </div>
               <span className="genre">Roman</span>
               <span className="category">Aventure</span>
               <span className="category">Drame</span>
@@ -63,6 +88,11 @@ function ProfileScripts() {
               <h3>
                 Titre à rallonge pour tester le rendu 3<FcReading size={35} />
               </h3>
+              <div className="views-likes">
+              <span className="nbViews"><BsFillHandThumbsUpFill />59</span>
+              <span className="nbLikes"><BsEyeFill />56</span>
+            
+              </div>
               <span className="genre">Roman</span>
               <span className="category">Aventure</span>
               <span className="category">Drame</span>
@@ -123,11 +153,11 @@ function ProfileScripts() {
               <span className="category">Drame</span>
             </li>
             <li>
-              <h3>Titre à rallonge pour tester le rendu 3</h3>
+              <h3>Titre à rallonge pour tester le rendu 3 <FaPenNib size={35} /></h3>
               <span className="genre">Roman</span>
               <span className="category">Aventure</span>
               <span className="category">Drame</span>
-              <FaPenNib size={35} />
+              
             </li>
             <li>
               <h3>
