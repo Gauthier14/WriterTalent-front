@@ -25,6 +25,8 @@ import ViewerPost from "../ViewerPost/ViewerPost";
 import AuthorPosts from "../AuthorPosts/AuthorPosts";
 import ProfileScripts from "../ProfileScripts/ProfileScripts";
 import ProfileFavorites from "../ProfileFavorites/ProfileFavorites";
+import UserConnexion from "../UserConnexion/UserConnexion";
+
 // import ButtonGoWriter from "../ButtonGoWriter/ButtonGoWriter";
 
 function App() {
@@ -83,7 +85,7 @@ function App() {
         <Route path="/authors" element={<AuthorList />} />
         <Route path="/edit" element={<TextEditor />} />
         <Route path="/view" element={<ViewerPost />} />
-        
+        <Route path="/login" element={<UserConnexion />} />
 
         <Route path="*" element={<Page404 />} />
       </Routes>

@@ -14,16 +14,28 @@ function ProfileFavorites() {
           <BsBalloonHeartFill size={40}/>
           <ul>
             <li>
-              Ecrit 1 <FcReading size={30}  />
+              <h3>Ecrit 1 <FcReading size={30}  /></h3>
+              <span className="genre">Roman</span>
+              <span className="category">Aventure</span>
+              <span className="category">Drame</span>
             </li>
             <li>
-              Ecrit 2 <FcReading size={30}  />
+              <h3>Ecrit 2 <FcReading size={30}  /></h3>
+              <span className="genre">Roman</span>
+              <span className="category">Aventure</span>
+              <span className="category">Drame</span>
             </li>
             <li>
-              Ecrit 3 <FcReading size={30}  />
+              <h3>Ecrit 3 <FcReading size={30}  /></h3>
+              <span className="genre">Roman</span>
+              <span className="category">Aventure</span>
+              <span className="category">Drame</span>
             </li>
             <li>
-              Ecrit 4 <FcReading size={30}  />
+              <h3>Ecrit 4 <FcReading size={30}  /></h3>
+              <span className="genre">Roman</span>
+              <span className="category">Aventure</span>
+              <span className="category">Drame</span>
             </li>
           </ul>
         </div>

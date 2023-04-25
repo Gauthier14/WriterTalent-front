@@ -2,7 +2,7 @@
   padding: 2em;
 
   h1 {
-    font-size: 2em;
+    font-size: 3em;
     text-align: center;
     margin-top: 0;
     margin-bottom: 1em;
@@ -17,35 +17,68 @@
     justify-content: center;
 
     .my-favorites-scripts {
-      background-color: #f9f9f9;
+      height: 25em;
+      background-color: #cec9c9;
       padding: 1em;
       border-radius: 1em;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
       place-items: center;
 
-      h2 {
-        display: flex;
-        align-items: center;
+      h2{
+        text-decoration: underline;
+        font-size:2em
+      }
+      h3{
         font-size: 1.5em;
+      }
+
+      h2, h3 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         margin-top: 0;
         margin-bottom: 1em;
       }
 
+
       ul {
         margin-top: 0;
         margin-bottom: 0;
-        height:10em;
+        height:20em;
         list-style: none;
         overflow-y: scroll;
         
         li {
           display: flex;
+          flex-direction: column;
           justify-content: space-between;
-          padding:1em;
+          padding: 1em;
           border-radius: 0.5em;
           background-color: #ffffff;
           box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
           margin-bottom: 0.5em;
+        }
+        .genre {
+          background-color: #998185;
+          border-radius: 0.5em;
+          color: #fff;
+          display: flex;
+          justify-content: center;
+          font-size: 1rem;
+          margin:0.2em;
+          padding: 0.3em 0.7em;
+          vertical-align: middle;
+        }
+        .category {
+          background-color: #bd5768;
+          border-radius: 0.5em;
+          color: #fff;
+          display: flex;
+          justify-content: center;
+          font-size: 1rem;
+          margin:0.2em;
+          padding: 0.3em 0.7em;
+          vertical-align: middle;
         }
       }
     }

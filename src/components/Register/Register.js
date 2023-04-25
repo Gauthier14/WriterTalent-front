@@ -52,7 +52,7 @@ function Register() {
     <main className="register">
       <section className="form-container">
         <h2>FORMULAIRE D'INSCRIPTION</h2>
-        <form onSubmit={handleSubmit}>
+        <form>
           <label htmlFor="username">Nom d'utilisateur :</label>
           <input
             type="text"
