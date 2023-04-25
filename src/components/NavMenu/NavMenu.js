@@ -85,21 +85,9 @@ function NavMenu() {
             </ul>
           </li>
         ) : (
-          <li className="menu-item">
-            <Link to="#"> Se connecter </Link>
-            <ul className="drop-menu">
-              <LoginForm
-                changeField={(inputValue, inputName) => {
-                  dispatch(getTextFieldLogin(inputValue, inputName));
-                }}
-                email={email}
-                password={password}
-                handleLogin={() => {
-                  dispatch(loginUser());
-                }}
-              />
-            </ul>
-          </li>
+          <MenuItem>
+            <Link to="/login"> Se connecter </Link>
+          </MenuItem>
         )}
         {/* TODO Route API pour la deconexion Déconnexion */}
         {isLogged ? (
