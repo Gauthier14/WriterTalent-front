@@ -92,14 +92,11 @@ const postsMiddleware = (store) => (next) => (action) => {
 
     case GET_ALL_FAVORITE_USER_POSTS_FROM_API:
       axios
-        .get(
-          `http://kyllian-g-server.eddi.cloud:8443/api/user/${action.userId}/favorites`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        )
+        .get(`http://kyllian-g-server.eddi.cloud:8443/api/user/favorites`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
         .then((response) => {
           console.log(response.data);
           store.dispatch(setAllFavoriteUserPostsInState(response.data));

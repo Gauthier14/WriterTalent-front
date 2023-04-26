@@ -40,7 +40,7 @@ function App() {
   return (
     <div className="app">
       <Header />
-      
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route
@@ -81,7 +81,7 @@ function App() {
         <Route path="/category/:id/posts" element={<CategoryList />} />
         <Route path="/posts/author/:id/" element={<AuthorPosts />} />
         <Route path="/posts/user/:pseudo/" element={<ProfileScripts />} />
-        <Route path="/posts/favorites/:pseudo/" element={<ProfileFavorites />} />
+        <Route path="/user/posts/favorites" element={<ProfileFavorites />} />
         <Route path="/authors" element={<AuthorList />} />
         <Route path="/edit" element={<TextEditor />} />
         <Route path="/view" element={<ViewerPost />} />

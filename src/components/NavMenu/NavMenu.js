@@ -9,8 +9,6 @@ import {
   getCategoriesFromApi,
   getGenresFromApi,
 } from "../../actions/menu";
-import { getTextFieldLogin, loginUser } from "../../actions/user";
-import LoginForm from "../LoginForm/LoginForm";
 import MenuItem from "./MenuItem";
 import DropMenuItem from "./DropMenuItem";
 import { manageLocalStorage } from "../../selectors/user";
@@ -21,8 +19,6 @@ function NavMenu() {
   const categories = useSelector((state) => state.menu.categories);
   const menuVisibility = useSelector((state) => state.menu.visible);
   const isLogged = manageLocalStorage("get", "token") !== null;
-  const email = useSelector((state) => state.user.email);
-  const password = useSelector((state) => state.user.password);
   useEffect(() => {
     dispatch(getGenresFromApi());
   }, []);
