@@ -46,10 +46,12 @@ function Register() {
       dispatch(submitRegister());
     } else {
       console.log("champs vide ou incorrect");
-      setMessageInfosInState(
-        generateMessage("register-input-empty"),
-        "danger",
-        "Erreur de saisie"
+      dispatch(
+        setMessageInfosInState(
+          generateMessage("register-input-empty"),
+          "danger",
+          "Erreur de saisie"
+        )
       );
       showMessage();
     }

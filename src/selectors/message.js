@@ -39,7 +39,7 @@ export function generateMessage(dataType) {
       break;
     case "register-fail":
       message =
-        "Votre compte n'a pas été créé, veuillez vérifiez les in formation saisies, puis réessayez !";
+        "Votre compte n'a pas été créé, veuillez vérifiez les information saisies, puis réessayez !";
       break;
     case "register-input-empty":
       message =

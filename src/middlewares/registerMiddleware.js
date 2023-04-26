@@ -16,19 +16,23 @@ const registerMiddleware = (store) => (next) => (action) => {
           email: store.getState().register.email,
         })
         .then((response) => {
-          setMessageInfosInState(
-            generateMessage("register-success"),
-            "success",
-            response.message
+          store.dispatch(
+            setMessageInfosInState(
+              generateMessage("register-success"),
+              "success",
+              response.message
+            )
           );
           showMessage();
           window.setTimeout(() => redirect("/login"), 5500);
         })
         .catch((error) => {
-          setMessageInfosInState(
-            generateMessage("register-fail"),
-            "warning",
-            error.message
+          store.dispatch(
+            setMessageInfosInState(
+              generateMessage("register-fail"),
+              "warning",
+              error.message
+            )
           );
           showMessage();
         });
