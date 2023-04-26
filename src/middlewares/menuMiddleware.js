@@ -1,7 +1,6 @@
 /* eslint-disable comma-dangle */
 /* eslint-disable brace-style */
 import axios from "axios";
-import { setTimeout } from "core-js";
 import {
   GET_GENRES_FROM_API,
   GET_CATEGORIES_FROM_API,
@@ -37,16 +36,14 @@ const menuMiddleware = (store) => (next) => (action) => {
           store.dispatch(setCategoriesInState(response.data));
         })
         .catch((error) => {
-          setTimeout(() => {
-            store.dispatch(
-              setMessageInfosInState(
-                generateMessage("univers"),
-                "warning",
-                error.message
-              )
-            );
-            showMessage();
-          }, 6000);
+          store.dispatch(
+            setMessageInfosInState(
+              generateMessage("univers"),
+              "warning",
+              error.message
+            )
+          );
+          showMessage(10000);
         });
       break;
     default:

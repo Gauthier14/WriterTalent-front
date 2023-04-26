@@ -1,8 +1,11 @@
+import { manageLocalStorage } from "../selectors/user";
+
 /* eslint-disable quotes */
 export const initialState = {
-  visible: false,
+  visible: true,
   genres: [],
   categories: [],
+  logged: manageLocalStorage("get", "logged"),
 };
 
 const reducer = (state = initialState, action = {}) => {

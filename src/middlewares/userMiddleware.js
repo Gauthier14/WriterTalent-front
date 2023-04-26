@@ -1,6 +1,6 @@
 /* eslint-disable comma-dangle */
 /* eslint-disable quotes */
-import { redirect } from "react-router-dom";
+
 import axios from "axios";
 import {
   LOGIN_USER,
@@ -16,7 +16,6 @@ import { generateMessage, showMessage } from "../selectors/message";
 import { setMessageInfosInState } from "../actions/messages";
 
 const userMiddleware = (store) => (next) => (action) => {
-  // console.log("authenticateMiddleware action reçue : " + action);
   const token = manageLocalStorage("get", "token");
   switch (action.type) {
     case LOGIN_USER:
@@ -31,20 +30,26 @@ const userMiddleware = (store) => (next) => (action) => {
           store.dispatch(getTextFieldLogin("", "email"));
           store.dispatch(getTextFieldLogin("", "password"));
           store.dispatch(setToggleMenu());
-          store.dispatch(getUserInfosFromApi());
-          setMessageInfosInState(
-            generateMessage("login-success"),
-            "success",
-            response.message
+          store.dispatch(
+            setMessageInfosInState(
+              generateMessage("login-success"),
+              "success",
+              response.statusText
+            )
           );
           showMessage();
-          setTimeout(() => redirect("/"), 5500);
+          store.dispatch(getUserInfosFromApi());
+          window.setTimeout(() => {
+            window.location.href = "/";
+          }, 5500);
         })
         .catch((error) => {
-          setMessageInfosInState(
-            generateMessage("login-fail"),
-            "warning",
-            error.message
+          store.dispatch(
+            setMessageInfosInState(
+              generateMessage("login-fail"),
+              "warning",
+              error.message
+            )
           );
           showMessage(10000);
         });
@@ -62,10 +67,12 @@ const userMiddleware = (store) => (next) => (action) => {
           manageLocalStorage("set", "username", response.data.username);
         })
         .catch((error) => {
-          setMessageInfosInState(
-            generateMessage("login-infos"),
-            "warning",
-            error.message
+          store.dispatch(
+            setMessageInfosInState(
+              generateMessage("login-infos"),
+              "warning",
+              error.message
+            )
           );
           showMessage(10000);
         });
@@ -77,10 +84,12 @@ const userMiddleware = (store) => (next) => (action) => {
           store.dispatch(setAllAthorsInState(response.data));
         })
         .catch((error) => {
-          setMessageInfosInState(
-            generateMessage("all-authors"),
-            "warning",
-            error.message
+          store.dispatch(
+            setMessageInfosInState(
+              generateMessage("all-authors"),
+              "warning",
+              error.message
+            )
           );
           showMessage(10000);
         });

@@ -19,6 +19,7 @@ function NavMenu() {
   const categories = useSelector((state) => state.menu.categories);
   const menuVisibility = useSelector((state) => state.menu.visible);
   const isLogged = manageLocalStorage("get", "logged");
+
   useEffect(() => {
     dispatch(getGenresFromApi());
   }, []);
@@ -27,7 +28,7 @@ function NavMenu() {
   }, []);
 
   return (
-    <nav className={!menuVisibility ? "menu-wrap" : "menu-wrap menu-wrap-hide"}>
+    <nav className={menuVisibility ? "menu-wrap" : "menu-wrap menu-wrap-hide"}>
       <ImCross
         className="close-btn"
         size={30}
@@ -94,7 +95,7 @@ function NavMenu() {
                 manageLocalStorage("remove", "token");
                 manageLocalStorage("remove", "user_id");
                 manageLocalStorage("remove", "username");
-                manageLocalStorage("set", "logged", false);
+                manageLocalStorage("set", "logged", "");
               }}
             >
               Déconnexion

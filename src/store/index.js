@@ -9,6 +9,7 @@ import registerMiddleware from "../middlewares/registerMiddleware";
 import postsMiddleware from "../middlewares/postsMiddleware";
 import userMiddleware from "../middlewares/userMiddleware";
 import menuMiddleware from "../middlewares/menuMiddleware";
+import editorMiddleware from "../middlewares/editorMiddleware";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -17,7 +18,8 @@ const enhancers = composeEnhancers(
     postsMiddleware,
     userMiddleware,
     menuMiddleware,
-    registerMiddleware
+    registerMiddleware,
+    editorMiddleware
   )
 );
 

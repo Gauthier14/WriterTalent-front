@@ -98,14 +98,12 @@ const postsMiddleware = (store) => (next) => (action) => {
 
     case GET_ALL_FAVORITE_USER_POSTS_FROM_API:
       axios
-        .get(
-          `http://kyllian-g-server.eddi.cloud:8443/api/user/${action.userId}/favorites`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        )
+
+        .get(`http://kyllian-g-server.eddi.cloud:8443/api/user/favorites`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
         .then((response) => {
           store.dispatch(setAllFavoriteUserPostsInState(response.data));
         })
@@ -132,9 +130,7 @@ const postsMiddleware = (store) => (next) => (action) => {
       break;
     case GET_ALL_MOST_LIKED_POSTS_FROM_API:
       axios
-        .get(
-          `http://kyllian-g-server.eddi.cloud:8443/api/${action.param}/${action.id}/posts`
-        )
+        .get(`http://kyllian-g-server.eddi.cloud:8443/api/posts-most-liked`)
         .then((response) => {
           store.dispatch(setAllMostLikedPostsInState(response.data));
         })
