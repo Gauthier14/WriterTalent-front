@@ -38,7 +38,7 @@ const userMiddleware = (store) => (next) => (action) => {
             response.message
           );
           showMessage();
-          window.setTimeout(() => redirect("/"), 5500);
+          setTimeout(() => redirect("/"), 5500);
         })
         .catch((error) => {
           setMessageInfosInState(
@@ -46,7 +46,7 @@ const userMiddleware = (store) => (next) => (action) => {
             "warning",
             error.message
           );
-          showMessage();
+          showMessage(10000);
         });
       break;
     case GET_USER_INFOS_FROM_API:
@@ -62,14 +62,12 @@ const userMiddleware = (store) => (next) => (action) => {
           manageLocalStorage("set", "username", response.data.username);
         })
         .catch((error) => {
-          window.setTimeout(() => {
-            setMessageInfosInState(
-              generateMessage("login-infos"),
-              "warning",
-              error.message
-            );
-            showMessage();
-          }, 5500);
+          setMessageInfosInState(
+            generateMessage("login-infos"),
+            "warning",
+            error.message
+          );
+          showMessage(10000);
         });
       break;
     case GET_ALL_AUTHORS:
@@ -79,14 +77,12 @@ const userMiddleware = (store) => (next) => (action) => {
           store.dispatch(setAllAthorsInState(response.data));
         })
         .catch((error) => {
-          window.setTimeout(() => {
-            setMessageInfosInState(
-              generateMessage("all-authors"),
-              "warning",
-              error.message
-            );
-            showMessage();
-          }, 11000);
+          setMessageInfosInState(
+            generateMessage("all-authors"),
+            "warning",
+            error.message
+          );
+          showMessage(10000);
         });
       break;
     default:

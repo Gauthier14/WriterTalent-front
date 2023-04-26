@@ -21,6 +21,11 @@ import {
 import { generateMessage, showMessage } from "../selectors/message";
 import { setMessageInfosInState } from "../actions/messages";
 
+function notGetPosts(errorMessage) {
+  setMessageInfosInState(generateMessage("posts"), "warning", errorMessage);
+  showMessage();
+}
+
 const postsMiddleware = (store) => (next) => (action) => {
   const token = localStorage.getItem("token");
   switch (action.type) {
@@ -33,8 +38,7 @@ const postsMiddleware = (store) => (next) => (action) => {
           store.dispatch(setAllUserPublishedPostsInState(response.data));
         })
         .catch((error) => {
-          // the server returns 401 if the identifiers are not correct
-          console.log(error);
+          notGetPosts(error.message);
         });
       break;
     case GET_ALL_READ_LATER_USER_POSTS_FROM_API:
@@ -52,8 +56,7 @@ const postsMiddleware = (store) => (next) => (action) => {
           store.dispatch(setAllReadLaterUserPostsInState(response.data));
         })
         .catch((error) => {
-          // the server returns 401 if the identifiers are not correct
-          console.log(error);
+          notGetPosts(error.message);
         });
       break;
     case GET_ALL_SAVED_USER_POSTS_FROM_API:
@@ -71,8 +74,7 @@ const postsMiddleware = (store) => (next) => (action) => {
           store.dispatch(setAllSavedUserPostsInState(response.data));
         })
         .catch((error) => {
-          // the server returns 401 if the identifiers are not correct
-          console.log(error);
+          notGetPosts(error.message);
         });
       break;
 
@@ -108,7 +110,7 @@ const postsMiddleware = (store) => (next) => (action) => {
           store.dispatch(setAllFavoriteUserPostsInState(response.data));
         })
         .catch((error) => {
-          console.log(error);
+          notGetPosts(error.message);
         });
       break;
 
@@ -125,7 +127,7 @@ const postsMiddleware = (store) => (next) => (action) => {
           }
         })
         .catch((error) => {
-          console.log(error);
+          notGetPosts(error.message);
         });
       break;
     case GET_ALL_MOST_LIKED_POSTS_FROM_API:
@@ -137,16 +139,14 @@ const postsMiddleware = (store) => (next) => (action) => {
           store.dispatch(setAllMostLikedPostsInState(response.data));
         })
         .catch((error) => {
-          setTimeout(() => {
-            store.dispatch(
-              setMessageInfosInState(
-                "Les écrits les plus appréciés n'ont pas pu être récupérés, problème de connexion avec l'API",
-                "warning",
-                error.message
-              )
-            );
-            showMessage();
-          }, 12000);
+          store.dispatch(
+            setMessageInfosInState(
+              "Les écrits les plus appréciés n'ont pas pu être récupérés, problème de connexion avec l'API",
+              "warning",
+              error.message
+            )
+          );
+          showMessage(12000);
         });
       break;
     default:

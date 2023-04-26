@@ -22,7 +22,7 @@ const menuMiddleware = (store) => (next) => (action) => {
         .catch((error) => {
           store.dispatch(
             setMessageInfosInState(
-              `Les genres n'ont pas pu être récupérés, problème de connexion avec l'API`,
+              generateMessage("genres"),
               "warning",
               error.message
             )
@@ -40,7 +40,7 @@ const menuMiddleware = (store) => (next) => (action) => {
           setTimeout(() => {
             store.dispatch(
               setMessageInfosInState(
-                "Les univers n'ont pas pu être récupérés, problème de connexion avec l'API",
+                generateMessage("univers"),
                 "warning",
                 error.message
               )

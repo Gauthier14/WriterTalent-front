@@ -24,7 +24,6 @@ function Register() {
   const textMessage = useSelector((state) => state.messages.text);
   const className = useSelector((state) => state.messages.class);
   const serverMessage = useSelector((state) => state.messages.serverMessage);
-  console.log(validateEmail("modestman1986@yahoocom"));
   const password = useSelector((state) => state.register.password);
   const isValidPassword = validatePassword(password);
   const passwordAgain = useSelector((state) => state.register.passwordAgain);

@@ -19,15 +19,18 @@ export function showMessage(delay = 5000) {
 export function generateMessage(dataType) {
   let message = "";
   switch (dataType) {
-    case "login-fail":
-      message = "Connexion impossible, veuillez réessayer !";
-      break;
     case "login-success":
       message = "Vous êtes à présent connecté !";
+      break;
+    case "login-fail":
+      message = "Connexion impossible, veuillez réessayer !";
       break;
     case "login-infos":
       message =
         "Nous n'avons pas pus récupérer vos informations de connexion !";
+      break;
+    case "login-input-empty":
+      message = "Vérifiez que tous les champs sont remplis";
       break;
     case "register-success":
       message =
@@ -51,7 +54,11 @@ export function generateMessage(dataType) {
       break;
     case "univers":
       message =
-        "La liste des auniversn'a pas pu être récupérée, Problème de connexion avec L'API !";
+        "La liste des univers n'a pas pu être récupérée, Problème de connexion avec L'API !";
+      break;
+    case "posts":
+      message =
+        "Nous n'avons pas pu récupérer les écrits, problème de connexion au serveur";
       break;
     default:
       break;
