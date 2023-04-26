@@ -1,3 +1,5 @@
+/* eslint-disable consistent-return */
+/* eslint-disable default-param-last */
 /* eslint-disable import/prefer-default-export */
 /**
  *

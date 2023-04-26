@@ -20,6 +20,7 @@ export function generateMessage(dataType) {
   let message = "";
   switch (dataType) {
     case "login-success":
+      // console.log("Vous êtes à présent connecté !");
       message = "Vous êtes à présent connecté !";
       break;
     case "login-fail":

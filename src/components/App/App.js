@@ -6,6 +6,7 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import { BsArrowBarUp } from "react-icons/bs";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
+import { TfiWrite } from "react-icons/tfi";
 import Header from "../Header/Header";
 import Home from "../Home/Home";
 import Charte from "../Charte/Charte";
@@ -29,7 +30,8 @@ import AuthorPosts from "../AuthorPosts/AuthorPosts";
 import ProfileScripts from "../ProfileScripts/ProfileScripts";
 import ProfileFavorites from "../ProfileFavorites/ProfileFavorites";
 import UserConnexion from "../UserConnexion/UserConnexion";
-import Message from "../Message/Message";
+import WriterButton from "../WriterButton/WriterButton";
+
 // import ButtonGoWriter from "../ButtonGoWriter/ButtonGoWriter";
 
 function App() {
@@ -46,7 +48,7 @@ function App() {
     <div className="app">
       <Header />
 
-      {logged && <Button label="Rédiger un écrit" link="/user/post/new" />}
+      {logged && <WriterButton />}
 
       <Routes>
         <Route path="/" element={<Home />} />

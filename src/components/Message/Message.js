@@ -12,8 +12,8 @@ const Message = ({ text, otherClass, serverMessage }) => (
 );
 
 Message.propTypes = {
-  serverMessage: PropTypes.string.isRequired,
-  otherClass: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
+  otherClass: PropTypes.string.isRequired,
+  serverMessage: PropTypes.string.isRequired,
 };
 export default Message;

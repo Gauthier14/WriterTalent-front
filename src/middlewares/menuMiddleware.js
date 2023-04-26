@@ -1,7 +1,6 @@
 /* eslint-disable comma-dangle */
 /* eslint-disable brace-style */
 import axios from "axios";
-import { setTimeout } from "core-js";
 import {
   GET_GENRES_FROM_API,
   GET_CATEGORIES_FROM_API,
@@ -15,7 +14,7 @@ const menuMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
     case GET_GENRES_FROM_API:
       axios
-        .get("http://kyllian-g-server.eddi.cloud:8443/api/genres")
+        .get("http://localhost:8000/api/genres")
         .then((response) => {
           store.dispatch(setGenresInState(response.data));
         })
@@ -32,21 +31,19 @@ const menuMiddleware = (store) => (next) => (action) => {
       break;
     case GET_CATEGORIES_FROM_API:
       axios
-        .get("http://kyllian-g-server.eddi.cloud:8443/api/categories")
+        .get("http://localhost:8000/api/categories")
         .then((response) => {
           store.dispatch(setCategoriesInState(response.data));
         })
         .catch((error) => {
-          setTimeout(() => {
-            store.dispatch(
-              setMessageInfosInState(
-                generateMessage("univers"),
-                "warning",
-                error.message
-              )
-            );
-            showMessage();
-          }, 6000);
+          store.dispatch(
+            setMessageInfosInState(
+              generateMessage("univers"),
+              "warning",
+              error.message
+            )
+          );
+          showMessage(10000);
         });
       break;
     default:
