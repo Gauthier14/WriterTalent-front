@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 const WriterButton = () => (
   <Link to="/edit">
     <div className="type-writer">
-      <span>Rédiger un nouvel écrit</span>
       <TfiWrite />
+      <span>Rédiger un nouvel écrit</span>
     </div>
   </Link>
 );

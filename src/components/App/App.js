@@ -44,9 +44,6 @@ function App() {
   return (
     <div className="app">
       <Header />
-
-      {logged && <Button label="Rédiger un écrit" link="/user/post/new" />}
-
       {logged && <WriterButton />}
 
       <Routes>

@@ -12,8 +12,8 @@ export const initialState = {
   recentPublishedPosts: [],
   mostLikedPosts: [],
   randomPost: {},
-  readPost: {},
-  editPost: {},
+  postToRead: {},
+  postToEdit: {},
 };
 
 const reducer = (state = initialState, action = {}) => {

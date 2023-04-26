@@ -18,8 +18,14 @@ function ViewerPost() {
           />
           <h1 className="viewer-title">Title</h1>
           <h2>Auteur</h2>
-          <span><BsFillHandThumbsUpFill style={{ marginRight: "0.5em" }} />52</span>
-          <span><BsEyeFill style={{ marginRight: "0.5em" }} />85</span>
+          <span>
+            <BsFillHandThumbsUpFill style={{ marginRight: "0.5em" }} />
+            52
+          </span>
+          <span>
+            <BsEyeFill style={{ marginRight: "0.5em" }} />
+            85
+          </span>
         </div>
         <aside className={!isVisible ? "sidebar" : "sidebar sidebar-toggled"}>
           <h3>Contents</h3>
@@ -54,38 +60,39 @@ function ViewerPost() {
 
           <p>
             3 wolf moon blue bottle Truffaut ennui Bushwick, VHS organic
-            skateboard authentic pickled tattooed brunch kogi freegan McSweeney's.
-            Lomo skateboard american apparel, gastropub Schlitz food truck blue
-            bottle. Salvia shoreditch ennui asymmetrical Williamsburg. Cliche
-            umami mumblecore asymmetrical disrupt craft beer, selvage whatever
-            sustainable american apparel YOLO Portland organic. Fashion axe
-            mixtape salvia, Wes Anderson cred food truck DIY. Yr Pinterest
-            Portland Truffaut four loko, semiotics Vice. Authentic lomo bitters,
-            mlkshk raw denim beard narwhal jean shorts cliche tousled PBR.
+            skateboard authentic pickled tattooed brunch kogi freegan
+            McSweeney's. Lomo skateboard american apparel, gastropub Schlitz
+            food truck blue bottle. Salvia shoreditch ennui asymmetrical
+            Williamsburg. Cliche umami mumblecore asymmetrical disrupt craft
+            beer, selvage whatever sustainable american apparel YOLO Portland
+            organic. Fashion axe mixtape salvia, Wes Anderson cred food truck
+            DIY. Yr Pinterest Portland Truffaut four loko, semiotics Vice.
+            Authentic lomo bitters, mlkshk raw denim beard narwhal jean shorts
+            cliche tousled PBR.
           </p>
 
           <p>
             Wolf irony Schlitz, ethical gastropub disrupt cray. Skateboard High
             Life viral, try-hard pitchfork pour-over fap next level. High Life
             butcher meh, Vice single-origin coffee Marfa intelligentsia
-            farm-to-table gentrify occupy cardigan helvetica salvia vegan. Bicycle
-            rights chillwave keytar before they sold out, narwhal Brooklyn
-            mustache. Plaid literally Schlitz Carles, stumptown swag chillwave
-            Echo Park vinyl jean shorts McSweeney's roof party bespoke. Small
-            batch banjo salvia Terry Richardson 3 wolf moon wolf twee hella.
-            Occupy farm-to-table tattooed tousled twee pug.
+            farm-to-table gentrify occupy cardigan helvetica salvia vegan.
+            Bicycle rights chillwave keytar before they sold out, narwhal
+            Brooklyn mustache. Plaid literally Schlitz Carles, stumptown swag
+            chillwave Echo Park vinyl jean shorts McSweeney's roof party
+            bespoke. Small batch banjo salvia Terry Richardson 3 wolf moon wolf
+            twee hella. Occupy farm-to-table tattooed tousled twee pug.
           </p>
 
           <p>
-            Disrupt umami kogi selvage hoodie. YOLO brunch chambray beard, Schlitz
-            intelligentsia Austin. Fanny pack iPhone semiotics Tonx flexitarian,
-            disrupt tote bag hoodie dreamcatcher Portland ugh. Truffaut plaid
-            cardigan, ethnic mustache actually master cleanse Pinterest deep v
-            brunch. Shoreditch kale chips Odd Future typewriter Echo Park, artisan
-            pug pour-over disrupt american apparel wayfarers. DIY semiotics
-            chillwave cardigan gluten-free freegan. Tumblr keffiyeh art party,
-            jean shorts viral put a bird on it irony hella gluten-free whatever
-            cornhole deep v.
+            Disrupt umami kogi selvage hoodie. YOLO brunch chambray beard,
+            Schlitz intelligentsia Austin. Fanny pack iPhone semiotics Tonx
+            flexitarian, disrupt tote bag hoodie dreamcatcher Portland ugh.
+            Truffaut plaid cardigan, ethnic mustache actually master cleanse
+            Pinterest deep v brunch. Shoreditch kale chips Odd Future typewriter
+            Echo Park, artisan pug pour-over disrupt american apparel wayfarers.
+            DIY semiotics chillwave cardigan gluten-free freegan. Tumblr
+            keffiyeh art party, jean shorts viral put a bird on it irony hella
+            gluten-free whatever cornhole deep v.
           </p>
         </section>
       </main>
@@ -96,10 +103,11 @@ function ViewerPost() {
             <h3>Pseudo</h3>
             <span>Date</span>
           </div>
-          <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-            Dolor recusandae velit autem repellendus pariatur architecto
-            culpa ad amet doloribus perferendis, nostrum praesentium in a
-            spernatur iste quos perspiciatis, vero expedita dignissimos?
+          <p>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolor
+            recusandae velit autem repellendus pariatur architecto culpa ad amet
+            doloribus perferendis, nostrum praesentium in a spernatur iste quos
+            perspiciatis, vero expedita dignissimos?
           </p>
         </div>
         <div className="review">
@@ -107,10 +115,11 @@ function ViewerPost() {
             <h3>Pseudo</h3>
             <span>Date</span>
           </div>
-          <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-            Dolor recusandae velit autem repellendus pariatur architecto
-            culpa ad amet doloribus perferendis, nostrum praesentium in a
-            spernatur iste quos perspiciatis, vero expedita dignissimos?
+          <p>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolor
+            recusandae velit autem repellendus pariatur architecto culpa ad amet
+            doloribus perferendis, nostrum praesentium in a spernatur iste quos
+            perspiciatis, vero expedita dignissimos?
           </p>
         </div>
       </section>

@@ -1,20 +1,32 @@
 .type-writer {
-  position: relative;
+  display: flex;
+  justify-content: space-between;
   margin-top: 1em;
   margin-left: 1em;
-  button {
-    font-size: 1em;
-    @media screen and (min-width: 820px) {
-      font-size: 1.5em;
-    }
-    &:hover {
-      transform: scale(1);
+  background-color: #333;
+  color: #fff;
+  font-size: 1.2em;
+  width: fit-content;
+  padding: 0.6em 1.5em;
+  border-radius: 0.5em;
+  transition: 0.3s;
+  @media screen and (min-width: 820px) {
+    font-size: 1.5em;
+  }
+  &:hover {
+    background-color: #bdbd74;
+    font-style: 1.3em;
+    color: #000;
+    svg {
+      transform: rotate(360deg) scale(1.5);
+      color: #000;
+      transition: 0.5s;
     }
   }
+  span {
+    margin-left: 1em;
+  }
   svg {
-    position: absolute;
     color: #fff;
-    top: 0.5em;
-    left: 0;
   }
 }
