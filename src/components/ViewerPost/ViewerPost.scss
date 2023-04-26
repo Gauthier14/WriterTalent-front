@@ -9,6 +9,7 @@
   box-sizing: border-box;
   padding: 0;
   overflow: hidden;
+  // prevent copying and pasting
   -webkit-user-select: none; /*Chrome, Opera (older versions), IOS Safari*/
   -webkit-touch-callout: none; /*Safari*/
   -moz-user-select: none; /*Mozilla*/
