@@ -4,6 +4,7 @@
 
 import { Routes, Route, useLocation } from "react-router-dom";
 import { BsArrowBarUp } from "react-icons/bs";
+import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import Header from "../Header/Header";
 import Home from "../Home/Home";
@@ -28,11 +29,13 @@ import AuthorPosts from "../AuthorPosts/AuthorPosts";
 import ProfileScripts from "../ProfileScripts/ProfileScripts";
 import ProfileFavorites from "../ProfileFavorites/ProfileFavorites";
 import UserConnexion from "../UserConnexion/UserConnexion";
+import Message from "../Message/Message";
 // import ButtonGoWriter from "../ButtonGoWriter/ButtonGoWriter";
 
 function App() {
   const { pathname } = useLocation();
   const logged = manageLocalStorage("get", "logged");
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -86,7 +89,10 @@ function App() {
         <Route path="/category/:id/posts" element={<CategoryList />} />
         <Route path="/posts/author/:id/" element={<AuthorPosts />} />
         <Route path="/posts/user/:pseudo/" element={<ProfileScripts />} />
-        <Route path="/posts/favorites/:pseudo/" element={<ProfileFavorites />} />
+        <Route
+          path="/posts/favorites/:pseudo/"
+          element={<ProfileFavorites />}
+        />
         <Route path="/authors" element={<AuthorList />} />
         <Route path="/edit" element={<TextEditor />} />
         <Route path="/view" element={<ViewerPost />} />

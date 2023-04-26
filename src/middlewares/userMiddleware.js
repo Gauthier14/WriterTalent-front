@@ -1,5 +1,6 @@
 /* eslint-disable comma-dangle */
 /* eslint-disable quotes */
+import { redirect } from "react-router-dom";
 import axios from "axios";
 import {
   LOGIN_USER,
@@ -11,12 +12,12 @@ import {
 } from "../actions/user";
 import { manageLocalStorage } from "../selectors/user";
 import { setToggleMenu } from "../actions/menu";
-// import { getFavoriteRecipesFromApi } from "../actions/posts";
+import { generateMessage, showMessage } from "../selectors/message";
+import { setMessageInfosInState } from "../actions/messages";
 
 const userMiddleware = (store) => (next) => (action) => {
   // console.log("authenticateMiddleware action reçue : " + action);
   const token = manageLocalStorage("get", "token");
-  console.log(store.getState().user.email, store.getState().user.password);
   switch (action.type) {
     case LOGIN_USER:
       axios
@@ -31,10 +32,21 @@ const userMiddleware = (store) => (next) => (action) => {
           store.dispatch(getTextFieldLogin("", "password"));
           store.dispatch(setToggleMenu());
           store.dispatch(getUserInfosFromApi());
+          setMessageInfosInState(
+            generateMessage("login-success"),
+            "success",
+            response.message
+          );
+          showMessage();
+          setTimeout(() => redirect("/"), 5500);
         })
         .catch((error) => {
-          // le serveur nous retourne 401 si les identifiants ne sont pas bons
-          console.log(error);
+          setMessageInfosInState(
+            generateMessage("login-fail"),
+            "warning",
+            error.message
+          );
+          showMessage(10000);
         });
       break;
     case GET_USER_INFOS_FROM_API:
@@ -50,8 +62,12 @@ const userMiddleware = (store) => (next) => (action) => {
           manageLocalStorage("set", "username", response.data.username);
         })
         .catch((error) => {
-          // le serveur nous retourne 401 si les identifiants ne sont pas bons
-          console.log(error);
+          setMessageInfosInState(
+            generateMessage("login-infos"),
+            "warning",
+            error.message
+          );
+          showMessage(10000);
         });
       break;
     case GET_ALL_AUTHORS:
@@ -61,8 +77,12 @@ const userMiddleware = (store) => (next) => (action) => {
           store.dispatch(setAllAthorsInState(response.data));
         })
         .catch((error) => {
-          // le serveur nous retourne 401 si les identifiants ne sont pas bons
-          console.warn(error);
+          setMessageInfosInState(
+            generateMessage("all-authors"),
+            "warning",
+            error.message
+          );
+          showMessage(10000);
         });
       break;
     default:

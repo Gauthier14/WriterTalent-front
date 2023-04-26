@@ -1,36 +1,67 @@
+/* eslint-disable operator-linebreak */
+/* eslint-disable comma-dangle */
 /* eslint-disable quotes */
-/* eslint-disable import/prefer-default-export */
-/* eslint-disable arrow-body-style */
-
-import { useLocation } from "react-router";
+/**
+ * @param {Number} Delay - Delay to show message
+ */
+export function showMessage(delay = 5000) {
+  document.querySelector(".message").style.display = "block";
+  window.setTimeout(() => {
+    document.querySelector(".message").style.display = "none";
+  }, delay);
+}
 
 /**
- * @param {Array} recipes - List of recipes
- * @return {string} - Welcome Message
+ * @param {String} dataType - Type of data sending or receving (login-fail,
+ * login-success, login-infos, register-fail, all-authors)
+ * @return {void}
  */
-export function emptyResults() {
-  const location = useLocation().pathname;
-  const second = String(location).indexOf("/", 1);
-  const value = String(location).substring(1, second);
-  let textMessage = "";
-  switch (value) {
-    case "category":
-      textMessage = "Pas d'écrits pour cette catégorie";
+export function generateMessage(dataType) {
+  let message = "";
+  switch (dataType) {
+    case "login-success":
+      message = "Vous êtes à présent connecté !";
       break;
-    case "genre":
-      textMessage = "Pas d'écrits pour ce genre";
+    case "login-fail":
+      message = "Connexion impossible, veuillez réessayer !";
       break;
-    case "nouveautes":
-      textMessage = "Pas de nouveautés cette semaine";
+    case "login-infos":
+      message =
+        "Nous n'avons pas pus récupérer vos informations de connexion !";
+      break;
+    case "login-input-empty":
+      message = "Vérifiez que tous les champs sont remplis";
+      break;
+    case "register-success":
+      message =
+        "Votre compte a été créé avec succès, vous allez être redirigé vers la page de connexion";
+      break;
+    case "register-fail":
+      message =
+        "Votre compte n'a pas été créé, veuillez vérifiez les in formation saisies, puis réessayez !";
+      break;
+    case "register-input-empty":
+      message =
+        "Vérifiez que tous les champs sont remplis et avec les bonnes valeurs";
+      break;
+    case "all-authors":
+      message =
+        "La liste des auteurs n'a pas pu être récupérée, Problème de connexion avec L'API !";
+      break;
+    case "genres":
+      message =
+        "La liste des genres n'a pas pu être récupérée, Problème de connexion avec L'API !";
+      break;
+    case "univers":
+      message =
+        "La liste des univers n'a pas pu être récupérée, Problème de connexion avec L'API !";
+      break;
+    case "posts":
+      message =
+        "Nous n'avons pas pu récupérer les écrits, problème de connexion au serveur";
       break;
     default:
       break;
   }
-  return textMessage;
-}
-
-export function errorMessage() {
-  let message;
-
   return message;
 }
