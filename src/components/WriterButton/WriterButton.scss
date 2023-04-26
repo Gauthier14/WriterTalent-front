@@ -1,0 +1,20 @@
+.type-writer {
+  position: relative;
+  margin-top: 1em;
+  margin-left: 1em;
+  button {
+    font-size: 1em;
+    @media screen and (min-width: 820px) {
+      font-size: 1.5em;
+    }
+    &:hover {
+      transform: scale(1);
+    }
+  }
+  svg {
+    position: absolute;
+    color: #fff;
+    top: 0.5em;
+    left: 0;
+  }
+}

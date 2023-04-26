@@ -28,7 +28,8 @@ import AuthorPosts from "../AuthorPosts/AuthorPosts";
 import ProfileScripts from "../ProfileScripts/ProfileScripts";
 import ProfileFavorites from "../ProfileFavorites/ProfileFavorites";
 import UserConnexion from "../UserConnexion/UserConnexion";
-// import ButtonGoWriter from "../ButtonGoWriter/ButtonGoWriter";
+
+import WriterButton from "../WriterButton/WriterButton";
 
 function App() {
   const { pathname } = useLocation();
@@ -43,7 +44,11 @@ function App() {
   return (
     <div className="app">
       <Header />
+
       {logged && <Button label="Rédiger un écrit" link="/user/post/new" />}
+
+      {logged && <WriterButton />}
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route

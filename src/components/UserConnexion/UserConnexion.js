@@ -24,6 +24,7 @@ function UserConnexion() {
   const textMessage = useSelector((state) => state.messages.text);
   const className = useSelector((state) => state.messages.class);
   const serverMessage = useSelector((state) => state.messages.serverMessage);
+
   return (
     <main className="user-connexion">
       <Message
@@ -45,14 +46,14 @@ function UserConnexion() {
           password={password}
           handleLogin={() => {
             if (email !== "" && password !== "") {
-              console.log("Demande connexion");
               dispatch(loginUser());
             } else {
-              console.log("champs vide ou incorrect");
-              setMessageInfosInState(
-                generateMessage("login-input-empty"),
-                "danger",
-                "Erreur de saisie"
+              dispatch(
+                setMessageInfosInState(
+                  generateMessage("login-input-empty"),
+                  "danger",
+                  "Erreur de saisie"
+                )
               );
               showMessage();
             }

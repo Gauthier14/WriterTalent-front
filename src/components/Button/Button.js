@@ -13,6 +13,8 @@ function Button({
   link,
   linkTarget,
   width,
+  children,
+  transform,
 }) {
   const [isHover, setIsHover] = useState(false);
 
@@ -32,7 +34,7 @@ function Button({
   const styleHover = {
     backgroundColor: `${bgHoverColor}`,
     color: `${color}`,
-    transform: "scale(1.1)",
+    transform: `${transform}`,
   };
   return (
     <button
@@ -45,6 +47,7 @@ function Button({
       <Link to={link} target={linkTarget}>
         {label}
       </Link>
+      {children}
     </button>
   );
 }
@@ -59,6 +62,8 @@ Button.propTypes = {
   link: PropTypes.string.isRequired,
   linkTarget: PropTypes.string,
   width: PropTypes.string,
+  transform: PropTypes.string,
+  children: PropTypes.node,
 };
 
 Button.defaultProps = {
@@ -68,5 +73,6 @@ Button.defaultProps = {
   backdropFilter: true,
   linkTarget: "",
   width: "fit-content",
+  transform: "scale(1.1)",
 };
 export default Button;

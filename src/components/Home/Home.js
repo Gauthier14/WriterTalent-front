@@ -18,7 +18,7 @@ function Home() {
   const likedPosts = mostLikedPosts.filter((post, index) => index < 3);
   useEffect(() => {
     dispatch(getAllMostLikedPostsFromApi());
-  }, []);
+  }, [mostLikedPosts]);
   return (
     <main className="home-main">
       {/* <ButtonGoWriter /> */}
