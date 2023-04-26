@@ -1,19 +1,26 @@
 import "./ViewerPost.scss";
 import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useParams } from "react-router";
 import { BsFillHandThumbsUpFill, BsEyeFill } from "react-icons/bs";
 import { BiFoodMenu } from "react-icons/bi";
 import { setToggleViewerMenu } from "../../actions/viewer";
+import { setAllUserPublishedPostsInState } from "../../actions/posts";
 
 import React, { useState } from "react";
 
-function ViewerPost() {
+function ViewerPost({ title, author, nbLikes, nbViews, reviews }) {
   const dispatch = useDispatch();
   const isVisible = useSelector((state) => state.viewer.visible);
   const [currentPage, setCurrentPage] = useState(1);
-  const [content, setContent] = useState(
-    "Ennui Williamsburg Echo Park pork belly, hella flannel single-origin coffee. Bicycle rights artisan beard Neutra cardigan Echo Park.Shoreditch flannel tote bag pug jean shorts post-ironic semiotics cornhole forage. Skateboard aesthetic synth leggings Banksy.Shabby chic PBR plaid helvetica dreamcatcher tousled, irony ethnic Tonx sustainable before they sold out McSweeney's. Hoodie Banksy freegan bicycle rights, aesthetic try-hard fap ethnic deep v fixie.Ennui Williamsburg Echo Park pork belly, hella flannel single-origin coffee. Bicycle rights artisan beard Neutra cardigan Echo Park.Shoreditch flannel tote bag pug jean shorts post-ironic semiotics cornhole forage. Skateboard aesthetic synth leggings Banksy.Shabby chic PBR plaid helvetica dreamcatcher tousled, irony ethnic Tonx sustainable before they sold out McSweeney's. Hoodie Banksy freegan bicycle rights, aesthetic try-hard fap ethnic deep v fixie.Ennui Williamsburg Echo Park pork belly, hella flannel single-origin coffee. Bicycle rights artisan beard Neutra cardigan Echo Park.Shoreditch flannel tote bag pug jean shorts post-ironic semiotics cornhole forage. Ennui Williamsburg Echo Park pork belly, hella flannel single-origin coffee. Bicycle rights artisan beard Neutra cardigan Echo Park.Shoreditch flannel tote bag pug jean shorts post-ironic semiotics cornhole forage. Skateboard aesthetic synth leggings Banksy.Shabby chic PBR plaid helvetica dreamcatcher tousled, irony ethnic Tonx sustainable before they sold out McSweeney's. Hoodie Banksy freegan bicycle rights, aesthetic try-hard fap ethnic deep v fixie.Ennui Williamsburg Echo Park pork belly, hella flannel single-origin coffee. Bicycle rights artisan beard Neutra cardigan Echo Park.Shoreditch flannel tote bag pug jean shorts post-ironic semiotics cornhole forage. Skateboard aesthetic synth leggings Banksy.Shabby chic PBR plaid helvetica dreamcatcher tousled, irony ethnic Tonx sustainable before they sold out McSweeney's. Hoodie Banksy freegan bicycle rights, aesthetic try-hard fap ethnic deep v fixie.Ennui Williamsburg Echo Park pork belly, hella flannel single-origin coffee. Bicycle rights artisan beard Neutra cardigan Echo Park.Shoreditch flannel tote bag pug jean shorts post-ironic semiotics cornhole forage. Ennui Williamsburg Echo Park pork belly, hella flannel single-origin coffee. Bicycle rights artisan beard Neutra cardigan Echo Park.Shoreditch flannel tote bag pug jean shorts post-ironic semiotics cornhole forage. Skateboard aesthetic synth leggings Banksy.Shabby chic PBR plaid helvetica dreamcatcher tousled, irony ethnic Tonx sustainable before they sold out McSweeney's. Hoodie Banksy freegan bicycle rights, aesthetic try-hard fap ethnic deep v fixie.Ennui Williamsburg Echo Park pork belly, hella flannel single-origin coffee. Bicycle rights artisan beard Neutra cardigan Echo Park.Shoreditch flannel tote bag pug jean shorts post-ironic semiotics cornhole forage. Skateboard aesthetic synth leggings Banksy.Shabby chic PBR plaid helvetica dreamcatcher tousled, irony ethnic Tonx sustainable before they sold out McSweeney's. Hoodie Banksy freegan bicycle rights, aesthetic try-hard fap ethnic deep v fixie.Ennui Williamsburg Echo Park pork belly, hella flannel single-origin coffee. Bicycle rights artisan beard Neutra cardigan Echo Park.Shoreditch flannel tote bag pug jean shorts post-ironic semiotics cornhole forage. Ennui Williamsburg Echo Park pork belly, hella flannel single-origin coffee. Bicycle rights artisan beard Neutra cardigan Echo Park.Shoreditch flannel tote bag pug jean shorts post-ironic semiotics cornhole forage. Skateboard aesthetic synth leggings Banksy.Shabby chic PBR plaid helvetica dreamcatcher tousled, irony ethnic Tonx sustainable before they sold out McSweeney's. Hoodie Banksy freegan bicycle rights, aesthetic try-hard fap ethnic deep v fixie.Ennui Williamsburg Echo Park pork belly, hella flannel single-origin coffee. Bicycle rights artisan beard Neutra cardigan Echo Park.Shoreditch flannel tote bag pug jean shorts post-ironic semiotics cornhole forage. Skateboard aesthetic synth leggings Banksy.Shabby chic PBR plaid helvetica dreamcatcher tousled, irony ethnic Tonx sustainable before they sold out McSweeney's. Hoodie Banksy freegan bicycle rights, aesthetic try-hard fap ethnic deep v fixie.Ennui Williamsburg Echo Park pork belly, hella flannel single-origin coffee. Bicycle rights artisan beard Neutra cardigan Echo Park.Shoreditch flannel tote bag pug jean shorts post-ironic semiotics cornhole forage. Ennui Williamsburg Echo Park pork belly, hella flannel single-origin coffee. Bicycle rights artisan beard Neutra cardigan Echo Park.Shoreditch flannel tote bag pug jean shorts post-ironic semiotics cornhole forage. Skateboard aesthetic synth leggings Banksy.Shabby chic PBR plaid helvetica dreamcatcher tousled, irony ethnic Tonx sustainable before they sold out McSweeney's. Hoodie Banksy freegan bicycle rights, aesthetic try-hard fap ethnic deep v fixie.Ennui Williamsburg Echo Park pork belly, hella flannel single-origin coffee. Bicycle rights artisan beard Neutra cardigan Echo Park.Shoreditch flannel tote bag pug jean shorts post-ironic semiotics cornhole forage. Skateboard aesthetic synth leggings Banksy.Shabby chic PBR plaid helvetica dreamcatcher tousled, irony ethnic Tonx sustainable before they sold out McSweeney's. Hoodie Banksy freegan bicycle rights, aesthetic try-hard fap ethnic deep v fixie.Ennui Williamsburg Echo Park pork belly, hella flannel single-origin coffee. Bicycle rights artisan beard Neutra cardigan Echo Park.Shoreditch flannel tote bag pug jean shorts post-ironic semiotics cornhole forage. Ennui Williamsburg Echo Park pork belly, hella flannel single-origin coffee. Bicycle rights artisan beard Neutra cardigan Echo Park.Shoreditch flannel tote bag pug jean shorts post-ironic semiotics cornhole forage. Skateboard aesthetic synth leggings Banksy.Shabby chic PBR plaid helvetica dreamcatcher tousled, irony ethnic Tonx sustainable before they sold out McSweeney's. Hoodie Banksy freegan bicycle rights, aesthetic try-hard fap ethnic deep v fixie.Ennui Williamsburg Echo Park pork belly, hella flannel single-origin coffee. Bicycle rights artisan beard Neutra cardigan Echo Park.Shoreditch flannel tote bag pug jean shorts post-ironic semiotics cornhole forage. Skateboard aesthetic synth leggings Banksy.Shabby chic PBR plaid helvetica dreamcatcher tousled, irony ethnic Tonx sustainable before they sold out McSweeney's. Hoodie Banksy freegan bicycle rights, aesthetic try-hard fap ethnic deep v fixie.Ennui Williamsburg Echo Park pork belly, hella flannel single-origin coffee. Bicycle rights artisan beard Neutra cardigan Echo Park.Shoreditch flannel tote bag pug jean shorts post-ironic semiotics cornhole forage. Ennui Williamsburg Echo Park pork belly, hella flannel single-origin coffee. Bicycle rights artisan beard Neutra cardigan Echo Park.Shoreditch flannel tote bag pug jean shorts post-ironic semiotics cornhole forage. Skateboard aesthetic synth leggings Banksy.Shabby chic PBR plaid helvetica dreamcatcher tousled, irony ethnic Tonx sustainable before they sold out McSweeney's. Hoodie Banksy freegan bicycle rights, aesthetic try-hard fap ethnic deep v fixie.Ennui Williamsburg Echo Park pork belly, hella flannel single-origin coffee. Bicycle rights artisan beard Neutra cardigan Echo Park.Shoreditch flannel tote bag pug jean shorts post-ironic semiotics cornhole forage. Skateboard aesthetic synth leggings Banksy.Shabby chic PBR plaid helvetica dreamcatcher tousled, irony ethnic Tonx sustainable before they sold out McSweeney's. Hoodie Banksy freegan bicycle rights, aesthetic try-hard fap ethnic deep v fixie.Ennui Williamsburg Echo Park pork belly, hella flannel single-origin coffee. Bicycle rights artisan beard Neutra cardigan Echo Park.Shoreditch flannel tote bag pug jean shorts post-ironic semiotics cornhole forage. Ennui Williamsburg Echo Park pork belly, hella flannel single-origin coffee. Bicycle rights artisan beard Neutra cardigan Echo Park.Shoreditch flannel tote bag pug jean shorts post-ironic semiotics cornhole forage. Skateboard aesthetic synth leggings Banksy.Shabby chic PBR plaid helvetica dreamcatcher tousled, irony ethnic Tonx sustainable before they sold out McSweeney's. Hoodie Banksy freegan bicycle rights, aesthetic try-hard fap ethnic deep v fixie.Ennui Williamsburg Echo Park pork belly, hella flannel single-origin coffee. Bicycle rights artisan beard Neutra cardigan Echo Park.Shoreditch flannel tote bag pug jean shorts post-ironic semiotics cornhole forage. Skateboard aesthetic synth leggings Banksy.Shabby chic PBR plaid helvetica dreamcatcher tousled, irony ethnic Tonx sustainable before they sold out McSweeney's. Hoodie Banksy freegan bicycle rights, aesthetic try-hard fap ethnic deep v fixie.Ennui Williamsburg Echo Park pork belly, hella flannel single-origin coffee. Bicycle rights artisan beard Neutra cardigan Echo Park.Shoreditch flannel tote bag pug jean shorts post-ironic semiotics cornhole forage. Ennui Williamsburg Echo Park pork belly, hella flannel single-origin coffee. Bicycle rights artisan beard Neutra cardigan Echo Park.Shoreditch flannel tote bag pug jean shorts post-ironic semiotics cornhole forage. Skateboard aesthetic synth leggings Banksy.Shabby chic PBR plaid helvetica dreamcatcher tousled, irony ethnic Tonx sustainable before they sold out McSweeney's. Hoodie Banksy freegan bicycle rights, aesthetic try-hard fap ethnic deep v fixie.Ennui Williamsburg Echo Park pork belly, hella flannel single-origin coffee. Bicycle rights artisan beard Neutra cardigan Echo Park.Shoreditch flannel tote bag pug jean shorts post-ironic semiotics cornhole forage. Skateboard aesthetic synth leggings Banksy.Shabby chic PBR plaid helvetica dreamcatcher tousled, irony ethnic Tonx sustainable before they sold out McSweeney's. Hoodie Banksy freegan bicycle rights, aesthetic try-hard fap ethnic deep v fixie.Ennui Williamsburg Echo Park pork belly, hella flannel single-origin coffee. Bicycle rights artisan beard Neutra cardigan Echo Park.Shoreditch flannel tote bag pug jean shorts post-ironic semiotics cornhole forage. Ennui Williamsburg Echo Park pork belly, hella flannel single-origin coffee. Bicycle rights artisan beard Neutra cardigan Echo Park.Shoreditch flannel tote bag pug jean shorts post-ironic semiotics cornhole forage. Skateboard aesthetic synth leggings Banksy.Shabby chic PBR plaid helvetica dreamcatcher tousled, irony ethnic Tonx sustainable before they sold out McSweeney's. Hoodie Banksy freegan bicycle rights, aesthetic try-hard fap ethnic deep v fixie.Ennui Williamsburg Echo Park pork belly, hella flannel single-origin coffee. Bicycle rights artisan beard Neutra cardigan Echo Park.Shoreditch flannel tote bag pug jean shorts post-ironic semiotics cornhole forage. Skateboard aesthetic synth leggings Banksy.Shabby chic PBR plaid helvetica dreamcatcher tousled, irony ethnic Tonx sustainable before they sold out McSweeney's. Hoodie Banksy freegan bicycle rights, aesthetic try-hard fap ethnic deep v fixie.Ennui Williamsburg Echo Park pork belly, hella flannel single-origin coffee. Bicycle rights artisan beard Neutra cardigan Echo Park.Shoreditch flannel tote bag pug jean shorts post-ironic semiotics cornhole forage. Ennui Williamsburg Echo Park pork belly, hella flannel single-origin coffee. Bicycle rights artisan beard Neutra cardigan Echo Park.Shoreditch flannel tote bag pug jean shorts post-ironic semiotics cornhole forage. Skateboard aesthetic synth leggings Banksy.Shabby chic PBR plaid helvetica dreamcatcher tousled, irony ethnic Tonx sustainable before they sold out McSweeney's. Hoodie Banksy freegan bicycle rights, aesthetic try-hard fap ethnic deep v fixie.Ennui Williamsburg Echo Park pork belly, hella flannel single-origin coffee. Bicycle rights artisan beard Neutra cardigan Echo Park.Shoreditch flannel tote bag pug jean shorts post-ironic semiotics cornhole forage. Skateboard aesthetic synth leggings Banksy.Shabby chic PBR plaid helvetica dreamcatcher tousled, irony ethnic Tonx sustainable before they sold out McSweeney's. Hoodie Banksy freegan bicycle rights, aesthetic try-hard fap ethnic deep v fixie.Ennui Williamsburg Echo Park pork belly, hella flannel single-origin coffee. Bicycle rights artisan beard Neutra cardigan Echo Park.Shoreditch flannel tote bag pug jean shorts post-ironic semiotics cornhole forage. Ennui Williamsburg Echo Park pork belly, hella flannel single-origin coffee. Bicycle rights artisan beard Neutra cardigan Echo Park.Shoreditch flannel tote bag pug jean shorts post-ironic semiotics cornhole forage. Skateboard aesthetic synth leggings Banksy.Shabby chic PBR plaid helvetica dreamcatcher tousled, irony ethnic Tonx sustainable before they sold out McSweeney's. Hoodie Banksy freegan bicycle rights, aesthetic try-hard fap ethnic deep v fixie.Ennui Williamsburg Echo Park pork belly, hella flannel single-origin coffee. Bicycle rights artisan beard Neutra cardigan Echo Park.Shoreditch flannel tote bag pug jean shorts post-ironic semiotics cornhole forage. Skateboard aesthetic synth leggings Banksy.Shabby chic PBR plaid helvetica dreamcatcher tousled, irony ethnic Tonx sustainable before they sold out McSweeney's. Hoodie Banksy freegan bicycle rights, aesthetic try-hard fap ethnic deep v fixie.Ennui Williamsburg Echo Park pork belly, hella flannel single-origin coffee. Bicycle rights artisan beard Neutra cardigan Echo Park.Shoreditch flannel tote bag pug jean shorts post-ironic semiotics cornhole forage."
-  );
-  
+  const [content, setContent] = useState("");
+
+  const { id } = useParams();
+  useEffect(() => {
+    dispatch(setAllUserPublishedPostsInState("post", id));
+  }, [id]);
+
+
   const words = content.split(" ");
   const wordsPerPage = 400;
   const pageCount = Math.ceil(words.length / wordsPerPage);
@@ -26,14 +33,20 @@ function ViewerPost() {
     const startIndex = (currentPage - 1) * wordsPerPage;
     const endIndex = startIndex + wordsPerPage;
     const pageWords = words.slice(startIndex, endIndex);
-    // Vérifier si le dernier mot de la page actuelle est coupé
+    // Check if the last word on the current page is cut off
     const lastWord = pageWords[pageWords.length - 1];
     const isLastWordCut = !lastWord.endsWith(".") && !lastWord.endsWith(",");
     if (isLastWordCut) {
-      // S'il est coupé, trouver le début du mot suivant
-      const nextWordIndex = content.indexOf(lastWord, startIndex + wordsPerPage);
+      // If it is cut off, find the beginning of the next word
+      const nextWordIndex = content.indexOf(
+        lastWord,
+        startIndex + wordsPerPage
+      );
       if (nextWordIndex !== -1) {
-        const nextWord = content.slice(nextWordIndex, content.indexOf(" ", nextWordIndex));
+        const nextWord = content.slice(
+          nextWordIndex,
+          content.indexOf(" ", nextWordIndex)
+        );
         pageWords[pageWords.length - 1] += nextWord;
       }
     }
@@ -48,19 +61,19 @@ function ViewerPost() {
             className="toggle-menu"
             onClick={() => dispatch(setToggleViewerMenu())}
           />
-          <h1 className="viewer-title">Title</h1>
-          <h2>Auteur</h2>
+          <h1 className="viewer-title">{title}</h1>
+          <h2>{author}</h2>
           <span>
             <BsFillHandThumbsUpFill style={{ marginRight: "0.5em" }} />
-            52
+            {nbLikes}
           </span>
           <span>
             <BsEyeFill style={{ marginRight: "0.5em" }} />
-            85
+            {nbViews}
           </span>
         </div>
         <aside className={!isVisible ? "sidebar" : "sidebar sidebar-toggled"}>
-          <h3>Contents</h3>
+          <h3>Pages...</h3>
           <nav>
             <ul>
               {Array.from({ length: pageCount }, (_, i) => (
@@ -82,34 +95,21 @@ function ViewerPost() {
       </main>
       <section className="reviews">
         <h2>Commentaires</h2>
-        <div className="review">
-          <div className="review_infos">
-            <h3>Pseudo</h3>
-            <span>Date</span>
-          </div>
-          <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolor
-            recusandae velit autem repellendus pariatur architecto culpa ad amet
-            doloribus perferendis, nostrum praesentium in a spernatur iste quos
-            perspiciatis, vero expedita dignissimos?
-          </p>
-        </div>
-        <div className="review">
-          <div className="review_infos">
-            <h3>Pseudo</h3>
-            <span>Date</span>
-          </div>
-          <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolor
-            recusandae velit autem repellendus pariatur architecto culpa ad amet
-            doloribus perferendis, nostrum praesentium in a spernatur iste quos
-            perspiciatis, vero expedita dignissimos?
-          </p>
-        </div>
+        {reviews &&
+          reviews.map((review, index) => (
+            <div className="review" key={index}>
+              <div className="review_infos">
+                <h3>{review.username}</h3>
+                <span>{review.date}</span>
+              </div>
+              <p>{review.comment}</p>
+            </div>
+          ))}
       </section>
+
       <form action="" method="post" className="new-review">
         <fieldset>
-          <legend>Pseudo</legend>
+          <legend>Laisser un commentaire</legend>
           <textarea name="review-text" id="review-text" maxLength="500" />
         </fieldset>
       </form>
