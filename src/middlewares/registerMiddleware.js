@@ -1,9 +1,10 @@
 /* eslint-disable comma-dangle */
 /* eslint-disable brace-style */
+import { redirect } from "react-router-dom";
 import axios from "axios";
 import { SUBMIT_REGISTER } from "../actions/register";
 import { generateMessage, showMessage } from "../selectors/message";
-import { setMessageInfos } from "../actions/messages";
+import { setMessageInfosInState } from "../actions/messages";
 
 const registerMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
@@ -15,11 +16,21 @@ const registerMiddleware = (store) => (next) => (action) => {
           email: store.getState().register.email,
         })
         .then((response) => {
-          console.log(response);
+          setMessageInfosInState(
+            generateMessage("register-success"),
+            "success",
+            response.message
+          );
+          showMessage();
+          window.setTimeout(() => redirect("/login"), 5500);
         })
         .catch((error) => {
-          // the server returns 401 if the identifiers are not correct
-          console.log(error);
+          setMessageInfosInState(
+            generateMessage("register-fail"),
+            "warning",
+            error.message
+          );
+          showMessage();
         });
       break;
     default:

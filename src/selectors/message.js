@@ -12,18 +12,34 @@ export function showMessage(delay = 5000) {
 }
 
 /**
- * @param {String} dataType - Type of data sending or receving (login, login-infos, all-authors)
+ * @param {String} dataType - Type of data sending or receving (login-fail,
+ * login-success, login-infos, register-fail, all-authors)
  * @return {void}
  */
 export function generateMessage(dataType) {
   let message = "";
   switch (dataType) {
-    case "login":
+    case "login-fail":
       message = "Connexion impossible, veuillez réessayer !";
+      break;
+    case "login-success":
+      message = "Vous êtes à présent connecté !";
       break;
     case "login-infos":
       message =
         "Nous n'avons pas pus récupérer vos informations de connexion !";
+      break;
+    case "register-success":
+      message =
+        "Votre compte a été créé avec succès, vous allez être redirigé vers la page de connexion";
+      break;
+    case "register-fail":
+      message =
+        "Votre compte n'a pas été créé, veuillez vérifiez les in formation saisies, puis réessayez !";
+      break;
+    case "register-input-empty":
+      message =
+        "Vérifiez que tous les champs sont remplis et avec les bonnes valeurs";
       break;
     case "all-authors":
       message =

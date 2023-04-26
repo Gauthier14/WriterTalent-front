@@ -2,7 +2,6 @@
 export const initialState = {
   username: "",
   email: "",
-  isValidEmail: false,
   password: "",
   passwordAgain: "",
   passwordShown: false,

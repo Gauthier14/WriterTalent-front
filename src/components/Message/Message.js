@@ -5,7 +5,7 @@ import "./Message.scss";
 const Message = ({ text, otherClass, serverMessage }) => (
   <div className={`message ${otherClass}`}>
     <p>
-      Erreur : <span>{serverMessage}</span>
+      Message : <span>{serverMessage}</span>
     </p>
     <p>{text}</p>
   </div>

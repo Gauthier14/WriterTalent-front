@@ -1,5 +1,6 @@
 /* eslint-disable comma-dangle */
 /* eslint-disable quotes */
+import { redirect } from "react-router-dom";
 import axios from "axios";
 import {
   LOGIN_USER,
@@ -31,10 +32,17 @@ const userMiddleware = (store) => (next) => (action) => {
           store.dispatch(getTextFieldLogin("", "password"));
           store.dispatch(setToggleMenu());
           store.dispatch(getUserInfosFromApi());
+          setMessageInfosInState(
+            generateMessage("login-success"),
+            "success",
+            response.message
+          );
+          showMessage();
+          window.setTimeout(() => redirect("/"), 5500);
         })
         .catch((error) => {
           setMessageInfosInState(
-            generateMessage("login"),
+            generateMessage("login-fail"),
             "warning",
             error.message
           );
@@ -54,13 +62,12 @@ const userMiddleware = (store) => (next) => (action) => {
           manageLocalStorage("set", "username", response.data.username);
         })
         .catch((error) => {
-          setMessageInfosInState(
-            generateMessage("login-infos"),
-            "warning",
-            error.message
-          );
-          showMessage();
-          setTimeout(() => {
+          window.setTimeout(() => {
+            setMessageInfosInState(
+              generateMessage("login-infos"),
+              "warning",
+              error.message
+            );
             showMessage();
           }, 5500);
         });
@@ -72,12 +79,14 @@ const userMiddleware = (store) => (next) => (action) => {
           store.dispatch(setAllAthorsInState(response.data));
         })
         .catch((error) => {
-          setMessageInfosInState(
-            generateMessage("all-authors"),
-            "warning",
-            error.message
-          );
-          showMessage();
+          window.setTimeout(() => {
+            setMessageInfosInState(
+              generateMessage("all-authors"),
+              "warning",
+              error.message
+            );
+            showMessage();
+          }, 11000);
         });
       break;
     default:

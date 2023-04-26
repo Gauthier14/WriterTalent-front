@@ -13,13 +13,18 @@ import {
   togglePasswordShown,
 } from "../../actions/register";
 import { validateEmail, validatePassword } from "../../selectors/register";
+import Message from "../Message/Message";
+import { generateMessage, showMessage } from "../../selectors/message";
+import { setMessageInfosInState } from "../../actions/messages";
 
 function Register() {
   const dispatch = useDispatch();
   const username = useSelector((state) => state.register.username);
   const email = useSelector((state) => state.register.email);
-  const isValidEmail = validateEmail(email);
-
+  const textMessage = useSelector((state) => state.messages.text);
+  const className = useSelector((state) => state.messages.class);
+  const serverMessage = useSelector((state) => state.messages.serverMessage);
+  console.log(validateEmail("modestman1986@yahoocom"));
   const password = useSelector((state) => state.register.password);
   const isValidPassword = validatePassword(password);
   const passwordAgain = useSelector((state) => state.register.passwordAgain);
@@ -31,28 +36,36 @@ function Register() {
   const handleSubmit = (event) => {
     event.preventDefault();
     if (
-      isValidEmail &&
+      validateEmail(email) &&
       isValidPassword &&
       passwordAgain !== "" &&
       password !== "" &&
       password === passwordAgain &&
       username !== ""
     ) {
+      console.log("inscription soumise");
       dispatch(submitRegister());
     } else {
-      console.log(
-        "Vérifiez que tous les champs sont remplis",
-        isValidPassword,
-        password
+      console.log("champs vide ou incorrect");
+      setMessageInfosInState(
+        generateMessage("register-input-empty"),
+        "danger",
+        "Erreur de saisie"
       );
+      showMessage();
     }
   };
 
   return (
     <main className="register">
+      <Message
+        text={textMessage}
+        otherClass={className}
+        serverMessage={serverMessage}
+      />
       <section className="form-container">
         <h2>FORMULAIRE D'INSCRIPTION</h2>
-        <form>
+        <form onSubmit={handleSubmit}>
           <label htmlFor="username">Nom d'utilisateur :</label>
           <input
             type="text"
