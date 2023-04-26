@@ -19,6 +19,7 @@ function NavMenu() {
   const categories = useSelector((state) => state.menu.categories);
   const menuVisibility = useSelector((state) => state.menu.visible);
   const isLogged = manageLocalStorage("get", "logged");
+
   useEffect(() => {
     dispatch(getGenresFromApi());
   }, []);

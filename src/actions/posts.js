@@ -42,6 +42,11 @@ export const SET_ALL_POSTS_PER_GENRE_IN_STATE =
 export const SET_ALL_POSTS_PER_CATEGORY_IN_STATE =
   "SET_ALL_POSTS_PER_CATEGORY_IN_STATE";
 
+export const GET_ALL_AWAITING_USER_POSTS_FROM_API =
+  "GET_ALL_AWAITING_USER_POSTS_FROM_API";
+export const SET_ALL_AWAITING_USER_POSTS_IN_STATE =
+  "SET_ALL_AWAITING_USER_POSTS_IN_STATE";
+
 // actions creators ---
 // actions for published posts of one user
 export const getAllUserPublishedPostsFromApi = (userId) => ({
@@ -56,6 +61,19 @@ export const setAllUserPublishedPostsInState = (postList) => ({
   posts: postList,
 });
 
+// actions for published posts of one user
+export const getAllAwaitingUserPostsFromApi = (userId) => ({
+  type: GET_ALL_AWAITING_USER_POSTS_FROM_API,
+  userId: userId,
+});
+/**
+ * @param {Array} Posts - List of all user published posts
+ */
+export const setAllAwaitingUserPostsInState = (postList) => ({
+  type: SET_ALL_AWAITING_USER_POSTS_IN_STATE,
+  awaitingPosts: postList,
+});
+
 // actions for recent posts
 export const getRecentPostsFromApi = () => ({
   type: GET_RECENT_POSTS_FROM_API,
@@ -67,7 +85,11 @@ export const setRecentPostsInState = (recentPosts) => ({
   type: SET_RECENT_POSTS_IN_STATE,
   recentPosts: recentPosts,
 });
-
+// actions for recent posts
+export const getAllSavedUserPostsFromApi = (userId) => ({
+  type: GET_ALL_SAVED_USER_POSTS_FROM_API,
+  userId: userId,
+});
 // actions for saved posts
 /**
  * @param {Array} Posts - List of user saved posts
@@ -87,9 +109,8 @@ export const setAllReadLaterUserPostsInState = (readLaterPosts) => ({
 });
 
 // actions for favorite posts
-export const getAllFavoriteUserPostsFromApi = (userId) => ({
+export const getAllFavoriteUserPostsFromApi = () => ({
   type: GET_ALL_FAVORITE_USER_POSTS_FROM_API,
-  userId: userId,
 });
 /**
  * @param {Array} Posts - List of user favorites posts

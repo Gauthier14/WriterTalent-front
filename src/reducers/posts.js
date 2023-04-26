@@ -1,10 +1,10 @@
 /* eslint-disable quotes */
-import { EditorState } from "draft-js";
 
 export const initialState = {
   loaded: false,
   userPublishedPosts: [],
   userSavedPosts: [],
+  userAwaitingPosts: [],
   userFavoritePosts: [],
   userReadLaterPosts: [],
   publishedPostsPerGenre: [],
@@ -12,7 +12,6 @@ export const initialState = {
   recentPublishedPosts: [],
   mostLikedPosts: [],
   randomPost: {},
-  editor: EditorState.createEmpty(),
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -32,6 +31,11 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         userSavedPosts: [...action.savedPosts],
+      };
+    case "SET_ALL_AWAITING_USER_POSTS_IN_STATE":
+      return {
+        ...state,
+        userAwaitingPosts: [...action.awaitingPosts],
       };
     case "SET_ALL_READ_LATER_USER_POSTS_IN_STATE":
       return {
