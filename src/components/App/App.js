@@ -34,6 +34,7 @@ import WriterButton from "../WriterButton/WriterButton";
 function App() {
   const { pathname } = useLocation();
   const logged = manageLocalStorage("get", "logged");
+  console.log();
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -44,7 +45,7 @@ function App() {
   return (
     <div className="app">
       <Header />
-      {logged && <WriterButton />}
+      {logged && pathname !== "/edit" && <WriterButton />}
 
       <Routes>
         <Route path="/" element={<Home />} />

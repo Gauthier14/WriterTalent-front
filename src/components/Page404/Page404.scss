@@ -1,5 +1,5 @@
 @use "/src/styles/vars";
-$font-family_1: "Allura", handwriting;
+$main-font: "Allura", handwriting;
 $background-color_1: #000000;
 
 @import "https://fonts.bunny.net/css?family=allura:400";
@@ -40,11 +40,11 @@ $background-color_1: #000000;
       }
     }
     p {
-      color: vars.$main_color_dark;
+      color: vars.$text-dark-color;
       font-weight: 700;
     }
     .text-404 {
-      font-family: $font-family_1;
+      font-family: $main-font;
       font-size: 3em;
     }
     button {

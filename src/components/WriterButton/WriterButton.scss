@@ -1,30 +1,40 @@
+@import "src/styles/_vars.scss";
+
 .type-writer {
+  position: absolute;
   display: flex;
   justify-content: space-between;
-  margin-top: 1em;
-  margin-left: 1em;
   background-color: #333;
   color: #fff;
-  font-size: 1.2em;
+  margin-top: $sm-margin-all;
+  font-size: $fsz-title-mobile;
   width: fit-content;
-  padding: 0.6em 1.5em;
+  padding: $sm-padding-all;
   border-radius: 0.5em;
   transition: 0.3s;
+  overflow: hidden;
+  z-index: 2;
   @media screen and (min-width: 820px) {
-    font-size: 1.5em;
+    font-size: $fsz-title-desktop;
   }
   &:hover {
     background-color: #bdbd74;
     font-style: 1.3em;
     color: #000;
     svg {
-      transform: rotate(360deg) scale(1.5);
+      transform: rotate(360deg) scale(1.2);
       color: #000;
-      transition: 0.5s;
+      transition: 1s;
+    }
+    span {
+      display: block;
+      transition: 1s;
     }
   }
   span {
     margin-left: 1em;
+    display: none;
+    transition: 0.5s;
   }
   svg {
     color: #fff;

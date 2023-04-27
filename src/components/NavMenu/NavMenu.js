@@ -12,6 +12,7 @@ import {
 import MenuItem from "./MenuItem";
 import DropMenuItem from "./DropMenuItem";
 import { manageLocalStorage } from "../../selectors/user";
+import WriterButton from "../WriterButton/WriterButton";
 
 function NavMenu() {
   const dispatch = useDispatch();
@@ -28,7 +29,7 @@ function NavMenu() {
   }, []);
 
   return (
-    <nav className={menuVisibility ? "menu-wrap" : "menu-wrap menu-wrap-hide"}>
+    <nav className={!menuVisibility ? "menu-wrap" : "menu-wrap menu-wrap-hide"}>
       <ImCross
         className="close-btn"
         size={30}
@@ -78,7 +79,10 @@ function NavMenu() {
             <Link to="#"> Profil </Link>
             <ul className="drop-menu">
               <DropMenuItem label="Favoris" pathname="/user/posts/favorites" />
-              <DropMenuItem label="Mes écrits" pathname="/user/posts/my-posts" />
+              <DropMenuItem
+                label="Mes écrits"
+                pathname="/user/posts/my-posts"
+              />
               <DropMenuItem
                 label="Lire plus tard"
                 pathname="/user/posts/to-read"
@@ -111,6 +115,7 @@ function NavMenu() {
           </MenuItem>
         )}
       </ul>
+      <WriterButton />
     </nav>
   );
 }

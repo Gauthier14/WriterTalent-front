@@ -17,14 +17,15 @@ function ViewerPost() {
   const currentPage = useSelector((state) => state.viewer.currentPage);
   const postToRead = useSelector((state) => state.posts.postToRead);
   const loaded = useSelector((state) => state.posts.loaded);
+  const { title, content, nbLikes, nbViews, user, reviews } = postToRead;
 
   const { id } = useParams();
   useEffect(() => {
     dispatch(getReadPostFromApi(id));
   }, [id]);
 
-  const words = postToRead.content.split(" ");
-  const wordsPerPage = 400;
+  const words = content.split(" ");
+  const wordsPerPage = 200;
   const pageCount = Math.ceil(words.length / wordsPerPage);
   const handleClickPage = (pageNumber) => {
     dispatch(changePage(pageNumber));
@@ -39,14 +40,14 @@ function ViewerPost() {
     const isLastWordCut = !lastWord.endsWith(".") && !lastWord.endsWith(",");
     if (isLastWordCut) {
       // If it is cut off, find the beginning of the next word
-      const nextWordIndex = postToRead.content.indexOf(
+      const nextWordIndex = content.indexOf(
         lastWord,
         startIndex + wordsPerPage
       );
       if (nextWordIndex !== -1) {
-        const nextWord = postToRead.content.slice(
+        const nextWord = content.slice(
           nextWordIndex,
-          postToRead.content.indexOf(" ", nextWordIndex)
+          content.indexOf(" ", nextWordIndex)
         );
         pageWords[pageWords.length - 1] += nextWord;
       }
@@ -64,25 +65,15 @@ function ViewerPost() {
               onClick={() => dispatch(setToggleViewerMenu())}
             />
 
-            <h1 className="viewer-title">{postToRead.title}</h1>
-            <h2>{postToRead.author}</h2>
+            <h1 className="viewer-title">{title}</h1>
+            <h2>{user.username}</h2>
             <span>
               <BsFillHandThumbsUpFill style={{ marginRight: "0.5em" }} />
-              {postToRead.nbLikes}
+              {nbLikes}
             </span>
             <span>
               <BsEyeFill style={{ marginRight: "0.5em" }} />
-              {postToRead.nbViews}
-            </span>
-            <h1 className="viewer-title">Title</h1>
-            <h2>Auteur</h2>
-            <span>
-              <BsFillHandThumbsUpFill style={{ marginRight: "0.5em" }} />
-              52
-            </span>
-            <span>
-              <BsEyeFill style={{ marginRight: "0.5em" }} />
-              85
+              {nbViews}
             </span>
           </div>
           <aside className={!isVisible ? "sidebar" : "sidebar sidebar-toggled"}>
@@ -108,16 +99,16 @@ function ViewerPost() {
         <section className="reviews">
           <h2>Commentaires</h2>
 
-          {postToRead.reviews &&
-          postToRead.reviews.map((review) => (
-            <div className="review" key={review.id}>
-              <div className="review_infos">
-                <h3>{review.username}</h3>
-                <span>{review.date}</span>
+          {reviews.length > 0 ?
+            reviews.map((review) => (
+              <div className="review" key={review.id}>
+                <div className="review_infos">
+                  <h3>{review.username}</h3>
+                  <span>{review.date}</span>
+                </div>
+                <p>{review.comment}</p>
               </div>
-              <p>{review.comment}</p>
-            </div>
-          ))}
+            )) : <p>Pas de commenntaires</p>}
 
         </section>
 

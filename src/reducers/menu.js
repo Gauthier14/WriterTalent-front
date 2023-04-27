@@ -1,8 +1,10 @@
 import { manageLocalStorage } from "../selectors/user";
 
+console.log(window.innerWidth);
+
 /* eslint-disable quotes */
 export const initialState = {
-  visible: true,
+  visible: false,
   genres: [],
   categories: [],
   logged: manageLocalStorage("get", "logged"),
@@ -11,11 +13,16 @@ export const initialState = {
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
     case "TOGGLE_MENU":
+      if (window.innerWidth >= 820) {
+        return {
+          ...state,
+          visible: false,
+        };
+      }
       return {
         ...state,
         visible: !state.visible,
       };
-
     case "SET_GENRES_IN_STATE":
       return {
         ...state,

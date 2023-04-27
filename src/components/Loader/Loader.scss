@@ -1,5 +1,5 @@
 $background-color_1: #494444;
-$background-color_2: #ffffff;
+$bg-light: #ffffff;
 $background-color_3: #faf6f6b6;
 $background-color_4: #f9f9f9;
 $background-color_5: #ccc;
@@ -164,11 +164,6 @@ $background-color_5: #ccc;
     transform: rotateY(-702deg) translateZ(1px);
   }
 }
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
 .book-loader {
   flex: 1;
   display: flex;
@@ -195,7 +190,7 @@ $background-color_5: #ccc;
         left: 0;
         width: 50%;
         height: 100%;
-        background-color: $background-color_2;
+        background-color: $bg-light;
         box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
         transform: rotateY(0deg);
         transform-origin: left center;

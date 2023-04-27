@@ -8,10 +8,10 @@
   }
   // & > * = All elements on the main
   article {
-    background-color: $bg_text_infos;
-    border-radius: 0.5em;
+    background-color: $bg-text;
+    border-radius: $radius-btn;
     padding: 1em;
-    border: 1px solid #ccc;
+    box-shadow: $box-shadow;
     p {
       line-height: 1.5;
       text-indent: 10px;
@@ -71,7 +71,7 @@
       flex-direction: column;
       justify-content: center;
       box-sizing: border-box;
-      background-color: $background-color_2;
+      background-color: $bg-light;
       @media screen and (min-width: 820px) {
         display: inline-flex;
         flex: 1;
@@ -94,7 +94,7 @@
 
       ul {
         padding: 1em;
-        background-color: $bg_list;
+        background-color: $bg-primary;
         list-style: none;
         display: flex;
         flex-direction: column;
@@ -109,7 +109,7 @@
           flex-direction: column;
           align-items: center;
           border-bottom-width: thick;
-          border-bottom: $main_color_dark 1px solid;
+          border-bottom: $text-dark-color 1px solid;
           width: 100%;
           & > * {
             margin-bottom: 0.5em;
@@ -136,15 +136,15 @@
             font-size: 1rem;
             margin: 0em 0.3em 0em 0.3em;
             padding: 0.3em 0.7em;
-            background-color: $bg_style_genre;
+            background-color: $bg-genre;
             border-radius: 0.5em;
             color: #ffffff;
           }
           .category {
-            background-color: $bg_style_category;
+            background-color: $bg-category;
           }
           .nbLikes {
-            background-color: $bg_likes;
+            background-color: $bg-likes;
             border-radius: 50%;
           }
         }

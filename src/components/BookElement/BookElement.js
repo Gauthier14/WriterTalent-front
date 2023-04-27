@@ -32,12 +32,14 @@ function BookElement({
       <div className="cover">
         <p className="author">{user.username}</p>
         <h2>{title}</h2>
-        <p className="tag">{genre.name}</p>
-        {categories.map((category) => (
-          <p className="tag" key={category.id}>
-            {category.name}
-          </p>
-        ))}
+        <div className="tags">
+          <span className="tag">{genre.name}</span>
+          {categories.map((category) => (
+            <span className="tag" key={category.id}>
+              {category.name}
+            </span>
+          ))}
+        </div>
       </div>
     </div>
   );

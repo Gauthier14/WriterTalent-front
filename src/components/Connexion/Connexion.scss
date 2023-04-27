@@ -56,7 +56,7 @@ header {
     justify-content: center;
     align-items: center;
     .show-btn {
-      background-color: $main-light-color;
+      background-color: $text-light-color;
       border-radius: 0.5em;
       padding: 0.3em;
       cursor: pointer;
@@ -89,7 +89,7 @@ header {
     & > *:first-child {
       justify-self: flex-end;
       display: block;
-      color: $main_color_dark;
+      color: $text-dark-color;
       cursor: pointer;
       @media screen and (min-width: 820px) {
         display: none;

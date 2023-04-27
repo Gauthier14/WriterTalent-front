@@ -6,7 +6,10 @@
 /* eslint-disable react/require-default-props */
 
 import { useSelector, useDispatch } from "react-redux";
-import { getEditorFieldsValue, getEditorSelectedCategories } from "../../actions/editor";
+import {
+  getEditorFieldsValue,
+  getEditorSelectedCategories,
+} from "../../actions/editor";
 import "./EditorForm.scss";
 
 function EditorForm() {
@@ -28,39 +31,49 @@ function EditorForm() {
   };
   return (
     <div className="editor-form">
-      <label htmlFor="title">Titre de l'écrit</label>
-      <input
-        type="text"
-        name="title"
-        id="title"
-        value={postTitle}
-        onChange={(event) => {
-          dispatch(getEditorFieldsValue("title", event.target.value));
-        }}
-      />
-      <label htmlFor="genres">Genre : </label>
-      <select
-        name="genres"
-        id="genres"
-        onChange={(event) => {
-          dispatch(getEditorFieldsValue("genre", event.target.value));
-        }}
-      >
-        {
-          genres.map((genre) => <option value={genre.id} key={genre.id}>{genre.name}</option>)
-        }
-      </select>
-      <label htmlFor="genres">Univers : </label>
-      <select
-        multiple
-        name="categories"
-        id="categories"
-        onChange={handleChange}
-      >
-        {
-          categories.map((category) => <option value={category.id} key={category.id}>{category.name}</option>)
-        }
-      </select>
+      <div className="title">
+        <label htmlFor="title">Titre de l'écrit</label>
+        <input
+          type="text"
+          name="title"
+          id="title"
+          value={postTitle}
+          onChange={(event) => {
+            dispatch(getEditorFieldsValue("title", event.target.value));
+          }}
+        />
+      </div>
+      <div className="genres">
+        <label htmlFor="genres">Genre : </label>
+        <select
+          name="genres"
+          id="genres"
+          onChange={(event) => {
+            dispatch(getEditorFieldsValue("genre", event.target.value));
+          }}
+        >
+          {genres.map((genre) => (
+            <option value={genre.id} key={genre.id}>
+              {genre.name}
+            </option>
+          ))}
+        </select>
+        <label htmlFor="genres">Univers : </label>
+      </div>
+      <div className="categories">
+        <select
+          multiple
+          name="categories"
+          id="categories"
+          onChange={handleChange}
+        >
+          {categories.map((category) => (
+            <option value={category.id} key={category.id}>
+              {category.name}
+            </option>
+          ))}
+        </select>
+      </div>
     </div>
   );
 }

@@ -6,7 +6,6 @@
   border-radius: 0.5em;
   padding: 1em;
   text-align: justify;
-  max-width: 60%;
   min-height: 300px;
   background-color: whitesmoke;
   -webkit-box-shadow: 1px 1px 12px #000;
@@ -44,7 +43,7 @@
     display: flex;
     justify-content: space-evenly;
     span {
-      background-color: $bg_likes;
+      background-color: $bg-likes;
       padding: 0.5em;
       border-radius: 0.3em;
       display: inline-flex;
@@ -71,7 +70,7 @@
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
@@ -85,10 +84,24 @@
       font-weight: 700;
       font-size: 1.3em;
     }
-    .tag {
-      background-color: $bg_style_genre;
-      padding: 0.3em;
-      border-radius: 0.3em;
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+
+      .tag {
+        background-color: $bg-genre;
+        padding: 0.3em;
+        border-radius: 0.3em;
+        margin: $sm-margin-all;
+        text-align: center;
+        &:first-child {
+          background-color: $bg-genre;
+        }
+        &:last-child {
+          background-color: $bg-category;
+        }
+      }
     }
   }
 }

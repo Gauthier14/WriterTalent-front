@@ -2,7 +2,7 @@
 
 .single-page {
   section {
-    background-color: $bg_text_infos;
+    background-color: $bg-text;
     border-radius: 0.5em;
     padding: 1em;
     margin: 1.5em;
@@ -17,7 +17,6 @@
       line-height: 1.5;
       letter-spacing: 0.08em;
       margin: 2em;
-   
     }
   }
   .contact {

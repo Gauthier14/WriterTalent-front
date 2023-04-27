@@ -10,6 +10,8 @@ header {
   grid-template-columns: 1fr 3fr 0.8fr;
   text-align: center;
   grid-template-areas: "logo title menu";
+  border-radius: 0 0 0.8em 0.8em;
+  transition: 2s;
   @media screen and (min-width: 820px) {
     grid-template-columns: 0.5fr 4fr;
     grid-template-rows: 2fr 1fr;
@@ -54,7 +56,7 @@ header {
     justify-content: center;
     align-items: center;
     .show-btn {
-      background-color: $main-light-color;
+      background-color: $text-light-color;
       border-radius: 0.5em;
       padding: 0.3em;
       cursor: pointer;
