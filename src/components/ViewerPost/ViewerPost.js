@@ -9,25 +9,23 @@ import { BsFillHandThumbsUpFill, BsEyeFill } from "react-icons/bs";
 import { BiFoodMenu } from "react-icons/bi";
 import { changePage, setToggleViewerMenu } from "../../actions/viewer";
 import { getReadPostFromApi } from "../../actions/posts";
+import Loader from "../Loader/Loader";
 
 function ViewerPost() {
   const dispatch = useDispatch();
   const isVisible = useSelector((state) => state.viewer.visible);
   const currentPage = useSelector((state) => state.viewer.currentPage);
   const postToRead = useSelector((state) => state.posts.postToRead);
-  // const [currentPage, setCurrentPage] = useState(1);
-  const { content, title } = postToRead;
-  // const [content, setContent] = useState("");
+  const loaded = useSelector((state) => state.posts.loaded);
 
   const { id } = useParams();
   useEffect(() => {
     dispatch(getReadPostFromApi(id));
   }, [id]);
 
-  const words = content.split(" ");
+  const words = postToRead.content.split(" ");
   const wordsPerPage = 400;
   const pageCount = Math.ceil(words.length / wordsPerPage);
-
   const handleClickPage = (pageNumber) => {
     dispatch(changePage(pageNumber));
   };
@@ -41,14 +39,14 @@ function ViewerPost() {
     const isLastWordCut = !lastWord.endsWith(".") && !lastWord.endsWith(",");
     if (isLastWordCut) {
       // If it is cut off, find the beginning of the next word
-      const nextWordIndex = content.indexOf(
+      const nextWordIndex = postToRead.content.indexOf(
         lastWord,
         startIndex + wordsPerPage
       );
       if (nextWordIndex !== -1) {
-        const nextWord = content.slice(
+        const nextWord = postToRead.content.slice(
           nextWordIndex,
-          content.indexOf(" ", nextWordIndex)
+          postToRead.content.indexOf(" ", nextWordIndex)
         );
         pageWords[pageWords.length - 1] += nextWord;
       }
@@ -57,59 +55,60 @@ function ViewerPost() {
   };
 
   return (
-    <>
-      <main className="viewer-body">
-        <div className="viewer-header">
-          <BiFoodMenu
-            className="toggle-menu"
-            onClick={() => dispatch(setToggleViewerMenu())}
-          />
+    loaded ? (
+      <>
+        <main className="viewer-body">
+          <div className="viewer-header">
+            <BiFoodMenu
+              className="toggle-menu"
+              onClick={() => dispatch(setToggleViewerMenu())}
+            />
 
-          <h1 className="viewer-title">{postToRead.title}</h1>
-          <h2>{postToRead.author}</h2>
-          <span>
-            <BsFillHandThumbsUpFill style={{ marginRight: "0.5em" }} />
-            {postToRead.nbLikes}
-          </span>
-          <span>
-            <BsEyeFill style={{ marginRight: "0.5em" }} />
-            {postToRead.nbViews}
-          </span>
-          <h1 className="viewer-title">Title</h1>
-          <h2>Auteur</h2>
-          <span>
-            <BsFillHandThumbsUpFill style={{ marginRight: "0.5em" }} />
-            52
-          </span>
-          <span>
-            <BsEyeFill style={{ marginRight: "0.5em" }} />
-            85
-          </span>
-        </div>
-        <aside className={!isVisible ? "sidebar" : "sidebar sidebar-toggled"}>
-          <h3>Pages...</h3>
-          <nav>
-            <ul>
-              {Array.from({ length: pageCount }, (_, i) => (
-                <li
-                  key={i}
-                  className={i + 1 === currentPage ? "active" : ""}
-                  onClick={() => handleClickPage(i + 1)}
-                >
-                  Page {i + 1}
-                </li>
-              ))}
-            </ul>
-          </nav>
-        </aside>
-        <section className={!isVisible ? "main" : "main main-toggled"}>
-          {renderedContent()}
-        </section>
-      </main>
-      <section className="reviews">
-        <h2>Commentaires</h2>
+            <h1 className="viewer-title">{postToRead.title}</h1>
+            <h2>{postToRead.author}</h2>
+            <span>
+              <BsFillHandThumbsUpFill style={{ marginRight: "0.5em" }} />
+              {postToRead.nbLikes}
+            </span>
+            <span>
+              <BsEyeFill style={{ marginRight: "0.5em" }} />
+              {postToRead.nbViews}
+            </span>
+            <h1 className="viewer-title">Title</h1>
+            <h2>Auteur</h2>
+            <span>
+              <BsFillHandThumbsUpFill style={{ marginRight: "0.5em" }} />
+              52
+            </span>
+            <span>
+              <BsEyeFill style={{ marginRight: "0.5em" }} />
+              85
+            </span>
+          </div>
+          <aside className={!isVisible ? "sidebar" : "sidebar sidebar-toggled"}>
+            <h3>Pages...</h3>
+            <nav>
+              <ul>
+                {Array.from({ length: pageCount }, (_, i) => (
+                  <li
+                    key={i}
+                    className={i + 1 === currentPage ? "active" : ""}
+                    onClick={() => handleClickPage(i + 1)}
+                  >
+                    Page {i + 1}
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          </aside>
+          <section className={!isVisible ? "main" : "main main-toggled"}>
+            {renderedContent()}
+          </section>
+        </main>
+        <section className="reviews">
+          <h2>Commentaires</h2>
 
-        {postToRead.reviews &&
+          {postToRead.reviews &&
           postToRead.reviews.map((review) => (
             <div className="review" key={review.id}>
               <div className="review_infos">
@@ -120,39 +119,41 @@ function ViewerPost() {
             </div>
           ))}
 
-        <div className="review">
-          <div className="review_infos">
-            <h3>Pseudo</h3>
-            <span>Date</span>
+          <div className="review">
+            <div className="review_infos">
+              <h3>Pseudo</h3>
+              <span>Date</span>
+            </div>
+            <p>
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolor
+              recusandae velit autem repellendus pariatur architecto culpa ad amet
+              doloribus perferendis, nostrum praesentium in a spernatur iste quos
+              perspiciatis, vero expedita dignissimos?
+            </p>
           </div>
-          <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolor
-            recusandae velit autem repellendus pariatur architecto culpa ad amet
-            doloribus perferendis, nostrum praesentium in a spernatur iste quos
-            perspiciatis, vero expedita dignissimos?
-          </p>
-        </div>
-        <div className="review">
-          <div className="review_infos">
-            <h3>Pseudo</h3>
-            <span>Date</span>
+          <div className="review">
+            <div className="review_infos">
+              <h3>Pseudo</h3>
+              <span>Date</span>
+            </div>
+            <p>
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolor
+              recusandae velit autem repellendus pariatur architecto culpa ad amet
+              doloribus perferendis, nostrum praesentium in a spernatur iste quos
+              perspiciatis, vero expedita dignissimos?
+            </p>
           </div>
-          <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolor
-            recusandae velit autem repellendus pariatur architecto culpa ad amet
-            doloribus perferendis, nostrum praesentium in a spernatur iste quos
-            perspiciatis, vero expedita dignissimos?
-          </p>
-        </div>
-      </section>
+        </section>
 
-      <form action="" method="post" className="new-review">
-        <fieldset>
-          <legend>Laisser un commentaire</legend>
-          <textarea name="review-text" id="review-text" maxLength="500" />
-        </fieldset>
-      </form>
-    </>
+        <form action="" method="post" className="new-review">
+          <fieldset>
+            <legend>Laisser un commentaire</legend>
+            <textarea name="review-text" id="review-text" maxLength="500" />
+          </fieldset>
+        </form>
+      </>
+    ) : <Loader />
+
   );
 }
 

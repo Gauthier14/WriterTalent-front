@@ -56,16 +56,14 @@ function ProfileScripts() {
                     {post.nbViews}
                   </span>
                 </div>
+                <span className="genre" key={post.genre.id}>
+                  {post.genre.name}
+                </span>
                 {post.categories.map((category) => (
                   <span className="category" key={category.id}>
                     {category.name}
                   </span>
                 ))}
-                
-                  <span className="genre" key={post.genre.id}>
-                    {post.genre.name}
-                  </span>
-                
               </li>
             ))}
           </ul>
@@ -91,16 +89,14 @@ function ProfileScripts() {
                     {post.nbViews}
                   </span>
                 </div>
+                <span className="genre" key={post.genre.id}>
+                  {post.genre.name}
+                </span>
                 {post.categories.map((category) => (
                   <span className="category" key={category.id}>
                     {category.name}
                   </span>
                 ))}
-               
-                  <span className="genre" key={post.genre.id}>
-                    {post.genre.name}
-                  </span>
-          
               </li>
             ))}
           </ul>
@@ -126,16 +122,14 @@ function ProfileScripts() {
                     {post.nbViews}
                   </span>
                 </div>
+                <span className="genre" key={post.genre.id}>
+                  {post.genre.name}
+                </span>
                 {post.categories.map((category) => (
                   <span className="category" key={category.id}>
                     {category.name}
                   </span>
                 ))}
-               
-                  <span className="genre" key={post.genre.id}>
-                    {post.genre.name}
-                  </span>
-                
               </li>
             ))}
           </ul>

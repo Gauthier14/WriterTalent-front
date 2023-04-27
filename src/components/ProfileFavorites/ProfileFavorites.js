@@ -16,7 +16,7 @@ function ProfileFavorites() {
   const favoritePosts = useSelector((state) => state.posts.userFavoritePosts);
   useEffect(() => {
     dispatch(getAllFavoriteUserPostsFromApi());
-  });
+  }, []);
   return (
     <section className="favorites-scripts">
       <h1>Mes coups de coeur</h1>
@@ -41,14 +41,12 @@ function ProfileFavorites() {
                     {post.nbViews}
                   </span>
                 </div>
+                <span className="genre" key={post.genre.id}>
+                  {post.genre.name}
+                </span>
                 {post.categories.map((category) => (
                   <span className="category" key={category.id}>
                     {category.name}
-                  </span>
-                ))}
-                {post.genres.map((genre) => (
-                  <span className="genre" key={genre.id}>
-                    {genre.name}
                   </span>
                 ))}
               </li>

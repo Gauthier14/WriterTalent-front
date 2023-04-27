@@ -12,7 +12,7 @@ export const initialState = {
   recentPublishedPosts: [],
   mostLikedPosts: [],
   randomPost: {},
-  postToRead: {},
+  postToRead: { content: "article en chargement" },
   postToEdit: {},
 };
 
@@ -22,7 +22,11 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         userPublishedPosts: [...action.posts],
-        loaded: true,
+      };
+    case "SET_ALL_FAVORITE_USER_POSTS_IN_STATE":
+      return {
+        ...state,
+        userFavoritePosts: [...action.favoritePosts],
       };
     case "SET_RECENT_POSTS_IN_STATE":
       return {
@@ -62,12 +66,18 @@ const reducer = (state = initialState, action = {}) => {
     case "SET_RANDOM_POST_IN_STATE":
       return {
         ...state,
-        randomPost: [...action.random],
+        randomPost: { ...action.random },
       };
     case "SET_READ_POST_IN_STATE":
+      console.log(action);
       return {
         ...state,
-        postToRead: { ...action.postToRead },
+        postToRead: { ...action.newPost },
+      };
+    case "SET_POST_LOADED":
+      return {
+        ...state,
+        loaded: true,
       };
     default:
       return state;

@@ -11,7 +11,7 @@ export const SET_ALL_USER_PUBLISHED_POSTS_IN_STATE =
 export const GET_ALL_READ_LATER_USER_POSTS_FROM_API =
   "GET_READ_LATER__ALL_POSTS_FROM_API";
 export const SET_ALL_READ_LATER_USER_POSTS_IN_STATE =
-  "SET_READ_LATER_ALL_POSTS_IN_STATE";
+  "SET_ALL_READ_LATER_USER_POSTS_IN_STATE";
 
 export const GET_RECENT_POSTS_FROM_API = "GET_RECENT_POSTS_FROM_API";
 export const SET_RECENT_POSTS_IN_STATE = "SET_RECENT_POSTS_IN_STATE";
@@ -49,6 +49,8 @@ export const SET_ALL_AWAITING_USER_POSTS_IN_STATE =
 
 export const GET_READ_POST_FROM_API = "GET_READ_POST_FROM_API";
 export const SET_READ_POST_IN_STATE = "SET_READ_POST_IN_STATE";
+
+export const SET_POST_LOADED = "SET_POST_LOADED";
 
 // actions creators ---
 // actions for published posts of one user
@@ -104,9 +106,8 @@ export const setAllSavedUserPostsInState = (savedPosts) => ({
 
 // actions for read later posts
 // actions for favorite posts
-export const getAllReadLaterUserPostsFromApi = (userId) => ({
+export const getAllReadLaterUserPostsFromApi = () => ({
   type: GET_ALL_READ_LATER_USER_POSTS_FROM_API,
-  userId: userId,
 });
 /**
  * @param {Array} Posts - List of posts to read later
@@ -189,4 +190,8 @@ export const getReadPostFromApi = (postId) => ({
 export const setReadPostInState = (newPost) => ({
   type: SET_READ_POST_IN_STATE,
   newPost: newPost,
+});
+
+export const setPostLoaded = () => ({
+  type: SET_POST_LOADED,
 });

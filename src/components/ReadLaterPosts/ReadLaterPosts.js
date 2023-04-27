@@ -1,10 +1,6 @@
 import { Link } from "react-router-dom";
-import {
- 
-  BsFillHandThumbsUpFill,
-  BsEyeFill,
-} from "react-icons/bs";
-import {MdWatchLater} from "react-icons/md";
+import { BsFillHandThumbsUpFill, BsEyeFill } from "react-icons/bs";
+import { MdWatchLater } from "react-icons/md";
 import { FcReading } from "react-icons/fc"; // read
 
 import "./ReadLaterPosts.scss";
@@ -42,16 +38,14 @@ function ReadLaterPosts() {
                     {post.nbViews}
                   </span>
                 </div>
+                <span className="genre" key={post.genre.id}>
+                  {post.genre.name}
+                </span>
                 {post.categories.map((category) => (
                   <span className="category" key={category.id}>
                     {category.name}
                   </span>
                 ))}
-                
-                  <span className="genre" key={post.genre.id}>
-                    {post.genre.name}
-                  </span>
-                
               </li>
             ))}
           </ul>
