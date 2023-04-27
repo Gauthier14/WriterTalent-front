@@ -31,19 +31,46 @@ function EditorForm() {
   };
   return (
     <div className="editor-form">
-      <div className="title">
-        <label htmlFor="title">Titre de l'écrit</label>
-        <input
-          type="text"
-          name="title"
-          id="title"
-          value={postTitle}
-          onChange={(event) => {
-            dispatch(getEditorFieldsValue("title", event.target.value));
-          }}
-        />
+      <div className="left-edit-form">
+        <div className="title">
+          <label htmlFor="title">Titre de l'écrit</label>
+          <input
+            type="text"
+            name="title"
+            id="title"
+            value={postTitle}
+            onChange={(event) => {
+              dispatch(getEditorFieldsValue("title", event.target.value));
+            }}
+          />
+        </div>
+        <label htmlFor="standard-select">Standard Select</label>
+        <div className="select">
+          <select id="standard-select">
+            <option value="Option 1">Option 1</option>
+            <option value="Option 2">Option 2</option>
+            <option value="Option 3">Option 3</option>
+            <option value="Option 4">Option 4</option>
+            <option value="Option 5">Option 5</option>
+          </select>
+          <span className="focus" />
+        </div>
       </div>
-      <div className="genres">
+
+      <div className="right-edit-form">
+        <label htmlFor="multi-select">Multiple Select</label>
+        <div className="select select--multiple">
+          <select id="multi-select" multiple>
+            <option value="Option 1">Option 1</option>
+            <option value="Option 2">Option 2</option>
+            <option value="Option 3">Option 3</option>
+            <option value="Option 4">Option 4</option>
+            <option value="Option 5">Option 5</option>
+          </select>
+          <span className="focus" />
+        </div>
+      </div>
+      {/* <div className="genres">
         <label htmlFor="genres">Genre : </label>
         <select
           name="genres"
@@ -73,7 +100,7 @@ function EditorForm() {
             </option>
           ))}
         </select>
-      </div>
+      </div> */}
     </div>
   );
 }
