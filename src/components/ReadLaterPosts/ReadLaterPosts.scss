@@ -1,4 +1,4 @@
-.favorites-scripts {
+.later-scripts {
   padding: 2em;
 
   h1 {
@@ -8,7 +8,7 @@
     margin-bottom: 1em;
   }
 
-  .all-favorites-scripts {
+  .all-later-scripts {
     display: grid;
     grid-template-columns: repeat(1, minmax(0, 1fr));
     grid-gap: 1em;
@@ -16,7 +16,7 @@
     flex-direction: column;
     justify-content: center;
 
-    .my-favorites-scripts {
+    .my-later-scripts {
       height: 25em;
       background-color: #cec9c9;
       padding: 1em;
@@ -112,7 +112,7 @@
   }
 
   @media screen and (min-width: 768px) {
-    .all-favorites-scripts {
+    .all-later-scripts {
       grid-template-columns: repeat(3, minmax(0, 1fr));
     }
   }

@@ -24,13 +24,13 @@ function ProfileScripts() {
   const awatingPosts = useSelector((state) => state.posts.userAwaitingPosts);
   useEffect(() => {
     dispatch(getAllUserPublishedPostsFromApi(userId));
-  }, [publishedPosts]);
+  }, []);
   useEffect(() => {
     dispatch(getAllSavedUserPostsFromApi(userId));
-  }, [savedPosts]);
+  }, []);
   useEffect(() => {
     dispatch(getAllAwaitingUserPostsFromApi(userId));
-  }, [awatingPosts]);
+  }, []);
   return (
     <section className="profile-scripts">
       <h1>Mes écrits</h1>
@@ -40,7 +40,7 @@ function ProfileScripts() {
           <h2> Mes écrits publiés</h2>
           <ul>
             {publishedPosts.map((post) => (
-              <li>
+              <li key={post.id}>
                 <Link to={`/post/read/${post.id}`}>
                   <h3>
                     {post.title} <FcReading size={30} />
@@ -61,11 +61,11 @@ function ProfileScripts() {
                     {category.name}
                   </span>
                 ))}
-                {post.genres.map((genre) => (
-                  <span className="genre" key={genre.id}>
-                    {genre.name}
+                
+                  <span className="genre" key={post.genre.id}>
+                    {post.genre.name}
                   </span>
-                ))}
+                
               </li>
             ))}
           </ul>
@@ -75,7 +75,7 @@ function ProfileScripts() {
           <h2>Mes écrits soumis</h2>
           <ul>
             {awatingPosts.map((post) => (
-              <li>
+              <li key={post.id}>
                 <Link to={`/post/read/${post.id}`}>
                   <h3>
                     {post.title} <FcReading size={30} />
@@ -96,11 +96,11 @@ function ProfileScripts() {
                     {category.name}
                   </span>
                 ))}
-                {post.genres.map((genre) => (
-                  <span className="genre" key={genre.id}>
-                    {genre.name}
+               
+                  <span className="genre" key={post.genre.id}>
+                    {post.genre.name}
                   </span>
-                ))}
+          
               </li>
             ))}
           </ul>
@@ -110,7 +110,7 @@ function ProfileScripts() {
           <h2>En cours d'écriture</h2>
           <ul>
             {savedPosts.map((post) => (
-              <li>
+              <li key={post.id}>
                 <Link to={`/post/read/${post.id}`}>
                   <h3>
                     {post.title} <FcReading size={30} />
@@ -131,11 +131,11 @@ function ProfileScripts() {
                     {category.name}
                   </span>
                 ))}
-                {post.genres.map((genre) => (
-                  <span className="genre" key={genre.id}>
-                    {genre.name}
+               
+                  <span className="genre" key={post.genre.id}>
+                    {post.genre.name}
                   </span>
-                ))}
+                
               </li>
             ))}
           </ul>

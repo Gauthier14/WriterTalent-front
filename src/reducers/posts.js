@@ -29,7 +29,7 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         recentPublishedPosts: [...action.recentPosts],
       };
-    case "SET_ALL_USER_SAVED_POSTS_IN_STATE":
+    case "SET_ALL_SAVED_USER_POSTS_IN_STATE":
       return {
         ...state,
         userSavedPosts: [...action.savedPosts],

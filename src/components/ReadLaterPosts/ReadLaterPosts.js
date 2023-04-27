@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
 import {
-  BsBalloonHeartFill,
+ 
   BsFillHandThumbsUpFill,
   BsEyeFill,
 } from "react-icons/bs";
+import {MdWatchLater} from "react-icons/md";
 import { FcReading } from "react-icons/fc"; // read
 
 import "./ReadLaterPosts.scss";
@@ -16,13 +17,13 @@ function ReadLaterPosts() {
   const readLaterPosts = useSelector((state) => state.posts.userReadLaterPosts);
   useEffect(() => {
     dispatch(getAllReadLaterUserPostsFromApi(localStorage.getItem("user_id")));
-  });
+  }, []);
   return (
-    <section className="favorites-scripts">
-      <h1>Mes coups de coeur</h1>
-      <div className="all-favorites-scripts">
-        <div className="my-favorites-scripts">
-          <BsBalloonHeartFill size={40} />
+    <section className="later-scripts">
+      <h1>Je lirais bien...</h1>
+      <div className="all-later-scripts">
+        <div className="my-later-scripts">
+          <MdWatchLater size={40} />
           <ul>
             {readLaterPosts.map((post) => (
               <li>
@@ -46,11 +47,11 @@ function ReadLaterPosts() {
                     {category.name}
                   </span>
                 ))}
-                {post.genres.map((genre) => (
-                  <span className="genre" key={genre.id}>
-                    {genre.name}
+                
+                  <span className="genre" key={post.genre.id}>
+                    {post.genre.name}
                   </span>
-                ))}
+                
               </li>
             ))}
           </ul>
