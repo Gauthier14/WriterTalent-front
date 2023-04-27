@@ -22,7 +22,6 @@ import CategoryList from "../CategoryList/CategoryList";
 import RecentPosts from "../RecentPosts/RecentPosts";
 import TextEditor from "../TextEditor/TextEditor";
 import ViewerPost from "../ViewerPost/ViewerPost";
-import Button from "../Button/Button";
 import { manageLocalStorage } from "../../selectors/user";
 import AuthorPosts from "../AuthorPosts/AuthorPosts";
 import ProfileScripts from "../ProfileScripts/ProfileScripts";
@@ -30,6 +29,7 @@ import ProfileFavorites from "../ProfileFavorites/ProfileFavorites";
 import UserConnexion from "../UserConnexion/UserConnexion";
 
 import WriterButton from "../WriterButton/WriterButton";
+import ReadLaterPosts from "../ReadLaterPosts/ReadLaterPosts";
 
 function App() {
   const { pathname } = useLocation();
@@ -86,12 +86,14 @@ function App() {
         <Route path="/genre/:id/posts" element={<GenreList />} />
         <Route path="/category/:id/posts" element={<CategoryList />} />
         <Route path="/posts/author/:id/" element={<AuthorPosts />} />
-        <Route path="/posts/user/:pseudo/" element={<ProfileScripts />} />
+        <Route path="/user/posts/my-posts" element={<ProfileScripts />} />
         <Route path="/user/posts/favorites" element={<ProfileFavorites />} />
+        <Route path="/user/posts/to-read" element={<ReadLaterPosts />} />
         <Route path="/authors" element={<AuthorList />} />
         <Route path="/edit" element={<TextEditor />} />
         <Route path="/view" element={<ViewerPost />} />
         <Route path="/login" element={<UserConnexion />} />
+        <Route path="/post/read/:id" element={<ViewerPost />} />
 
         <Route path="*" element={<Page404 />} />
       </Routes>

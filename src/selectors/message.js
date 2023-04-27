@@ -61,6 +61,10 @@ export function generateMessage(dataType) {
       message =
         "Nous n'avons pas pu récupérer les écrits, problème de connexion au serveur";
       break;
+    case "post":
+      message =
+        "Nous n'avons pas pu récupérer l'écrit, problème de connexion au serveur";
+      break;
     default:
       break;
   }

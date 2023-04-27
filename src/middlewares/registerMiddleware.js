@@ -10,7 +10,7 @@ const registerMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
     case SUBMIT_REGISTER:
       axios
-        .post("http://kyllian-g-server.eddi.cloud:8443/api/user/new", {
+        .post("http://localhost:8000/api/user/new", {
           username: store.getState().register.username,
           password: store.getState().register.password,
           email: store.getState().register.email,
@@ -24,7 +24,9 @@ const registerMiddleware = (store) => (next) => (action) => {
             )
           );
           showMessage();
-          window.setTimeout(() => redirect("/login"), 5500);
+          window.setTimeout(() => {
+            window.location.href = "/login";
+          }, 5500);
         })
         .catch((error) => {
           store.dispatch(

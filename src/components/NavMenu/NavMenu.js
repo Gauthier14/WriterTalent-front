@@ -78,7 +78,11 @@ function NavMenu() {
             <Link to="#"> Profil </Link>
             <ul className="drop-menu">
               <DropMenuItem label="Favoris" pathname="/user/posts/favorites" />
-              <DropMenuItem label="Mes écrits" pathname="/user/posts" />
+              <DropMenuItem label="Mes écrits" pathname="/user/my-posts" />
+              <DropMenuItem
+                label="Lire plus tard"
+                pathname="/user/posts/to-read"
+              />
             </ul>
           </li>
         ) : (

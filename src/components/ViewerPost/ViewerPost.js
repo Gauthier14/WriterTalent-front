@@ -1,24 +1,27 @@
+/* eslint-disable object-curly-newline */
 /* eslint-disable comma-dangle */
 /* eslint-disable operator-linebreak */
-import PropTypes from "prop-types";
 import "./ViewerPost.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useParams } from "react-router";
 import { BsFillHandThumbsUpFill, BsEyeFill } from "react-icons/bs";
 import { BiFoodMenu } from "react-icons/bi";
-import { setToggleViewerMenu } from "../../actions/viewer";
-import { setAllUserPublishedPostsInState } from "../../actions/posts";
+import { changePage, setToggleViewerMenu } from "../../actions/viewer";
+import { getReadPostFromApi } from "../../actions/posts";
 
-function ViewerPost({ title, author, nbLikes, nbViews, reviews }) {
+function ViewerPost() {
   const dispatch = useDispatch();
   const isVisible = useSelector((state) => state.viewer.visible);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [content, setContent] = useState("");
+  const currentPage = useSelector((state) => state.viewer.currentPage);
+  const postToRead = useSelector((state) => state.posts.postToRead);
+  // const [currentPage, setCurrentPage] = useState(1);
+  const { content, title } = postToRead;
+  // const [content, setContent] = useState("");
 
   const { id } = useParams();
   useEffect(() => {
-    dispatch(setAllUserPublishedPostsInState("post", id));
+    dispatch(getReadPostFromApi(id));
   }, [id]);
 
   const words = content.split(" ");
@@ -26,7 +29,7 @@ function ViewerPost({ title, author, nbLikes, nbViews, reviews }) {
   const pageCount = Math.ceil(words.length / wordsPerPage);
 
   const handleClickPage = (pageNumber) => {
-    setCurrentPage(pageNumber);
+    dispatch(changePage(pageNumber));
   };
 
   const renderedContent = () => {
@@ -62,15 +65,15 @@ function ViewerPost({ title, author, nbLikes, nbViews, reviews }) {
             onClick={() => dispatch(setToggleViewerMenu())}
           />
 
-          <h1 className="viewer-title">{title}</h1>
-          <h2>{author}</h2>
+          <h1 className="viewer-title">{postToRead.title}</h1>
+          <h2>{postToRead.author}</h2>
           <span>
             <BsFillHandThumbsUpFill style={{ marginRight: "0.5em" }} />
-            {nbLikes}
+            {postToRead.nbLikes}
           </span>
           <span>
             <BsEyeFill style={{ marginRight: "0.5em" }} />
-            {nbViews}
+            {postToRead.nbViews}
           </span>
           <h1 className="viewer-title">Title</h1>
           <h2>Auteur</h2>
@@ -100,14 +103,14 @@ function ViewerPost({ title, author, nbLikes, nbViews, reviews }) {
           </nav>
         </aside>
         <section className={!isVisible ? "main" : "main main-toggled"}>
-          <p>{renderedContent()}</p>
+          {renderedContent()}
         </section>
       </main>
       <section className="reviews">
         <h2>Commentaires</h2>
 
-        {reviews &&
-          reviews.map((review) => (
+        {postToRead.reviews &&
+          postToRead.reviews.map((review) => (
             <div className="review" key={review.id}>
               <div className="review_infos">
                 <h3>{review.username}</h3>
@@ -153,20 +156,4 @@ function ViewerPost({ title, author, nbLikes, nbViews, reviews }) {
   );
 }
 
-ViewerPost.propTypes = {
-  author: PropTypes.string.isRequired,
-  nbLikes: PropTypes.number.isRequired,
-  nbViews: PropTypes.number.isRequired,
-  reviews: PropTypes.shape({
-    map: PropTypes.string,
-  }),
-  title: PropTypes.string.isRequired,
-};
-
 export default ViewerPost;
-
-ViewerPost.defaultProps = {
-  reviews: PropTypes.shape({
-    map: "",
-  }),
-};

@@ -5,15 +5,19 @@ import { useState } from "react";
 import { EditorState, convertToRaw } from "draft-js";
 import { Editor } from "react-draft-wysiwyg";
 import draftToHtml from "draftjs-to-html";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import EditorForm from "../EditorForm/EditorForm";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import "./TextEditor.scss";
 import { savePost } from "../../actions/editor";
+import Message from "../Message/Message";
 
 function TextEditor() {
   const dispatch = useDispatch();
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
+  const textMessage = useSelector((state) => state.messages.text);
+  const className = useSelector((state) => state.messages.class);
+  const serverMessage = useSelector((state) => state.messages.serverMessage);
 
   /* useEffect(() => {
     const autoSave = setInterval(() => {
@@ -25,6 +29,11 @@ function TextEditor() {
   }, []); */
   return (
     <main className="editor">
+      <Message
+        text={textMessage}
+        otherClass={className}
+        serverMessage={serverMessage}
+      />
       <EditorForm />
       <Editor
         editorState={editorState}

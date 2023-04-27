@@ -11,7 +11,7 @@ const editorMiddleware = (store) => (next) => (action) => {
     case SAVE_POST:
       axios
         .post(
-          "http://kyllian-g-server.eddi.cloud:8443/api/post",
+          "http://localhost:8000/api/post",
           {
             content: action.content,
             title: store.getState().editor.title,

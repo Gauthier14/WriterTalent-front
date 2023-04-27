@@ -64,6 +64,11 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         randomPost: [...action.random],
       };
+    case "SET_READ_POST_IN_STATE":
+      return {
+        ...state,
+        postToRead: { ...action.postToRead },
+      };
     default:
       return state;
   }

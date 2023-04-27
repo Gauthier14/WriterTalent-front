@@ -21,7 +21,7 @@ function PageList({ posts }) {
       />
       {posts.length > 0 ? (
         posts.map((post) => (
-          <BookElement key={post.id} {...post} link={`/post/${post.id}`} />
+          <BookElement key={post.id} {...post} link={`/post/read/${post.id}`} />
         ))
       ) : (
         <Loader />

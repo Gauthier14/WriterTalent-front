@@ -68,7 +68,7 @@ Button.propTypes = {
 
 Button.defaultProps = {
   bgColor: "#333",
-  bgHoverColor: "#6e6d6d",
+  bgHoverColor: "#bdbd74",
   color: "#fff",
   backdropFilter: true,
   linkTarget: "",
