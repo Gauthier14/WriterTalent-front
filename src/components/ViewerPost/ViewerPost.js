@@ -119,30 +119,6 @@ function ViewerPost() {
             </div>
           ))}
 
-          <div className="review">
-            <div className="review_infos">
-              <h3>Pseudo</h3>
-              <span>Date</span>
-            </div>
-            <p>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolor
-              recusandae velit autem repellendus pariatur architecto culpa ad amet
-              doloribus perferendis, nostrum praesentium in a spernatur iste quos
-              perspiciatis, vero expedita dignissimos?
-            </p>
-          </div>
-          <div className="review">
-            <div className="review_infos">
-              <h3>Pseudo</h3>
-              <span>Date</span>
-            </div>
-            <p>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolor
-              recusandae velit autem repellendus pariatur architecto culpa ad amet
-              doloribus perferendis, nostrum praesentium in a spernatur iste quos
-              perspiciatis, vero expedita dignissimos?
-            </p>
-          </div>
         </section>
 
         <form action="" method="post" className="new-review">
