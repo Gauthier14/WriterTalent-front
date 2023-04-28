@@ -24,9 +24,6 @@ const registerMiddleware = (store) => (next) => (action) => {
             )
           );
           showMessage();
-          window.setTimeout(() => {
-            window.location.href = "/login";
-          }, 5500);
         })
         .catch((error) => {
           store.dispatch(

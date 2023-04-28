@@ -1,7 +1,7 @@
 // @import "./src/components/Header/Header.scss";
 // @import "./src/components/Main/Main.scss";
 // @import "./src/components/Footer/Footer.scss";
-@use "/src/styles/vars";
+@import "/src/styles/vars";
 @import url(https://fonts.bunny.net/css?family=besley:400,500,700);
 .app {
   font-family: "Besley", serif;
@@ -13,6 +13,7 @@
   margin: auto;
   font-size: 1em;
   min-height: 100vh;
+  background-color: $bg-app;
   .scroll-button {
     position: fixed;
     bottom: 0.3em;
@@ -22,7 +23,7 @@
     padding: 0.1em;
     font-weight: bold;
     font-size: 2em;
-    background-color: vars.$text-dark-color;
+    background-color: $text-dark-color;
     border-radius: 0.2em;
     cursor: pointer;
     z-index: 5;

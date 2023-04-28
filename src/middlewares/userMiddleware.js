@@ -2,6 +2,7 @@
 /* eslint-disable quotes */
 
 import axios from "axios";
+import { Navigate } from "react-router";
 import {
   LOGIN_USER,
   GET_ALL_AUTHORS,
@@ -39,9 +40,6 @@ const userMiddleware = (store) => (next) => (action) => {
           );
           showMessage();
           store.dispatch(getUserInfosFromApi());
-          window.setTimeout(() => {
-            window.location.href = "/";
-          }, 5500);
         })
         .catch((error) => {
           store.dispatch(
@@ -51,7 +49,7 @@ const userMiddleware = (store) => (next) => (action) => {
               error.message
             )
           );
-          showMessage(10000);
+          showMessage();
         });
       break;
     case GET_USER_INFOS_FROM_API:

@@ -20,6 +20,7 @@ function UserConnexion() {
   const dispatch = useDispatch();
   const email = useSelector((state) => state.user.email);
   const password = useSelector((state) => state.user.password);
+  const isLogged = localStorage.getItem("logged");
 
   return (
     <main className="user-connexion">

@@ -13,7 +13,6 @@ export const initialState = {
   mostLikedPosts: [],
   randomPost: {},
   postToRead: { content: "article en chargement" },
-  postToEdit: {},
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -78,8 +77,6 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         loaded: true,
       };
-      
-
     default:
       return state;
   }

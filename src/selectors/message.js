@@ -66,12 +66,17 @@ export function generateMessage(dataType) {
         "Nous n'avons pas pu récupérer l'écrit, problème de connexion au serveur";
       break;
     case "review-sent":
-      message =
-        "Votre commentaire a été pris en compte.";
+      message = "Votre commentaire a été pris en compte.";
       break;
     case "review-not-sent":
       message =
         "Votre commentaire n'a pas été créé, problème de connexion au serveur !.";
+      break;
+    case "post-saved":
+      message = "Votre écrit a été sauvegardé.";
+      break;
+    case "post-not-saved":
+      message = "Nous n'avons pas pus sauvegarder votre écrit !.";
       break;
     default:
       break;

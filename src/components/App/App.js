@@ -1,8 +1,10 @@
+/* eslint-disable object-curly-newline */
+/* eslint-disable operator-linebreak */
 /* eslint-disable comma-dangle */
 /* eslint-disable react/jsx-wrap-multilines */
 /* eslint-disable quotes */
 
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route, useLocation, Navigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { BsArrowBarUp } from "react-icons/bs";
 import { useEffect } from "react";
@@ -23,12 +25,13 @@ import CategoryList from "../CategoryList/CategoryList";
 import RecentPosts from "../RecentPosts/RecentPosts";
 import TextEditor from "../TextEditor/TextEditor";
 import ViewerPost from "../ViewerPost/ViewerPost";
-
+import TextEditorModif from "../TextEditorModif/TextEditorModif";
 import AuthorPosts from "../AuthorPosts/AuthorPosts";
 import ProfileScripts from "../ProfileScripts/ProfileScripts";
 import ProfileFavorites from "../ProfileFavorites/ProfileFavorites";
 import ReadLaterPosts from "../ReadLaterPosts/ReadLaterPosts";
 import UserConnexion from "../UserConnexion/UserConnexion";
+import { manageLocalStorage } from "../../selectors/user";
 
 import Message from "../Message/Message";
 
@@ -37,6 +40,10 @@ function App() {
   const textMessage = useSelector((state) => state.messages.text);
   const className = useSelector((state) => state.messages.class);
   const serverMessage = useSelector((state) => state.messages.serverMessage);
+  const isLogged = Boolean(manageLocalStorage("get", "logged"));
+  const registerOk =
+    textMessage ===
+    "Votre compte a été créé avec succès, vous allez être redirigé vers la page de connexion";
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -64,7 +71,10 @@ function App() {
         />
         <Route path="/nouveautes" element={<RecentPosts />} />
         <Route path="/user/post/new" element={<ViewerPost />} />
-        <Route path="/register" element={<Register />} />
+        <Route
+          path="/register"
+          element={registerOk ? <Navigate to="/login" /> : <Register />}
+        />
         <Route
           path="/mentions-legales"
           element={
@@ -91,14 +101,18 @@ function App() {
         />
         <Route path="/genre/:id/posts" element={<GenreList />} />
         <Route path="/category/:id/posts" element={<CategoryList />} />
-        <Route path="/posts/author/:id/" element={<AuthorPosts />} />
+        <Route path="/posts/author/:id" element={<AuthorPosts />} />
         <Route path="/user/posts/favorites" element={<ProfileFavorites />} />
         <Route path="/user/posts/my-posts" element={<ProfileScripts />} />
         <Route path="/user/posts/to-read" element={<ReadLaterPosts />} />
         <Route path="/authors" element={<AuthorList />} />
         <Route path="/edit" element={<TextEditor />} />
+        <Route path="/edit/:id" element={<TextEditorModif />} />
         <Route path="/view" element={<ViewerPost />} />
-        <Route path="/login" element={<UserConnexion />} />
+        <Route
+          path="/login"
+          element={isLogged ? <Navigate to="/" /> : <UserConnexion />}
+        />
         <Route path="/post/read/:id" element={<ViewerPost />} />
 
         <Route path="*" element={<Page404 />} />

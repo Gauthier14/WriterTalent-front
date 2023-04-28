@@ -107,7 +107,7 @@ function ProfileScripts() {
           <ul>
             {savedPosts.map((post) => (
               <li key={post.id}>
-                <Link to={`/post/read/${post.id}`}>
+                <Link to={`/edit/${post.id}`}>
                   <h3>
                     {post.title} <FcReading size={30} />
                   </h3>
