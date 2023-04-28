@@ -1,3 +1,5 @@
+@import "src/styles/_vars.scss";
+
 .message {
   position: fixed;
   top: 50%;
@@ -12,7 +14,7 @@
   font-size: 1.2em;
   font-weight: 700;
   box-shadow: 0 0 2em rgba(0, 0, 0, 0.7);
-  color: #fff;
+  color: $text-light-color;
   text-shadow: 0 0 0.8em #000;
   display: none;
   span {

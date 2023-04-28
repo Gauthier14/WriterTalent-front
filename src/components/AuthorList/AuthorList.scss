@@ -1,3 +1,5 @@
+@import "src/styles/_vars.scss";
+
 .author-items {
   display: flex;
   justify-content: space-evenly;
@@ -14,7 +16,7 @@
 
 .book-author ul {
   text-align: center;
-  color: #fff;
+  color: $text-light-color;
   text-transform: uppercase;
   display: block;
   position: relative;
@@ -87,7 +89,7 @@
 }
 
 .author-link {
-  color: #000000;
+  color: $text-dark-color;
   cursor: grab;
   text-decoration: none;
   padding: 1em;
@@ -99,17 +101,17 @@
 
 .author-link:hover::before {
   content: "Voir les écrits de ";
-  color: #f7ff80;
+  color: #511515;
   margin-bottom: 1em;
 }
 
 .span-published {
-  color: #330000;
+  color: #34047c;
 }
 
 .cover-author {
   z-index: 2 !important;
-  background: #8f7c4a !important;
+  background: #b19f72 !important;
   transform: rotateY(0deg) translateZ(0px);
   word-break: break-word;
 }
