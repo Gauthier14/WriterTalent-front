@@ -52,6 +52,7 @@ export const SET_READ_POST_IN_STATE = "SET_READ_POST_IN_STATE";
 
 export const SET_POST_LOADED = "SET_POST_LOADED";
 
+
 // actions creators ---
 // actions for published posts of one user
 export const getAllUserPublishedPostsFromApi = (userId) => ({
@@ -192,6 +193,17 @@ export const setReadPostInState = (newPost) => ({
   newPost: newPost,
 });
 
-export const setPostLoaded = () => ({
+/**
+ * @param {Array} reviews 
+ */
+
+export const setPostLoaded = (reviews) => ({
   type: SET_POST_LOADED,
 });
+
+// export const setReviewsInState = (reviews) => {
+//   return {
+//     type: SET_REVIEWS_IN_STATE,
+//     reviews: reviews,
+//   };
+// };

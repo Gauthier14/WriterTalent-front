@@ -1,37 +1,42 @@
 /* eslint-disable comma-dangle */
 /* eslint-disable brace-style */
-import { redirect } from "react-router-dom";
+
 import axios from "axios";
-import { SUBMIT_REGISTER } from "../actions/register";
+import { SEND_REVIEW } from "../actions/viewer";
 import { generateMessage, showMessage } from "../selectors/message";
 import { setMessageInfosInState } from "../actions/messages";
 
-const registerMiddleware = (store) => (next) => (action) => {
+const viewerMiddleware = (store) => (next) => (action) => {
+ console.log(action);  
+  const token = localStorage.getItem("token");
   switch (action.type) {
-    case SUBMIT_REGISTER:
+    case SEND_REVIEW:
       axios
-        .post("http://kyllian-g-server.eddi.cloud:8443/api/user/new", {
-          username: store.getState().register.username,
-          password: store.getState().register.password,
-          email: store.getState().register.email,
-        })
+        .post(`http://kyllian-g-server.eddi.cloud:8443/api/review/post/${action.postId}`, 
+          {
+            content: store.getState().viewer.reviewContent,
+          },
+          {
+            headers: {
+              // nom du header: valeur
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        )
         .then((response) => {
           store.dispatch(
             setMessageInfosInState(
-              generateMessage("register-success"),
+              generateMessage("review-sent"),
               "success",
               response.message
             )
           );
           showMessage();
-          window.setTimeout(() => {
-            window.location.href = "/login";
-          }, 5500);
         })
         .catch((error) => {
           store.dispatch(
             setMessageInfosInState(
-              generateMessage("register-fail"),
+              generateMessage("review-not-sent"),
               "warning",
               error.message
             )
@@ -45,4 +50,4 @@ const registerMiddleware = (store) => (next) => (action) => {
   next(action);
 };
 
-export default registerMiddleware;
+export default viewerMiddleware;

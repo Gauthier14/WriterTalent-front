@@ -2,6 +2,7 @@
 export const initialState = {
   visible: false,
   currentPage: 1,
+  reviewContent: "",
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -16,6 +17,12 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         currentPage: action.newPage,
       };
+      case "GET_REVIEW_CONTENT":
+        return {
+          ...state,
+          [action.inputName]: action.textInput,
+        };
+      
     default:
       return state;
   }
