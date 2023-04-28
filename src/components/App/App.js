@@ -3,6 +3,7 @@
 /* eslint-disable quotes */
 
 import { Routes, Route, useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { BsArrowBarUp } from "react-icons/bs";
 import { useEffect } from "react";
 import Header from "../Header/Header";
@@ -22,19 +23,20 @@ import CategoryList from "../CategoryList/CategoryList";
 import RecentPosts from "../RecentPosts/RecentPosts";
 import TextEditor from "../TextEditor/TextEditor";
 import ViewerPost from "../ViewerPost/ViewerPost";
-import { manageLocalStorage } from "../../selectors/user";
+
 import AuthorPosts from "../AuthorPosts/AuthorPosts";
 import ProfileScripts from "../ProfileScripts/ProfileScripts";
 import ProfileFavorites from "../ProfileFavorites/ProfileFavorites";
 import ReadLaterPosts from "../ReadLaterPosts/ReadLaterPosts";
 import UserConnexion from "../UserConnexion/UserConnexion";
 
-import WriterButton from "../WriterButton/WriterButton";
+import Message from "../Message/Message";
 
 function App() {
   const { pathname } = useLocation();
-  const logged = manageLocalStorage("get", "logged");
-  console.log();
+  const textMessage = useSelector((state) => state.messages.text);
+  const className = useSelector((state) => state.messages.class);
+  const serverMessage = useSelector((state) => state.messages.serverMessage);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -44,9 +46,12 @@ function App() {
   }, [pathname]);
   return (
     <div className="app">
+      <Message
+        text={textMessage}
+        otherClass={className}
+        serverMessage={serverMessage}
+      />
       <Header />
-      {logged && pathname !== "/edit" && <WriterButton />}
-
       <Routes>
         <Route path="/" element={<Home />} />
         <Route

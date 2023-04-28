@@ -1,3 +1,4 @@
+@import "src/styles/vars";
 .editor {
   padding: 1em;
   flex-grow: 1;
@@ -40,18 +41,17 @@
       margin-bottom: 1em;
       background-color: #333;
       color: #fff;
-      font-size: 1.2em;
       width: 100%;
-      padding: 0.6em 1.5em;
+      padding: $sm-padding-all;
       border-radius: 0.5em;
       transition: 0.3s;
       box-shadow: 0 0 1.5em rgba(0, 0, 0, 0.7);
       @media screen and (min-width: 820px) {
-        font-size: 1.5em;
         width: fit-content;
+        font-size: 1.2em;
       }
       &:hover {
-        background-color: #bdbd74;
+        background-color: $bg-hover-btn;
         color: #000;
         transform: rotateZ(1deg);
       }

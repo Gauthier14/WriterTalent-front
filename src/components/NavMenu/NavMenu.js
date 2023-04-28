@@ -1,9 +1,10 @@
 /* eslint-disable comma-dangle */
 import "./NavMenu.scss";
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { ImCross } from "react-icons/im";
 import { useDispatch, useSelector } from "react-redux";
+
 import {
   setToggleMenu,
   getCategoriesFromApi,
@@ -15,6 +16,7 @@ import { manageLocalStorage } from "../../selectors/user";
 import WriterButton from "../WriterButton/WriterButton";
 
 function NavMenu() {
+  const { pathname } = useLocation();
   const dispatch = useDispatch();
   const genres = useSelector((state) => state.menu.genres);
   const categories = useSelector((state) => state.menu.categories);
@@ -115,7 +117,14 @@ function NavMenu() {
           </MenuItem>
         )}
       </ul>
-      <WriterButton />
+
+      {isLogged && pathname !== "/edit" && (
+        <WriterButton
+          onClick={() => {
+            dispatch(setToggleMenu());
+          }}
+        />
+      )}
     </nav>
   );
 }

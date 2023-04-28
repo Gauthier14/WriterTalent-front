@@ -15,23 +15,14 @@ import LoginForm from "../LoginForm/LoginForm";
 import { getTextFieldLogin, loginUser } from "../../actions/user";
 import { generateMessage, showMessage } from "../../selectors/message";
 import { setMessageInfosInState } from "../../actions/messages";
-import Message from "../Message/Message";
 
 function UserConnexion() {
   const dispatch = useDispatch();
   const email = useSelector((state) => state.user.email);
   const password = useSelector((state) => state.user.password);
-  const textMessage = useSelector((state) => state.messages.text);
-  const className = useSelector((state) => state.messages.class);
-  const serverMessage = useSelector((state) => state.messages.serverMessage);
 
   return (
     <main className="user-connexion">
-      <Message
-        text={textMessage}
-        otherClass={className}
-        serverMessage={serverMessage}
-      />
       <section className="form-container">
         <h2>
           FORMULAIRE <br />

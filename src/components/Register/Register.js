@@ -13,7 +13,7 @@ import {
   togglePasswordShown,
 } from "../../actions/register";
 import { validateEmail, validatePassword } from "../../selectors/register";
-import Message from "../Message/Message";
+
 import { generateMessage, showMessage } from "../../selectors/message";
 import { setMessageInfosInState } from "../../actions/messages";
 
@@ -21,9 +21,7 @@ function Register() {
   const dispatch = useDispatch();
   const username = useSelector((state) => state.register.username);
   const email = useSelector((state) => state.register.email);
-  const textMessage = useSelector((state) => state.messages.text);
-  const className = useSelector((state) => state.messages.class);
-  const serverMessage = useSelector((state) => state.messages.serverMessage);
+
   const password = useSelector((state) => state.register.password);
   const isValidPassword = validatePassword(password);
   const passwordAgain = useSelector((state) => state.register.passwordAgain);
@@ -59,11 +57,6 @@ function Register() {
 
   return (
     <main className="register">
-      <Message
-        text={textMessage}
-        otherClass={className}
-        serverMessage={serverMessage}
-      />
       <section className="form-container">
         <h2>FORMULAIRE D'INSCRIPTION</h2>
         <form onSubmit={handleSubmit}>

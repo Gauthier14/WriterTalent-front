@@ -10,14 +10,10 @@ import EditorForm from "../EditorForm/EditorForm";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import "./TextEditor.scss";
 import { savePost } from "../../actions/editor";
-import Message from "../Message/Message";
 
 function TextEditor() {
   const dispatch = useDispatch();
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
-  const textMessage = useSelector((state) => state.messages.text);
-  const className = useSelector((state) => state.messages.class);
-  const serverMessage = useSelector((state) => state.messages.serverMessage);
 
   /* useEffect(() => {
     const autoSave = setInterval(() => {
@@ -29,11 +25,6 @@ function TextEditor() {
   }, []); */
   return (
     <main className="editor">
-      <Message
-        text={textMessage}
-        otherClass={className}
-        serverMessage={serverMessage}
-      />
       <EditorForm />
       <Editor
         editorState={editorState}
@@ -75,15 +66,6 @@ function TextEditor() {
           }}
         >
           Demande de publication
-        </button>
-        <button
-          type="button"
-          className="editor-button"
-          onClick={() => {
-            dispatch();
-          }}
-        >
-          Supprimer
         </button>
       </div>
     </main>

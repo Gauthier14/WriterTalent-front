@@ -7,13 +7,11 @@ import LikedItem from "../LikedItem/LikedItem";
 // import ButtonGoWriter from "../ButtonGoWriter/ButtonGoWriter";
 import "./Home.scss";
 import { getAllMostLikedPostsFromApi } from "../../actions/posts";
-import Message from "../Message/Message";
+
 
 function Home() {
   const dispatch = useDispatch();
-  const textMessage = useSelector((state) => state.messages.text);
-  const className = useSelector((state) => state.messages.class);
-  const serverMessage = useSelector((state) => state.messages.serverMessage);
+  
   const mostLikedPosts = useSelector((state) => state.posts.mostLikedPosts);
   const likedPosts = mostLikedPosts.filter((post, index) => index < 3);
   useEffect(() => {
@@ -22,11 +20,7 @@ function Home() {
   return (
     <main className="home-main">
       {/* <ButtonGoWriter /> */}
-      <Message
-        text={textMessage}
-        otherClass={className}
-        serverMessage={serverMessage}
-      />
+      
       <article>
         <p>
           Sur ce site, nous offrons l'opportunité de lire le travail des
