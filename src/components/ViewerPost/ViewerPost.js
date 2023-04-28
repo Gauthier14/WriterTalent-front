@@ -6,7 +6,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useParams } from "react-router";
 import { BsFillHandThumbsUpFill, BsEyeFill } from "react-icons/bs";
+import {MdFavoriteBorder} from "react-icons/md";
 import { BiFoodMenu } from "react-icons/bi";
+import {AiFillRead, AiOutlineClockCircle} from "react-icons/ai"
+
 import { changePage, getReviewContent, sendReview, setToggleViewerMenu } from "../../actions/viewer";
 import { getReadPostFromApi } from "../../actions/posts";
 import Button from "../Button/Button";
@@ -62,22 +65,16 @@ function ViewerPost() {
   return loaded ? (
     <>
       <main className="viewer-body">
+      
         <div className="viewer-header">
           <BiFoodMenu
+          size={40}
             className="toggle-menu"
             onClick={() => dispatch(setToggleViewerMenu())}
           />
 
           <h1 className="viewer-title">{title}</h1>
           <h2>{user.username}</h2>
-          <span>
-            <BsFillHandThumbsUpFill style={{ marginRight: "0.5em" }} />
-            {nbLikes}
-          </span>
-          <span>
-            <BsEyeFill style={{ marginRight: "0.5em" }} />
-            {nbViews}
-          </span>
         </div>
         <aside className={!isVisible ? "sidebar" : "sidebar sidebar-toggled"}>
           <h3>Pages...</h3>
@@ -99,6 +96,22 @@ function ViewerPost() {
           {renderedContent()}
         </section>
       </main>
+      
+      <div className="post-infos">
+      <span>
+            <BsFillHandThumbsUpFill style={{ marginRight: "0.5em" }} />
+            {nbLikes}
+          </span>
+          <span>
+            <BsEyeFill style={{ marginRight: "0.5em" }} />
+            {nbViews}
+          </span>
+          <span className="read-later-container">
+            <AiFillRead  size={30}/>
+            <AiOutlineClockCircle size={20}/>
+          </span>
+          <MdFavoriteBorder size={30} color="#"/>
+      </div>
       <section className="reviews">
         <h2>Commentaires</h2>
 
@@ -123,8 +136,8 @@ function ViewerPost() {
       }} 
       className="new-review">
         <fieldset>
-          <legend>Laisser un commentaire (500 caractères max)</legend>
-          <textarea name="review-text" id="review-text" maxLength="500" value={reviewText} onChange={(event)=>dispatch(getReviewContent(event.target.value, "reviewContent"))}/>
+          <legend>Mon Commentaire</legend>
+          <textarea name="review-text" id="review-text" maxLength="500" value={reviewText} onChange={(event)=>dispatch(getReviewContent(event.target.value, "reviewContent"))} placeholder="500 caractères max"/>
         </fieldset>
         <input type="submit" value="Publier"/>
       </form>

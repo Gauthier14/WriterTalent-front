@@ -5,6 +5,7 @@ import {
   BsEyeFill,
 } from "react-icons/bs";
 import { FcReading } from "react-icons/fc"; // read
+import { ImCross } from "react-icons/im";
 
 import "./ProfileFavorites.scss";
 import { useEffect } from "react";
@@ -26,6 +27,7 @@ function ProfileFavorites() {
           <ul>
             {favoritePosts.map((post) => (
               <li>
+                <ImCross className="delete-btn" size={30} />
                 <Link to={`/post/read/${post.id}`}>
                   <h3>
                     {post.title} <FcReading size={30} />
