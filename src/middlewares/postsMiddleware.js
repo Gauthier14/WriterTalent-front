@@ -36,9 +36,9 @@ const postsMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
     case GET_ALL_USER_PUBLISHED_POSTS_FROM_API:
       axios
-        .get(
-          `http://kyllian-g-server.eddi.cloud:8443/api/user/${action.userId}/posts/published`
-        )
+
+        .get(`http://kyllian-g-server.eddi.cloud:8443/api/user/${action.userId}/posts/published`)
+
         .then((response) => {
           store.dispatch(setAllUserPublishedPostsInState(response.data));
         })
@@ -105,14 +105,13 @@ const postsMiddleware = (store) => (next) => (action) => {
       break;
     case GET_ALL_AWAITING_USER_POSTS_FROM_API:
       axios
-        .get(
-          `http://kyllian-g-server.eddi.cloud:8443/api/user/posts/awaiting`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        )
+
+        .get(`http://kyllian-g-server.eddi.cloud:8443/api/user/posts/awaiting`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+
         .then((response) => {
           store.dispatch(setAllAwaitingUserPostsInState(response.data));
         })
@@ -123,9 +122,9 @@ const postsMiddleware = (store) => (next) => (action) => {
 
     case GET_ALL_POSTS_PER_CATEGORY_OR_GENRE_FROM_API:
       axios
-        .get(
-          `http://kyllian-g-server.eddi.cloud:8443/api/${action.param}/${action.id}/posts`
-        )
+
+        .get(`http://kyllian-g-server.eddi.cloud:8443/api/${action.param}/${action.id}/posts`)
+
         .then((response) => {
           if (action.param === "category") {
             store.dispatch(setAllPostsPerCategoryInState(response.data));
@@ -156,9 +155,9 @@ const postsMiddleware = (store) => (next) => (action) => {
       break;
     case GET_READ_POST_FROM_API:
       axios
-        .get(
-          `http://kyllian-g-server.eddi.cloud:8443/api/post/${action.postId}`
-        )
+
+        .get(`http://kyllian-g-server.eddi.cloud:8443/api/post/${action.postId}`)
+
         .then((response) => {
           store.dispatch(setReadPostInState(response.data));
           store.dispatch(setPostLoaded());
@@ -174,6 +173,9 @@ const postsMiddleware = (store) => (next) => (action) => {
           showMessage();
         });
       break;
+
+   
+
     default:
       break;
   }

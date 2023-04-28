@@ -6,18 +6,25 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useParams } from "react-router";
 import { BsFillHandThumbsUpFill, BsEyeFill } from "react-icons/bs";
+import {MdFavoriteBorder} from "react-icons/md";
 import { BiFoodMenu } from "react-icons/bi";
-import { changePage, setToggleViewerMenu } from "../../actions/viewer";
+import {AiFillRead, AiOutlineClockCircle} from "react-icons/ai"
+
+import { changePage, getReviewContent, sendReview, setToggleViewerMenu } from "../../actions/viewer";
 import { getReadPostFromApi } from "../../actions/posts";
+import Button from "../Button/Button";
 import Loader from "../Loader/Loader";
+import { convertStringDate } from "../../selectors/viewer";
 
 function ViewerPost() {
   const dispatch = useDispatch();
   const isVisible = useSelector((state) => state.viewer.visible);
   const currentPage = useSelector((state) => state.viewer.currentPage);
+  const reviewText = useSelector((state) => state.viewer.reviewContent);
+  console.log(reviewText);
   const postToRead = useSelector((state) => state.posts.postToRead);
   const loaded = useSelector((state) => state.posts.loaded);
-  const { title, content, nbLikes, nbViews, user, reviews } = postToRead;
+  const { title, content, nbLikes, nbViews, user, reviews, id:postId } = postToRead;
 
   const { id } = useParams();
   useEffect(() => {
@@ -54,73 +61,89 @@ function ViewerPost() {
     }
     return pageWords.join(" ");
   };
+  
+  return loaded ? (
+    <>
+      <main className="viewer-body">
+      
+        <div className="viewer-header">
+          <BiFoodMenu
+          size={40}
+            className="toggle-menu"
+            onClick={() => dispatch(setToggleViewerMenu())}
+          />
 
-  return (
-    loaded ? (
-      <>
-        <main className="viewer-body">
-          <div className="viewer-header">
-            <BiFoodMenu
-              className="toggle-menu"
-              onClick={() => dispatch(setToggleViewerMenu())}
-            />
-
-            <h1 className="viewer-title">{title}</h1>
-            <h2>{user.username}</h2>
-            <span>
-              <BsFillHandThumbsUpFill style={{ marginRight: "0.5em" }} />
-              {nbLikes}
-            </span>
-            <span>
-              <BsEyeFill style={{ marginRight: "0.5em" }} />
-              {nbViews}
-            </span>
-          </div>
-          <aside className={!isVisible ? "sidebar" : "sidebar sidebar-toggled"}>
-            <h3>Pages...</h3>
-            <nav>
-              <ul>
-                {Array.from({ length: pageCount }, (_, i) => (
-                  <li
-                    key={i}
-                    className={i + 1 === currentPage ? "active" : ""}
-                    onClick={() => handleClickPage(i + 1)}
-                  >
-                    Page {i + 1}
-                  </li>
-                ))}
-              </ul>
-            </nav>
-          </aside>
-          <section className={!isVisible ? "main" : "main main-toggled"}>
-            {renderedContent()}
-          </section>
-        </main>
-        <section className="reviews">
-          <h2>Commentaires</h2>
-
-          {reviews.length > 0 ?
-            reviews.map((review) => (
-              <div className="review" key={review.id}>
-                <div className="review_infos">
-                  <h3>{review.username}</h3>
-                  <span>{review.date}</span>
-                </div>
-                <p>{review.comment}</p>
-              </div>
-            )) : <p>Pas de commenntaires</p>}
-
+          <h1 className="viewer-title">{title}</h1>
+          <h2>{user.username}</h2>
+        </div>
+        <aside className={!isVisible ? "sidebar" : "sidebar sidebar-toggled"}>
+          <h3>Pages...</h3>
+          <nav>
+            <ul>
+              {Array.from({ length: pageCount }, (_, i) => (
+                <li
+                  key={i}
+                  className={i + 1 === currentPage ? "active" : ""}
+                  onClick={() => handleClickPage(i + 1)}
+                >
+                  Page {i + 1}
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </aside>
+        <section className={!isVisible ? "main" : "main main-toggled"}>
+          {renderedContent()}
         </section>
+      </main>
+      
+      <div className="post-infos">
+      <span>
+            <BsFillHandThumbsUpFill style={{ marginRight: "0.5em" }} />
+            {nbLikes}
+          </span>
+          <span>
+            <BsEyeFill style={{ marginRight: "0.5em" }} />
+            {nbViews}
+          </span>
+          <span className="read-later-container">
+            <AiFillRead  size={30}/>
+            <AiOutlineClockCircle size={20}/>
+          </span>
+          <MdFavoriteBorder size={30} color="#"/>
+      </div>
+      <section className="reviews">
+        <h2>Commentaires</h2>
 
-        <form action="" method="post" className="new-review">
-          <fieldset>
-            <legend>Laisser un commentaire</legend>
-            <textarea name="review-text" id="review-text" maxLength="500" />
-          </fieldset>
-        </form>
-      </>
-    ) : <Loader />
+        {reviews.length > 0 ? (
+          reviews.map((review) => (
+            <div className="review" key={review.id}>
+              <div className="review_infos">
+                <h3>{review.user.username}</h3>
+                <span>{convertStringDate(review.createdAt)}</span>
+              </div>
+              <p>{review.content}</p>
+            </div>
+          ))
+        ) : (
+          <p>Soyez le premier à donner votre avis sur cet écrit !!</p>
+        )}
+      </section>
 
+      <form onSubmit={(e)=> {
+        e.preventDefault();
+        dispatch(sendReview(postId))
+      }} 
+      className="new-review">
+        <fieldset>
+          <legend>Mon Commentaire</legend>
+          <textarea name="review-text" id="review-text" maxLength="500" value={reviewText} onChange={(event)=>dispatch(getReviewContent(event.target.value, "reviewContent"))} placeholder="500 caractères max"/>
+        </fieldset>
+        <input type="submit" value="Publier"/>
+      </form>
+    </>
+  ) : (
+    <Loader />
   );
 }
 

@@ -1,7 +1,5 @@
 import { manageLocalStorage } from "../selectors/user";
 
-console.log(window.innerWidth);
-
 /* eslint-disable quotes */
 export const initialState = {
   visible: false,

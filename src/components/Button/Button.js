@@ -15,6 +15,7 @@ function Button({
   width,
   children,
   transform,
+  type
 }) {
   const [isHover, setIsHover] = useState(false);
 
@@ -39,7 +40,7 @@ function Button({
   return (
     <button
       className="custom-btn"
-      type="button"
+      type={type}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       style={isHover ? styleHover : style}
@@ -63,6 +64,7 @@ Button.propTypes = {
   linkTarget: PropTypes.string,
   width: PropTypes.string,
   transform: PropTypes.string,
+  type: PropTypes.string,
   children: PropTypes.node,
 };
 
@@ -74,5 +76,7 @@ Button.defaultProps = {
   linkTarget: "",
   width: "fit-content",
   transform: "scale(1.1)",
+  link:'#',
+  type: 'button',
 };
 export default Button;

@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { BsFillHandThumbsUpFill, BsEyeFill } from "react-icons/bs";
+import { ImCross } from "react-icons/im";
 import { MdWatchLater } from "react-icons/md";
 import { FcReading } from "react-icons/fc"; // read
 
@@ -23,6 +24,7 @@ function ReadLaterPosts() {
           <ul>
             {readLaterPosts.map((post) => (
               <li>
+                <ImCross className="delete-btn" size={30} />
                 <Link to={`/post/read/${post.id}`}>
                   <h3>
                     {post.title} <FcReading size={30} />
