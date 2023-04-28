@@ -1,6 +1,8 @@
+import { EditorState } from "draft-js";
+
 const defaultState = {
   title: "",
-  editorState: "",
+  editorState: EditorState.createEmpty(),
   genre: "",
   categories: [],
 };
@@ -16,6 +18,11 @@ const reducer = (state = defaultState, action = {}) => {
       return {
         ...state,
         categories: [...action.selectedCategories],
+      };
+    case "UPDATE_EDITOR_STATE":
+      return {
+        ...state,
+        editorState: action.editorState,
       };
     default:
       return state;

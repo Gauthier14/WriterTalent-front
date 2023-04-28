@@ -1,19 +1,20 @@
 /* eslint-disable implicit-arrow-linebreak */
 /* eslint-disable react/jsx-curly-newline */
 /* eslint-disable comma-dangle */
-import { useState } from "react";
-import { EditorState, convertToRaw } from "draft-js";
+// import { useState } from "react";
+import { convertToRaw } from "draft-js";
 import { Editor } from "react-draft-wysiwyg";
 import draftToHtml from "draftjs-to-html";
 import { useDispatch, useSelector } from "react-redux";
 import EditorForm from "../EditorForm/EditorForm";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import "./TextEditor.scss";
-import { savePost } from "../../actions/editor";
+import { savePost, updateEditor } from "../../actions/editor";
 
 function TextEditor() {
   const dispatch = useDispatch();
-  const [editorState, setEditorState] = useState(EditorState.createEmpty());
+  // const [editorState, setEditorState] = useState(EditorState.createEmpty());
+  const editorState = useSelector((state) => state.editor.editorState);
 
   /* useEffect(() => {
     const autoSave = setInterval(() => {
@@ -23,20 +24,37 @@ function TextEditor() {
       clearInterval(autoSave);
     };
   }, []); */
+  const onEditorStateChange = (editorState) => {
+    dispatch(updateEditor(editorState));
+  };
   return (
     <main className="editor">
       <EditorForm />
       <Editor
+        // toolbarOnFocus
         editorState={editorState}
         wrapperClassName="demo-wrapper"
         editorClassName="demo-editor"
-        onEditorStateChange={setEditorState}
+        onEditorStateChange={onEditorStateChange}
         toolbar={{
+          options: [
+            "inline",
+            "blockType",
+            "fontSize",
+            "fontFamily",
+            "list",
+            "textAlign",
+            "colorPicker",
+            "link",
+            "emoji",
+            "remove",
+            "history",
+          ],
           inline: { inDropdown: true },
           list: { inDropdown: true },
           textAlign: { inDropdown: true },
           link: { inDropdown: true },
-          history: { inDropdown: true },
+          history: { inDropdown: false },
         }}
       />
       <textarea
