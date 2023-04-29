@@ -3,7 +3,7 @@ const initialState = {
 };
 
 const reducer = (state = initialState, action = {}) => {
-  if (state.messages.length === 0) {
+  if (state.messages.length !== 0) {
     state.messages = [];
   }
   switch (action.type) {

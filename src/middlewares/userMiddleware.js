@@ -12,7 +12,6 @@ import {
   setAllAthorsInState,
 } from "../actions/user";
 import { manageSessionStorage } from "../selectors/user";
-import { setToggleMenu } from "../actions/menu";
 import { showMessages, generateMessages } from "../selectors/message";
 import { setMessageInfosInState } from "../actions/messages";
 
@@ -30,17 +29,18 @@ const userMiddleware = (store) => (next) => (action) => {
           manageSessionStorage("set", "logged", true);
           store.dispatch(getTextFieldLogin("", "email"));
           store.dispatch(getTextFieldLogin("", "password"));
-          store.dispatch(setToggleMenu());
+          store.dispatch(getUserInfosFromApi());
           store.dispatch(
             setMessageInfosInState(generateMessages("login-success"))
           );
-          store.dispatch(getUserInfosFromApi());
+          showMessages();
         })
         // eslint-disable-next-line no-unused-vars
         .catch((error) => {
           store.dispatch(
             setMessageInfosInState(generateMessages("login-fail"))
           );
+          showMessages();
         });
       break;
     case GET_USER_INFOS_FROM_API:
@@ -59,6 +59,7 @@ const userMiddleware = (store) => (next) => (action) => {
           store.dispatch(
             setMessageInfosInState(generateMessages("login-infos"))
           );
+          showMessages();
         });
       break;
     case GET_ALL_AUTHORS:
@@ -71,6 +72,7 @@ const userMiddleware = (store) => (next) => (action) => {
           store.dispatch(
             setMessageInfosInState(generateMessages("all-authors"))
           );
+          showMessages();
         });
       break;
     default:

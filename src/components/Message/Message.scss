@@ -4,38 +4,18 @@
   position: absolute;
   top: 5%;
   right: 5%;
+  z-index: 200;
+  padding: $md-padding-all;
+  // display: none;
   .message {
-    z-index: 200;
-    padding: $sm-padding-all;
-    transition: 2s;
-    border-radius: $radius-box;
-    text-align: center;
+    border-radius: $radius-btn;
+    margin-bottom: $sm-margin-all;
+    padding: $md-padding-all;
     box-shadow: $box-shadow;
-    color: #fff;
-    text-shadow: 0 0 0.8em $text-dark-color;
-    box-shadow: 0 0 2em rgba(0, 0, 0, 0.7);
-    color: $text-light-color;
-    text-shadow: 0 0 0.8em #000;
-    display: none;
-    font-size: $fsz-text-mobile;
+    font-weight: 500;
+    transition: 2s;
     @media screen and (min-width: 820px) {
       font-size: $fsz-text-desktop;
-    }
-    .message {
-      border-radius: $radius-btn;
-      margin-bottom: $sm-margin-all;
-      padding: $sm-padding-all;
-      font-weight: 500;
-      transition: 2s;
-      & > *:first-child {
-        padding: 0.3em;
-        background-color: #ddd;
-        color: #000;
-        border-radius: 0.3em;
-        width: fit-content;
-        text-align: center;
-        margin-bottom: 0.2em;
-      }
     }
   }
 

@@ -6,7 +6,6 @@ const Message = ({ messages }) => (
   <div className="messages">
     {messages.map((msg) => (
       <div className={`message ${msg.class}`}>
-        <p>Message :</p>
         <p>{msg.text}</p>
       </div>
     ))}
