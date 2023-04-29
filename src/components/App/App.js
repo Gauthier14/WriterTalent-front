@@ -1,3 +1,4 @@
+/* eslint-disable implicit-arrow-linebreak */
 /* eslint-disable object-curly-newline */
 /* eslint-disable operator-linebreak */
 /* eslint-disable comma-dangle */
@@ -31,19 +32,19 @@ import ProfileScripts from "../ProfileScripts/ProfileScripts";
 import ProfileFavorites from "../ProfileFavorites/ProfileFavorites";
 import ReadLaterPosts from "../ReadLaterPosts/ReadLaterPosts";
 import UserConnexion from "../UserConnexion/UserConnexion";
-import { manageLocalStorage } from "../../selectors/user";
+import { manageSessionStorage } from "../../selectors/user";
 
 import Message from "../Message/Message";
 
 function App() {
   const { pathname } = useLocation();
-  const textMessage = useSelector((state) => state.messages.text);
-  const className = useSelector((state) => state.messages.class);
-  const serverMessage = useSelector((state) => state.messages.serverMessage);
-  const isLogged = Boolean(manageLocalStorage("get", "logged"));
-  const registerOk =
-    textMessage ===
-    "Votre compte a été créé avec succès, vous allez être redirigé vers la page de connexion";
+  const messages = useSelector((state) => state.messages.messages);
+  const isLogged = Boolean(manageSessionStorage("get", "logged"));
+  const registerOk = messages.find(
+    (msg) =>
+      msg.text ===
+      "Votre compte a été créé avec succès, vous allez être redirigé vers la page de connexion"
+  );
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -53,11 +54,7 @@ function App() {
   }, [pathname]);
   return (
     <div className="app">
-      <Message
-        text={textMessage}
-        otherClass={className}
-        serverMessage={serverMessage}
-      />
+      <Message messages={messages} />
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />

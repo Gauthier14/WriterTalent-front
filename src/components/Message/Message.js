@@ -2,18 +2,21 @@
 import PropTypes from "prop-types";
 import "./Message.scss";
 
-const Message = ({ text, otherClass, serverMessage }) => (
-  <div className={`message ${otherClass}`}>
-    <p>
-      Message : <span>{serverMessage}</span>
-    </p>
-    <p>{text}</p>
+const Message = ({ messages }) => (
+  <div className="messages">
+    {messages.map((msg) => (
+      <div className={`message ${msg.class}`}>
+        <p>Message :</p>
+        <p>{msg.text}</p>
+      </div>
+    ))}
   </div>
 );
 
 Message.propTypes = {
-  text: PropTypes.string.isRequired,
-  otherClass: PropTypes.string.isRequired,
-  serverMessage: PropTypes.string.isRequired,
+  messages: PropTypes.array,
+};
+Message.defaultProps = {
+  messages: [],
 };
 export default Message;

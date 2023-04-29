@@ -14,11 +14,11 @@ import {
 } from "../../actions/posts";
 
 import "./ProfileScripts.scss";
-import { manageLocalStorage } from "../../selectors/user";
+import { manageSessionStorage } from "../../selectors/user";
 
 function ProfileScripts() {
   const dispatch = useDispatch();
-  const userId = Number(manageLocalStorage("get", "user_id"));
+  const userId = Number(manageSessionStorage("get", "user_id"));
   const publishedPosts = useSelector((state) => state.posts.userPublishedPosts);
   const savedPosts = useSelector((state) => state.posts.userSavedPosts);
   const awatingPosts = useSelector((state) => state.posts.userAwaitingPosts);

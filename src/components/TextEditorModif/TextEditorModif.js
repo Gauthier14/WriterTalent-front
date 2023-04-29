@@ -23,6 +23,8 @@ function TextEditorModif() {
   const dispatch = useDispatch();
   const postToEdit = useSelector((state) => state.editor.postToEdit);
   const contentState = convertFromRaw(JSON.parse(postToEdit.content));
+  const editorState = useSelector((state) => state.editor.editorState);
+
   const { id } = useParams;
   if (id !== undefined) {
     useEffect(() => {
@@ -38,6 +40,7 @@ function TextEditorModif() {
       <EditorForm />
       <Editor
         // toolbarOnFocus
+        editorState={editorState}
         contentState={contentState}
         wrapperClassName="demo-wrapper"
         editorClassName="demo-editor"

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable comma-dangle */
 /* eslint-disable brace-style */
 import axios from "axios";
@@ -7,8 +8,8 @@ import {
   GET_EDIT_POST_FROM_API,
   setEditPostInState,
 } from "../actions/editor";
+import { showMessages, generateMessages } from "../selectors/message";
 import { setMessageInfosInState } from "../actions/messages";
-import { generateMessage, showMessage } from "../selectors/message";
 
 const editorMiddleware = (store) => (next) => (action) => {
   const token = localStorage.getItem("token");
@@ -32,22 +33,15 @@ const editorMiddleware = (store) => (next) => (action) => {
         )
         .then((response) => {
           store.dispatch(
-            setMessageInfosInState(
-              generateMessage("post-saved"),
-              "success",
-              response.statusText
-            )
+            setMessageInfosInState(generateMessages("post-saved"))
           );
+          showMessages();
         })
         .catch((error) => {
           store.dispatch(
-            setMessageInfosInState(
-              generateMessage("post-not-saved"),
-              "warning",
-              error.message
-            )
+            setMessageInfosInState(generateMessages("post-not-saved"))
           );
-          showMessage();
+          showMessages();
         });
       break;
 
@@ -58,16 +52,11 @@ const editorMiddleware = (store) => (next) => (action) => {
         )
         .then((response) => {
           store.dispatch(setEditPostInState(response.data));
+          showMessages();
         })
         .catch((error) => {
-          store.dispatch(
-            setMessageInfosInState(
-              generateMessage("post"),
-              "warning",
-              error.message
-            )
-          );
-          showMessage();
+          store.dispatch(setMessageInfosInState("post"));
+          showMessages();
         });
       break;
 

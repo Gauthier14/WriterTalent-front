@@ -1,34 +1,43 @@
-.message {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translateX(-50%) translateY(-50%);
+@import "src/styles/vars";
+
+.messages {
+  position: absolute;
+  top: 5%;
+  right: 5%;
   z-index: 200;
-  padding: 2em;
-  transition: 0.5s;
-  border-radius: 1em;
+  padding: $sm-padding-all;
+  transition: 2s;
+  border-radius: $radius-box;
   text-align: center;
-  line-height: 1.5em;
-  font-size: 1.2em;
-  font-weight: 700;
-  box-shadow: 0 0 2em rgba(0, 0, 0, 0.7);
+  box-shadow: $box-shadow;
   color: #fff;
-  text-shadow: 0 0 0.8em #000;
+  text-shadow: 0 0 0.8em $text-dark-color;
   display: none;
-  span {
-    padding: 0 0.3em;
-    background-color: #ddd;
-    color: #000;
-    border-radius: 0.3em;
+  font-size: $fsz-text-mobile;
+  @media screen and (min-width: 820px) {
+    font-size: $fsz-text-desktop;
+  }
+  .message {
+    border-radius: $radius-btn;
+    margin-bottom: $sm-margin-all;
+    padding: $sm-padding-all;
+    font-weight: 500;
+    transition: 2s;
+    & > *:first-child {
+      padding: 0.3em;
+      background-color: #ddd;
+      color: #000;
+      border-radius: 0.3em;
+      width: fit-content;
+      text-align: center;
+      margin-bottom: 0.2em;
+    }
   }
 }
 
 .success {
-  background-color: rgba(123, 182, 149, 0.9);
+  background-color: $bg-succes;
 }
 .warning {
-  background-color: rgba(192, 138, 39, 0.9);
-}
-.danger {
-  background-color: rgba(163, 61, 61, 0.9);
+  background-color: $bg-warning;
 }

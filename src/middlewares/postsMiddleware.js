@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable comma-dangle */
 /* eslint-disable brace-style */
 import axios from "axios";
@@ -23,13 +24,8 @@ import {
   setReadPostInState,
   setPostLoaded,
 } from "../actions/posts";
-import { generateMessage, showMessage } from "../selectors/message";
+import { showMessages, generateMessages } from "../selectors/message";
 import { setMessageInfosInState } from "../actions/messages";
-
-function notGetPosts(errorMessage) {
-  setMessageInfosInState(generateMessage("posts"), "warning", errorMessage);
-  showMessage();
-}
 
 const postsMiddleware = (store) => (next) => (action) => {
   const token = localStorage.getItem("token");
@@ -45,7 +41,10 @@ const postsMiddleware = (store) => (next) => (action) => {
           store.dispatch(setAllUserPublishedPostsInState(response.data));
         })
         .catch((error) => {
-          notGetPosts(error.message);
+          store.dispatch(
+            setMessageInfosInState(generateMessages("published-posts"))
+          );
+          showMessages();
         });
       break;
     case GET_ALL_READ_LATER_USER_POSTS_FROM_API:
@@ -57,11 +56,13 @@ const postsMiddleware = (store) => (next) => (action) => {
           },
         })
         .then((response) => {
-          console.log(response.data);
           store.dispatch(setAllReadLaterUserPostsInState(response.data));
         })
         .catch((error) => {
-          notGetPosts(error.message);
+          store.dispatch(
+            setMessageInfosInState(generateMessages("read-later-posts"))
+          );
+          showMessages();
         });
       break;
     case GET_ALL_SAVED_USER_POSTS_FROM_API:
@@ -76,7 +77,10 @@ const postsMiddleware = (store) => (next) => (action) => {
           store.dispatch(setAllSavedUserPostsInState(response.data));
         })
         .catch((error) => {
-          notGetPosts(error.message);
+          store.dispatch(
+            setMessageInfosInState(generateMessages("saved-posts"))
+          );
+          showMessages();
         });
       break;
 
@@ -87,7 +91,10 @@ const postsMiddleware = (store) => (next) => (action) => {
           store.dispatch(setRecentPostsInState(response.data));
         })
         .catch((error) => {
-          notGetPosts(error.message);
+          store.dispatch(
+            setMessageInfosInState(generateMessages("recent-posts"))
+          );
+          showMessages();
         });
       break;
 
@@ -102,7 +109,10 @@ const postsMiddleware = (store) => (next) => (action) => {
           store.dispatch(setAllFavoriteUserPostsInState(response.data));
         })
         .catch((error) => {
-          notGetPosts(error.message);
+          store.dispatch(
+            setMessageInfosInState(generateMessages("favorite-posts"))
+          );
+          showMessages();
         });
       break;
     case GET_ALL_AWAITING_USER_POSTS_FROM_API:
@@ -121,7 +131,10 @@ const postsMiddleware = (store) => (next) => (action) => {
           store.dispatch(setAllAwaitingUserPostsInState(response.data));
         })
         .catch((error) => {
-          notGetPosts(error.message);
+          store.dispatch(
+            setMessageInfosInState(generateMessages("awaiting-posts"))
+          );
+          showMessages();
         });
       break;
 
@@ -140,7 +153,8 @@ const postsMiddleware = (store) => (next) => (action) => {
           }
         })
         .catch((error) => {
-          notGetPosts(error.message);
+          store.dispatch(setMessageInfosInState(generateMessages("posts")));
+          showMessages();
         });
       break;
     case GET_ALL_MOST_LIKED_POSTS_FROM_API:
@@ -151,13 +165,9 @@ const postsMiddleware = (store) => (next) => (action) => {
         })
         .catch((error) => {
           store.dispatch(
-            setMessageInfosInState(
-              "Les écrits les plus appréciés n'ont pas pu être récupérés, problème de connexion avec l'API",
-              "warning",
-              error.message
-            )
+            setMessageInfosInState(generateMessages("most-liked-posts"))
           );
-          showMessage();
+          showMessages();
         });
       break;
     case GET_READ_POST_FROM_API:
@@ -172,14 +182,8 @@ const postsMiddleware = (store) => (next) => (action) => {
           store.dispatch(setPostLoaded());
         })
         .catch((error) => {
-          store.dispatch(
-            setMessageInfosInState(
-              generateMessage("post"),
-              "warning",
-              error.message
-            )
-          );
-          showMessage();
+          store.dispatch(setMessageInfosInState(generateMessages("post")));
+          showMessages();
         });
       break;
     default:

@@ -1,18 +1,19 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable comma-dangle */
 /* eslint-disable brace-style */
 
 import axios from "axios";
 import { SEND_REVIEW } from "../actions/viewer";
-import { generateMessage, showMessage } from "../selectors/message";
+import { showMessages, generateMessages } from "../selectors/message";
 import { setMessageInfosInState } from "../actions/messages";
 
 const viewerMiddleware = (store) => (next) => (action) => {
- console.log(action);  
   const token = localStorage.getItem("token");
   switch (action.type) {
     case SEND_REVIEW:
       axios
-        .post(`http://kyllian-g-server.eddi.cloud:8443/api/review/post/${action.postId}`, 
+        .post(
+          `http://kyllian-g-server.eddi.cloud:8443/api/review/post/${action.postId}`,
           {
             content: store.getState().viewer.reviewContent,
           },
@@ -25,23 +26,13 @@ const viewerMiddleware = (store) => (next) => (action) => {
         )
         .then((response) => {
           store.dispatch(
-            setMessageInfosInState(
-              generateMessage("review-sent"),
-              "success",
-              response.message
-            )
+            setMessageInfosInState(generateMessages("review-sent"))
           );
-          showMessage();
         })
         .catch((error) => {
           store.dispatch(
-            setMessageInfosInState(
-              generateMessage("review-not-sent"),
-              "warning",
-              error.message
-            )
+            setMessageInfosInState(generateMessages("review-not-sent"))
           );
-          showMessage();
         });
       break;
     default:
