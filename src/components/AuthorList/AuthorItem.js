@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
+
 const AuthorItem = ({ username, id }) => (
   <div className="book-author">
     <ul>
@@ -8,7 +9,7 @@ const AuthorItem = ({ username, id }) => (
         <Link className="author-link" to={`/posts/author/${id}`}>
           {username}
         </Link>
-        <span className="span-published">546 publications</span>
+        <span className="span-published">589 publications</span>
       </li>
       <li className="page-author page3-author" />
       <li className="page-author page2-author" />

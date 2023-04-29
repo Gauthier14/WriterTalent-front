@@ -20,7 +20,6 @@ export function generateMessages(dataType) {
   const message = {};
   switch (dataType) {
     case "login-success":
-      // console.log("Vous êtes à présent connecté !";
       message.text = "Vous êtes à présent connecté !";
       message.class = "success";
       break;
@@ -34,7 +33,7 @@ export function generateMessages(dataType) {
       message.class = "warning";
       break;
     case "login-input-empty":
-      message.text = "Vérifiez que tous les champs sont remplis";
+      message.text = "Vérifiez que tous les champs soient remplis";
       message.class = "warning";
       break;
     case "register-success":
@@ -111,6 +110,38 @@ export function generateMessages(dataType) {
       message.text =
         "Nous n'avons pas pu récupérer vos écrits sauvegardés, problème de connexion au serveur";
       message.class = "warning";
+
+     /* message =
+        "Vérifiez que tous les champs sont remplis et avec les bonnes informations !";
+      break;
+    case "all-authors":
+      message =
+        "La liste des auteurs n'a pas pu être récupérée. Problème de connexion avec L'API ! Si le problème persite rendez-vous sur l'onglet 'Nous contacter' en bas de la page.";
+      break;
+    case "genres":
+      message =
+        "La liste des genres n'a pas pu être récupérée. Problème de connexion avec L'API ! Si le problème persite rendez-vous sur l'onglet 'Nous contacter' en bas de la page.";
+      break;
+    case "univers":
+      message =
+        "La liste des univers n'a pas pu être récupérée. Problème de connexion avec L'API ! Si le problème persite rendez-vous sur l'onglet 'Nous contacter' en bas de la page.";
+      break;
+    case "posts":
+      message =
+        "Nous n'avons pas pu récupérer les écrits, problème de connexion au serveur. Si le problème persite rendez-vous sur l'onglet 'Nous contacter' en bas de la page.";
+      break;
+    case "post":
+      message =
+        "Nous n'avons pas pu récupérer l'écrit, problème de connexion au serveur. Si le problème persite rendez-vous sur l'onglet 'Nous contacter' en bas de la page.";
+      break;
+    case "review-sent":
+      message =
+        "Votre commentaire a été pris en compte. Vous pouvez rafraîchir la page pour la mettre à jour. ";
+      break;
+    case "review-not-sent":
+      message =
+        "Votre commentaire n'a pas été créé, problème de connexion au serveur ! Si le problème persite rendez-vous sur l'onglet 'Nous contacter' en bas de la page."; */
+
       break;
     case "post":
       message.text =
