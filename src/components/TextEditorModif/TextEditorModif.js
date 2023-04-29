@@ -3,22 +3,37 @@
 /* eslint-disable react/jsx-curly-newline */
 /* eslint-disable comma-dangle */
 // import { useState } from "react";
-import { convertToRaw } from "draft-js";
+import { useParams } from "react-router";
+import { useEffect } from "react";
+import { convertFromRaw } from "draft-js";
 import { Editor } from "react-draft-wysiwyg";
-import draftToHtml from "draftjs-to-html";
+// import draftToHtml from "draftjs-to-html";
 import { useDispatch, useSelector } from "react-redux";
 import EditorForm from "../EditorForm/EditorForm";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-import "./TextEditor.scss";
-import { saveNewPost, updateEditor } from "../../actions/editor";
+import "./TextEditorModif.scss";
+import {
+  updateEditor,
+  getEditPostFromApi,
+  updatePost,
+} from "../../actions/editor";
+import { toolbarParams } from "../../selectors/editor";
 
-function TextEditor() {
+function TextEditorModif() {
   const dispatch = useDispatch();
-  // const [editorState, setEditorState] = useState(EditorState.createEmpty());
+  const postToEdit = useSelector((state) => state.editor.postToEdit);
+  const contentState = convertFromRaw(JSON.parse(postToEdit.content));
   const editorState = useSelector((state) => state.editor.editorState);
 
-  const onEditorStateChange = (editorState) => {
-    dispatch(updateEditor(editorState));
+  const { id } = useParams;
+  if (id !== undefined) {
+    useEffect(() => {
+      dispatch(getEditPostFromApi(id));
+    }, []);
+  }
+
+  const onEditorStateChange = (contentState) => {
+    dispatch(updateEditor(contentState));
   };
   return (
     <main className="editor">
@@ -26,44 +41,26 @@ function TextEditor() {
       <Editor
         // toolbarOnFocus
         editorState={editorState}
+        contentState={contentState}
         wrapperClassName="demo-wrapper"
         editorClassName="demo-editor"
-        onEditorStateChange={onEditorStateChange}
-        toolbar={{
-          options: [
-            "inline",
-            "blockType",
-            "fontSize",
-            "fontFamily",
-            "list",
-            "textAlign",
-            "colorPicker",
-            "link",
-            "emoji",
-            "remove",
-            "history",
-          ],
-          inline: { inDropdown: true },
-          list: { inDropdown: true },
-          textAlign: { inDropdown: true },
-          link: { inDropdown: true },
-          history: { inDropdown: false },
-        }}
+        onContentStateChange={onEditorStateChange}
+        toolbar={toolbarParams}
       />
-      <textarea
+      {/* <textarea
         // style={{ display: "none" }}
         disabled
         value={draftToHtml(convertToRaw(editorState.getCurrentContent()))}
-      />
+      /> */}
       <div className="buttons-group">
         <button
           type="button"
           className="editor-button"
           onClick={() => {
             dispatch(
-              saveNewPost(
+              updatePost(
                 // draftToHtml(convertToRaw(editorState.getCurrentContent()))
-                editorState.getCurrentContent()
+                contentState
               )
             );
           }}
@@ -84,4 +81,4 @@ function TextEditor() {
   );
 }
 
-export default TextEditor;
+export default TextEditorModif;

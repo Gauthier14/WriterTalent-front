@@ -12,7 +12,7 @@ import {
 } from "../../actions/menu";
 import MenuItem from "./MenuItem";
 import DropMenuItem from "./DropMenuItem";
-import { manageLocalStorage } from "../../selectors/user";
+import { manageSessionStorage } from "../../selectors/user";
 import WriterButton from "../WriterButton/WriterButton";
 
 function NavMenu() {
@@ -21,7 +21,7 @@ function NavMenu() {
   const genres = useSelector((state) => state.menu.genres);
   const categories = useSelector((state) => state.menu.categories);
   const menuVisibility = useSelector((state) => state.menu.visible);
-  const isLogged = manageLocalStorage("get", "logged");
+  const isLogged = manageSessionStorage("get", "logged");
 
   useEffect(() => {
     dispatch(getGenresFromApi());
@@ -102,10 +102,10 @@ function NavMenu() {
             <Link
               to="/"
               onClick={() => {
-                manageLocalStorage("remove", "token");
-                manageLocalStorage("remove", "user_id");
-                manageLocalStorage("remove", "username");
-                manageLocalStorage("set", "logged", "");
+                manageSessionStorage("remove", "token");
+                manageSessionStorage("remove", "user_id");
+                manageSessionStorage("remove", "username");
+                manageSessionStorage("set", "logged", "");
               }}
             >
               Déconnexion

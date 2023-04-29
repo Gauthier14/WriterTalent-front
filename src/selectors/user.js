@@ -7,15 +7,15 @@
  * @param {String} key item key in localstorage
  * @param {Any} value value which is assign to key in localstorage
  */
-export const manageLocalStorage = (action = null, key, value = null) => {
+export const manageSessionStorage = (action = null, key, value = null) => {
   switch (action) {
     case "set":
-      localStorage.setItem(key, value);
+      sessionStorage.setItem(key, value);
       break;
     case "get":
-      return localStorage.getItem(key);
+      return sessionStorage.getItem(key);
     case "remove":
-      localStorage.removeItem(key);
+      sessionStorage.removeItem(key);
       break;
     default:
       break;

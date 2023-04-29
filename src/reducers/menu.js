@@ -1,11 +1,11 @@
-import { manageLocalStorage } from "../selectors/user";
+import { manageSessionStorage } from "../selectors/user";
 
 /* eslint-disable quotes */
 export const initialState = {
   visible: false,
   genres: [],
   categories: [],
-  logged: manageLocalStorage("get", "logged"),
+  logged: manageSessionStorage("get", "logged"),
 };
 
 const reducer = (state = initialState, action = {}) => {

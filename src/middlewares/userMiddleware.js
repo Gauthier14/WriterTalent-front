@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable comma-dangle */
 /* eslint-disable quotes */
 
@@ -10,13 +11,13 @@ import {
   getUserInfosFromApi,
   setAllAthorsInState,
 } from "../actions/user";
-import { manageLocalStorage } from "../selectors/user";
+import { manageSessionStorage } from "../selectors/user";
 import { setToggleMenu } from "../actions/menu";
-import { generateMessage, showMessage } from "../selectors/message";
+import { showMessages, generateMessages } from "../selectors/message";
 import { setMessageInfosInState } from "../actions/messages";
 
 const userMiddleware = (store) => (next) => (action) => {
-  const token = manageLocalStorage("get", "token");
+  const token = manageSessionStorage("get", "token");
   switch (action.type) {
     case LOGIN_USER:
       axios
@@ -25,33 +26,21 @@ const userMiddleware = (store) => (next) => (action) => {
           password: store.getState().user.password,
         })
         .then((response) => {
-          manageLocalStorage("set", "token", response.data.token);
-          manageLocalStorage("set", "logged", true);
+          manageSessionStorage("set", "token", response.data.token);
+          manageSessionStorage("set", "logged", true);
           store.dispatch(getTextFieldLogin("", "email"));
           store.dispatch(getTextFieldLogin("", "password"));
           store.dispatch(setToggleMenu());
           store.dispatch(
-            setMessageInfosInState(
-              generateMessage("login-success"),
-              "success",
-              response.statusText
-            )
+            setMessageInfosInState(generateMessages("login-success"))
           );
-          showMessage();
           store.dispatch(getUserInfosFromApi());
-          window.setTimeout(() => {
-            window.location.href = "/";
-          }, 5500);
         })
+        // eslint-disable-next-line no-unused-vars
         .catch((error) => {
           store.dispatch(
-            setMessageInfosInState(
-              generateMessage("login-fail"),
-              "warning",
-              error.message
-            )
+            setMessageInfosInState(generateMessages("login-fail"))
           );
-          showMessage(10000);
         });
       break;
     case GET_USER_INFOS_FROM_API:
@@ -63,18 +52,13 @@ const userMiddleware = (store) => (next) => (action) => {
           },
         })
         .then((response) => {
-          manageLocalStorage("set", "user_id", response.data.id);
-          manageLocalStorage("set", "username", response.data.username);
+          manageSessionStorage("set", "user_id", response.data.id);
+          manageSessionStorage("set", "username", response.data.username);
         })
         .catch((error) => {
           store.dispatch(
-            setMessageInfosInState(
-              generateMessage("login-infos"),
-              "warning",
-              error.message
-            )
+            setMessageInfosInState(generateMessages("login-infos"))
           );
-          showMessage(10000);
         });
       break;
     case GET_ALL_AUTHORS:
@@ -85,13 +69,8 @@ const userMiddleware = (store) => (next) => (action) => {
         })
         .catch((error) => {
           store.dispatch(
-            setMessageInfosInState(
-              generateMessage("all-authors"),
-              "warning",
-              error.message
-            )
+            setMessageInfosInState(generateMessages("all-authors"))
           );
-          showMessage(10000);
         });
       break;
     default:

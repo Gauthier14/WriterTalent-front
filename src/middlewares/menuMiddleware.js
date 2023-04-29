@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable comma-dangle */
 /* eslint-disable brace-style */
 import axios from "axios";
@@ -7,8 +8,8 @@ import {
   setCategoriesInState,
   setGenresInState,
 } from "../actions/menu";
+import { showMessages, generateMessages } from "../selectors/message";
 import { setMessageInfosInState } from "../actions/messages";
-import { generateMessage, showMessage } from "../selectors/message";
 
 const menuMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
@@ -19,14 +20,8 @@ const menuMiddleware = (store) => (next) => (action) => {
           store.dispatch(setGenresInState(response.data));
         })
         .catch((error) => {
-          store.dispatch(
-            setMessageInfosInState(
-              generateMessage("genres"),
-              "warning",
-              error.message
-            )
-          );
-          showMessage();
+          store.dispatch(setMessageInfosInState(generateMessages("genres")));
+          showMessages();
         });
       break;
     case GET_CATEGORIES_FROM_API:
@@ -36,14 +31,8 @@ const menuMiddleware = (store) => (next) => (action) => {
           store.dispatch(setCategoriesInState(response.data));
         })
         .catch((error) => {
-          store.dispatch(
-            setMessageInfosInState(
-              generateMessage("univers"),
-              "warning",
-              error.message
-            )
-          );
-          showMessage(10000);
+          store.dispatch(setMessageInfosInState(generateMessages("univers")));
+          showMessages();
         });
       break;
     default:
