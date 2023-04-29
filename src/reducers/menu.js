@@ -11,6 +11,7 @@ export const initialState = {
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
     case "TOGGLE_MENU":
+      console.log(window.innerWidth);
       if (window.innerWidth >= 820) {
         return {
           ...state,
