@@ -26,9 +26,10 @@ import {
 } from "../actions/posts";
 import { showMessages, generateMessages } from "../selectors/message";
 import { setMessageInfosInState } from "../actions/messages";
+import { manageSessionStorage } from "../selectors/user";
 
 const postsMiddleware = (store) => (next) => (action) => {
-  const token = localStorage.getItem("token");
+  const token = manageSessionStorage("get", "token");
   switch (action.type) {
     case GET_ALL_USER_PUBLISHED_POSTS_FROM_API:
       axios

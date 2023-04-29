@@ -1,67 +1,89 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-shadow */
 /* eslint-disable implicit-arrow-linebreak */
 /* eslint-disable react/jsx-curly-newline */
 /* eslint-disable comma-dangle */
 // import { useState } from "react";
 import { useParams } from "react-router";
-import { useEffect } from "react";
-import { convertFromRaw } from "draft-js";
+import { useEffect, useState } from "react";
 import { Editor } from "react-draft-wysiwyg";
-// import draftToHtml from "draftjs-to-html";
+import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
+import { EditorState, convertFromRaw } from "draft-js";
 import EditorForm from "../EditorForm/EditorForm";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import "./TextEditorModif.scss";
 import {
-  updateEditor,
-  getEditPostFromApi,
+  setEditPostLoaded,
   updatePost,
+  setEditPostInState,
+  getEditorSelectedCategories,
+  getEditorFieldsValue,
 } from "../../actions/editor";
-import { toolbarParams } from "../../selectors/editor";
+import { getCategoriesIds, toolbarParams } from "../../selectors/editor";
+import Loader from "../Loader/Loader";
+import { setMessageInfosInState } from "../../actions/messages";
+import { showMessages } from "../../selectors/message";
 
 function TextEditorModif() {
   const dispatch = useDispatch();
+  const loaded = useSelector((state) => state.editor.loaded);
   const postToEdit = useSelector((state) => state.editor.postToEdit);
-  const contentState = convertFromRaw(JSON.parse(postToEdit.content));
-  const editorState = useSelector((state) => state.editor.editorState);
+  const { id } = useParams();
+  const [editorState, setEditorState] = useState(EditorState.createEmpty());
 
-  const { id } = useParams;
-  if (id !== undefined) {
-    useEffect(() => {
-      dispatch(getEditPostFromApi(id));
-    }, []);
-  }
+  useEffect(() => {
+    axios
+      .get(`http://kyllian-g-server.eddi.cloud:8443/api/post/${id}`)
+      .then((response) => {
+        dispatch(setEditPostInState(response.data));
+        dispatch(setEditPostLoaded());
+        const { content } = response.data;
+        const contentState = convertFromRaw(JSON.parse(content));
+        setEditorState(EditorState.createWithContent(contentState));
+        dispatch(getEditorFieldsValue("title", response.data.title));
+        dispatch(getEditorFieldsValue("genre", response.data.genre.id));
+        dispatch(
+          getEditorSelectedCategories(
+            getCategoriesIds(response.data.categories)
+          )
+        );
+      })
+      .catch((error) => {
+        dispatch(setMessageInfosInState("post"));
+        showMessages();
+      });
+  }, []);
 
-  const onEditorStateChange = (contentState) => {
-    dispatch(updateEditor(contentState));
+  const onEditorStateChange = (editorState) => {
+    setEditorState(editorState);
   };
-  return (
+
+  return loaded ? (
     <main className="editor">
       <EditorForm />
       <Editor
         // toolbarOnFocus
         editorState={editorState}
-        contentState={contentState}
         wrapperClassName="demo-wrapper"
         editorClassName="demo-editor"
-        onContentStateChange={onEditorStateChange}
+        onEditorStateChange={onEditorStateChange}
         toolbar={toolbarParams}
       />
       {/* <textarea
-        // style={{ display: "none" }}
-        disabled
-        value={draftToHtml(convertToRaw(editorState.getCurrentContent()))}
-      /> */}
+          // style={{ display: "none" }}
+          disabled
+          value={draftToHtml(convertToRaw(editorState.getCurrentContent()))}
+        /> */}
       <div className="buttons-group">
         <button
           type="button"
           className="editor-button"
           onClick={() => {
             dispatch(
-              updatePost(
-                // draftToHtml(convertToRaw(editorState.getCurrentContent()))
-                contentState
-              )
+              updatePost(postToEdit.id)
+              // draftToHtml(convertToRaw(editorState.getCurrentContent()))
+              // contentState
             );
           }}
         >
@@ -78,6 +100,8 @@ function TextEditorModif() {
         </button>
       </div>
     </main>
+  ) : (
+    <Loader />
   );
 }
 

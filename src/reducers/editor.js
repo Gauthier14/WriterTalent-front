@@ -6,6 +6,7 @@ const defaultState = {
   genre: "",
   categories: [],
   postToEdit: {},
+  loaded: false,
 };
 
 const reducer = (state = defaultState, action = {}) => {
@@ -29,6 +30,11 @@ const reducer = (state = defaultState, action = {}) => {
       return {
         ...state,
         postToEdit: { ...action.newPost },
+      };
+    case "SET_EDIT_POST_LOADED":
+      return {
+        ...state,
+        loaded: true,
       };
     default:
       return state;

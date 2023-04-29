@@ -17,12 +17,12 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         currentPage: action.newPage,
       };
-      case "GET_REVIEW_CONTENT":
-        return {
-          ...state,
-          [action.inputName]: action.textInput,
-        };
-      
+    case "GET_REVIEW_CONTENT":
+      return {
+        ...state,
+        [action.inputName]: action.textInput,
+      };
+
     default:
       return state;
   }

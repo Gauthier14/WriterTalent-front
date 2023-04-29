@@ -36,3 +36,9 @@ export const toolbarParams = {
   link: { inDropdown: true },
   history: { inDropdown: false },
 };
+
+export const getCategoriesIds = (categories) => {
+  const arrayOfCategoriesIds = [];
+  categories.map((category) => arrayOfCategoriesIds.push(category.id));
+  return arrayOfCategoriesIds;
+};

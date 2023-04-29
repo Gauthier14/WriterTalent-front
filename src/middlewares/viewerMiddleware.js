@@ -3,6 +3,7 @@
 /* eslint-disable brace-style */
 
 import axios from "axios";
+import { getReadPostFromApi } from "../actions/posts";
 import { SEND_REVIEW } from "../actions/viewer";
 import { showMessages, generateMessages } from "../selectors/message";
 import { setMessageInfosInState } from "../actions/messages";
@@ -28,11 +29,14 @@ const viewerMiddleware = (store) => (next) => (action) => {
           store.dispatch(
             setMessageInfosInState(generateMessages("review-sent"))
           );
+          showMessages();
+          store.dispatch(getReadPostFromApi(action.postId));
         })
         .catch((error) => {
           store.dispatch(
             setMessageInfosInState(generateMessages("review-not-sent"))
           );
+          showMessages();
         });
       break;
     default:

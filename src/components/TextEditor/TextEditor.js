@@ -5,7 +5,7 @@
 // import { useState } from "react";
 import { convertToRaw } from "draft-js";
 import { Editor } from "react-draft-wysiwyg";
-import draftToHtml from "draftjs-to-html";
+
 import { useDispatch, useSelector } from "react-redux";
 import EditorForm from "../EditorForm/EditorForm";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
@@ -16,7 +16,6 @@ function TextEditor() {
   const dispatch = useDispatch();
   // const [editorState, setEditorState] = useState(EditorState.createEmpty());
   const editorState = useSelector((state) => state.editor.editorState);
-
   const onEditorStateChange = (editorState) => {
     dispatch(updateEditor(editorState));
   };
@@ -29,6 +28,7 @@ function TextEditor() {
         wrapperClassName="demo-wrapper"
         editorClassName="demo-editor"
         onEditorStateChange={onEditorStateChange}
+        editorStyle={{ lineHeight: "75%" }}
         toolbar={{
           options: [
             "inline",
@@ -49,11 +49,6 @@ function TextEditor() {
           link: { inDropdown: true },
           history: { inDropdown: false },
         }}
-      />
-      <textarea
-        // style={{ display: "none" }}
-        disabled
-        value={draftToHtml(convertToRaw(editorState.getCurrentContent()))}
       />
       <div className="buttons-group">
         <button
