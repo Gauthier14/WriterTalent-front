@@ -40,7 +40,7 @@ function ProfileFavorites() {
                   </span>
                   <span className="nbLikes">
                     <BsEyeFill />
-                    {post.nbViews}
+                    {post.nbLikes}
                   </span>
                 </div>
                 <span className="genre" key={post.genre.id}>

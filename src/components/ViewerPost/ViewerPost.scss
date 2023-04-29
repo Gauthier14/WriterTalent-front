@@ -1,4 +1,4 @@
-@import "src/styles/vars";
+@import "src/styles/_vars.scss";
 
 .viewer-body {
   display: block;
@@ -19,7 +19,7 @@
   -ms-user-select: none; /*Internet Explorer, Edge*/
   user-select: none; /*Navigateurs KHTML(Konqueror)*/
   .viewer-header {
-    color: #fff;
+    color: $text-light-color;
     background-color: #000;
     display: flex;
     justify-content: space-between;
@@ -51,7 +51,7 @@
     }
   }
   .toggle-menu:hover {
-    color: #fff;
+    color: $text-light-color;
     font-size: 2em;
   }
   .toggle-menu:before {
@@ -166,7 +166,7 @@
   h2 {
     width: fit-content;
     background-color: #000;
-    color: #fff;
+    color: $text-light-color;
     border-radius: 0.3em;
     padding: 0.5em;
   }
@@ -183,7 +183,7 @@
       h3 {
         width: fit-content;
         background-color: #000;
-        color: #fff;
+        color: $text-light-color;
         border-radius: 0.3em;
         padding: 0.2em 0.5em;
         margin-right: $md-margin-all;
