@@ -7,7 +7,7 @@
 
 import { Routes, Route, useLocation, Navigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { BsArrowBarUp } from "react-icons/bs";
+
 import { useEffect } from "react";
 import Header from "../Header/Header";
 import Home from "../Home/Home";
@@ -33,7 +33,7 @@ import ProfileFavorites from "../ProfileFavorites/ProfileFavorites";
 import ReadLaterPosts from "../ReadLaterPosts/ReadLaterPosts";
 import UserConnexion from "../UserConnexion/UserConnexion";
 import { manageSessionStorage } from "../../selectors/user";
-
+import { scrollToTop } from "../../selectors/pages";
 import Message from "../Message/Message";
 
 function App() {
@@ -46,9 +46,6 @@ function App() {
       "Votre compte a été créé avec succès, vous allez être redirigé vers la page de connexion"
   );
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
   useEffect(() => {
     scrollToTop();
   }, [pathname]);
@@ -116,12 +113,6 @@ function App() {
       </Routes>
 
       <Footer />
-      <BsArrowBarUp
-        className="scroll-button"
-        onClick={() => {
-          scrollToTop();
-        }}
-      />
     </div>
   );
 }

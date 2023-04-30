@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import "./BookElement.scss";
 import { BsFillHandThumbsUpFill, BsEyeFill } from "react-icons/bs";
 import Button from "../Button/Button";
+import { convertDraftToHtml, convertHtmlToText } from "../../selectors/viewer";
 
 function BookElement({
   title,
@@ -14,7 +15,11 @@ function BookElement({
   categories,
   content,
 }) {
-  const extract = `${content.slice(0, 200)} ...`;
+  const extract = "";
+  /* if (content !== undefined) {
+    extract = convertHtmlToText(convertDraftToHtml(content)).slice(0, 200);
+    console.log(extract);
+  } */
   return (
     <div className="book-post">
       <p className="extract">{extract}</p>

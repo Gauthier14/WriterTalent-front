@@ -48,7 +48,7 @@ export const renderedContent = (content, wordsPerPage, currentPage) => {
   return pageWords.join(" ");
 };
 
-export const convertDraftToLexical = (draftJsonObject) => {
+export const convertDraftToHtml = (draftJsonObject) => {
   const htmlContent = draftToHtml(JSON.parse(draftJsonObject));
   return <div dangerouslySetInnerHTML={{ __html: htmlContent }} />;
   /* import {
@@ -57,3 +57,5 @@ export const convertDraftToLexical = (draftJsonObject) => {
   const blocks = convertToRaw(editorState.getCurrentContent()).blocks;
   const value = blocks.map(block => (!block.text.trim() && '\n') || block.text).join('\n'); */
 };
+
+export const convertHtmlToText = (htmlCode) => htmlCode.textContent;

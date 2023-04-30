@@ -3,9 +3,7 @@
 /* eslint-disable react/jsx-curly-newline */
 /* eslint-disable comma-dangle */
 // import { useState } from "react";
-import { convertToRaw } from "draft-js";
 import { Editor } from "react-draft-wysiwyg";
-
 import { useDispatch, useSelector } from "react-redux";
 import EditorForm from "../EditorForm/EditorForm";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
@@ -28,7 +26,6 @@ function TextEditor() {
         wrapperClassName="demo-wrapper"
         editorClassName="demo-editor"
         onEditorStateChange={onEditorStateChange}
-        editorStyle={{ lineHeight: "75%" }}
         toolbar={{
           options: [
             "inline",

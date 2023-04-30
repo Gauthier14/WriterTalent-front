@@ -21,41 +21,48 @@ function ProfileFavorites() {
   return (
     <section className="favorites-scripts">
       <h1>Mes coups de coeur</h1>
-      <div className="all-favorites-scripts">
-        <div className="my-favorites-scripts">
-          <BsBalloonHeartFill size={40} />
-          <ul>
-            {favoritePosts.map((post) => (
-              <li>
-                <ImCross className="delete-btn" size={30} />
-                <Link to={`/post/read/${post.id}`}>
-                  <h3>
-                    {post.title} <FcReading size={30} />
-                  </h3>
-                </Link>
-                <div className="views-likes">
-                  <span className="nbViews">
-                    <BsFillHandThumbsUpFill />
-                    {post.nbViews}
+      {favoritePosts.length > 0 ? (
+        <div className="all-favorites-scripts">
+          <div className="my-favorites-scripts">
+            <BsBalloonHeartFill size={40} />
+            <ul>
+              {favoritePosts.map((post) => (
+                <li key={post.id}>
+                  <div className="delete-btn">
+                    <span className="delete-text">Supprimer</span>
+                    <ImCross className="delete-icon" size={30} />
+                  </div>
+                  <Link to={`/post/read/${post.id}`}>
+                    <h3>
+                      {post.title} <FcReading size={30} />
+                    </h3>
+                  </Link>
+                  <div className="views-likes">
+                    <span className="nbViews">
+                      <BsFillHandThumbsUpFill />
+                      {post.nbViews}
+                    </span>
+                    <span className="nbLikes">
+                      <BsEyeFill />
+                      {post.nbLikes}
+                    </span>
+                  </div>
+                  <span className="genre" key={post.genre.id}>
+                    {post.genre.name}
                   </span>
-                  <span className="nbLikes">
-                    <BsEyeFill />
-                    {post.nbLikes}
-                  </span>
-                </div>
-                <span className="genre" key={post.genre.id}>
-                  {post.genre.name}
-                </span>
-                {post.categories.map((category) => (
-                  <span className="category" key={category.id}>
-                    {category.name}
-                  </span>
-                ))}
-              </li>
-            ))}
-          </ul>
+                  {post.categories.map((category) => (
+                    <span className="category" key={category.id}>
+                      {category.name}
+                    </span>
+                  ))}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
-      </div>
+      ) : (
+        <p>Vous n'avez pas de favoris</p>
+      )}
     </section>
   );
 }

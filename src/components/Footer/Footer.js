@@ -1,5 +1,7 @@
+import { BsArrowBarUp } from "react-icons/bs";
 import Button from "../Button/Button";
 import "./Footer.scss";
+import { scrollToTop } from "../../selectors/pages";
 
 function Footer() {
   return (
@@ -21,6 +23,12 @@ function Footer() {
         link="/nous-contacter"
         bgColor="rgba(255, 255, 255, 0.466)"
         color="#000"
+      />
+      <BsArrowBarUp
+        className="scroll-button"
+        onClick={() => {
+          scrollToTop();
+        }}
       />
     </footer>
   );

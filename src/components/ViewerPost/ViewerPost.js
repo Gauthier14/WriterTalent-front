@@ -1,3 +1,6 @@
+/* eslint-disable react/jsx-curly-newline */
+/* eslint-disable brace-style */
+/* eslint-disable implicit-arrow-linebreak */
 /* eslint-disable object-curly-newline */
 /* eslint-disable comma-dangle */
 /* eslint-disable operator-linebreak */
@@ -17,13 +20,11 @@ import {
   setToggleViewerMenu,
 } from "../../actions/viewer";
 import { getReadPostFromApi } from "../../actions/posts";
-import Button from "../Button/Button";
 import Loader from "../Loader/Loader";
-import {
-  convertDraftToLexical,
-  convertStringDate,
-  renderedContent,
-} from "../../selectors/viewer";
+import { convertDraftToHtml, convertStringDate } from "../../selectors/viewer";
+import { setMessageInfosInState } from "../../actions/messages";
+import { generateMessages, showMessages } from "../../selectors/message";
+import { manageSessionStorage } from "../../selectors/user";
 
 function ViewerPost() {
   const dispatch = useDispatch();
@@ -32,6 +33,7 @@ function ViewerPost() {
   const reviewText = useSelector((state) => state.viewer.reviewContent);
   const postToRead = useSelector((state) => state.posts.postToRead);
   const loaded = useSelector((state) => state.posts.loaded);
+  const isLogged = Boolean(manageSessionStorage("get", "logged"));
   const {
     title,
     nbLikes,
@@ -51,7 +53,7 @@ function ViewerPost() {
     dispatch(changePage(pageNumber));
   };
   if (loaded) {
-    convertDraftToLexical(content);
+    convertDraftToHtml(content);
   }
   const words = content.split(" ");
   const wordsPerPage = 200;
@@ -87,8 +89,8 @@ function ViewerPost() {
           </nav>
         </aside>
         <section className={!isVisible ? "main" : "main main-toggled"}>
-          {/* renderedContent(convertDraftToLexical(content), 200, currentPage) */}
-          {convertDraftToLexical(content)}
+          {/* renderedContent(convertDraftToHtml(content), 200, currentPage) */}
+          {convertDraftToHtml(content)}
         </section>
       </main>
 
@@ -124,29 +126,39 @@ function ViewerPost() {
           <p>Soyez le premier à donner votre avis sur cet écrit !!</p>
         )}
       </section>
-
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          dispatch(sendReview(postId));
-        }}
-        className="new-review"
-      >
-        <fieldset>
-          <legend>Mon Commentaire</legend>
-          <textarea
-            name="review-text"
-            id="review-text"
-            maxLength="500"
-            value={reviewText}
-            onChange={(event) =>
-              dispatch(getReviewContent(event.target.value, "reviewContent"))
+      {isLogged ? (
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            if (reviewText !== "") {
+              dispatch(sendReview(postId));
+            } else {
+              dispatch(
+                setMessageInfosInState(generateMessages("review-content-empty"))
+              );
+              showMessages();
             }
-            placeholder="500 caractères max"
-          />
-        </fieldset>
-        <input type="submit" value="Publier" />
-      </form>
+          }}
+          className="new-review"
+        >
+          <fieldset>
+            <legend>Mon Commentaire</legend>
+            <textarea
+              name="review-text"
+              id="review-text"
+              maxLength="500"
+              value={reviewText}
+              onChange={(event) =>
+                dispatch(getReviewContent(event.target.value, "reviewContent"))
+              }
+              placeholder="500 caractères max"
+            />
+          </fieldset>
+          <input type="submit" value="Publier" />
+        </form>
+      ) : (
+        <p>Veuillez vous connecter pour écrire un commentaire</p>
+      )}
     </>
   ) : (
     <Loader />

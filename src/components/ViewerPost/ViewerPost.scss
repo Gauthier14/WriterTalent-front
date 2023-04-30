@@ -9,7 +9,7 @@
   line-height: 1.5;
   flex-grow: 1;
   box-sizing: border-box;
- overflow-y: hidden;
+  overflow-y: hidden;
   padding: 0;
   border-radius: 0.8em;
   // prevent copying and pasting
@@ -144,18 +144,19 @@
     }
   }
 }
-.post-infos{&>*:nth-child(2){
-  position: absolute;
-}
-  span{
+.post-infos {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  span {
     display: flex;
     justify-content: center;
     align-items: center;
   }
-  .read-later-container{
+  .read-later-container {
     position: relative;
     padding: $sm-padding-all;
-    &>*:nth-child(2){
+    & > *:nth-child(2) {
       position: absolute;
     }
   }

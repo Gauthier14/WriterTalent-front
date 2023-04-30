@@ -21,3 +21,5 @@ export const manageSessionStorage = (action = null, key, value = null) => {
       break;
   }
 };
+
+export const checkLoginStatus = (logStatus) => Boolean(logStatus);

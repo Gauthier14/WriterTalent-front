@@ -19,28 +19,39 @@ import {
   setEditPostInState,
   getEditorSelectedCategories,
   getEditorFieldsValue,
+  updateEditor,
+  askForPublication,
 } from "../../actions/editor";
 import { getCategoriesIds, toolbarParams } from "../../selectors/editor";
 import Loader from "../Loader/Loader";
 import { setMessageInfosInState } from "../../actions/messages";
-import { showMessages } from "../../selectors/message";
+import { showMessages, generateMessages } from "../../selectors/message";
+import { manageSessionStorage } from "../../selectors/user";
 
 function TextEditorModif() {
   const dispatch = useDispatch();
   const loaded = useSelector((state) => state.editor.loaded);
-  const postToEdit = useSelector((state) => state.editor.postToEdit);
+  const editorState = useSelector((state) => state.editor.editorState);
   const { id } = useParams();
-  const [editorState, setEditorState] = useState(EditorState.createEmpty());
+  // const [editorState, setEditorState] = useState(EditorState.createEmpty());
 
   useEffect(() => {
+    console.log(id);
+
+    const token = manageSessionStorage("get", "token");
     axios
-      .get(`http://kyllian-g-server.eddi.cloud:8443/api/post/${id}`)
+      .get(`http://localhost:8000/api/post/awaiting/${id}`, {
+        headers: {
+          // nom du header: valeur
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then((response) => {
-        dispatch(setEditPostInState(response.data));
-        dispatch(setEditPostLoaded());
         const { content } = response.data;
         const contentState = convertFromRaw(JSON.parse(content));
-        setEditorState(EditorState.createWithContent(contentState));
+        dispatch(updateEditor(EditorState.createWithContent(contentState)));
+        dispatch(setEditPostInState(response.data));
+        dispatch(setEditPostLoaded());
         dispatch(getEditorFieldsValue("title", response.data.title));
         dispatch(getEditorFieldsValue("genre", response.data.genre.id));
         dispatch(
@@ -50,13 +61,14 @@ function TextEditorModif() {
         );
       })
       .catch((error) => {
-        dispatch(setMessageInfosInState("post"));
+        console.log(error);
+        dispatch(setMessageInfosInState(generateMessages("post")));
         showMessages();
       });
   }, []);
 
   const onEditorStateChange = (editorState) => {
-    setEditorState(editorState);
+    dispatch(updateEditor(editorState));
   };
 
   return loaded ? (
@@ -81,7 +93,7 @@ function TextEditorModif() {
           className="editor-button"
           onClick={() => {
             dispatch(
-              updatePost(postToEdit.id)
+              updatePost(id)
               // draftToHtml(convertToRaw(editorState.getCurrentContent()))
               // contentState
             );
@@ -93,7 +105,7 @@ function TextEditorModif() {
           type="button"
           className="editor-button"
           onClick={() => {
-            dispatch();
+            dispatch(askForPublication(id));
           }}
         >
           Demande de publication

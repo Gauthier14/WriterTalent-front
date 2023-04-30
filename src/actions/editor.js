@@ -8,6 +8,7 @@ export const GET_EDITOR_SELECTED_CATEGORIES = "GET_EDITOR_SELECTED_CATEGORIES";
 export const UPDATE_EDITOR_STATE = "UPDATE_EDITOR_STATE";
 export const SAVE_NEW_POST = "SAVE_NEW_POST";
 export const UPDATE_POST = "UPDATE_POST";
+export const ASK_FOR_PUBLICATION = "ASK_FOR_PUBLICATION";
 export const SET_EDIT_POST_LOADED = "SET_EDIT_POST_LOADED";
 export const GET_EDIT_POST_FROM_API = "GET_EDIT_POST_FROM_API";
 export const SET_EDIT_POST_IN_STATE = "SET_EDIT_POST_IN_STATE";
@@ -34,6 +35,13 @@ export const getEditorSelectedCategories = (selectedCategories) => ({
 export const updateEditor = (editorState) => ({
   type: UPDATE_EDITOR_STATE,
   editorState: editorState,
+});
+/**
+ * @param {Array} Posts - List of posts from one category
+ */
+export const askForPublication = (postId) => ({
+  type: ASK_FOR_PUBLICATION,
+  postId: postId,
 });
 /**
  * @param {Array} Posts - List of posts from one category

@@ -1,6 +1,7 @@
 /* eslint-disable operator-linebreak */
 /* eslint-disable comma-dangle */
 /* eslint-disable quotes */
+
 /**
  * @param {Number} Delay - Delay to show messages
  */
@@ -23,6 +24,11 @@ export function generateMessages(dataType) {
       message.text = "Vous êtes à présent connecté !";
       message.class = "success";
       break;
+    case "user-disconnected":
+      message.text =
+        "Le temps de la session de connexion est écoulé, veuillez vous reconnecter !";
+      message.class = "warning";
+      break;
     case "login-fail":
       message.text = "Connexion impossible, veuillez réessayer !";
       message.class = "warning";
@@ -34,6 +40,10 @@ export function generateMessages(dataType) {
       break;
     case "login-input-empty":
       message.text = "Vérifiez que tous les champs soient remplis";
+      message.class = "warning";
+      break;
+    case "review-content-empty":
+      message.text = "Votre commentaire est vide";
       message.class = "warning";
       break;
     case "register-success":

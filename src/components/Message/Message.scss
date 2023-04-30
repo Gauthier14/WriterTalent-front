@@ -17,6 +17,13 @@
     @media screen and (min-width: 820px) {
       font-size: $fsz-text-desktop;
     }
+    span {
+      background-color: #ffffffc9;
+      border-radius: $radius-btn;
+      margin-bottom: $md-margin-all;
+      display: inline-block;
+      padding: $sm-padding-all;
+    }
   }
 
   .success {

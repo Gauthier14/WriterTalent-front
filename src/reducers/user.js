@@ -1,4 +1,5 @@
 /* eslint-disable quotes */
+import { manageSessionStorage } from "../selectors/user";
 
 export const initialState = {
   email: "",
@@ -18,6 +19,12 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         authors: action.authorList,
       };
+    case "LOGOUT":
+      manageSessionStorage("remove", "token");
+      manageSessionStorage("remove", "user_id");
+      manageSessionStorage("remove", "username");
+      manageSessionStorage("set", "logged", "");
+      return state;
     default:
       return state;
   }

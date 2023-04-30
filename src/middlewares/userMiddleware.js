@@ -10,6 +10,7 @@ import {
   getTextFieldLogin,
   getUserInfosFromApi,
   setAllAthorsInState,
+  logout,
 } from "../actions/user";
 import { manageSessionStorage } from "../selectors/user";
 import { showMessages, generateMessages } from "../selectors/message";
@@ -20,7 +21,7 @@ const userMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
     case LOGIN_USER:
       axios
-        .post("http://kyllian-g-server.eddi.cloud:8443/api/login_check", {
+        .post("http://localhost:8000/api/login_check", {
           username: store.getState().user.email,
           password: store.getState().user.password,
         })
@@ -45,7 +46,7 @@ const userMiddleware = (store) => (next) => (action) => {
       break;
     case GET_USER_INFOS_FROM_API:
       axios
-        .get("http://kyllian-g-server.eddi.cloud:8443/api/user/get", {
+        .get("http://localhost:8000/api/user/get", {
           headers: {
             // nom du header: valeur
             Authorization: `Bearer ${token}`,
@@ -54,6 +55,14 @@ const userMiddleware = (store) => (next) => (action) => {
         .then((response) => {
           manageSessionStorage("set", "user_id", response.data.id);
           manageSessionStorage("set", "username", response.data.username);
+          const autoDeconnection = window.setTimeout(() => {
+            store.dispatch(logout());
+            store.dispatch(
+              setMessageInfosInState(generateMessages("user-disconnect"))
+            );
+            showMessages();
+          }, 10000);
+          autoDeconnection();
         })
         .catch((error) => {
           store.dispatch(
@@ -64,7 +73,7 @@ const userMiddleware = (store) => (next) => (action) => {
       break;
     case GET_ALL_AUTHORS:
       axios
-        .get("http://kyllian-g-server.eddi.cloud:8443/api/users/authors")
+        .get("http://localhost:8000/api/users/authors")
         .then((response) => {
           store.dispatch(setAllAthorsInState(response.data));
         })
