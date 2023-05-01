@@ -25,11 +25,8 @@ import {
   setAllMostLikedPostsInState,
   setReadPostInState,
   setPostLoaded,
-
   setRandomPostInState,
-
   setNumberOfPublishedPostsAuthorInState,
-
 } from "../actions/posts";
 import { showMessages, generateMessages } from "../selectors/message";
 import { setMessageInfosInState } from "../actions/messages";
@@ -41,7 +38,7 @@ const postsMiddleware = (store) => (next) => (action) => {
     case GET_ALL_USER_PUBLISHED_POSTS_FROM_API:
       axios
 
-        .get(`http://kyllian-g-server.eddi.cloud:8443/user/${action.userId}/posts/published`)
+        .get(`http://localhost:8000/user/${action.userId}/posts/published`)
 
         .then((response) => {
           console.log(response);
@@ -57,7 +54,7 @@ const postsMiddleware = (store) => (next) => (action) => {
       break;
     case GET_ALL_READ_LATER_USER_POSTS_FROM_API:
       axios
-        .get(`http://kyllian-g-server.eddi.cloud:8443/user/toread`, {
+        .get(`http://localhost:8000/user/toread`, {
           headers: {
             // nom du header: valeur
             Authorization: `Bearer ${token}`,
@@ -77,7 +74,7 @@ const postsMiddleware = (store) => (next) => (action) => {
       break;
     case GET_ALL_SAVED_USER_POSTS_FROM_API:
       axios
-        .get(`http://kyllian-g-server.eddi.cloud:8443/user/posts/saved`, {
+        .get(`http://localhost:8000/user/posts/saved`, {
           headers: {
             // nom du header: valeur
             Authorization: `Bearer ${token}`,
@@ -98,7 +95,7 @@ const postsMiddleware = (store) => (next) => (action) => {
 
     case GET_RECENT_POSTS_FROM_API:
       axios
-        .get("http://kyllian-g-server.eddi.cloud:8443/posts/recent")
+        .get("http://localhost:8000/posts/recent")
         .then((response) => {
           console.log(response);
           store.dispatch(setRecentPostsInState(response.data));
@@ -114,7 +111,7 @@ const postsMiddleware = (store) => (next) => (action) => {
 
     case GET_ALL_FAVORITE_USER_POSTS_FROM_API:
       axios
-        .get(`http://kyllian-g-server.eddi.cloud:8443/user/favorites`, {
+        .get(`http://localhost:8000/user/favorites`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -134,7 +131,7 @@ const postsMiddleware = (store) => (next) => (action) => {
     case GET_ALL_AWAITING_USER_POSTS_FROM_API:
       axios
 
-        .get(`http://kyllian-g-server.eddi.cloud:8443/user/posts/awaiting`, {
+        .get(`http://localhost:8000/user/posts/awaiting`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -156,7 +153,7 @@ const postsMiddleware = (store) => (next) => (action) => {
     case GET_ALL_POSTS_PER_CATEGORY_OR_GENRE_FROM_API:
       axios
 
-        .get(`http://kyllian-g-server.eddi.cloud:8443/${action.param}/${action.id}/posts`)
+        .get(`http://localhost:8000/${action.param}/${action.id}/posts`)
 
         .then((response) => {
           console.log(response);
@@ -174,7 +171,7 @@ const postsMiddleware = (store) => (next) => (action) => {
       break;
     case GET_ALL_MOST_LIKED_POSTS_FROM_API:
       axios
-        .get(`http://kyllian-g-server.eddi.cloud:8443/posts-most-liked`)
+        .get(`http://localhost:8000/posts-most-liked`)
         .then((response) => {
           console.log(response);
           store.dispatch(setAllMostLikedPostsInState(response.data));
@@ -189,7 +186,7 @@ const postsMiddleware = (store) => (next) => (action) => {
       break;
     case GET_READ_POST_FROM_API:
       axios
-        .get(`http://kyllian-g-server.eddi.cloud:8443/post/${action.postId}`)
+        .get(`http://localhost:8000/post/${action.postId}`)
         .then((response) => {
           console.log(response);
           store.dispatch(setReadPostInState(response.data));
@@ -216,16 +213,22 @@ const postsMiddleware = (store) => (next) => (action) => {
           showMessages();
         });
 
-
-      case GET_NUMBER_OF_PUBLISHED_POSTS_AUTHOR:
+    case GET_NUMBER_OF_PUBLISHED_POSTS_AUTHOR:
       axios
-        .get(`http://kyllian-g-server.eddi.cloud:8443/api/user/${action.authorId}/nb-published-posts`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        })
+        .get(
+          `http://localhost:8000/api/user/${action.authorId}/nb-published-posts`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        )
         .then((response) => {
-          store.dispatch(setNumberOfPublishedPostsAuthorInState(response.data.nbPublishedPosts));
+          store.dispatch(
+            setNumberOfPublishedPostsAuthorInState(
+              response.data.nbPublishedPosts
+            )
+          );
         })
         .catch((error) => {
           console.log(error);
