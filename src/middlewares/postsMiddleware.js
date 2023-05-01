@@ -11,6 +11,7 @@ import {
   GET_ALL_POSTS_PER_CATEGORY_OR_GENRE_FROM_API,
   GET_ALL_MOST_LIKED_POSTS_FROM_API,
   GET_READ_POST_FROM_API,
+  GET_RANDOM_POST_FROM_API,
   GET_ALL_AWAITING_USER_POSTS_FROM_API,
   GET_NUMBER_OF_PUBLISHED_POSTS_AUTHOR,
   setAllPostsPerCategoryInState,
@@ -24,7 +25,11 @@ import {
   setAllMostLikedPostsInState,
   setReadPostInState,
   setPostLoaded,
+
+  setRandomPostInState,
+
   setNumberOfPublishedPostsAuthorInState,
+
 } from "../actions/posts";
 import { showMessages, generateMessages } from "../selectors/message";
 import { setMessageInfosInState } from "../actions/messages";
@@ -196,6 +201,20 @@ const postsMiddleware = (store) => (next) => (action) => {
           showMessages();
         });
       break;
+
+    case GET_RANDOM_POST_FROM_API:
+      axios
+        .get(`http://localhost:8000/api/post-random`)
+        .then((response) => {
+          console.log(response);
+          store.dispatch(setRandomPostInState(response.data));
+          store.dispatch(setPostLoaded());
+        })
+        .catch((error) => {
+          console.log(error);
+          store.dispatch(setMessageInfosInState(generateMessages("post")));
+          showMessages();
+        });
 
 
       case GET_NUMBER_OF_PUBLISHED_POSTS_AUTHOR:

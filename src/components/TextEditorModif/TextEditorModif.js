@@ -23,7 +23,7 @@ import {
   askForPublication,
 } from "../../actions/editor";
 import { getCategoriesIds, toolbarParams } from "../../selectors/editor";
-import Loader from "../Loader/Loader";
+import NewLoader from "../NewLoader/NewLoader";
 import { setMessageInfosInState } from "../../actions/messages";
 import { showMessages, generateMessages } from "../../selectors/message";
 import { manageSessionStorage } from "../../selectors/user";
@@ -58,8 +58,7 @@ function TextEditorModif() {
           )
         );
       })
-      .then((response) => {
-        console.log(response);
+      .then((error) => {
         console.log(error);
         dispatch(setMessageInfosInState(generateMessages("post")));
         showMessages();
@@ -112,7 +111,7 @@ function TextEditorModif() {
       </div>
     </main>
   ) : (
-    <Loader />
+    <NewLoader />
   );
 }
 

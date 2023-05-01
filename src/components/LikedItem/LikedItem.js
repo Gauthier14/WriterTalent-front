@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 const LikedItem = ({ id, title, genre, categories, nbLikes }) => (
   <li>
-    <Link to={`/post/${id}`}>
+    <Link to={`/post/read/${id}`}>
       <h3>{title}</h3>
     </Link>
     <p>
