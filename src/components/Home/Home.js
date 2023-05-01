@@ -6,14 +6,21 @@ import Button from "../Button/Button";
 import LikedItem from "../LikedItem/LikedItem";
 // import ButtonGoWriter from "../ButtonGoWriter/ButtonGoWriter";
 import "./Home.scss";
-import { getAllMostLikedPostsFromApi } from "../../actions/posts";
+import {
+  getAllMostLikedPostsFromApi,
+  getRandomPostFromApi,
+} from "../../actions/posts";
 
 function Home() {
   const dispatch = useDispatch();
   const mostLikedPosts = useSelector((state) => state.posts.mostLikedPosts);
   const likedPosts = mostLikedPosts.filter((post, index) => index < 3);
+  const randomPost = useSelector((state) => state.posts.randomPost);
   useEffect(() => {
     dispatch(getAllMostLikedPostsFromApi());
+  }, []);
+  useEffect(() => {
+    dispatch(getRandomPostFromApi());
   }, []);
   useEffect(() => {});
   return (
@@ -54,7 +61,7 @@ function Home() {
           <div className="bestRead">
             <Button
               label="Surprenez-moi !"
-              // link={`/post/read/${randomPostId}`}
+              link={`/post/read/${randomPost.id}`}
             />
             <h2>Les plus aimés</h2>
           </div>
