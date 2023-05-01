@@ -34,7 +34,7 @@ const postsMiddleware = (store) => (next) => (action) => {
     case GET_ALL_USER_PUBLISHED_POSTS_FROM_API:
       axios
 
-        .get(`http://localhost:8000/api/user/${action.userId}/posts/published`)
+        .get(`http://kyllian-g-server.eddi.cloud:8443/user/${action.userId}/posts/published`)
 
         .then((response) => {
           console.log(response);
@@ -50,7 +50,7 @@ const postsMiddleware = (store) => (next) => (action) => {
       break;
     case GET_ALL_READ_LATER_USER_POSTS_FROM_API:
       axios
-        .get(`http://localhost:8000/api/user/toread`, {
+        .get(`http://kyllian-g-server.eddi.cloud:8443/user/toread`, {
           headers: {
             // nom du header: valeur
             Authorization: `Bearer ${token}`,
@@ -70,7 +70,7 @@ const postsMiddleware = (store) => (next) => (action) => {
       break;
     case GET_ALL_SAVED_USER_POSTS_FROM_API:
       axios
-        .get(`http://localhost:8000/api/user/posts/saved`, {
+        .get(`http://kyllian-g-server.eddi.cloud:8443/user/posts/saved`, {
           headers: {
             // nom du header: valeur
             Authorization: `Bearer ${token}`,
@@ -91,7 +91,7 @@ const postsMiddleware = (store) => (next) => (action) => {
 
     case GET_RECENT_POSTS_FROM_API:
       axios
-        .get("http://localhost:8000/api/posts/recent")
+        .get("http://kyllian-g-server.eddi.cloud:8443/posts/recent")
         .then((response) => {
           console.log(response);
           store.dispatch(setRecentPostsInState(response.data));
@@ -107,7 +107,7 @@ const postsMiddleware = (store) => (next) => (action) => {
 
     case GET_ALL_FAVORITE_USER_POSTS_FROM_API:
       axios
-        .get(`http://localhost:8000/api/user/favorites`, {
+        .get(`http://kyllian-g-server.eddi.cloud:8443/user/favorites`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -127,7 +127,7 @@ const postsMiddleware = (store) => (next) => (action) => {
     case GET_ALL_AWAITING_USER_POSTS_FROM_API:
       axios
 
-        .get(`http://localhost:8000/api/user/posts/awaiting`, {
+        .get(`http://kyllian-g-server.eddi.cloud:8443/user/posts/awaiting`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -149,7 +149,7 @@ const postsMiddleware = (store) => (next) => (action) => {
     case GET_ALL_POSTS_PER_CATEGORY_OR_GENRE_FROM_API:
       axios
 
-        .get(`http://localhost:8000/api/${action.param}/${action.id}/posts`)
+        .get(`http://kyllian-g-server.eddi.cloud:8443/${action.param}/${action.id}/posts`)
 
         .then((response) => {
           console.log(response);
@@ -167,7 +167,7 @@ const postsMiddleware = (store) => (next) => (action) => {
       break;
     case GET_ALL_MOST_LIKED_POSTS_FROM_API:
       axios
-        .get(`http://localhost:8000/api/posts-most-liked`)
+        .get(`http://kyllian-g-server.eddi.cloud:8443/posts-most-liked`)
         .then((response) => {
           console.log(response);
           store.dispatch(setAllMostLikedPostsInState(response.data));
@@ -182,7 +182,7 @@ const postsMiddleware = (store) => (next) => (action) => {
       break;
     case GET_READ_POST_FROM_API:
       axios
-        .get(`http://localhost:8000/api/post/${action.postId}`)
+        .get(`http://kyllian-g-server.eddi.cloud:8443/post/${action.postId}`)
         .then((response) => {
           console.log(response);
           store.dispatch(setReadPostInState(response.data));
