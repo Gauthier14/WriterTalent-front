@@ -13,6 +13,7 @@
     height: fit-content;
     .title {
       display: flex;
+      margin-bottom: 1em;
       input {
         flex-grow: 1;
         margin-left: 1em;
@@ -20,6 +21,7 @@
       }
     }
     #standard-select {
+      font-size: 1em;
       width: 100%;
       margin: 1em 0;
     }
@@ -37,18 +39,24 @@
         width: 100%;
         margin-right: $md-margin-all;
         height: 100%;
+        font-size: 1em;
+        
       }
     }
   }
+  .span-info {
+    font-size: 0.6em;
+  }
   .select {
     width: 100%;
+    font-size: 1em;
   }
   & > * {
     border-radius: 0.3em;
     select {
       // A reset of styles, including removing the default dropdown arrow
       appearance: none;
-      background-color: transparent;
+      background-color: rgba(241, 220, 126, 0.466);
       border: none;
       padding: 0 1em 0 0;
       margin: 0;

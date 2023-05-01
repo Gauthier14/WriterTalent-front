@@ -29,7 +29,6 @@ function ProfileFavorites() {
               {favoritePosts.map((post) => (
                 <li key={post.id}>
                   <div className="delete-btn">
-                    <span className="delete-text">Supprimer</span>
                     <ImCross className="delete-icon" size={30} />
                   </div>
                   <Link to={`/post/read/${post.id}`}>
