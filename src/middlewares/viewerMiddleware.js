@@ -110,7 +110,7 @@ const viewerMiddleware = (store) => (next) => (action) => {
       break;
     case ADD_POST_TO_READ_LATER_LIST:
       axios
-        .post(
+        .put(
           `http://localhost:8000/api/user/toread/post/${action.postId}`,
           {},
           {
