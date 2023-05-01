@@ -39,6 +39,7 @@ function BookElement({
         </span>
       </p>
       <button
+      className="read"
         type="button"
         onClick={() => {
           console.log("incrémentation nb views");

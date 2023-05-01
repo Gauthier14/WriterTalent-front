@@ -3,7 +3,6 @@
 .viewer-body {
   display: block;
   position: relative;
-  min-width: 320px;
   height: 70vh;
   margin: 1em;
   line-height: 1.5;
@@ -82,7 +81,7 @@
 }
 
 .sidebar {
-  width: 30%;
+  min-width: 30%;
   background-color: #333;
   left: -30%;
   overflow: scroll;
@@ -95,7 +94,7 @@
     left: 0;
     z-index: 10;
     box-shadow: 3px 1px 10px rgba(0, 0, 0, 0.8);
-    width: 20%;
+    min-width: 20%;
     &-toggled {
       left: -20%;
       box-shadow: none;
@@ -174,7 +173,7 @@
 .reviews {
   padding: 1em;
   h2 {
-    width: fit-content;
+    min-width: fit-content;
     background-color: #000;
     color: $text-light-color;
     border-radius: 0.3em;
@@ -191,7 +190,7 @@
       align-items: center;
       margin-bottom: 1em;
       h3 {
-        width: fit-content;
+       min-width: fit-content;
         background-color: #000;
         color: $text-light-color;
         border-radius: 0.3em;
@@ -203,7 +202,7 @@
 }
 .new-review {
   padding: 2em;
-  width: 100%;
+ min-width: 100%;
   fieldset {
     text-align: center;
     position: relative;
@@ -218,7 +217,7 @@
     }
     textarea {
       display: block;
-      width: 100%;
+      min-width: 100%;
       overflow-y: scroll;
       height: 8em;
       background-color: #e0caca;

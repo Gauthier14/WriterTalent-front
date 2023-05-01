@@ -34,13 +34,13 @@ function ProfileScripts() {
   }, []);
   return (
     <section className="profile-scripts">
-      <h1>Mes écrits</h1>
+      <h1>Mes écrits...</h1>
       <div className="all-scripts">
         <div className="published-scripts">
           {publishedPosts.length > 0 ? (
             <>
               <MdPublishedWithChanges size={40} />
-              <h2> Mes écrits publiés</h2>
+              <h2>...publiés</h2>
               <ul>
                 {publishedPosts.map((post) => (
                   <li key={post.id}>
@@ -93,7 +93,7 @@ function ProfileScripts() {
           {awatingPosts.length > 0 ? (
             <>
               <GrInProgress size={40} />
-              <h2>Mes écrits soumis</h2>
+              <h2>...soumis</h2>
               <ul>
                 {awatingPosts.map((post) => (
                   <li key={post.id}>
@@ -132,7 +132,7 @@ function ProfileScripts() {
           {savedPosts.length > 0 ? (
             <>
               <RiDraftFill size={40} />
-              <h2>En cours d'écriture</h2>
+              <h2>...en cours d'écriture</h2>
 
               <ul>
                 {savedPosts.map((post) => (

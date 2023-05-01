@@ -13,9 +13,6 @@
   .all-favorites-scripts {
     grid-template-columns: repeat(1, minmax(0, 1fr));
     grid-gap: 1em;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
 
     .my-favorites-scripts {
       height: 40em;
@@ -50,25 +47,39 @@
         overflow-y: scroll;
         li {
           .delete-btn {
+            order:0;
             background-color: #c23d3d;
-            width: fit-content;
-            overflow: hidden;
             border-radius: $radius-btn;
-            position: relative;
             cursor: pointer;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            width: fit-content;
+            padding:0.2em;
+          
+
             justify-self: flex-end;
             .delete-text {
               transform: roatate(15deg);
             }
+
             .delete-icon {
-              background-color: #c23d3d;
+              background-color: #fff;
+              color: #c23d3d;
+              font-size: 1.2rem;
               padding: $sm-padding-all;
               border-radius: 50%;
-
-              &:hover {
-              }
+            }
+            &:hover, &:focus {
+              box-shadow: 0 0 0 2px #fff, 0 0 0 4px #c23d3d;
+            }
+            &:focus {
+              outline: none;
             }
           }
+          
           .views-likes {
             font-size: 1em;
             display: flex;
