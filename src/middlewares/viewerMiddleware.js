@@ -79,38 +79,10 @@ const viewerMiddleware = (store) => (next) => (action) => {
           showMessages();
         });
       break;
-    case DISLIKE_POST:
-      axios
-        .delete(
-          `http://localhost:8000/api/user/post/${action.postId}/like`,
-          {},
-          {
-            headers: {
-              // nom du header: valeur
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        )
-        .then((response) => {
-          console.log(response);
-          store.dispatch(
-            setMessageInfosInState(generateMessages("review-sent"))
-          );
-          showMessages();
-          store.dispatch(getReadPostFromApi(action.postId));
-          store.dispatch(getReviewContent("", "reviewContent"));
-        })
-        .catch((error) => {
-          console.log(error);
-          store.dispatch(
-            setMessageInfosInState(generateMessages("review-not-sent"))
-          );
-          showMessages();
-        });
-      break;
+
     case ADD_POST_TO_READ_LATER_LIST:
       axios
-        .post(
+        .put(
           `http://localhost:8000/api/user/toread/post/${action.postId}`,
           {},
           {
@@ -139,7 +111,7 @@ const viewerMiddleware = (store) => (next) => (action) => {
       break;
     case ADD_POST_TO_FAVORITE_LIST:
       axios
-        .post(
+        .put(
           `http://localhost:8000/api/user/favorites/post/${action.postId}`,
           {},
           {

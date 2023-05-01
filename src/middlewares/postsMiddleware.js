@@ -11,8 +11,11 @@ import {
   GET_ALL_POSTS_PER_CATEGORY_OR_GENRE_FROM_API,
   GET_ALL_MOST_LIKED_POSTS_FROM_API,
   GET_READ_POST_FROM_API,
+  REMOVE_USER_POST,
   GET_RANDOM_POST_FROM_API,
   INCREMENT_POST_NB_VIEWS,
+  GET_INFOS_READ_POST_STATUS,
+  setInfosPostToReadInState,
   GET_ALL_AWAITING_USER_POSTS_FROM_API,
   GET_NUMBER_OF_PUBLISHED_POSTS_AUTHOR,
   setAllPostsPerCategoryInState,
@@ -29,6 +32,10 @@ import {
   setRandomPostInState,
   setNumberOfPublishedPostsAuthorInState,
   incrementPostNbViews,
+  getInfosPostToReadFromApi,
+  getAllFavoriteUserPostsFromApi,
+  getAllSavedUserPostsFromApi,
+  getAllReadLaterUserPostsFromApi,
 } from "../actions/posts";
 import { showMessages, generateMessages } from "../selectors/message";
 import { setMessageInfosInState } from "../actions/messages";
@@ -188,11 +195,16 @@ const postsMiddleware = (store) => (next) => (action) => {
       break;
     case GET_READ_POST_FROM_API:
       axios
-        .get(`http://localhost:8000/api/post/${action.postId}`)
+        .get(`http://localhost:8000/api/post/${action.postId}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
         .then((response) => {
           console.log(response);
           store.dispatch(setReadPostInState(response.data));
           store.dispatch(setPostLoaded());
+          store.dispatch(getInfosPostToReadFromApi(response.data.id));
         })
         .catch((error) => {
           console.log(error);
@@ -227,7 +239,23 @@ const postsMiddleware = (store) => (next) => (action) => {
           showMessages();
         });
       break;
-
+    case GET_INFOS_READ_POST_STATUS:
+      axios
+        .get(`http://localhost:8000/api/user/post/${action.postId}/stats`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((response) => {
+          console.log(response);
+          store.dispatch(setInfosPostToReadInState(response.data));
+        })
+        .catch((error) => {
+          console.log(error);
+          store.dispatch(setMessageInfosInState(generateMessages("post")));
+          showMessages();
+        });
+      break;
     case GET_NUMBER_OF_PUBLISHED_POSTS_AUTHOR:
       axios
         .get(
@@ -244,6 +272,48 @@ const postsMiddleware = (store) => (next) => (action) => {
               response.data.nbPublishedPosts
             )
           );
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      break;
+    case REMOVE_USER_POST:
+      let apiCall = `http://localhost:8000/api/post/${action.postId}`;
+      if (action.postList === "favorites") {
+        apiCall = `http://localhost:8000/api/user/favorites/post/${action.postId}`;
+      }
+      if (action.postList === "toread") {
+        apiCall = `http://localhost:8000/api/user/toread/post/${action.postId}`;
+      }
+      axios
+        .delete(apiCall, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((response) => {
+          console.log(response);
+          switch (action.postList) {
+            case "favorites":
+              store.dispatch(getAllFavoriteUserPostsFromApi());
+              break;
+            case "saved":
+              store.dispatch(getAllSavedUserPostsFromApi());
+              break;
+            case "toread":
+              store.dispatch(getAllReadLaterUserPostsFromApi());
+              break;
+            case "published":
+              store.dispatch(
+                setAllUserPublishedPostsInState(
+                  manageSessionStorage("get", "user_id")
+                )
+              );
+              break;
+
+            default:
+              break;
+          }
         })
         .catch((error) => {
           console.log(error);

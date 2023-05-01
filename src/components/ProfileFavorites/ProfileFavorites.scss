@@ -11,7 +11,6 @@
   }
 
   .all-favorites-scripts {
-    display: grid;
     grid-template-columns: repeat(1, minmax(0, 1fr));
     grid-gap: 1em;
     display: flex;
@@ -57,6 +56,7 @@
             border-radius: $radius-btn;
             position: relative;
             cursor: pointer;
+            justify-self: flex-end;
             .delete-text {
               transform: roatate(15deg);
             }
