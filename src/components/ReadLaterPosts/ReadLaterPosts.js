@@ -18,11 +18,12 @@ function ReadLaterPosts() {
   useEffect(() => {
     dispatch(getAllReadLaterUserPostsFromApi(localStorage.getItem("user_id")));
   }, []);
+
   return (
     <section className="later-scripts">
       <h1>Je lirais bien...</h1>
       <div className="all-later-scripts">
-        {readLaterPosts > 0 ? (
+        {readLaterPosts.length > 0 ? (
           <div className="my-later-scripts">
             <MdWatchLater size={40} />
             <ul>

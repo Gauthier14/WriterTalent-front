@@ -55,7 +55,7 @@ function ViewerPost() {
     id: postId,
   } = postToRead;
 
-  let reviewsReversed = "";
+  // let reviewsReversed = "";
 
   const { id } = useParams();
   useEffect(() => {
@@ -67,7 +67,7 @@ function ViewerPost() {
   };
   if (loaded) {
     convertDraftToHtml(content);
-    reviewsReversed = reviews.reverse();
+    reviews;
   }
   const words = content.split(" ");
   const wordsPerPage = 200;
@@ -145,13 +145,13 @@ function ViewerPost() {
           )}
         </span>
         {favorite ? (
-          <MdFavoriteBorder
+          <MdFavorite
             size={35}
             color="red"
             onClick={() => dispatch(addPostToFavoriteList(postId))}
           />
         ) : (
-          <MdFavorite
+          <MdFavoriteBorder
             size={35}
             color="red"
             onClick={() => dispatch(addPostToFavoriteList(postId))}
@@ -161,8 +161,8 @@ function ViewerPost() {
       <section className="reviews">
         <h2>Commentaires</h2>
 
-        {reviewsReversed.length > 0 ? (
-          reviewsReversed.map((review) => (
+        {reviews.length > 0 ? (
+          reviews.map((review) => (
             <div className="review" key={review.id}>
               <div className="review_infos">
                 <h3>{review.user.username}</h3>
