@@ -7,7 +7,10 @@ import { FcReading } from "react-icons/fc"; // read
 import "./ReadLaterPosts.scss";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllReadLaterUserPostsFromApi } from "../../actions/posts";
+import {
+  getAllReadLaterUserPostsFromApi,
+  removeUserPost,
+} from "../../actions/posts";
 
 function ReadLaterPosts() {
   const dispatch = useDispatch();
@@ -19,42 +22,54 @@ function ReadLaterPosts() {
     <section className="later-scripts">
       <h1>Je lirais bien...</h1>
       <div className="all-later-scripts">
-        <div className="my-later-scripts">
-          <MdWatchLater size={40} />
-          <ul>
-            {readLaterPosts.map((post) => (
-              <li>
-              <div className="delete-btn">
-                    <span className="delete-text">Supprimer</span>
-                    <ImCross className="delete-icon" size={30} />
+        {readLaterPosts > 0 ? (
+          <div className="my-later-scripts">
+            <MdWatchLater size={40} />
+            <ul>
+              {readLaterPosts.map((post) => (
+                <li>
+                  <ImCross
+                    className="delete-icon"
+                    size={30}
+                    style={{
+                      backgroundColor: "red",
+                      padding: "0.5em",
+                      color: "#fff",
+                      borderRadius: "50%",
+                      cursor: "pointer",
+                    }}
+                    onClick={() => dispatch(removeUserPost(post.id, "toread"))}
+                  />
+                  <Link to={`/post/read/${post.id}`}>
+                    <h3>
+                      {post.title} <FcReading size={30} />
+                    </h3>
+                  </Link>
+                  <div className="views-likes">
+                    <span className="nbViews">
+                      <BsFillHandThumbsUpFill />
+                      {post.nbViews}
+                    </span>
+                    <span className="nbLikes">
+                      <BsEyeFill />
+                      {post.nbLikes}
+                    </span>
                   </div>
-                <Link to={`/post/read/${post.id}`}>
-                  <h3>
-                    {post.title} <FcReading size={30} />
-                  </h3>
-                </Link>
-                <div className="views-likes">
-                  <span className="nbViews">
-                    <BsFillHandThumbsUpFill />
-                    {post.nbViews}
+                  <span className="genre" key={post.genre.id}>
+                    {post.genre.name}
                   </span>
-                  <span className="nbLikes">
-                    <BsEyeFill />
-                    {post.nbLikes}
-                  </span>
-                </div>
-                <span className="genre" key={post.genre.id}>
-                  {post.genre.name}
-                </span>
-                {post.categories.map((category) => (
-                  <span className="category" key={category.id}>
-                    {category.name}
-                  </span>
-                ))}
-              </li>
-            ))}
-          </ul>
-        </div>
+                  {post.categories.map((category) => (
+                    <span className="category" key={category.id}>
+                      {category.name}
+                    </span>
+                  ))}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ) : (
+          <p>Vous n'avez pas d'écrit à lire plus tard</p>
+        )}
       </div>
     </section>
   );

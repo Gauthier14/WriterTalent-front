@@ -11,7 +11,6 @@
   }
 
   .all-favorites-scripts {
-    display: grid;
     grid-template-columns: repeat(1, minmax(0, 1fr));
     grid-gap: 1em;
 
@@ -52,6 +51,7 @@
             background-color: #c23d3d;
             border-radius: $radius-btn;
             cursor: pointer;
+
             display: flex;
             align-items: center;
             justify-content: center;
@@ -59,6 +59,12 @@
             width: fit-content;
             padding:0.2em;
           
+
+            justify-self: flex-end;
+            .delete-text {
+              transform: roatate(15deg);
+            }
+
             .delete-icon {
               background-color: #fff;
               color: #c23d3d;
