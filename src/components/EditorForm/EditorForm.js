@@ -56,6 +56,7 @@ function EditorForm() {
               dispatch(getEditorFieldsValue("genre", event.target.value));
             }}
           >
+            <option>Choisissez un genre</option>
             {genres.map((genre) => (
               <option
                 value={genre.id}
@@ -73,7 +74,9 @@ function EditorForm() {
 
       <div className="right-edit-form">
         <label htmlFor="multi-select">Sélectionner la catégorie :</label>
-        <span className="span-info">Pour selectionner plusieurs catégories, utilisez 'Ctrl + Click'</span>
+        <span className="span-info">
+          Pour selectionner plusieurs catégories, utilisez 'Ctrl + Click'
+        </span>
         <div className="select select--multiple">
           <select
             id="multi-select"
