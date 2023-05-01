@@ -16,8 +16,8 @@ import {
   likePost,
 } from "../../actions/viewer";
 
-function PostInfos({ postId, nbLikes, nbViews }) { // Ajout des paramètres manquants
-  const dispatch = useDispatch(); // Déclaration de dispatch
+function PostInfos({ postId, nbLikes, nbViews }) {
+  const dispatch = useDispatch(); 
 
   return (
     <div className="post-infos">
