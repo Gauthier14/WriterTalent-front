@@ -54,8 +54,8 @@ export const SET_POST_LOADED = "SET_POST_LOADED";
 
 export const GET_NUMBER_OF_PUBLISHED_POSTS_AUTHOR =
   "GET_NUMBER_OF_PUBLISHED_POSTS_AUTHOR";
-export const SET_NUMBER_OF_PUBLISHED_POSTS_AUTHOR =
-  "SET_NUMBER_OF_PUBLISHED_POSTS_AUTHOR";
+export const SET_NUMBER_OF_PUBLISHED_POSTS_AUTHOR_IN_STATE =
+  "SET_NUMBER_OF_PUBLISHED_POSTS_AUTHOR_IN_STATE";
 
 
 // actions creators ---
@@ -207,12 +207,12 @@ export const setPostLoaded = (reviews) => ({
 });
 
 
-export const getNumberOfPublishedPostsAuthor = (authorId) => ({
+export const getNumberOfPublishedPostsAuthorFromApi = (userId) => ({
   type: GET_NUMBER_OF_PUBLISHED_POSTS_AUTHOR,
-  authorId,
+  userId: userId,
 });
 
-export const setNumberOfPublishedPostsAuthor = (numberOfPosts) => ({
-  type: SET_NUMBER_OF_PUBLISHED_POSTS_AUTHOR,
-  numberOfPosts,
+export const setNumberOfPublishedPostsAuthorInState = (numberPosts) => ({
+  type: SET_NUMBER_OF_PUBLISHED_POSTS_AUTHOR_IN_STATE,
+  numberPosts: numberPosts,
 });

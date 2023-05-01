@@ -1,18 +1,22 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import { getNumberOfPublishedPostsAuthor } from "../../actions/posts";
+import { getNumberOfPublishedPostsAuthorFromApi } from "../../actions/posts";
 
 const AuthorItem = ({ username, id }) => {
+  const [numPublications, setNumPublications] = useState(0);
   const dispatch = useDispatch();
   const numberOfPublishedPosts = useSelector(
     (state) => state.posts.numberOfPublishedPosts
   );
   useEffect(() => {
-    dispatch(getNumberOfPublishedPostsAuthor(id));
-  }, [dispatch, id]);
+    dispatch(getNumberOfPublishedPostsAuthorFromApi(id));
+  }, [dispatch, id, numPublications]);
 
+  useEffect(() => {
+    setNumPublications(numberOfPublishedPosts);
+  }, [numberOfPublishedPosts]);
 
   return (
     <div className="book-author">
@@ -22,7 +26,7 @@ const AuthorItem = ({ username, id }) => {
             {username}
           </Link>
           <span className="span-published">
-            {numberOfPublishedPosts} publications
+            {numPublications} publication{numPublications !== 1 && "s"}
           </span>
         </li>
         <li className="page-author page3-author" />
@@ -36,7 +40,6 @@ const AuthorItem = ({ username, id }) => {
 AuthorItem.propTypes = {
   id: PropTypes.number.isRequired,
   username: PropTypes.string.isRequired,
-  numberPosts: PropTypes.number.isRequired, // on ajoute le type de numberPosts
 };
 
 export default AuthorItem;

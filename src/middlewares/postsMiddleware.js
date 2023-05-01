@@ -23,6 +23,7 @@ import {
   setAllMostLikedPostsInState,
   setReadPostInState,
   setPostLoaded,
+  setNumberOfPublishedPostsAuthorInState,
 } from "../actions/posts";
 import { generateMessage, showMessage } from "../selectors/message";
 import { setMessageInfosInState } from "../actions/messages";
@@ -183,7 +184,7 @@ const postsMiddleware = (store) => (next) => (action) => {
           },
         })
         .then((response) => {
-          store.dispatch(setNumberOfPublishedPostsAuthor(response.data));
+          store.dispatch(setNumberOfPublishedPostsAuthorInState(response.data.nbPublishedPosts));
         })
         .catch((error) => {
           console.log(error);
