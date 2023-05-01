@@ -8,10 +8,14 @@ import "./ViewerPost.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useParams } from "react-router";
-import { BsFillHandThumbsUpFill, BsEyeFill } from "react-icons/bs";
-import { MdFavoriteBorder } from "react-icons/md";
+import {
+  BsFillHandThumbsUpFill,
+  BsEyeFill,
+  BsHandThumbsUp,
+} from "react-icons/bs";
+import { MdFavoriteBorder, MdFavorite } from "react-icons/md";
 import { BiFoodMenu } from "react-icons/bi";
-import { AiFillRead, AiOutlineClockCircle } from "react-icons/ai";
+import { AiOutlineRead, AiFillClockCircle } from "react-icons/ai";
 
 import {
   addPostToFavoriteList,
@@ -36,7 +40,11 @@ function ViewerPost() {
   const reviewText = useSelector((state) => state.viewer.reviewContent);
   const postToRead = useSelector((state) => state.posts.postToRead);
   const loaded = useSelector((state) => state.posts.loaded);
+  const PostToReadStatus = useSelector(
+    (state) => state.posts.infosPostToReadStatus
+  );
   const isLogged = Boolean(manageSessionStorage("get", "logged"));
+  const { like, favorite, readLater } = PostToReadStatus;
   const {
     title,
     nbLikes,
@@ -46,6 +54,8 @@ function ViewerPost() {
     reviews,
     id: postId,
   } = postToRead;
+
+  let reviewsReversed = "";
 
   const { id } = useParams();
   useEffect(() => {
@@ -57,6 +67,7 @@ function ViewerPost() {
   };
   if (loaded) {
     convertDraftToHtml(content);
+    reviewsReversed = reviews.reverse();
   }
   const words = content.split(" ");
   const wordsPerPage = 200;
@@ -99,7 +110,18 @@ function ViewerPost() {
 
       <div className="post-infos">
         <span onClick={() => dispatch(likePost(postId))}>
-          <BsFillHandThumbsUpFill style={{ marginRight: "0.5em" }} />
+          {like ? (
+            <BsFillHandThumbsUpFill
+              size={20}
+              style={{ marginRight: "0.5em", color: "#f0f" }}
+            />
+          ) : (
+            <BsHandThumbsUp
+              size={20}
+              style={{ marginRight: "0.5em", color: "#f0f" }}
+            />
+          )}
+
           {nbLikes}
         </span>
         <span>
@@ -110,20 +132,37 @@ function ViewerPost() {
           className="read-later-container"
           onClick={() => dispatch(addPostToReadLaterList(postId))}
         >
-          <AiFillRead size={30} />
-          <AiOutlineClockCircle size={20} />
+          {readLater ? (
+            <>
+              <AiOutlineRead size={20} />
+              <AiFillClockCircle size={15} color="green" />
+            </>
+          ) : (
+            <>
+              <AiOutlineRead size={20} />
+              <AiFillClockCircle size={15} color="#fff" />
+            </>
+          )}
         </span>
-        <MdFavoriteBorder
-          size={30}
-          color="#"
-          onClick={() => dispatch(addPostToFavoriteList(postId))}
-        />
+        {favorite ? (
+          <MdFavoriteBorder
+            size={35}
+            color="#f0f"
+            onClick={() => dispatch(addPostToFavoriteList(postId))}
+          />
+        ) : (
+          <MdFavorite
+            size={35}
+            color="#f0f"
+            onClick={() => dispatch(addPostToFavoriteList(postId))}
+          />
+        )}
       </div>
       <section className="reviews">
         <h2>Commentaires</h2>
 
-        {reviews.length > 0 ? (
-          reviews.map((review) => (
+        {reviewsReversed.length > 0 ? (
+          reviewsReversed.map((review) => (
             <div className="review" key={review.id}>
               <div className="review_infos">
                 <h3>{review.user.username}</h3>

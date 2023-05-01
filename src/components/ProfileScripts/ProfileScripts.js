@@ -11,6 +11,7 @@ import {
   getAllAwaitingUserPostsFromApi,
   getAllSavedUserPostsFromApi,
   getAllUserPublishedPostsFromApi,
+  removeUserPost,
 } from "../../actions/posts";
 
 import "./ProfileScripts.scss";
@@ -43,6 +44,20 @@ function ProfileScripts() {
               <ul>
                 {publishedPosts.map((post) => (
                   <li key={post.id}>
+                    <span
+                      onClick={() => {
+                        dispatch(removeUserPost(post.id, "published"));
+                      }}
+                      style={{
+                        backgroundColor: "red",
+                        padding: "0.5em",
+                        color: "#fff",
+                        borderRadius: "50%",
+                        cursor: "pointer",
+                      }}
+                    >
+                      supprimer
+                    </span>
                     <Link to={`/post/read/${post.id}`}>
                       <h3>
                         {post.title} <FcReading size={30} />
@@ -122,6 +137,20 @@ function ProfileScripts() {
               <ul>
                 {savedPosts.map((post) => (
                   <li key={post.id}>
+                    <span
+                      onClick={() => {
+                        dispatch(removeUserPost(post.id, "saved"));
+                      }}
+                      style={{
+                        backgroundColor: "red",
+                        padding: "0.5em",
+                        color: "#fff",
+                        borderRadius: "50%",
+                        cursor: "pointer",
+                      }}
+                    >
+                      supprimer
+                    </span>
                     <Link to={`/edit/${post.id}`}>
                       <h3>
                         {post.title} <FcReading size={30} />

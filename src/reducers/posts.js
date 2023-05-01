@@ -15,6 +15,7 @@ export const initialState = {
   postToRead: { content: "article en chargement" },
   postToEdit: {},
   numberOfPublishedPosts: 0,
+  infosPostToReadStatus: {},
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -78,6 +79,11 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         loaded: true,
+      };
+    case "SET_INFOS_READ_POST_STATUS":
+      return {
+        ...state,
+        infosPostToReadStatus: action.readPostStatusInfos,
       };
 
     case "SET_NUMBER_OF_PUBLISHED_POSTS_AUTHOR_IN_STATE":
