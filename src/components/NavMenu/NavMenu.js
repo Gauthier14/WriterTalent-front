@@ -10,6 +10,7 @@ import {
   getCategoriesFromApi,
   getGenresFromApi,
 } from "../../actions/menu";
+import { setEditPostInState } from "../../actions/editor";
 import MenuItem from "./MenuItem";
 import DropMenuItem from "./DropMenuItem";
 import { manageSessionStorage } from "../../selectors/user";
@@ -117,13 +118,7 @@ function NavMenu() {
         )}
       </ul>
 
-      {isLogged && pathname !== "/edit" && (
-        <WriterButton
-          onClick={() => {
-            dispatch(setToggleMenu());
-          }}
-        />
-      )}
+      {isLogged && pathname !== "/edit" && <WriterButton />}
     </nav>
   );
 }

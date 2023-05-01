@@ -3,16 +3,14 @@ const initialState = {
 };
 
 const reducer = (state = initialState, action = {}) => {
+  if (state.messages.length !== 0) {
+    state.messages = [];
+  }
   switch (action.type) {
     case "SET_MESSAGE_INFOS":
       return {
         ...state,
         messages: [...state.messages, action.newMessage],
-      };
-    case "CLEAN_MESSAGES":
-      return {
-        ...state,
-        messages: [],
       };
     default:
       return state;

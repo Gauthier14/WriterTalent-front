@@ -15,7 +15,7 @@ const viewerMiddleware = (store) => (next) => (action) => {
     case SEND_REVIEW:
       axios
         .post(
-          `http://localhost:8000/api/review/post/${action.postId}`,
+          `http://kyllian-g-server.eddi.cloud:8443/api/review/post/${action.postId}`,
           {
             content: store.getState().viewer.reviewContent,
           },
@@ -27,6 +27,7 @@ const viewerMiddleware = (store) => (next) => (action) => {
           }
         )
         .then((response) => {
+          console.log(response);
           store.dispatch(
             setMessageInfosInState(generateMessages("review-sent"))
           );
