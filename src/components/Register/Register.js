@@ -13,15 +13,13 @@ import {
   togglePasswordShown,
 } from "../../actions/register";
 import { validateEmail, validatePassword } from "../../selectors/register";
-
-import { generateMessage, showMessage } from "../../selectors/message";
+import { showMessages, generateMessages } from "../../selectors/message";
 import { setMessageInfosInState } from "../../actions/messages";
 
 function Register() {
   const dispatch = useDispatch();
   const username = useSelector((state) => state.register.username);
   const email = useSelector((state) => state.register.email);
-
   const password = useSelector((state) => state.register.password);
   const isValidPassword = validatePassword(password);
   const passwordAgain = useSelector((state) => state.register.passwordAgain);
@@ -40,18 +38,12 @@ function Register() {
       password === passwordAgain &&
       username !== ""
     ) {
-      console.log("inscription soumise");
       dispatch(submitRegister());
     } else {
-      console.log("champs vide ou incorrect");
       dispatch(
-        setMessageInfosInState(
-          generateMessage("register-input-empty"),
-          "danger",
-          "Erreur de saisie"
-        )
+        setMessageInfosInState(generateMessages("register-input-empty"))
       );
-      showMessage();
+      showMessages();
     }
   };
 

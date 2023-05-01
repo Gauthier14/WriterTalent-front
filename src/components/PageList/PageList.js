@@ -3,7 +3,7 @@
 /* eslint-disable react/require-default-props */
 import { useSelector } from "react-redux";
 import PropTypes, { object } from "prop-types";
-import Loader from "../Loader/Loader";
+import NewLoader from "../NewLoader/NewLoader";
 import BookElement from "../BookElement/BookElement";
 import "./PageList.scss";
 
@@ -15,7 +15,7 @@ function PageList({ posts }) {
           <BookElement key={post.id} {...post} link={`/post/read/${post.id}`} />
         ))
       ) : (
-        <Loader />
+        <NewLoader />
       )}
     </main>
   );

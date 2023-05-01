@@ -1,11 +1,11 @@
 // @import "./src/components/Header/Header.scss";
 // @import "./src/components/Main/Main.scss";
 // @import "./src/components/Footer/Footer.scss";
-@use "/src/styles/vars";
+@import "/src/styles/vars";
 @import url(https://fonts.bunny.net/css?family=besley:400,500,700);
 .app {
   font-family: "Besley", serif;
-  min-width: 390px;
+  min-width: 320px;
   max-width: 1024px;
   display: flex;
   flex-direction: column;
@@ -13,20 +13,8 @@
   margin: auto;
   font-size: 1em;
   min-height: 100vh;
-  .scroll-button {
-    position: fixed;
-    bottom: 0.3em;
-    right: 0.3em;
-    color: aliceblue;
-    display: inline-block;
-    padding: 0.1em;
-    font-weight: bold;
-    font-size: 2em;
-    background-color: vars.$text-dark-color;
-    border-radius: 0.2em;
-    cursor: pointer;
-    z-index: 5;
-  }
+  background-color: $bg-app;
+
   .wrapper-class {
     padding: 1rem;
     border: 1px solid #ccc;

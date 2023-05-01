@@ -57,7 +57,6 @@ export const GET_NUMBER_OF_PUBLISHED_POSTS_AUTHOR =
 export const SET_NUMBER_OF_PUBLISHED_POSTS_AUTHOR_IN_STATE =
   "SET_NUMBER_OF_PUBLISHED_POSTS_AUTHOR_IN_STATE";
 
-
 // actions creators ---
 // actions for published posts of one user
 export const getAllUserPublishedPostsFromApi = (userId) => ({
@@ -199,10 +198,10 @@ export const setReadPostInState = (newPost) => ({
 });
 
 /**
- * @param {Array} reviews 
+ * @param {Array} reviews
  */
 
-export const setPostLoaded = (reviews) => ({
+export const setPostLoaded = () => ({
   type: SET_POST_LOADED,
 });
 

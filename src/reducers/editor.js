@@ -5,6 +5,8 @@ const defaultState = {
   editorState: EditorState.createEmpty(),
   genre: "",
   categories: [],
+  postToEdit: {},
+  loaded: false,
 };
 
 const reducer = (state = defaultState, action = {}) => {
@@ -23,6 +25,16 @@ const reducer = (state = defaultState, action = {}) => {
       return {
         ...state,
         editorState: action.editorState,
+      };
+    case "SET_EDIT_POST_IN_STATE":
+      return {
+        ...state,
+        postToEdit: action.newPost,
+      };
+    case "SET_EDIT_POST_LOADED":
+      return {
+        ...state,
+        loaded: true,
       };
     default:
       return state;

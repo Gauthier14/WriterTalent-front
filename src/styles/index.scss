@@ -11,7 +11,7 @@
 
 body {
   font-family: "Besley", serif;
-  background-color: $text-light-color;
+  background-color: $bg-genre;
 }
 // * {
 //   border: ;
@@ -41,6 +41,6 @@ body {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #b69c9c;
+  background: #50483a;
   border-radius: 10px;
 }

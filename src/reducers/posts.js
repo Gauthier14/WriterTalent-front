@@ -79,6 +79,7 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         loaded: true,
       };
+
     case "SET_NUMBER_OF_PUBLISHED_POSTS_AUTHOR_IN_STATE":
       return {
         ...state,

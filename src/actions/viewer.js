@@ -16,7 +16,7 @@ export const getReviewContent = (inputValue, name) => ({
 });
 export const sendReview = (postId) => ({
   type: SEND_REVIEW,
-  postId:postId,
+  postId: postId,
 });
 
 // --- action creators ---

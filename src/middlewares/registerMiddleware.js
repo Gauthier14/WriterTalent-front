@@ -1,9 +1,9 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable comma-dangle */
 /* eslint-disable brace-style */
-import { redirect } from "react-router-dom";
 import axios from "axios";
 import { SUBMIT_REGISTER } from "../actions/register";
-import { generateMessage, showMessage } from "../selectors/message";
+import { showMessages, generateMessages } from "../selectors/message";
 import { setMessageInfosInState } from "../actions/messages";
 
 const registerMiddleware = (store) => (next) => (action) => {
@@ -16,27 +16,18 @@ const registerMiddleware = (store) => (next) => (action) => {
           email: store.getState().register.email,
         })
         .then((response) => {
+          console.log(response);
           store.dispatch(
-            setMessageInfosInState(
-              generateMessage("register-success"),
-              "success",
-              response.message
-            )
+            setMessageInfosInState(generateMessages("register-success"))
           );
-          showMessage();
-          window.setTimeout(() => {
-            window.location.href = "/login";
-          }, 5500);
+          showMessages();
         })
         .catch((error) => {
+          console.log(error);
           store.dispatch(
-            setMessageInfosInState(
-              generateMessage("register-fail"),
-              "warning",
-              error.message
-            )
+            setMessageInfosInState(generateMessages("register-fail"))
           );
-          showMessage();
+          showMessages();
         });
       break;
     default:

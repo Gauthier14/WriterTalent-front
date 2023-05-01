@@ -14,11 +14,11 @@ import {
 } from "../../actions/posts";
 
 import "./ProfileScripts.scss";
-import { manageLocalStorage } from "../../selectors/user";
+import { manageSessionStorage } from "../../selectors/user";
 
 function ProfileScripts() {
   const dispatch = useDispatch();
-  const userId = Number(manageLocalStorage("get", "user_id"));
+  const userId = Number(manageSessionStorage("get", "user_id"));
   const publishedPosts = useSelector((state) => state.posts.userPublishedPosts);
   const savedPosts = useSelector((state) => state.posts.userSavedPosts);
   const awatingPosts = useSelector((state) => state.posts.userAwaitingPosts);
@@ -36,103 +36,122 @@ function ProfileScripts() {
       <h1>Mes écrits</h1>
       <div className="all-scripts">
         <div className="published-scripts">
-          <MdPublishedWithChanges size={40} />
-          <h2> Mes écrits publiés</h2>
-          <ul>
-            {publishedPosts.map((post) => (
-              <li key={post.id}>
-                <Link to={`/post/read/${post.id}`}>
-                  <h3>
-                    {post.title} <FcReading size={30} />
-                  </h3>
-                </Link>
-                <div className="views-likes">
-                  <span className="nbViews">
-                    <BsFillHandThumbsUpFill />
-                    {post.nbViews}
-                  </span>
-                  <span className="nbLikes">
-                    <BsEyeFill />
-                    {post.nbViews}
-                  </span>
-                </div>
-                <span className="genre" key={post.genre.id}>
-                  {post.genre.name}
-                </span>
-                {post.categories.map((category) => (
-                  <span className="category" key={category.id}>
-                    {category.name}
-                  </span>
+          {publishedPosts.length > 0 ? (
+            <>
+              <MdPublishedWithChanges size={40} />
+              <h2> Mes écrits publiés</h2>
+              <ul>
+                {publishedPosts.map((post) => (
+                  <li key={post.id}>
+                    <Link to={`/post/read/${post.id}`}>
+                      <h3>
+                        {post.title} <FcReading size={30} />
+                      </h3>
+                    </Link>
+                    <div className="views-likes">
+                      <span className="nbViews">
+                        <BsFillHandThumbsUpFill />
+                        {post.nbViews}
+                      </span>
+                      <span className="nbLikes">
+                        <BsEyeFill />
+                        {post.nbLikes}
+                      </span>
+                    </div>
+                    <span className="genre" key={post.genre.id}>
+                      {post.genre.name}
+                    </span>
+                    {post.categories.map((category) => (
+                      <span className="category" key={category.id}>
+                        {category.name}
+                      </span>
+                    ))}
+                  </li>
                 ))}
-              </li>
-            ))}
-          </ul>
+              </ul>
+            </>
+          ) : (
+            <p>Vous n'avez pas d'articles publiés</p>
+          )}
         </div>
         <div className="awating-scripts">
-          <GrInProgress size={40} />
-          <h2>Mes écrits soumis</h2>
-          <ul>
-            {awatingPosts.map((post) => (
-              <li key={post.id}>
-                <Link to={`/post/read/${post.id}`}>
-                  <h3>
-                    {post.title} <FcReading size={30} />
-                  </h3>
-                </Link>
-                <div className="views-likes">
-                  <span className="nbViews">
-                    <BsFillHandThumbsUpFill />
-                    {post.nbViews}
-                  </span>
-                  <span className="nbLikes">
-                    <BsEyeFill />
-                    {post.nbViews}
-                  </span>
-                </div>
-                <span className="genre" key={post.genre.id}>
-                  {post.genre.name}
-                </span>
-                {post.categories.map((category) => (
-                  <span className="category" key={category.id}>
-                    {category.name}
-                  </span>
+          {awatingPosts.length > 0 ? (
+            <>
+              <GrInProgress size={40} />
+              <h2>Mes écrits soumis</h2>
+              <ul>
+                {awatingPosts.map((post) => (
+                  <li key={post.id}>
+                    <Link to={`/post/read/${post.id}`}>
+                      <h3>
+                        {post.title} <FcReading size={30} />
+                      </h3>
+                    </Link>
+                    <div className="views-likes">
+                      <span className="nbViews">
+                        <BsFillHandThumbsUpFill />
+                        {post.nbViews}
+                      </span>
+                      <span className="nbLikes">
+                        <BsEyeFill />
+                        {post.nbLikes}
+                      </span>
+                    </div>
+                    <span className="genre" key={post.genre.id}>
+                      {post.genre.name}
+                    </span>
+                    {post.categories.map((category) => (
+                      <span className="category" key={category.id}>
+                        {category.name}
+                      </span>
+                    ))}
+                  </li>
                 ))}
-              </li>
-            ))}
-          </ul>
+              </ul>
+            </>
+          ) : (
+            <p>Vous n'avez pas d'articles soumis pour publication</p>
+          )}
         </div>
         <div className="draft-scripts">
-          <RiDraftFill size={40} />
-          <h2>En cours d'écriture</h2>
-          <ul>
-            {savedPosts.map((post) => (
-              <li key={post.id}>
-                <Link to={`/post/read/${post.id}`}>
-                  <h3>
-                    {post.title} <FcReading size={30} />
-                  </h3>
-                </Link>
-                <div className="views-likes">
-                  <span className="nbViews">
-                    <BsFillHandThumbsUpFill />
-                    {post.nbViews}
-                  </span>
-                  <span className="nbLikes">
-                    <BsEyeFill />
-                    {post.nbViews}
-                  </span>
-                </div>
-                <span className="genre" key={post.genre.id}>
-                  {post.genre.name}
-                </span>
-                {post.categories.map((category) => (
-                  <span className="category" key={category.id}>
-                    {category.name}
-                  </span>
+          {savedPosts.length > 0 ? (
+            <>
+              <RiDraftFill size={40} />
+              <h2>En cours d'écriture</h2>
+
+              <ul>
+                {savedPosts.map((post) => (
+                  <li key={post.id}>
+                    <Link to={`/edit/${post.id}`}>
+                      <h3>
+                        {post.title} <FcReading size={30} />
+                      </h3>
+                    </Link>
+                    <div className="views-likes">
+                      <span className="nbViews">
+                        <BsFillHandThumbsUpFill />
+                        {post.nbViews}
+                      </span>
+                      <span className="nbLikes">
+                        <BsEyeFill />
+                        {post.nbLikes}
+                      </span>
+                    </div>
+                    <span className="genre" key={post.genre.id}>
+                      {post.genre.name}
+                    </span>
+                    {post.categories.map((category) => (
+                      <span className="category" key={category.id}>
+                        {category.name}
+                      </span>
+                    ))}
+                  </li>
                 ))}
-              </li>
-            ))}
-          </ul>
+              </ul>
+            </>
+          ) : (
+            <p>Vous n'avez pas d'articles en cours d'écriture</p>
+          )}
         </div>
       </div>
     </section>

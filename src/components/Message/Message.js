@@ -1,19 +1,28 @@
+/* eslint-disable react/no-array-index-key */
 /* eslint-disable object-curly-newline */
 import PropTypes from "prop-types";
 import "./Message.scss";
+import { useDispatch } from "react-redux";
 
-const Message = ({ text, otherClass, serverMessage }) => (
-  <div className={`message ${otherClass}`}>
-    <p>
-      Message : <span>{serverMessage}</span>
-    </p>
-    <p>{text}</p>
-  </div>
-);
-
+const Message = ({ messages, statusText }) => {
+  const dispatch = useDispatch();
+  return (
+    <div className="messages">
+      {messages.map((msg, index) => (
+        <div className={`message ${msg.class}`} key={index}>
+          <span>{statusText}</span>
+          <p>{msg.text}</p>
+        </div>
+      ))}
+    </div>
+  );
+};
 Message.propTypes = {
-  text: PropTypes.string.isRequired,
-  otherClass: PropTypes.string.isRequired,
-  serverMessage: PropTypes.string.isRequired,
+  messages: PropTypes.array,
+  statusText: PropTypes.string,
+};
+Message.defaultProps = {
+  messages: [],
+  statusText: "Message",
 };
 export default Message;

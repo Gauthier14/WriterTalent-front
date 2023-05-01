@@ -10,10 +10,12 @@ import {
   getCategoriesFromApi,
   getGenresFromApi,
 } from "../../actions/menu";
+import { setEditPostInState } from "../../actions/editor";
 import MenuItem from "./MenuItem";
 import DropMenuItem from "./DropMenuItem";
-import { manageLocalStorage } from "../../selectors/user";
+import { manageSessionStorage } from "../../selectors/user";
 import WriterButton from "../WriterButton/WriterButton";
+import { logout } from "../../actions/user";
 
 function NavMenu() {
   const { pathname } = useLocation();
@@ -21,11 +23,12 @@ function NavMenu() {
   const genres = useSelector((state) => state.menu.genres);
   const categories = useSelector((state) => state.menu.categories);
   const menuVisibility = useSelector((state) => state.menu.visible);
-  const isLogged = manageLocalStorage("get", "logged");
+  const checkLogin = useSelector((state) => state.user.checkLogin);
+  const isLogged = Boolean(manageSessionStorage("get", "logged"));
 
   useEffect(() => {
     dispatch(getGenresFromApi());
-  }, []);
+  }, [checkLogin]);
   useEffect(() => {
     dispatch(getCategoriesFromApi());
   }, []);
@@ -102,10 +105,7 @@ function NavMenu() {
             <Link
               to="/"
               onClick={() => {
-                manageLocalStorage("remove", "token");
-                manageLocalStorage("remove", "user_id");
-                manageLocalStorage("remove", "username");
-                manageLocalStorage("set", "logged", "");
+                dispatch(logout());
               }}
             >
               Déconnexion
@@ -118,13 +118,7 @@ function NavMenu() {
         )}
       </ul>
 
-      {isLogged && pathname !== "/edit" && (
-        <WriterButton
-          onClick={() => {
-            dispatch(setToggleMenu());
-          }}
-        />
-      )}
+      {isLogged && pathname !== "/edit" && <WriterButton />}
     </nav>
   );
 }

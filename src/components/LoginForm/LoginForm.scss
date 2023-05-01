@@ -1,4 +1,4 @@
-@use "src/styles/vars";
+@import "src/styles/_vars.scss";
 
 .login-form {
   &-element {
@@ -22,7 +22,7 @@
 
   &-button {
     font-weight: 700;
-    color: #fff;
+    color: $text-light-color;
     background-color: #000;
     border-radius: 0.3em;
     border: 0;
@@ -43,7 +43,7 @@
     a {
       padding: 1em;
       font-weight: bold;
-      color: #fff !important;
+      color: $text-light-color !important;
     }
   }
 }

@@ -1,17 +1,16 @@
-const defaultState = {
-  text: "",
-  class: "",
-  serverMessage: "",
+const initialState = {
+  messages: [],
 };
 
-const reducer = (state = defaultState, action = {}) => {
+const reducer = (state = initialState, action = {}) => {
+  if (state.messages.length !== 0) {
+    state.messages = [];
+  }
   switch (action.type) {
     case "SET_MESSAGE_INFOS":
       return {
         ...state,
-        text: action.text,
-        class: action.className,
-        serverMessage: action.serverMessage,
+        messages: [...state.messages, action.newMessage],
       };
     default:
       return state;

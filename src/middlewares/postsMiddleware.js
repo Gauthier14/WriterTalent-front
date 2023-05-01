@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable comma-dangle */
 /* eslint-disable brace-style */
 import axios from "axios";
@@ -25,109 +26,135 @@ import {
   setPostLoaded,
   setNumberOfPublishedPostsAuthorInState,
 } from "../actions/posts";
-import { generateMessage, showMessage } from "../selectors/message";
+import { showMessages, generateMessages } from "../selectors/message";
 import { setMessageInfosInState } from "../actions/messages";
-
-function notGetPosts(errorMessage) {
-  setMessageInfosInState(generateMessage("posts"), "warning", errorMessage);
-  showMessage();
-}
+import { manageSessionStorage } from "../selectors/user";
 
 const postsMiddleware = (store) => (next) => (action) => {
-  const token = localStorage.getItem("token");
+  const token = manageSessionStorage("get", "token");
   switch (action.type) {
     case GET_ALL_USER_PUBLISHED_POSTS_FROM_API:
       axios
 
-        .get(`http://kyllian-g-server.eddi.cloud:8443/api/user/${action.userId}/posts/published`)
+        .get(`http://kyllian-g-server.eddi.cloud:8443/user/${action.userId}/posts/published`)
 
         .then((response) => {
+          console.log(response);
           store.dispatch(setAllUserPublishedPostsInState(response.data));
         })
         .catch((error) => {
-          notGetPosts(error.message);
+          console.log(error);
+          store.dispatch(
+            setMessageInfosInState(generateMessages("published-posts"))
+          );
+          showMessages();
         });
       break;
     case GET_ALL_READ_LATER_USER_POSTS_FROM_API:
       axios
-        .get(`http://kyllian-g-server.eddi.cloud:8443/api/user/toread`, {
+        .get(`http://kyllian-g-server.eddi.cloud:8443/user/toread`, {
           headers: {
             // nom du header: valeur
             Authorization: `Bearer ${token}`,
           },
         })
         .then((response) => {
-          console.log(response.data);
+          console.log(response);
           store.dispatch(setAllReadLaterUserPostsInState(response.data));
         })
         .catch((error) => {
-          notGetPosts(error.message);
+          console.log(error);
+          store.dispatch(
+            setMessageInfosInState(generateMessages("read-later-posts"))
+          );
+          showMessages();
         });
       break;
     case GET_ALL_SAVED_USER_POSTS_FROM_API:
       axios
-        .get(`http://kyllian-g-server.eddi.cloud:8443/api/user/posts/saved`, {
+        .get(`http://kyllian-g-server.eddi.cloud:8443/user/posts/saved`, {
           headers: {
             // nom du header: valeur
             Authorization: `Bearer ${token}`,
           },
         })
         .then((response) => {
+          console.log(response);
           store.dispatch(setAllSavedUserPostsInState(response.data));
         })
         .catch((error) => {
-          notGetPosts(error.message);
+          console.log(error);
+          store.dispatch(
+            setMessageInfosInState(generateMessages("saved-posts"))
+          );
+          showMessages();
         });
       break;
 
     case GET_RECENT_POSTS_FROM_API:
       axios
-        .get("http://kyllian-g-server.eddi.cloud:8443/api/posts/recent")
+        .get("http://kyllian-g-server.eddi.cloud:8443/posts/recent")
         .then((response) => {
+          console.log(response);
           store.dispatch(setRecentPostsInState(response.data));
         })
         .catch((error) => {
-          notGetPosts(error.message);
+          console.log(error);
+          store.dispatch(
+            setMessageInfosInState(generateMessages("recent-posts"))
+          );
+          showMessages();
         });
       break;
 
     case GET_ALL_FAVORITE_USER_POSTS_FROM_API:
       axios
-        .get(`http://kyllian-g-server.eddi.cloud:8443/api/user/favorites`, {
+        .get(`http://kyllian-g-server.eddi.cloud:8443/user/favorites`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         })
         .then((response) => {
+          console.log(response);
           store.dispatch(setAllFavoriteUserPostsInState(response.data));
         })
         .catch((error) => {
-          notGetPosts(error.message);
+          console.log(error);
+          store.dispatch(
+            setMessageInfosInState(generateMessages("favorite-posts"))
+          );
+          showMessages();
         });
       break;
     case GET_ALL_AWAITING_USER_POSTS_FROM_API:
       axios
 
-        .get(`http://kyllian-g-server.eddi.cloud:8443/api/user/posts/awaiting`, {
+        .get(`http://kyllian-g-server.eddi.cloud:8443/user/posts/awaiting`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         })
 
         .then((response) => {
+          console.log(response);
           store.dispatch(setAllAwaitingUserPostsInState(response.data));
         })
         .catch((error) => {
-          notGetPosts(error.message);
+          console.log(error);
+          store.dispatch(
+            setMessageInfosInState(generateMessages("awaiting-posts"))
+          );
+          showMessages();
         });
       break;
 
     case GET_ALL_POSTS_PER_CATEGORY_OR_GENRE_FROM_API:
       axios
 
-        .get(`http://kyllian-g-server.eddi.cloud:8443/api/${action.param}/${action.id}/posts`)
+        .get(`http://kyllian-g-server.eddi.cloud:8443/${action.param}/${action.id}/posts`)
 
         .then((response) => {
+          console.log(response);
           if (action.param === "category") {
             store.dispatch(setAllPostsPerCategoryInState(response.data));
           } else if (action.param === "genre") {
@@ -135,46 +162,41 @@ const postsMiddleware = (store) => (next) => (action) => {
           }
         })
         .catch((error) => {
-          notGetPosts(error.message);
+          console.log(error);
+          store.dispatch(setMessageInfosInState(generateMessages("posts")));
+          showMessages();
         });
       break;
     case GET_ALL_MOST_LIKED_POSTS_FROM_API:
       axios
-        .get(`http://kyllian-g-server.eddi.cloud:8443/api/posts-most-liked`)
+        .get(`http://kyllian-g-server.eddi.cloud:8443/posts-most-liked`)
         .then((response) => {
+          console.log(response);
           store.dispatch(setAllMostLikedPostsInState(response.data));
         })
         .catch((error) => {
+          console.log(error);
           store.dispatch(
-            setMessageInfosInState(
-              "Les écrits les plus appréciés n'ont pas pu être récupérés, problème de connexion avec l'API",
-              "warning",
-              error.message
-            )
+            setMessageInfosInState(generateMessages("most-liked-posts"))
           );
-          showMessage(12000);
+          showMessages();
         });
       break;
     case GET_READ_POST_FROM_API:
       axios
-
-        .get(`http://kyllian-g-server.eddi.cloud:8443/api/post/${action.postId}`)
-
+        .get(`http://kyllian-g-server.eddi.cloud:8443/post/${action.postId}`)
         .then((response) => {
+          console.log(response);
           store.dispatch(setReadPostInState(response.data));
           store.dispatch(setPostLoaded());
         })
         .catch((error) => {
-          store.dispatch(
-            setMessageInfosInState(
-              generateMessage("post"),
-              "warning",
-              error.message
-            )
-          );
-          showMessage();
+          console.log(error);
+          store.dispatch(setMessageInfosInState(generateMessages("post")));
+          showMessages();
         });
       break;
+
 
       case GET_NUMBER_OF_PUBLISHED_POSTS_AUTHOR:
       axios

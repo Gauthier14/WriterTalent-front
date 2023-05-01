@@ -1,29 +1,18 @@
+/* eslint-disable no-shadow */
 /* eslint-disable implicit-arrow-linebreak */
 /* eslint-disable react/jsx-curly-newline */
 /* eslint-disable comma-dangle */
 // import { useState } from "react";
-import { convertToRaw } from "draft-js";
 import { Editor } from "react-draft-wysiwyg";
-import draftToHtml from "draftjs-to-html";
 import { useDispatch, useSelector } from "react-redux";
 import EditorForm from "../EditorForm/EditorForm";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import "./TextEditor.scss";
-import { savePost, updateEditor } from "../../actions/editor";
+import { saveNewPost, updateEditor } from "../../actions/editor";
 
 function TextEditor() {
   const dispatch = useDispatch();
-  // const [editorState, setEditorState] = useState(EditorState.createEmpty());
   const editorState = useSelector((state) => state.editor.editorState);
-
-  /* useEffect(() => {
-    const autoSave = setInterval(() => {
-      console.log("Enregistrement");
-    }, 10000);
-    return () => {
-      clearInterval(autoSave);
-    };
-  }, []); */
   const onEditorStateChange = (editorState) => {
     dispatch(updateEditor(editorState));
   };
@@ -57,19 +46,15 @@ function TextEditor() {
           history: { inDropdown: false },
         }}
       />
-      <textarea
-        style={{ display: "none" }}
-        disabled
-        value={draftToHtml(convertToRaw(editorState.getCurrentContent()))}
-      />
       <div className="buttons-group">
         <button
           type="button"
           className="editor-button"
           onClick={() => {
             dispatch(
-              savePost(
-                draftToHtml(convertToRaw(editorState.getCurrentContent()))
+              saveNewPost(
+                // draftToHtml(convertToRaw(editorState.getCurrentContent()))
+                editorState.getCurrentContent()
               )
             );
           }}
