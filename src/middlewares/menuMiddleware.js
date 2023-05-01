@@ -15,7 +15,7 @@ const menuMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
     case GET_GENRES_FROM_API:
       axios
-        .get("http://localhost:8000/api/genres")
+        .get("http://kyllian-g-server.eddi.cloud:8443/api/genres")
         .then((response) => {
           console.log(response);
           store.dispatch(setGenresInState(response.data));
@@ -28,7 +28,7 @@ const menuMiddleware = (store) => (next) => (action) => {
       break;
     case GET_CATEGORIES_FROM_API:
       axios
-        .get("http://localhost:8000/api/categories")
+        .get("http://kyllian-g-server.eddi.cloud:8443/api/categories")
         .then((response) => {
           console.log(response);
           store.dispatch(setCategoriesInState(response.data));
