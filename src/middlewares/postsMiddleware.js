@@ -12,6 +12,7 @@ import {
   GET_ALL_MOST_LIKED_POSTS_FROM_API,
   GET_READ_POST_FROM_API,
   GET_ALL_AWAITING_USER_POSTS_FROM_API,
+  GET_NUMBER_OF_PUBLISHED_POSTS_AUTHOR,
   setAllPostsPerCategoryInState,
   setAllAwaitingUserPostsInState,
   setAllPostsPerGenreInState,
@@ -23,6 +24,7 @@ import {
   setAllMostLikedPostsInState,
   setReadPostInState,
   setPostLoaded,
+  setNumberOfPublishedPostsAuthorInState,
 } from "../actions/posts";
 import { showMessages, generateMessages } from "../selectors/message";
 import { setMessageInfosInState } from "../actions/messages";
@@ -194,6 +196,22 @@ const postsMiddleware = (store) => (next) => (action) => {
           showMessages();
         });
       break;
+
+
+      case GET_NUMBER_OF_PUBLISHED_POSTS_AUTHOR:
+      axios
+        .get(`http://kyllian-g-server.eddi.cloud:8443/api/user/${action.authorId}/nb-published-posts`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((response) => {
+          store.dispatch(setNumberOfPublishedPostsAuthorInState(response.data.nbPublishedPosts));
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+
     default:
       break;
   }
