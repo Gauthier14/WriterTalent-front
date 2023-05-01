@@ -14,13 +14,16 @@ import { BiFoodMenu } from "react-icons/bi";
 import { AiFillRead, AiOutlineClockCircle } from "react-icons/ai";
 
 import {
+  addPostToFavoriteList,
+  addPostToReadLaterList,
   changePage,
   getReviewContent,
+  likePost,
   sendReview,
   setToggleViewerMenu,
 } from "../../actions/viewer";
 import { getReadPostFromApi } from "../../actions/posts";
-import Loader from "../Loader/Loader";
+import NewLoader from "../NewLoader/NewLoader";
 import { convertDraftToHtml, convertStringDate } from "../../selectors/viewer";
 import { setMessageInfosInState } from "../../actions/messages";
 import { generateMessages, showMessages } from "../../selectors/message";
@@ -95,7 +98,7 @@ function ViewerPost() {
       </main>
 
       <div className="post-infos">
-        <span>
+        <span onClick={() => dispatch(likePost(postId))}>
           <BsFillHandThumbsUpFill style={{ marginRight: "0.5em" }} />
           {nbLikes}
         </span>
@@ -103,11 +106,18 @@ function ViewerPost() {
           <BsEyeFill style={{ marginRight: "0.5em" }} />
           {nbViews}
         </span>
-        <span className="read-later-container">
+        <span
+          className="read-later-container"
+          onClick={() => dispatch(addPostToReadLaterList(postId))}
+        >
           <AiFillRead size={30} />
           <AiOutlineClockCircle size={20} />
         </span>
-        <MdFavoriteBorder size={30} color="#" />
+        <MdFavoriteBorder
+          size={30}
+          color="#"
+          onClick={() => dispatch(addPostToFavoriteList(postId))}
+        />
       </div>
       <section className="reviews">
         <h2>Commentaires</h2>
@@ -154,14 +164,14 @@ function ViewerPost() {
               placeholder="500 caractères max"
             />
           </fieldset>
-          <input type="submit" value="Publier" />
+          <input type="submit" value="Publier" className="review-submit-btn" />
         </form>
       ) : (
         <p>Veuillez vous connecter pour écrire un commentaire</p>
       )}
     </>
   ) : (
-    <Loader />
+    <NewLoader />
   );
 }
 

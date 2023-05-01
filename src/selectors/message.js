@@ -24,7 +24,7 @@ export function generateMessages(dataType) {
       message.text = "Vous êtes à présent connecté !";
       message.class = "success";
       break;
-    case "user-disconnected":
+    case "user-disconnect":
       message.text =
         "Le temps de la session de connexion est écoulé, veuillez vous reconnecter !";
       message.class = "warning";

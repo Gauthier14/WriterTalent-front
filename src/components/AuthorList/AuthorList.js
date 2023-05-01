@@ -3,7 +3,7 @@
 /* eslint-disable react/require-default-props */
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import Loader from "../Loader/Loader";
+import NewLoader from "../NewLoader/NewLoader";
 import AuthorItem from "./AuthorItem";
 import { getAllAuthors } from "../../actions/user";
 import "./AuthorList.scss";
@@ -26,7 +26,7 @@ function AuthorList() {
           />
         ))
       ) : (
-        <Loader />
+        <NewLoader />
       )}
     </main>
   );

@@ -1,9 +1,9 @@
-@import "src/styles/_vars.scss";
+@import "src/styles/vars";
 
 .viewer-body {
   display: block;
   position: relative;
-  min-width: 360px;
+  min-width: 320px;
   height: 70vh;
   margin: 1em;
   line-height: 1.5;
@@ -49,18 +49,10 @@
       z-index: 1;
       opacity: 1;
     }
-  }
-  .toggle-menu:hover {
-    color: $text-light-color;
-    font-size: 2em;
-  }
-  .toggle-menu:before {
-    height: 64px;
-    width: 64px;
-    display: block;
-    text-align: center;
-    line-height: 64px;
-    font-size: 24px;
+    &:hover {
+      color: $text-light-color;
+      cursor: pointer;
+    }
   }
 }
 .sidebar,
@@ -77,9 +69,6 @@
   left: 0;
   right: 0;
   padding: 1em;
-  p {
-    padding: 3em;
-  }
 
   @media all and (min-width: 820px) {
     left: 20%;
@@ -93,9 +82,9 @@
 }
 
 .sidebar {
-  width: 20%;
+  width: 30%;
   background-color: #333;
-  left: -20%;
+  left: -30%;
   overflow: scroll;
   font-size: $fsz-text-mobile;
   &-toggled {
@@ -106,6 +95,7 @@
     left: 0;
     z-index: 10;
     box-shadow: 3px 1px 10px rgba(0, 0, 0, 0.8);
+    width: 20%;
     &-toggled {
       left: -20%;
       box-shadow: none;
@@ -148,10 +138,11 @@
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  span {
+  & > *:not(:nth-child(2)) {
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
   }
   .read-later-container {
     position: relative;
@@ -218,5 +209,20 @@
       padding: 1em;
       border-radius: 0.5em;
     }
+  }
+  .review-submit-btn {
+    border-radius: $radius-btn;
+    box-shadow: $box-shadow;
+    cursor: pointer;
+    border: none;
+    background-color: $bg-dark;
+    color: $text-light-color;
+    padding: $sm-padding-all;
+    &:hover {
+      background-color: #bdbd74;
+      color: $text-dark-color;
+    }
+    border-radius: $radius-btn;
+    margin-top: $md-margin-all;
   }
 }

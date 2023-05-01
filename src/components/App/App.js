@@ -26,6 +26,7 @@ import CategoryList from "../CategoryList/CategoryList";
 import RecentPosts from "../RecentPosts/RecentPosts";
 import TextEditor from "../TextEditor/TextEditor";
 import ViewerPost from "../ViewerPost/ViewerPost";
+// import ViewerPostCopy from "../ViewerPost-copy/ViewerPost-copy";
 import TextEditorModif from "../TextEditorModif/TextEditorModif";
 import AuthorPosts from "../AuthorPosts/AuthorPosts";
 import ProfileScripts from "../ProfileScripts/ProfileScripts";
@@ -64,7 +65,6 @@ function App() {
           }
         />
         <Route path="/nouveautes" element={<RecentPosts />} />
-        <Route path="/user/post/new" element={<ViewerPost />} />
         <Route
           path="/register"
           element={registerOk ? <Navigate to="/login" /> : <Register />}
@@ -100,9 +100,9 @@ function App() {
         <Route path="/user/posts/my-posts" element={<ProfileScripts />} />
         <Route path="/user/posts/to-read" element={<ReadLaterPosts />} />
         <Route path="/authors" element={<AuthorList />} />
-        <Route path="/edit" element={<TextEditorModif />} />
+        <Route path="/edit" element={<TextEditor />} />
         <Route path="/edit/:id" element={<TextEditorModif />} />
-        <Route path="/view" element={<ViewerPost />} />
+
         <Route
           path="/login"
           element={isLogged ? <Navigate to="/" /> : <UserConnexion />}
