@@ -17,12 +17,12 @@ function Home() {
   const likedPosts = mostLikedPosts.filter((post, index) => index < 3);
   const randomPost = useSelector((state) => state.posts.randomPost);
   useEffect(() => {
-    dispatch(getAllMostLikedPostsFromApi());
-  }, []);
-  useEffect(() => {
     dispatch(getRandomPostFromApi());
   }, []);
-  useEffect(() => {});
+  useEffect(() => {
+    dispatch(getAllMostLikedPostsFromApi());
+  }, []);
+
   return (
     <main className="home-main">
       <article>
