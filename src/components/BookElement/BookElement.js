@@ -2,10 +2,14 @@
 import PropTypes from "prop-types";
 import "./BookElement.scss";
 import { BsFillHandThumbsUpFill, BsEyeFill } from "react-icons/bs";
+import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import Button from "../Button/Button";
 import { convertDraftToHtml, convertHtmlToText } from "../../selectors/viewer";
+import { incrementPostNbViews } from "../../actions/posts";
 
 function BookElement({
+  id,
   title,
   link,
   user,
@@ -20,6 +24,7 @@ function BookElement({
     extract = convertHtmlToText(convertDraftToHtml(content)).slice(0, 200);
     console.log(extract);
   } */
+  const dispatch = useDispatch();
   return (
     <div className="book-post">
       <p className="extract">{extract}</p>
@@ -33,7 +38,15 @@ function BookElement({
           {nbViews}
         </span>
       </p>
-      <Button label="Lire" link={link} />
+      <button
+        type="button"
+        onClick={() => {
+          console.log("incrémentation nb views");
+          dispatch(incrementPostNbViews(id));
+        }}
+      >
+        <Link to={`/post/read/${id}`}>Lire</Link>
+      </button>
       <div className="cover">
         <p className="author">{user.username}</p>
         <h2>{title}</h2>
@@ -51,6 +64,7 @@ function BookElement({
 }
 
 BookElement.propTypes = {
+  id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   link: PropTypes.string.isRequired,
   user: PropTypes.object.isRequired,

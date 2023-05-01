@@ -12,6 +12,7 @@ import {
   GET_ALL_MOST_LIKED_POSTS_FROM_API,
   GET_READ_POST_FROM_API,
   GET_RANDOM_POST_FROM_API,
+  INCREMENT_POST_NB_VIEWS,
   GET_ALL_AWAITING_USER_POSTS_FROM_API,
   GET_NUMBER_OF_PUBLISHED_POSTS_AUTHOR,
   setAllPostsPerCategoryInState,
@@ -27,6 +28,7 @@ import {
   setPostLoaded,
   setRandomPostInState,
   setNumberOfPublishedPostsAuthorInState,
+  incrementPostNbViews,
 } from "../actions/posts";
 import { showMessages, generateMessages } from "../selectors/message";
 import { setMessageInfosInState } from "../actions/messages";
@@ -38,7 +40,7 @@ const postsMiddleware = (store) => (next) => (action) => {
     case GET_ALL_USER_PUBLISHED_POSTS_FROM_API:
       axios
 
-        .get(`http://localhost:8000/user/${action.userId}/posts/published`)
+        .get(`http://localhost:8000/api/user/${action.userId}/posts/published`)
 
         .then((response) => {
           console.log(response);
@@ -54,7 +56,7 @@ const postsMiddleware = (store) => (next) => (action) => {
       break;
     case GET_ALL_READ_LATER_USER_POSTS_FROM_API:
       axios
-        .get(`http://localhost:8000/user/toread`, {
+        .get(`http://localhost:8000/api/user/toread`, {
           headers: {
             // nom du header: valeur
             Authorization: `Bearer ${token}`,
@@ -74,7 +76,7 @@ const postsMiddleware = (store) => (next) => (action) => {
       break;
     case GET_ALL_SAVED_USER_POSTS_FROM_API:
       axios
-        .get(`http://localhost:8000/user/posts/saved`, {
+        .get(`http://localhost:8000/api/user/posts/saved`, {
           headers: {
             // nom du header: valeur
             Authorization: `Bearer ${token}`,
@@ -95,7 +97,7 @@ const postsMiddleware = (store) => (next) => (action) => {
 
     case GET_RECENT_POSTS_FROM_API:
       axios
-        .get("http://localhost:8000/posts/recent")
+        .get("http://localhost:8000/api/posts/recent")
         .then((response) => {
           console.log(response);
           store.dispatch(setRecentPostsInState(response.data));
@@ -111,7 +113,7 @@ const postsMiddleware = (store) => (next) => (action) => {
 
     case GET_ALL_FAVORITE_USER_POSTS_FROM_API:
       axios
-        .get(`http://localhost:8000/user/favorites`, {
+        .get(`http://localhost:8000/api/user/favorites`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -131,7 +133,7 @@ const postsMiddleware = (store) => (next) => (action) => {
     case GET_ALL_AWAITING_USER_POSTS_FROM_API:
       axios
 
-        .get(`http://localhost:8000/user/posts/awaiting`, {
+        .get(`http://localhost:8000/api/user/posts/awaiting`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -153,7 +155,7 @@ const postsMiddleware = (store) => (next) => (action) => {
     case GET_ALL_POSTS_PER_CATEGORY_OR_GENRE_FROM_API:
       axios
 
-        .get(`http://localhost:8000/${action.param}/${action.id}/posts`)
+        .get(`http://localhost:8000/api/${action.param}/${action.id}/posts`)
 
         .then((response) => {
           console.log(response);
@@ -171,7 +173,7 @@ const postsMiddleware = (store) => (next) => (action) => {
       break;
     case GET_ALL_MOST_LIKED_POSTS_FROM_API:
       axios
-        .get(`http://localhost:8000/posts-most-liked`)
+        .get(`http://localhost:8000/api/posts-most-liked`)
         .then((response) => {
           console.log(response);
           store.dispatch(setAllMostLikedPostsInState(response.data));
@@ -186,7 +188,7 @@ const postsMiddleware = (store) => (next) => (action) => {
       break;
     case GET_READ_POST_FROM_API:
       axios
-        .get(`http://localhost:8000/post/${action.postId}`)
+        .get(`http://localhost:8000/api/post/${action.postId}`)
         .then((response) => {
           console.log(response);
           store.dispatch(setReadPostInState(response.data));
@@ -212,6 +214,19 @@ const postsMiddleware = (store) => (next) => (action) => {
           store.dispatch(setMessageInfosInState(generateMessages("post")));
           showMessages();
         });
+      break;
+    case INCREMENT_POST_NB_VIEWS:
+      axios
+        .put(`http://localhost:8000/api/post/${action.postId}/add-view`)
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error);
+          store.dispatch(setMessageInfosInState(generateMessages("post")));
+          showMessages();
+        });
+      break;
 
     case GET_NUMBER_OF_PUBLISHED_POSTS_AUTHOR:
       axios
@@ -233,7 +248,7 @@ const postsMiddleware = (store) => (next) => (action) => {
         .catch((error) => {
           console.log(error);
         });
-
+      break;
     default:
       break;
   }
