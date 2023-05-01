@@ -15,8 +15,11 @@ import "./EditorForm.scss";
 function EditorForm() {
   const dispatch = useDispatch();
   const postTitle = useSelector((state) => state.editor.title);
+  const genreSelected = useSelector((state) => state.editor.genre);
+  const categSelected = useSelector((state) => state.editor.categories);
   const genres = useSelector((state) => state.menu.genres);
   const categories = useSelector((state) => state.menu.categories);
+
   const handleChange = (event) => {
     const { options } = event.target;
     const selectedOptions = [];
@@ -54,7 +57,11 @@ function EditorForm() {
             }}
           >
             {genres.map((genre) => (
-              <option value={genre.id} key={genre.id}>
+              <option
+                value={genre.id}
+                key={genre.id}
+                selected={genre.id == genreSelected}
+              >
                 {genre.name}
               </option>
             ))}
@@ -75,7 +82,11 @@ function EditorForm() {
             size={8}
           >
             {categories.map((category) => (
-              <option value={category.id} key={category.id}>
+              <option
+                value={category.id}
+                key={category.id}
+                selected={categSelected.includes(category.id)}
+              >
                 {category.name}
               </option>
             ))}

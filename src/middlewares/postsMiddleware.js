@@ -37,9 +37,11 @@ const postsMiddleware = (store) => (next) => (action) => {
         .get(`http://localhost:8000/api/user/${action.userId}/posts/published`)
 
         .then((response) => {
+          console.log(response);
           store.dispatch(setAllUserPublishedPostsInState(response.data));
         })
         .catch((error) => {
+          console.log(error);
           store.dispatch(
             setMessageInfosInState(generateMessages("published-posts"))
           );
@@ -55,9 +57,11 @@ const postsMiddleware = (store) => (next) => (action) => {
           },
         })
         .then((response) => {
+          console.log(response);
           store.dispatch(setAllReadLaterUserPostsInState(response.data));
         })
         .catch((error) => {
+          console.log(error);
           store.dispatch(
             setMessageInfosInState(generateMessages("read-later-posts"))
           );
@@ -73,9 +77,11 @@ const postsMiddleware = (store) => (next) => (action) => {
           },
         })
         .then((response) => {
+          console.log(response);
           store.dispatch(setAllSavedUserPostsInState(response.data));
         })
         .catch((error) => {
+          console.log(error);
           store.dispatch(
             setMessageInfosInState(generateMessages("saved-posts"))
           );
@@ -87,9 +93,11 @@ const postsMiddleware = (store) => (next) => (action) => {
       axios
         .get("http://localhost:8000/api/posts/recent")
         .then((response) => {
+          console.log(response);
           store.dispatch(setRecentPostsInState(response.data));
         })
         .catch((error) => {
+          console.log(error);
           store.dispatch(
             setMessageInfosInState(generateMessages("recent-posts"))
           );
@@ -105,9 +113,11 @@ const postsMiddleware = (store) => (next) => (action) => {
           },
         })
         .then((response) => {
+          console.log(response);
           store.dispatch(setAllFavoriteUserPostsInState(response.data));
         })
         .catch((error) => {
+          console.log(error);
           store.dispatch(
             setMessageInfosInState(generateMessages("favorite-posts"))
           );
@@ -124,9 +134,11 @@ const postsMiddleware = (store) => (next) => (action) => {
         })
 
         .then((response) => {
+          console.log(response);
           store.dispatch(setAllAwaitingUserPostsInState(response.data));
         })
         .catch((error) => {
+          console.log(error);
           store.dispatch(
             setMessageInfosInState(generateMessages("awaiting-posts"))
           );
@@ -140,6 +152,7 @@ const postsMiddleware = (store) => (next) => (action) => {
         .get(`http://localhost:8000/api/${action.param}/${action.id}/posts`)
 
         .then((response) => {
+          console.log(response);
           if (action.param === "category") {
             store.dispatch(setAllPostsPerCategoryInState(response.data));
           } else if (action.param === "genre") {
@@ -147,6 +160,7 @@ const postsMiddleware = (store) => (next) => (action) => {
           }
         })
         .catch((error) => {
+          console.log(error);
           store.dispatch(setMessageInfosInState(generateMessages("posts")));
           showMessages();
         });
@@ -155,9 +169,11 @@ const postsMiddleware = (store) => (next) => (action) => {
       axios
         .get(`http://localhost:8000/api/posts-most-liked`)
         .then((response) => {
+          console.log(response);
           store.dispatch(setAllMostLikedPostsInState(response.data));
         })
         .catch((error) => {
+          console.log(error);
           store.dispatch(
             setMessageInfosInState(generateMessages("most-liked-posts"))
           );
@@ -168,10 +184,12 @@ const postsMiddleware = (store) => (next) => (action) => {
       axios
         .get(`http://localhost:8000/api/post/${action.postId}`)
         .then((response) => {
+          console.log(response);
           store.dispatch(setReadPostInState(response.data));
           store.dispatch(setPostLoaded());
         })
         .catch((error) => {
+          console.log(error);
           store.dispatch(setMessageInfosInState(generateMessages("post")));
           showMessages();
         });

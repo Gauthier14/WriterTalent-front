@@ -26,6 +26,7 @@ const userMiddleware = (store) => (next) => (action) => {
           password: store.getState().user.password,
         })
         .then((response) => {
+          console.log(response);
           manageSessionStorage("set", "token", response.data.token);
           manageSessionStorage("set", "logged", true);
           store.dispatch(getTextFieldLogin("", "email"));
@@ -37,7 +38,8 @@ const userMiddleware = (store) => (next) => (action) => {
           showMessages();
         })
         // eslint-disable-next-line no-unused-vars
-        .catch((error) => {
+        .then((response) => {
+          console.log(response);
           store.dispatch(
             setMessageInfosInState(generateMessages("login-fail"))
           );
@@ -53,18 +55,19 @@ const userMiddleware = (store) => (next) => (action) => {
           },
         })
         .then((response) => {
+          console.log(response);
           manageSessionStorage("set", "user_id", response.data.id);
           manageSessionStorage("set", "username", response.data.username);
-          const autoDeconnection = window.setTimeout(() => {
+          window.setTimeout(() => {
             store.dispatch(logout());
             store.dispatch(
               setMessageInfosInState(generateMessages("user-disconnect"))
             );
             showMessages();
-          }, 10000);
-          autoDeconnection();
+          }, 3600000);
         })
         .catch((error) => {
+          console.log(error);
           store.dispatch(
             setMessageInfosInState(generateMessages("login-infos"))
           );
@@ -75,9 +78,11 @@ const userMiddleware = (store) => (next) => (action) => {
       axios
         .get("http://localhost:8000/api/users/authors")
         .then((response) => {
+          console.log(response);
           store.dispatch(setAllAthorsInState(response.data));
         })
         .catch((error) => {
+          console.log(error);
           store.dispatch(
             setMessageInfosInState(generateMessages("all-authors"))
           );

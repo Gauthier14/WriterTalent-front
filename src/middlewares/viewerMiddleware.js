@@ -27,6 +27,7 @@ const viewerMiddleware = (store) => (next) => (action) => {
           }
         )
         .then((response) => {
+          console.log(response);
           store.dispatch(
             setMessageInfosInState(generateMessages("review-sent"))
           );

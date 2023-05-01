@@ -16,12 +16,14 @@ const registerMiddleware = (store) => (next) => (action) => {
           email: store.getState().register.email,
         })
         .then((response) => {
+          console.log(response);
           store.dispatch(
             setMessageInfosInState(generateMessages("register-success"))
           );
           showMessages();
         })
         .catch((error) => {
+          console.log(error);
           store.dispatch(
             setMessageInfosInState(generateMessages("register-fail"))
           );

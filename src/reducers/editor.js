@@ -29,7 +29,7 @@ const reducer = (state = defaultState, action = {}) => {
     case "SET_EDIT_POST_IN_STATE":
       return {
         ...state,
-        postToEdit: { ...action.newPost },
+        postToEdit: action.newPost,
       };
     case "SET_EDIT_POST_LOADED":
       return {

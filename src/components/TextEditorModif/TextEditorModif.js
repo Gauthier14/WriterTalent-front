@@ -4,7 +4,7 @@
 /* eslint-disable react/jsx-curly-newline */
 /* eslint-disable comma-dangle */
 // import { useState } from "react";
-import { useParams } from "react-router";
+import { useLocation, useParams } from "react-router";
 import { useEffect, useState } from "react";
 import { Editor } from "react-draft-wysiwyg";
 import axios from "axios";
@@ -33,11 +33,7 @@ function TextEditorModif() {
   const loaded = useSelector((state) => state.editor.loaded);
   const editorState = useSelector((state) => state.editor.editorState);
   const { id } = useParams();
-  // const [editorState, setEditorState] = useState(EditorState.createEmpty());
-
   useEffect(() => {
-    console.log(id);
-
     const token = manageSessionStorage("get", "token");
     axios
       .get(`http://localhost:8000/api/post/awaiting/${id}`, {
@@ -47,6 +43,8 @@ function TextEditorModif() {
         },
       })
       .then((response) => {
+        console.log(response);
+        console.log(response);
         const { content } = response.data;
         const contentState = convertFromRaw(JSON.parse(content));
         dispatch(updateEditor(EditorState.createWithContent(contentState)));
@@ -60,7 +58,8 @@ function TextEditorModif() {
           )
         );
       })
-      .catch((error) => {
+      .then((response) => {
+        console.log(response);
         console.log(error);
         dispatch(setMessageInfosInState(generateMessages("post")));
         showMessages();

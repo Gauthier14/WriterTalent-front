@@ -17,9 +17,11 @@ const menuMiddleware = (store) => (next) => (action) => {
       axios
         .get("http://localhost:8000/api/genres")
         .then((response) => {
+          console.log(response);
           store.dispatch(setGenresInState(response.data));
         })
         .catch((error) => {
+          console.log(error);
           store.dispatch(setMessageInfosInState(generateMessages("genres")));
           showMessages();
         });
@@ -28,9 +30,11 @@ const menuMiddleware = (store) => (next) => (action) => {
       axios
         .get("http://localhost:8000/api/categories")
         .then((response) => {
+          console.log(response);
           store.dispatch(setCategoriesInState(response.data));
         })
         .catch((error) => {
+          console.log(error);
           store.dispatch(setMessageInfosInState(generateMessages("univers")));
           showMessages();
         });

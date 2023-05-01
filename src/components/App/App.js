@@ -100,7 +100,7 @@ function App() {
         <Route path="/user/posts/my-posts" element={<ProfileScripts />} />
         <Route path="/user/posts/to-read" element={<ReadLaterPosts />} />
         <Route path="/authors" element={<AuthorList />} />
-        <Route path="/edit" element={<TextEditor />} />
+        <Route path="/edit" element={<TextEditorModif />} />
         <Route path="/edit/:id" element={<TextEditorModif />} />
         <Route path="/view" element={<ViewerPost />} />
         <Route

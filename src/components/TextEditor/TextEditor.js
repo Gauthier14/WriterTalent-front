@@ -12,7 +12,6 @@ import { saveNewPost, updateEditor } from "../../actions/editor";
 
 function TextEditor() {
   const dispatch = useDispatch();
-  // const [editorState, setEditorState] = useState(EditorState.createEmpty());
   const editorState = useSelector((state) => state.editor.editorState);
   const onEditorStateChange = (editorState) => {
     dispatch(updateEditor(editorState));
