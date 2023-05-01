@@ -134,26 +134,26 @@ function ViewerPost() {
         >
           {readLater ? (
             <>
-              <AiOutlineRead size={20} />
-              <AiFillClockCircle size={15} color="green" />
+              <AiOutlineRead size={30} />
+              <AiFillClockCircle size={20} color="green" />
             </>
           ) : (
             <>
-              <AiOutlineRead size={20} />
-              <AiFillClockCircle size={15} color="#fff" />
+              <AiOutlineRead size={30} />
+              <AiFillClockCircle size={20} color="#000" />
             </>
           )}
         </span>
         {favorite ? (
           <MdFavoriteBorder
             size={35}
-            color="#f0f"
+            color="red"
             onClick={() => dispatch(addPostToFavoriteList(postId))}
           />
         ) : (
           <MdFavorite
             size={35}
-            color="#f0f"
+            color="red"
             onClick={() => dispatch(addPostToFavoriteList(postId))}
           />
         )}
