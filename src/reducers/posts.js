@@ -13,6 +13,8 @@ export const initialState = {
   mostLikedPosts: [],
   randomPost: {},
   postToRead: { content: "article en chargement" },
+  postToEdit: {},
+  numberOfPublishedPosts: 0,
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -77,6 +79,13 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         loaded: true,
       };
+
+    case "SET_NUMBER_OF_PUBLISHED_POSTS_AUTHOR_IN_STATE":
+      return {
+        ...state,
+        numberOfPublishedPosts: action.numberPosts,
+      };
+
     default:
       return state;
   }
