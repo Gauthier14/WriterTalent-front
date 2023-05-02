@@ -18,12 +18,7 @@ import { setMessageInfosInState } from '../actions/messages';
 
 const userMiddleware = (store) => (next) => (action) => {
   const token = manageSessionStorage('get', 'token');
-  const isLogged = Boolean(manageSessionStorage('get', 'logged'));
-  console.log(Date.now() - Number(manageSessionStorage('get', 'session-start')));
-  /* if (isLogged && Date.now() - Number(manageSessionStorage('get', 'session-start')) < 5000) {
-    console.log('deconnect');
-    store.dispatch(logout());
-  } */
+
   switch (action.type) {
     case LOGIN_USER:
       axios

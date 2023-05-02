@@ -28,7 +28,7 @@ export const convertStringDate = (stringDate) => {
  */
 export const renderedContent = (content, wordsPerPage, currentPage) => {
   // const newContent = JSON.stringify(draftToHtml(convertFromRaw(JSON.parse(content))));
-  // const words = newContent.split('</p>');
+  const words = newContent.split('</p>');
   const startIndex = (currentPage - 1) * wordsPerPage;
   const endIndex = startIndex + wordsPerPage;
   const pageWords = words.slice(startIndex, endIndex);
