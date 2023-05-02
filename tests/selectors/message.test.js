@@ -1,11 +1,25 @@
 import { showMessages, generateMessages } from 'src/selectors/message.js';
 
 describe('showMessages function', () => {
+  let messages;
+  
+  beforeEach(() => {
+    // Créer un élément 'div' avec la classe 'messages' et l'ajouter au DOM
+    messages = document.createElement('div');
+    messages.classList.add('messages');
+    document.body.appendChild(messages);
+  });
+  
+  afterEach(() => {
+    // Supprimer l'élément 'div' avec la classe 'messages' du DOM
+    messages.parentNode.removeChild(messages);
+  });
+  
   it('displays messages and hides them after a delay', () => {
-    const messages = document.querySelector('.messages');
     messages.style.display = 'none';
     showMessages(1000);
     expect(messages.style.display).toBe('block');
+  
     setTimeout(() => {
       expect(messages.style.display).toBe('none');
     }, 1000);
