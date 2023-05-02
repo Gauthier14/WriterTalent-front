@@ -1,0 +1,22 @@
+@import "src/styles/vars";
+
+
+.post-infos {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  & > *:not(:nth-child(2)) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+  .read-later-container {
+    position: relative;
+    padding: $sm-padding-all;
+    & > *:nth-child(2) {
+      position: absolute;
+    }
+  }
+}
+

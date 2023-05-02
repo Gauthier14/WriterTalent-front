@@ -19,7 +19,7 @@ function ReadLaterPosts() {
   return (
     <section className="later-scripts">
       <h1>Je lirais bien...</h1>
-      <div className="all-later-scripts">
+      <div className="all-later-scripts"           
         {readLaterPosts.length > 0 ? (
           <div className="my-later-scripts">
             <MdWatchLater size={40} />
@@ -55,6 +55,7 @@ function ReadLaterPosts() {
                   </div>
                   <span className="genre" key={post.genre.id}>
                     {post.genre.name}
+
                   </span>
                   {post.categories.map((category) => (
                     <span className="category" key={category.id}>

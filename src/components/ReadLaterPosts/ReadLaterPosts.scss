@@ -55,13 +55,13 @@
           justify-content: space-around;
           margin-bottom: 0.5em;
           .nbViews {
-            background-color: #bbdb98;
+            background-color: #856f73;
+            color: $text-light-color;
             border-radius: 50%;
             padding: 0.5em;
           }
           .nbLikes {
-            background-color: #856f73;
-            color: $text-light-color;
+            background-color: #bbdb98;
             border-radius: 50%;
             padding: 0.5em;
           }
@@ -78,6 +78,26 @@
           box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
           margin-bottom: 0.5em;
           gap: 1em;
+          .delete-btn {
+            background-color: #c23d3d;
+            width: fit-content;
+            overflow: hidden;
+            border-radius: $radius-btn;
+            position: relative;
+            cursor: pointer;
+            
+            .delete-icon {
+              background-color: white;
+              padding: $sm-padding-all;
+              border-radius: 0;
+              border: 2px solid #c23d3d;
+              
+              &:hover {
+                background-color: #c23d3d;
+                color: white;
+              }
+            }
+          }
         }
         .delete-btn {
           background-color: #c23d3d;
