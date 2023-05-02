@@ -31,7 +31,7 @@ const LikedItem = ({
 
 LikedItem.propTypes = {
   categories: PropTypes.array.isRequired,
-  genre: PropTypes.string.isRequired,
+  genre: PropTypes.object.isRequired,
   id: PropTypes.number.isRequired,
   nbLikes: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
