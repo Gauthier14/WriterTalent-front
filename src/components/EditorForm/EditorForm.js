@@ -12,6 +12,7 @@ function EditorForm() {
 
   const handleChange = (event) => {
     const { options } = event.target;
+    console.log(options);
     const selectedOptions = [];
     if (options) {
       for (let x = 0; x < options.length; x + 1) {
@@ -63,23 +64,21 @@ function EditorForm() {
       </div>
 
       <div className="right-edit-form">
-        <label htmlFor="multi-select">
-          Sélectionner la catégorie :
-          <div className="select select--multiple">
-            <select id="multi-select" multiple name="categories" onChange={handleChange} size={8}>
-              {categories.map((category) => (
-                <option
-                  value={category.id}
-                  key={category.id}
-                  selected={categSelected.includes(category.id)}
-                >
-                  {category.name}
-                </option>
-              ))}
-            </select>
-            <span className="focus" />
-          </div>
-        </label>
+        <label htmlFor="multi-select">Sélectionner la catégorie :</label>
+        <div className="select select--multiple">
+          <select id="multi-select" multiple name="categories" onChange={handleChange} size={8}>
+            {categories.map((category) => (
+              <option
+                value={category.id}
+                key={category.id}
+                selected={categSelected.includes(category.id)}
+              >
+                {category.name}
+              </option>
+            ))}
+          </select>
+        </div>
+        <span className="focus" />
         <span className="span-info">
           Pour selectionner plusieurs catégories, utilisez 'Ctrl + Click'
         </span>

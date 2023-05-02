@@ -231,7 +231,7 @@ const postsMiddleware = (store) => (next) => (action) => {
         })
         .catch((error) => {
           console.log(error);
-          store.dispatch(setMessageInfosInState(generateMessages('post')));
+          store.dispatch(setMessageInfosInState(generateMessages('not-connected-viewer')));
           showMessages();
         });
       break;
