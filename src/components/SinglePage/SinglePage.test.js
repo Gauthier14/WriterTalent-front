@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOMServer from "react-dom/server";
-import SinglePage from "../../src/components/SinglePage/SinglePage";
+import SinglePage from "./SinglePage";
 
 
 
