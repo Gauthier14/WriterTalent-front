@@ -179,7 +179,11 @@ const postsMiddleware = (store) => (next) => (action) => {
       break;
     case GET_READ_POST_FROM_API:
       axios
-        .get(`http://kyllian-g-server.eddi.cloud:8443/api/post/${action.postId}`)
+        .get(`http://kyllian-g-server.eddi.cloud:8443/api/post/${action.postId}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
         .then((response) => {
           console.log(response);
           store.dispatch(setReadPostInState(response.data));
