@@ -18,7 +18,7 @@ const LikedItem = ({
       ))}
     </p>
     <p>
-      <BsFillHandThumbsUpFill size={30} color="#42D11F" />
+      <BsFillHandThumbsUpFill size={20} color="rgba(123, 182, 149, 0.9)" />
       <span className="nbLikes">{nbLikes}</span>
     </p>
   </li>

@@ -97,7 +97,10 @@ function ViewerPost() {
           <div className="post-infos">
             <span onClick={() => dispatch(likePost(postId))}>
               {like ? (
-                <BsFillHandThumbsUpFill size={20} style={{ marginRight: '0.5em' }} />
+                <BsFillHandThumbsUpFill
+                  size={20}
+                  style={{ marginRight: '0.5em', color: 'rgba(123, 182, 149, 0.9)' }}
+                />
               ) : (
                 <BsHandThumbsUp size={20} style={{ marginRight: '0.5em' }} />
               )}

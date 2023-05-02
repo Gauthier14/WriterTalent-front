@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow */
 import { Editor } from 'react-draft-wysiwyg';
 import { useDispatch, useSelector } from 'react-redux';
 import EditorForm from '../EditorForm/EditorForm';
