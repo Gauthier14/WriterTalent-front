@@ -57,17 +57,19 @@
             border-radius: $radius-btn;
             position: relative;
             cursor: pointer;
-            .delete-text {
-              transform: roatate(15deg);
-            }
+            
             .delete-icon {
-              background-color: #c23d3d;
+              background-color: white;
               padding: $sm-padding-all;
-              border-radius: 50%;
-
+              border-radius: 0;
+              border: 2px solid #c23d3d;
+              
               &:hover {
+                background-color: #c23d3d;
+                color: white;
               }
             }
+          }
           }
           .views-likes {
             font-size: 1em;
@@ -132,7 +134,7 @@
       vertical-align: middle;
     }
   }
-}
+
 
 @media screen and (min-width: 375px) {
   .favorites-scripts {

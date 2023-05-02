@@ -24,7 +24,9 @@ function ReadLaterPosts() {
           <ul>
             {readLaterPosts.map((post) => (
               <li>
-                <ImCross className="delete-btn" size={30} />
+              <div className="delete-btn">
+                    <ImCross className="delete-icon" size={30} />
+                  </div>
                 <Link to={`/post/read/${post.id}`}>
                   <h3>
                     {post.title} <FcReading size={30} />
