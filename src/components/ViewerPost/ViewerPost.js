@@ -247,6 +247,34 @@ function ViewerPost() {
     return renderedContent.split(' ').slice(startIndex, endIndex).join(' ');
   }
 
+
+  // Supposons que le texte de l'utilisateur soit stocké dans une variable appelée "texte". 
+
+
+// const div = document.createElement('div'); // créer un élément <div>
+
+// // Appliquer le texte à l'intérieur de la balise <div>
+// div.innerHTML = texte;
+
+// // Ajouter le div au DOM (Document Object Model)
+// document.body.appendChild(div); // ajoutez-le à l'élément body ou à l'élément parent voulu
+
+
+// function convertTextToHTML(text) {
+//   // Créer un élément div temporaire
+//   const tempDiv = document.createElement('div');
+//   // Insérer le texte dans l'élément div
+//   tempDiv.textContent = text;
+//   // Convertir les retours à la ligne en éléments de paragraphe
+//   const paragraphs = tempDiv.innerHTML.split('\n').map(p => `<p>${p.trim()}</p>`).join('');
+//   // Retourner le HTML converti
+//   return paragraphs;
+// }
+//const textFromDB = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.\nDonec quis ante sed purus eleifend aliquam.\n\nSuspendisse sit amet felis vitae urna bibendum viverra."
+// const renderedHTML = convertTextToHTML(textFromDB);
+// document.getElementById('my-text-container').innerHTML = renderedHTML;
+
+
   return loaded ? (
     <>
       <main className="viewer-body">
