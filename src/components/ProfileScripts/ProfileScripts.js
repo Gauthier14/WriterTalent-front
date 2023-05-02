@@ -96,11 +96,9 @@ function ProfileScripts() {
               <ul>
                 {awatingPosts.map((post) => (
                   <li key={post.id}>
-                    <Link to={`/post/read/${post.id}`}>
-                      <h3>
-                        {post.title} <FcReading size={30} />
-                      </h3>
-                    </Link>
+                    <h3>
+                      {post.title} <FcReading size={30} />
+                    </h3>
                     <div className="views-likes">
                       <span className="nbViews">
                         <BsFillHandThumbsUpFill />

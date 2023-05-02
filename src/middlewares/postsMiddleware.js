@@ -186,7 +186,9 @@ const postsMiddleware = (store) => (next) => (action) => {
           console.log(response);
           store.dispatch(setReadPostInState(response.data));
           store.dispatch(setPostLoaded());
-          store.dispatch(getInfosPostToReadFromApi(response.data.id));
+          if (token) {
+            store.dispatch(getInfosPostToReadFromApi(response.data.id));
+          }
         })
         .catch((error) => {
           console.log(error);
