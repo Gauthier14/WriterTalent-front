@@ -1,24 +1,24 @@
-import { Link } from "react-router-dom";
-import { MdPublishedWithChanges } from "react-icons/md"; // published
-import { GrInProgress } from "react-icons/gr"; // awaiting
-import { RiDraftFill } from "react-icons/ri"; // draft
-// import { FaPenNib } from "react-icons/fa"; // write
-import { FcReading } from "react-icons/fc"; // read
-import { BsFillHandThumbsUpFill, BsEyeFill } from "react-icons/bs";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { Link } from 'react-router-dom';
+import { MdPublishedWithChanges } from 'react-icons/md'; // published
+import { GrInProgress } from 'react-icons/gr'; // awaiting
+import { RiDraftFill } from 'react-icons/ri'; // draft
+import { FcReading } from 'react-icons/fc'; // read
+import { BsFillHandThumbsUpFill, BsEyeFill } from 'react-icons/bs';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   getAllAwaitingUserPostsFromApi,
   getAllSavedUserPostsFromApi,
   getAllUserPublishedPostsFromApi,
-} from "../../actions/posts";
+  removeUserPost,
+} from '../../actions/posts';
 
-import "./ProfileScripts.scss";
-import { manageSessionStorage } from "../../selectors/user";
+import './ProfileScripts.scss';
+import { manageSessionStorage } from '../../selectors/user';
 
 function ProfileScripts() {
   const dispatch = useDispatch();
-  const userId = Number(manageSessionStorage("get", "user_id"));
+  const userId = Number(manageSessionStorage('get', 'user_id'));
   const publishedPosts = useSelector((state) => state.posts.userPublishedPosts);
   const savedPosts = useSelector((state) => state.posts.userSavedPosts);
   const awatingPosts = useSelector((state) => state.posts.userAwaitingPosts);
@@ -33,29 +33,43 @@ function ProfileScripts() {
   }, []);
   return (
     <section className="profile-scripts">
-      <h1>Mes écrits</h1>
+      <h1>Mes écrits...</h1>
       <div className="all-scripts">
         <div className="published-scripts">
           {publishedPosts.length > 0 ? (
             <>
               <MdPublishedWithChanges size={40} />
-              <h2> Mes écrits publiés</h2>
+              <h2>...publiés</h2>
               <ul>
                 {publishedPosts.map((post) => (
                   <li key={post.id}>
+                    <span
+                      onClick={() => {
+                        dispatch(removeUserPost(post.id, 'published'));
+                      }}
+                      style={{
+                        backgroundColor: 'red',
+                        padding: '0.5em',
+                        color: '#fff',
+                        borderRadius: '50%',
+                        cursor: 'pointer',
+                      }}
+                    >
+                      supprimer
+                    </span>
                     <Link to={`/post/read/${post.id}`}>
                       <h3>
                         {post.title} <FcReading size={30} />
                       </h3>
                     </Link>
                     <div className="views-likes">
-                      <span className="nbViews">
-                        <BsFillHandThumbsUpFill />
-                        {post.nbViews}
-                      </span>
                       <span className="nbLikes">
-                        <BsEyeFill />
+                        <BsFillHandThumbsUpFill />
                         {post.nbLikes}
+                      </span>
+                      <span className="nbViews">
+                        <BsEyeFill />
+                        {post.nbViews}
                       </span>
                     </div>
                     <span className="genre" key={post.genre.id}>
@@ -78,15 +92,14 @@ function ProfileScripts() {
           {awatingPosts.length > 0 ? (
             <>
               <GrInProgress size={40} />
-              <h2>Mes écrits soumis</h2>
+              <h2>...soumis</h2>
               <ul>
                 {awatingPosts.map((post) => (
                   <li key={post.id}>
-                    <Link to={`/post/read/${post.id}`}>
-                      <h3>
-                        {post.title} <FcReading size={30} />
-                      </h3>
-                    </Link>
+
+                    <h3>
+                      {post.title} <FcReading size={30} />
+                    </h3>
                     <div className="views-likes">
                       <span className="nbViews">
                         <BsFillHandThumbsUpFill />
@@ -97,6 +110,7 @@ function ProfileScripts() {
                         {post.nbLikes}
                       </span>
                     </div>
+
                     <span className="genre" key={post.genre.id}>
                       {post.genre.name}
                     </span>
@@ -117,26 +131,30 @@ function ProfileScripts() {
           {savedPosts.length > 0 ? (
             <>
               <RiDraftFill size={40} />
-              <h2>En cours d'écriture</h2>
+              <h2>...en cours d'écriture</h2>
 
               <ul>
                 {savedPosts.map((post) => (
                   <li key={post.id}>
+                    <span
+                      onClick={() => {
+                        dispatch(removeUserPost(post.id, 'saved'));
+                      }}
+                      style={{
+                        backgroundColor: 'red',
+                        padding: '0.5em',
+                        color: '#fff',
+                        borderRadius: '50%',
+                        cursor: 'pointer',
+                      }}
+                    >
+                      supprimer
+                    </span>
                     <Link to={`/edit/${post.id}`}>
                       <h3>
                         {post.title} <FcReading size={30} />
                       </h3>
                     </Link>
-                    <div className="views-likes">
-                      <span className="nbViews">
-                        <BsFillHandThumbsUpFill />
-                        {post.nbViews}
-                      </span>
-                      <span className="nbLikes">
-                        <BsEyeFill />
-                        {post.nbLikes}
-                      </span>
-                    </div>
                     <span className="genre" key={post.genre.id}>
                       {post.genre.name}
                     </span>

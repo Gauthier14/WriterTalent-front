@@ -1,8 +1,8 @@
-/* eslint-disable react/require-default-props */
-import PropTypes from "prop-types";
-import "./Button.scss";
-import { Link } from "react-router-dom";
-import { useState } from "react";
+/* eslint-disable react/button-has-type */
+import PropTypes from 'prop-types';
+import './Button.scss';
+import { Link } from 'react-router-dom';
+import { useState } from 'react';
 
 function Button({
   bgColor,
@@ -13,9 +13,8 @@ function Button({
   link,
   linkTarget,
   width,
-  children,
   transform,
-  type
+  type,
 }) {
   const [isHover, setIsHover] = useState(false);
 
@@ -48,7 +47,6 @@ function Button({
       <Link to={link} target={linkTarget}>
         {label}
       </Link>
-      {children}
     </button>
   );
 }
@@ -60,23 +58,22 @@ Button.propTypes = {
   // eslint-disable-next-line react/no-unused-prop-types
   backdropFilter: PropTypes.bool,
   label: PropTypes.string.isRequired,
-  link: PropTypes.string.isRequired,
+  link: PropTypes.string,
   linkTarget: PropTypes.string,
   width: PropTypes.string,
   transform: PropTypes.string,
   type: PropTypes.string,
-  children: PropTypes.node,
 };
 
 Button.defaultProps = {
-  bgColor: "#333",
-  bgHoverColor: "#bdbd74",
-  color: "#fff",
+  bgColor: '#333',
+  bgHoverColor: '#bdbd74',
+  color: '#fff',
   backdropFilter: true,
-  linkTarget: "",
-  width: "fit-content",
-  transform: "scale(1.1)",
-  link:'#',
+  linkTarget: '',
+  width: 'fit-content',
+  transform: 'scale(1.1)',
+  link: '#',
   type: 'button',
 };
 export default Button;

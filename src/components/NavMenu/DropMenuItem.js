@@ -1,8 +1,8 @@
 /* eslint-disable react/require-default-props */
-import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { setToggleMenu } from "../../actions/menu";
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { setToggleMenu } from '../../actions/menu';
 
 const DropMenuItem = ({ pathname, label }) => {
   const dispatch = useDispatch();
