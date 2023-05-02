@@ -36,6 +36,7 @@ import {
   getAllFavoriteUserPostsFromApi,
   getAllSavedUserPostsFromApi,
   getAllReadLaterUserPostsFromApi,
+  getReadPostFromApi,
 } from '../actions/posts';
 import { showMessages, generateMessages } from '../selectors/message';
 import { setMessageInfosInState } from '../actions/messages';
@@ -232,6 +233,7 @@ const postsMiddleware = (store) => (next) => (action) => {
         .then((response) => {
           console.log(response);
           store.dispatch(setInfosPostToReadInState(response.data));
+          store.dipatsch(getReadPostFromApi(action.postId));
         })
         .catch((error) => {
           console.log(error);
