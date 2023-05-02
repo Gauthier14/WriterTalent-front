@@ -35,7 +35,6 @@ import Message from '../Message/Message';
 function App() {
   const { pathname } = useLocation();
   const messages = useSelector((state) => state.messages.messages);
-  const isLogged = Boolean(manageSessionStorage('get', 'logged'));
   const registerOk = messages.find(
     (msg) => msg.text
       === 'Votre compte a été créé avec succès, vous allez être redirigé vers la page de connexion',

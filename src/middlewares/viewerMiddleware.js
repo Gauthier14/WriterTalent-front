@@ -22,7 +22,7 @@ const viewerMiddleware = (store) => (next) => (action) => {
     case SEND_REVIEW:
       axios
         .post(
-          `http://kyllian-g-server.eddi.cloud:8443/api/review/post/${action.postId}`,
+          `http://localhost:8000/api/review/post/${action.postId}`,
           {
             content: store.getState().viewer.reviewContent,
           },
@@ -49,7 +49,7 @@ const viewerMiddleware = (store) => (next) => (action) => {
     case LIKE_POST:
       axios
         .put(
-          `http://kyllian-g-server.eddi.cloud:8443/api/user/post/${action.postId}/like`,
+          `http://localhost:8000/api/user/post/${action.postId}/like`,
           {},
           {
             headers: {
@@ -73,7 +73,7 @@ const viewerMiddleware = (store) => (next) => (action) => {
     case ADD_POST_TO_READ_LATER_LIST:
       axios
         .put(
-          `http://kyllian-g-server.eddi.cloud:8443/api/user/toread/post/${action.postId}`,
+          `http://localhost:8000/api/user/toread/post/${action.postId}`,
           {},
           {
             headers: {
@@ -98,7 +98,7 @@ const viewerMiddleware = (store) => (next) => (action) => {
     case ADD_POST_TO_FAVORITE_LIST:
       axios
         .put(
-          `http://kyllian-g-server.eddi.cloud:8443/api/user/favorites/post/${action.postId}`,
+          `http://localhost:8000/api/user/favorites/post/${action.postId}`,
           {},
           {
             headers: {
