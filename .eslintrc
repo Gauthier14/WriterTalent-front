@@ -5,7 +5,13 @@
     "browser": true
   },
   "rules": {
-    "brace-style": ["error", "stroustrup"],
+    "brace-style": [
+      "error",
+      "stroustrup",
+      {
+        "allowSingleLine": true
+      }
+    ],
     "no-param-reassign": [
       "error",
       {
@@ -37,8 +43,7 @@
     "react/jsx-uses-react": "off",
     "react/react-in-jsx-scope": "off",
     "import/no-extraneous-dependencies": "off",
-    "react/function-component-definition": "off",
-    "quotes": "off"
+    "react/function-component-definition": "off"
   },
   "settings": {
     "import/resolver": {

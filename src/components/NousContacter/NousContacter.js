@@ -1,4 +1,4 @@
-import Button from "../Button/Button";
+import Button from '../Button/Button';
 
 function NousContacter() {
   return (
@@ -7,8 +7,8 @@ function NousContacter() {
       <p>Une question ? Une suggestion ? Une règle de la charte enfreinte ?</p>
       <p>Vous pouvez nous contacter ici !</p>
       <p>
-        Il vous suffit simplement de vous rendre sur ce lien Discord, et
-        chercher le salon correspondant à votre demande !
+        Il vous suffit simplement de vous rendre sur ce lien Discord, et chercher le salon
+        correspondant à votre demande !
       </p>
       <p>Au plaisir de vous aider !</p>
       <Button

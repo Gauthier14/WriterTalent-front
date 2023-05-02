@@ -1,15 +1,13 @@
-/* eslint-disable max-len */
-
-import { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import Button from "../Button/Button";
-import LikedItem from "../LikedItem/LikedItem";
-// import ButtonGoWriter from "../ButtonGoWriter/ButtonGoWriter";
-import "./Home.scss";
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import Button from '../Button/Button';
+import LikedItem from '../LikedItem/LikedItem';
+import './Home.scss';
 import {
   getAllMostLikedPostsFromApi,
   getRandomPostFromApi,
-} from "../../actions/posts";
+  incrementPostNbViews,
+} from '../../actions/posts';
 
 function Home() {
   const dispatch = useDispatch();
@@ -27,28 +25,23 @@ function Home() {
     <main className="home-main">
       <article>
         <p>
-          Sur ce site, nous offrons l'opportunité de lire le travail des
-          écrivains en herbes qui aiment partager le fruit de leur imagination
-          avec une communauté dans le but d'obtenir des commentaires
-          constructifs.
+          Sur ce site, nous offrons l'opportunité de lire le travail des écrivains en herbes qui
+          aiment partager le fruit de leur imagination avec une communauté dans le but d'obtenir des
+          commentaires constructifs.
         </p>
         <p>
-          Vous pouvez également partager vos œuvres en ligne tels que des
-          essais, des romans, des nouvelles, des poèmes et d'autres genres et
-          surtout lire toutes les publications. Tout est GRATUIT !
+          Vous pouvez également partager vos œuvres en ligne tels que des essais, des romans, des
+          nouvelles, des poèmes et d'autres genres et surtout lire toutes les publications. Tout est
+          GRATUIT !
         </p>
         <p>
-          Pour ajouter vos propres écrits, il vous suffit de vous inscrire et/ou
-          de vous connecter.
+          Pour ajouter vos propres écrits, il vous suffit de vous inscrire et/ou de vous connecter.
         </p>
         <p>
-          Soyez créatifs et inspirés dans vos écrits. Nous vous invitons à bien
-          lire la Charte d'utilisation.
+          Soyez créatifs et inspirés dans vos écrits. Nous vous invitons à bien lire la Charte
+          d'utilisation.
         </p>
-        <p>
-          Nous vous souhaitons une bonne visite sur 'WriterTalent' et une
-          excellente lecture !
-        </p>
+        <p>Nous vous souhaitons une bonne visite sur 'WriterTalent' et une excellente lecture !</p>
       </article>
 
       <div className="container-main">
@@ -61,7 +54,10 @@ function Home() {
           <div className="bestRead">
             <Button
               label="Surprenez-moi !"
-              link={`/post/read/${randomPost.id}`}
+              link={`/post/read/${randomPost}`}
+              onClick={() => {
+                dispatch(incrementPostNbViews(id));
+              }}
             />
             <h2>Les plus aimés</h2>
           </div>

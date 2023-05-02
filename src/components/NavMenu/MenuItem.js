@@ -1,7 +1,7 @@
 /* eslint-disable react/require-default-props */
-import PropTypes from "prop-types";
-import { useDispatch } from "react-redux";
-import { setToggleMenu } from "../../actions/menu";
+import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
+import { setToggleMenu } from '../../actions/menu';
 
 const MenuItem = ({ children, className }) => {
   const dispatch = useDispatch();
@@ -23,6 +23,6 @@ MenuItem.propTypes = {
 };
 
 MenuItem.defaultProps = {
-  className: "menu-item",
+  className: 'menu-item',
 };
 export default MenuItem;

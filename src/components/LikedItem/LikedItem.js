@@ -1,10 +1,10 @@
-/* eslint-disable object-curly-newline */
-/* eslint-disable react/require-default-props */
-import PropTypes from "prop-types";
-import { BsFillHandThumbsUpFill } from "react-icons/bs";
-import { Link } from "react-router-dom";
+import PropTypes from 'prop-types';
+import { BsFillHandThumbsUpFill } from 'react-icons/bs';
+import { Link } from 'react-router-dom';
 
-const LikedItem = ({ id, title, genre, categories, nbLikes }) => (
+const LikedItem = ({
+  id, title, genre, categories, nbLikes,
+}) => (
   <li>
     <Link to={`/post/read/${id}`}>
       <h3>{title}</h3>

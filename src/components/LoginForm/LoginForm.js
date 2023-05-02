@@ -1,11 +1,11 @@
 /* eslint-disable object-curly-newline */
-import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import Field from "./Field/Field";
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import Field from './Field/Field';
 
-import "./LoginForm.scss";
-import { setToggleMenu } from "../../actions/menu";
+import './LoginForm.scss';
+import { setToggleMenu } from '../../actions/menu';
 
 const LoginForm = ({ email, password, changeField, handleLogin }) => {
   const dispatch = useDispatch();
@@ -16,17 +16,8 @@ const LoginForm = ({ email, password, changeField, handleLogin }) => {
 
   return (
     <div className="login-form">
-      <form
-        autoComplete="off"
-        className="login-form-element"
-        onSubmit={handleSubmit}
-      >
-        <Field
-          name="email"
-          placeholder="Adresse Email"
-          onChange={changeField}
-          value={email}
-        />
+      <form autoComplete="off" className="login-form-element" onSubmit={handleSubmit}>
+        <Field name="email" placeholder="Adresse Email" onChange={changeField} value={email} />
         <Field
           name="password"
           type="password"
