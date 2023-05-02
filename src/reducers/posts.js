@@ -12,7 +12,7 @@ export const initialState = {
   recentPublishedPosts: [],
   mostLikedPosts: [],
   randomPost: {},
-  postToRead: { content: 'article en chargement' },
+  postToRead: { content: '{"blocks":"article en chargement"}' },
   postToEdit: {},
   numberOfPublishedPosts: 0,
   infosPostToReadStatus: {},
