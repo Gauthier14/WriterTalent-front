@@ -24,7 +24,6 @@ function ProfileFavorites() {
             <ul>
               {favoritePosts.map((post) => (
                 <li key={post.id}>
-
                   <ImCross
                     className="delete-icon"
                     size={30}
@@ -38,7 +37,6 @@ function ProfileFavorites() {
                     onClick={() => dispatch(removeUserPost(post.id, 'favorites'))}
                   />
 
-
                   <Link to={`/post/read/${post.id}`}>
                     <h3>
                       {post.title} <FcReading size={30} />
@@ -47,11 +45,11 @@ function ProfileFavorites() {
                   <div className="views-likes">
                     <span className="nbLikes">
                       <BsFillHandThumbsUpFill />
-                        {post.nbLikes}
+                      {post.nbLikes}
                     </span>
                     <span className="nbViews">
                       <BsEyeFill />
-                    {post.nbViews}
+                      {post.nbViews}
                     </span>
                   </div>
                   <span className="genre" key={post.genre.id}>
