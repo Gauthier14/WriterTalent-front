@@ -3,12 +3,11 @@
 /* eslint-disable brace-style */
 
 import axios from 'axios';
-import { getReadPostFromApi } from '../actions/posts';
+import { getReadPostFromApi, getInfosPostToReadFromApi } from '../actions/posts';
 import {
   SEND_REVIEW,
   getReviewContent,
   LIKE_POST,
-  DISLIKE_POST,
   ADD_POST_TO_READ_LATER_LIST,
   ADD_POST_TO_FAVORITE_LIST,
 } from '../actions/viewer';
@@ -60,8 +59,7 @@ const viewerMiddleware = (store) => (next) => (action) => {
         )
         .then((response) => {
           console.log(response);
-          store.dispatch(getReadPostFromApi(action.postId));
-          store.dispatch(getReviewContent('', 'reviewContent'));
+          store.dispatch(getInfosPostToReadFromApi(action.postId));
         })
         .catch((error) => {
           console.log(error);
@@ -84,10 +82,7 @@ const viewerMiddleware = (store) => (next) => (action) => {
         )
         .then((response) => {
           console.log(response);
-          store.dispatch(setMessageInfosInState(generateMessages('')));
-          showMessages();
-          store.dispatch(getReadPostFromApi(action.postId));
-          store.dispatch(getReviewContent('', 'reviewContent'));
+          store.dispatch(getInfosPostToReadFromApi(action.postId));
         })
         .catch((error) => {
           console.log(error);
@@ -109,10 +104,7 @@ const viewerMiddleware = (store) => (next) => (action) => {
         )
         .then((response) => {
           console.log(response);
-          store.dispatch(setMessageInfosInState(generateMessages('')));
-          showMessages();
-          store.dispatch(getReadPostFromApi(action.postId));
-          store.dispatch(getReviewContent('', 'reviewContent'));
+          store.dispatch(getInfosPostToReadFromApi(action.postId));
         })
         .catch((error) => {
           console.log(error);
