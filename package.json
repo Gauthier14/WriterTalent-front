@@ -76,5 +76,6 @@
       "<rootDir>/src",
       "<rootDir>/tests"
     ]
-  }
+  },
+  "packageManager": "yarn@3.5.1"
 }
