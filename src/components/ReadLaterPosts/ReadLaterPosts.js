@@ -33,13 +33,13 @@ function ReadLaterPosts() {
                   </h3>
                 </Link>
                 <div className="views-likes">
-                  <span className="nbViews">
-                    <BsFillHandThumbsUpFill />
-                    {post.nbViews}
-                  </span>
                   <span className="nbLikes">
-                    <BsEyeFill />
+                    <BsFillHandThumbsUpFill />
                     {post.nbLikes}
+                  </span>
+                  <span className="nbViews">
+                    <BsEyeFill />
+                    {post.nbViews}
                   </span>
                 </div>
                 <span className="genre" key={post.genre.id}>

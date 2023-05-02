@@ -49,13 +49,13 @@ function ProfileScripts() {
                       </h3>
                     </Link>
                     <div className="views-likes">
-                      <span className="nbViews">
-                        <BsFillHandThumbsUpFill />
-                        {post.nbViews}
-                      </span>
                       <span className="nbLikes">
-                        <BsEyeFill />
+                        <BsFillHandThumbsUpFill />
                         {post.nbLikes}
+                      </span>
+                      <span className="nbViews">
+                        <BsEyeFill />
+                        {post.nbViews}
                       </span>
                     </div>
                     <span className="genre" key={post.genre.id}>
@@ -87,16 +87,6 @@ function ProfileScripts() {
                         {post.title} <FcReading size={30} />
                       </h3>
                     </Link>
-                    <div className="views-likes">
-                      <span className="nbViews">
-                        <BsFillHandThumbsUpFill />
-                        {post.nbViews}
-                      </span>
-                      <span className="nbLikes">
-                        <BsEyeFill />
-                        {post.nbLikes}
-                      </span>
-                    </div>
                     <span className="genre" key={post.genre.id}>
                       {post.genre.name}
                     </span>
@@ -127,16 +117,6 @@ function ProfileScripts() {
                         {post.title} <FcReading size={30} />
                       </h3>
                     </Link>
-                    <div className="views-likes">
-                      <span className="nbViews">
-                        <BsFillHandThumbsUpFill />
-                        {post.nbViews}
-                      </span>
-                      <span className="nbLikes">
-                        <BsEyeFill />
-                        {post.nbLikes}
-                      </span>
-                    </div>
                     <span className="genre" key={post.genre.id}>
                       {post.genre.name}
                     </span>

@@ -55,13 +55,13 @@
           justify-content: space-around;
           margin-bottom: 0.5em;
           .nbViews {
-            background-color: #bbdb98;
+            background-color: #856f73;
+            color: $text-light-color;
             border-radius: 50%;
             padding: 0.5em;
           }
           .nbLikes {
-            background-color: #856f73;
-            color: $text-light-color;
+            background-color: #bbdb98;
             border-radius: 50%;
             padding: 0.5em;
           }

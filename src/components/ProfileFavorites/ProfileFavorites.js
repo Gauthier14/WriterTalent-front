@@ -37,13 +37,13 @@ function ProfileFavorites() {
                     </h3>
                   </Link>
                   <div className="views-likes">
-                    <span className="nbViews">
-                      <BsFillHandThumbsUpFill />
-                      {post.nbViews}
-                    </span>
                     <span className="nbLikes">
+                      <BsFillHandThumbsUpFill />
+                        {post.nbLikes}
+                    </span>
+                    <span className="nbViews">
                       <BsEyeFill />
-                      {post.nbLikes}
+                    {post.nbViews}
                     </span>
                   </div>
                   <span className="genre" key={post.genre.id}>
