@@ -233,10 +233,8 @@ const postsMiddleware = (store) => (next) => (action) => {
         .then((response) => {
           console.log(response);
           store.dispatch(setInfosPostToReadInState(response.data));
-          store.dipatsch(getReadPostFromApi(action.postId));
         })
         .catch((error) => {
-          console.log(error);
           store.dispatch(setMessageInfosInState(generateMessages('post')));
           showMessages();
         });

@@ -1,5 +1,5 @@
-import PropTypes from "prop-types";
-// import "./SinglePage.scss";
+import PropTypes from 'prop-types';
+import './SinglePage.scss';
 
 function SinglePage({ children }) {
   return <main className="single-page">{children}</main>;

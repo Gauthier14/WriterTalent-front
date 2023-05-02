@@ -27,16 +27,18 @@ function BookElement({
           {nbViews}
         </span>
       </p>
-      <button
-        className="read"
-        type="button"
-        onClick={() => {
-          console.log('incrémentation nb views');
-          dispatch(incrementPostNbViews(id));
-        }}
-      >
-        <Link to={`/post/read/${id}`}>Lire</Link>
-      </button>
+      <Link to={`/post/read/${id}`}>
+        <button
+          className="read"
+          type="button"
+          onClick={() => {
+            console.log('incrémentation nb views');
+            dispatch(incrementPostNbViews(id));
+          }}
+        >
+          Lire
+        </button>
+      </Link>
       <div className="cover">
         <p className="author">{user.username}</p>
         <h2>{title}</h2>

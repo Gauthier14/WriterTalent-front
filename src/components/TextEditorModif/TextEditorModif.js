@@ -1,11 +1,5 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-shadow */
-/* eslint-disable implicit-arrow-linebreak */
-/* eslint-disable react/jsx-curly-newline */
-/* eslint-disable comma-dangle */
-// import { useState } from "react";
-import { useLocation, useParams } from 'react-router';
-import { useEffect, useState } from 'react';
+import { useParams } from 'react-router';
+import { useEffect } from 'react';
 import { Editor } from 'react-draft-wysiwyg';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
@@ -22,10 +16,8 @@ import {
   updateEditor,
   askForPublication,
 } from '../../actions/editor';
-import { getCategoriesIds, toolbarParams } from '../../selectors/editor';
+import Toolbar, { getCategoriesIds } from '../../selectors/editor';
 import NewLoader from '../NewLoader/NewLoader';
-import { setMessageInfosInState } from '../../actions/messages';
-import { showMessages, generateMessages } from '../../selectors/message';
 import { manageSessionStorage } from '../../selectors/user';
 
 function TextEditorModif() {
@@ -55,8 +47,6 @@ function TextEditorModif() {
       })
       .then((error) => {
         console.log(error);
-        dispatch(setMessageInfosInState(generateMessages('post')));
-        showMessages();
       });
   }, []);
 
@@ -73,7 +63,7 @@ function TextEditorModif() {
         wrapperClassName="demo-wrapper"
         editorClassName="demo-editor"
         onEditorStateChange={onEditorStateChange}
-        toolbar={toolbarParams}
+        toolbar={Toolbar}
       />
       {/* <textarea
           // style={{ display: "none" }}

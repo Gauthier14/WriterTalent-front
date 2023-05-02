@@ -1,6 +1,6 @@
-@use "reset";
-@use "vars";
-@import "./vars";
+@use 'reset';
+@use 'vars';
+@import './vars';
 
 *,
 *::before,
@@ -10,7 +10,7 @@
 }
 
 body {
-  font-family: "Besley", serif;
+  font-family: 'Besley', serif;
   background-color: $bg-genre;
 }
 // * {

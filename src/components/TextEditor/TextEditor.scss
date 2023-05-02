@@ -1,4 +1,4 @@
-@import "src/styles/vars";
+@import 'src/styles/vars';
 .editor {
   flex-grow: 1;
   padding: 1em;
@@ -17,7 +17,7 @@
     appearance: none;
     border: 1px solid #d2d2d2;
     border-radius: 1px;
-    font: 13px "Helvetica Neue", Arial, Helvetica, sans-serif;
+    font: 13px 'Helvetica Neue', Arial, Helvetica, sans-serif;
     font-size: 13px;
     height: 36px;
     resize: none;
@@ -56,5 +56,8 @@
         transform: rotateZ(1deg);
       }
     }
+  }
+  textarea {
+    height: 10em;
   }
 }

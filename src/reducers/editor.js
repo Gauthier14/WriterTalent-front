@@ -1,9 +1,9 @@
-import { EditorState } from "draft-js";
+import { EditorState } from 'draft-js';
 
 const defaultState = {
-  title: "",
+  title: '',
   editorState: EditorState.createEmpty(),
-  genre: "",
+  genre: '',
   categories: [],
   postToEdit: {},
   loaded: false,
@@ -11,27 +11,27 @@ const defaultState = {
 
 const reducer = (state = defaultState, action = {}) => {
   switch (action.type) {
-    case "GET_EDITOR_FIELDS_VALUE":
+    case 'GET_EDITOR_FIELDS_VALUE':
       return {
         ...state,
         [action.valueName]: action.value,
       };
-    case "GET_EDITOR_SELECTED_CATEGORIES":
+    case 'GET_EDITOR_SELECTED_CATEGORIES':
       return {
         ...state,
         categories: [...action.selectedCategories],
       };
-    case "UPDATE_EDITOR_STATE":
+    case 'UPDATE_EDITOR_STATE':
       return {
         ...state,
         editorState: action.editorState,
       };
-    case "SET_EDIT_POST_IN_STATE":
+    case 'SET_EDIT_POST_IN_STATE':
       return {
         ...state,
         postToEdit: action.newPost,
       };
-    case "SET_EDIT_POST_LOADED":
+    case 'SET_EDIT_POST_LOADED':
       return {
         ...state,
         loaded: true,

@@ -60,6 +60,7 @@ const viewerMiddleware = (store) => (next) => (action) => {
         .then((response) => {
           console.log(response);
           store.dispatch(getInfosPostToReadFromApi(action.postId));
+          store.dispatch(getInfosPostToReadFromApi(action.postId));
         })
         .catch((error) => {
           console.log(error);
@@ -83,6 +84,7 @@ const viewerMiddleware = (store) => (next) => (action) => {
         .then((response) => {
           console.log(response);
           store.dispatch(getInfosPostToReadFromApi(action.postId));
+          store.dispatch(getInfosPostToReadFromApi(action.postId));
         })
         .catch((error) => {
           console.log(error);
@@ -104,6 +106,7 @@ const viewerMiddleware = (store) => (next) => (action) => {
         )
         .then((response) => {
           console.log(response);
+          store.dispatch(getInfosPostToReadFromApi(action.postId));
           store.dispatch(getInfosPostToReadFromApi(action.postId));
         })
         .catch((error) => {
