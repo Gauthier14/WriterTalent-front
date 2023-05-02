@@ -1,6 +1,3 @@
-/* eslint-disable brace-style */
-/* eslint-disable comma-dangle */
-/* eslint-disable react/require-default-props */
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import NewLoader from "../NewLoader/NewLoader";

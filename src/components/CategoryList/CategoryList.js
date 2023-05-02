@@ -1,9 +1,9 @@
 /* eslint-disable comma-dangle */
-import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from "react";
-import { useParams } from "react-router";
-import PageList from "../PageList/PageList";
-import { getAllPostsPerCategoryOrGenreFromApi } from "../../actions/posts";
+import { useSelector, useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { useParams } from 'react-router';
+import PageList from '../PageList/PageList';
+import { getAllPostsPerCategoryOrGenreFromApi } from '../../actions/posts';
 
 function CategoryList() {
   const dispatch = useDispatch();
@@ -12,7 +12,7 @@ function CategoryList() {
   );
   const { id } = useParams();
   useEffect(() => {
-    dispatch(getAllPostsPerCategoryOrGenreFromApi("category", id));
+    dispatch(getAllPostsPerCategoryOrGenreFromApi('category', id));
   }, [id]);
   return <PageList posts={postsCategory} />;
 }

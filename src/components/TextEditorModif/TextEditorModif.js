@@ -4,15 +4,15 @@
 /* eslint-disable react/jsx-curly-newline */
 /* eslint-disable comma-dangle */
 // import { useState } from "react";
-import { useLocation, useParams } from "react-router";
-import { useEffect, useState } from "react";
-import { Editor } from "react-draft-wysiwyg";
-import axios from "axios";
-import { useDispatch, useSelector } from "react-redux";
-import { EditorState, convertFromRaw } from "draft-js";
-import EditorForm from "../EditorForm/EditorForm";
-import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-import "./TextEditorModif.scss";
+import { useLocation, useParams } from 'react-router';
+import { useEffect, useState } from 'react';
+import { Editor } from 'react-draft-wysiwyg';
+import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+import { EditorState, convertFromRaw } from 'draft-js';
+import EditorForm from '../EditorForm/EditorForm';
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import './TextEditorModif.scss';
 import {
   setEditPostLoaded,
   updatePost,
@@ -21,12 +21,12 @@ import {
   getEditorFieldsValue,
   updateEditor,
   askForPublication,
-} from "../../actions/editor";
-import { getCategoriesIds, toolbarParams } from "../../selectors/editor";
-import NewLoader from "../NewLoader/NewLoader";
-import { setMessageInfosInState } from "../../actions/messages";
-import { showMessages, generateMessages } from "../../selectors/message";
-import { manageSessionStorage } from "../../selectors/user";
+} from '../../actions/editor';
+import { getCategoriesIds, toolbarParams } from '../../selectors/editor';
+import NewLoader from '../NewLoader/NewLoader';
+import { setMessageInfosInState } from '../../actions/messages';
+import { showMessages, generateMessages } from '../../selectors/message';
+import { manageSessionStorage } from '../../selectors/user';
 
 function TextEditorModif() {
   const dispatch = useDispatch();
@@ -34,9 +34,9 @@ function TextEditorModif() {
   const editorState = useSelector((state) => state.editor.editorState);
   const { id } = useParams();
   useEffect(() => {
-    const token = manageSessionStorage("get", "token");
+    const token = manageSessionStorage('get', 'token');
     axios
-      .get(`http://localhost:8000/api/post/awaiting/${id}`, {
+      .get(`http://kyllian-g-server.eddi.cloud:8443/api/post/awaiting/${id}`, {
         headers: {
           // nom du header: valeur
           Authorization: `Bearer ${token}`,
@@ -50,17 +50,13 @@ function TextEditorModif() {
         dispatch(updateEditor(EditorState.createWithContent(contentState)));
         dispatch(setEditPostInState(response.data));
         dispatch(setEditPostLoaded());
-        dispatch(getEditorFieldsValue("title", response.data.title));
-        dispatch(getEditorFieldsValue("genre", response.data.genre.id));
-        dispatch(
-          getEditorSelectedCategories(
-            getCategoriesIds(response.data.categories)
-          )
-        );
+        dispatch(getEditorFieldsValue('title', response.data.title));
+        dispatch(getEditorFieldsValue('genre', response.data.genre.id));
+        dispatch(getEditorSelectedCategories(getCategoriesIds(response.data.categories)));
       })
       .then((error) => {
         console.log(error);
-        dispatch(setMessageInfosInState(generateMessages("post")));
+        dispatch(setMessageInfosInState(generateMessages('post')));
         showMessages();
       });
   }, []);
@@ -91,7 +87,7 @@ function TextEditorModif() {
           className="editor-button"
           onClick={() => {
             dispatch(
-              updatePost(id)
+              updatePost(id),
               // draftToHtml(convertToRaw(editorState.getCurrentContent()))
               // contentState
             );
