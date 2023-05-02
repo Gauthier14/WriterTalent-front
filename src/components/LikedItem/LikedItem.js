@@ -10,12 +10,7 @@ const LikedItem = ({
   const dispatch = useDispatch();
   return (
     <li>
-      <Link
-        to={`/post/read/${id}`}
-        onClick={() => {
-          dispatch(getReadPostFromApi(id));
-        }}
-      >
+      <Link to={`/post/read/${id}`}>
         <h3>{title}</h3>
       </Link>
       <p>

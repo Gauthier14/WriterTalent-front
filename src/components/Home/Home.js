@@ -7,6 +7,7 @@ import './Home.scss';
 import {
   getAllMostLikedPostsFromApi,
   getRandomPostFromApi,
+  getReadPostFromApi,
   incrementPostNbViews,
 } from '../../actions/posts';
 
