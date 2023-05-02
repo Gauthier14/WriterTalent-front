@@ -15,6 +15,7 @@ import {
 import { validateEmail, validatePassword } from "../../selectors/register";
 import { showMessages, generateMessages } from "../../selectors/message";
 import { setMessageInfosInState } from "../../actions/messages";
+import DOMPurify from 'dompurify';
 
 function Register() {
   const dispatch = useDispatch();
@@ -59,7 +60,7 @@ function Register() {
             id="username"
             name="username"
             required
-            value={username}
+            value={DOMPurify.sanitize(username)}
             onChange={(event) => {
               dispatch(getTextFieldRegister(event.target.value, "username"));
             }}
@@ -72,7 +73,7 @@ function Register() {
             id="email"
             name="email"
             required
-            value={email}
+            value={DOMPurify.sanitize(email)}
             onChange={(event) => {
               dispatch(getTextFieldRegister(event.target.value, "email"));
             }}
@@ -88,7 +89,7 @@ function Register() {
               required
               value={password}
               onChange={(event) => {
-                dispatch(getTextFieldRegister(event.target.value, "password"));
+                dispatch(getTextFieldRegister(DOMPurify.sanitize(event.target.value), "password"));
               }}
             />
             {passwordShown ? (

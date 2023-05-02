@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import Field from "./Field/Field";
+import DOMPurify from "dompurify";
 
 import "./LoginForm.scss";
 import { setToggleMenu } from "../../actions/menu";
@@ -24,15 +25,15 @@ const LoginForm = ({ email, password, changeField, handleLogin }) => {
         <Field
           name="email"
           placeholder="Adresse Email"
-          onChange={changeField}
-          value={email}
+          onChange={(e) => changeField("email", DOMPurify.sanitize(e.target.value))}
+          value={DOMPurify.sanitize(email)}
         />
         <Field
           name="password"
           type="password"
           placeholder="Mot de passe"
-          onChange={changeField}
-          value={password}
+          onChange={(e) => changeField("password", DOMPurify.sanitize(e.target.value))}
+          value={DOMPurify.sanitize(password)}
         />
         <button type="submit" className="login-form-button">
           Se connecter
@@ -55,6 +56,7 @@ const LoginForm = ({ email, password, changeField, handleLogin }) => {
     </div>
   );
 };
+
 
 LoginForm.propTypes = {
   /** contenu du champ e-mail */
