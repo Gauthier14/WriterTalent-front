@@ -4,14 +4,14 @@
 /* eslint-disable object-curly-newline */
 /* eslint-disable comma-dangle */
 /* eslint-disable operator-linebreak */
-import "./ViewerPost.scss";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import { useParams } from "react-router";
-import { BsFillHandThumbsUpFill, BsEyeFill } from "react-icons/bs";
-import { MdFavoriteBorder } from "react-icons/md";
-import { BiFoodMenu } from "react-icons/bi";
-import { AiFillRead, AiOutlineClockCircle } from "react-icons/ai";
+import './ViewerPost.scss';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useParams } from 'react-router';
+import { BsFillHandThumbsUpFill, BsEyeFill, BsHandThumbsUp } from 'react-icons/bs';
+import { MdFavoriteBorder, MdFavorite } from 'react-icons/md';
+import { BiFoodMenu } from 'react-icons/bi';
+import { AiOutlineRead, AiFillClockCircle } from 'react-icons/ai';
 
 import {
   addPostToFavoriteList,
@@ -21,13 +21,13 @@ import {
   likePost,
   sendReview,
   setToggleViewerMenu,
-} from "../../actions/viewer";
-import { getReadPostFromApi } from "../../actions/posts";
-import NewLoader from "../NewLoader/NewLoader";
-import { convertDraftToHtml, convertStringDate } from "../../selectors/viewer";
-import { setMessageInfosInState } from "../../actions/messages";
-import { generateMessages, showMessages } from "../../selectors/message";
-import { manageSessionStorage } from "../../selectors/user";
+} from '../../actions/viewer';
+import { getReadPostFromApi } from '../../actions/posts';
+import NewLoader from '../NewLoader/NewLoader';
+import { convertDraftToHtml, convertStringDate } from '../../selectors/viewer';
+import { setMessageInfosInState } from '../../actions/messages';
+import { generateMessages, showMessages } from '../../selectors/message';
+import { manageSessionStorage } from '../../selectors/user';
 
 function ViewerPost() {
   const dispatch = useDispatch();
@@ -36,16 +36,12 @@ function ViewerPost() {
   const reviewText = useSelector((state) => state.viewer.reviewContent);
   const postToRead = useSelector((state) => state.posts.postToRead);
   const loaded = useSelector((state) => state.posts.loaded);
-  const isLogged = Boolean(manageSessionStorage("get", "logged"));
-  const {
-    title,
-    nbLikes,
-    content,
-    nbViews,
-    user,
-    reviews,
-    id: postId,
-  } = postToRead;
+  const PostToReadStatus = useSelector((state) => state.posts.infosPostToReadStatus);
+  const isLogged = Boolean(manageSessionStorage('get', 'logged'));
+  const { like, favorite, readLater } = PostToReadStatus;
+  const { title, nbLikes, content, nbViews, user, reviews, id: postId } = postToRead;
+
+  // let reviewsReversed = "";
 
   const { id } = useParams();
   useEffect(() => {
@@ -58,7 +54,7 @@ function ViewerPost() {
   if (loaded) {
     convertDraftToHtml(content);
   }
-  const words = content.split(" ");
+  const words = content.split(' ');
   const wordsPerPage = 200;
   const pageCount = Math.ceil(words.length / wordsPerPage);
 
@@ -75,14 +71,14 @@ function ViewerPost() {
           <h1 className="viewer-title">{title}</h1>
           <h2>{user.username}</h2>
         </div>
-        <aside className={!isVisible ? "sidebar" : "sidebar sidebar-toggled"}>
+        <aside className={!isVisible ? 'sidebar' : 'sidebar sidebar-toggled'}>
           <h3>Pages...</h3>
           <nav>
             <ul>
               {Array.from({ length: pageCount }, (_, i) => (
                 <li
                   key={i}
-                  className={i + 1 === currentPage ? "active" : ""}
+                  className={i + 1 === currentPage ? 'active' : ''}
                   onClick={() => handleClickPage(i + 1)}
                 >
                   Page {i + 1}
@@ -91,7 +87,7 @@ function ViewerPost() {
             </ul>
           </nav>
         </aside>
-        <section className={!isVisible ? "main" : "main main-toggled"}>
+        <section className={!isVisible ? 'main' : 'main main-toggled'}>
           {/* renderedContent(convertDraftToHtml(content), 200, currentPage) */}
           {convertDraftToHtml(content)}
         </section>
@@ -99,25 +95,47 @@ function ViewerPost() {
 
       <div className="post-infos">
         <span onClick={() => dispatch(likePost(postId))}>
-          <BsFillHandThumbsUpFill style={{ marginRight: "0.5em" }} />
+          {like ? (
+            <BsFillHandThumbsUpFill size={20} style={{ marginRight: '0.5em' }} />
+          ) : (
+            <BsHandThumbsUp size={20} style={{ marginRight: '0.5em' }} />
+          )}
+
           {nbLikes}
         </span>
         <span>
-          <BsEyeFill style={{ marginRight: "0.5em" }} />
+          <BsEyeFill style={{ marginRight: '0.5em' }} />
           {nbViews}
         </span>
         <span
           className="read-later-container"
           onClick={() => dispatch(addPostToReadLaterList(postId))}
         >
-          <AiFillRead size={30} />
-          <AiOutlineClockCircle size={20} />
+          {readLater ? (
+            <>
+              <AiOutlineRead size={30} />
+              <AiFillClockCircle size={20} color="green" />
+            </>
+          ) : (
+            <>
+              <AiOutlineRead size={30} />
+              <AiFillClockCircle size={20} color="#000" />
+            </>
+          )}
         </span>
-        <MdFavoriteBorder
-          size={30}
-          color="#"
-          onClick={() => dispatch(addPostToFavoriteList(postId))}
-        />
+        {favorite ? (
+          <MdFavorite
+            size={35}
+            color="red"
+            onClick={() => dispatch(addPostToFavoriteList(postId))}
+          />
+        ) : (
+          <MdFavoriteBorder
+            size={35}
+            color="red"
+            onClick={() => dispatch(addPostToFavoriteList(postId))}
+          />
+        )}
       </div>
       <section className="reviews">
         <h2>Commentaires</h2>
@@ -140,12 +158,10 @@ function ViewerPost() {
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            if (reviewText !== "") {
+            if (reviewText !== '') {
               dispatch(sendReview(postId));
             } else {
-              dispatch(
-                setMessageInfosInState(generateMessages("review-content-empty"))
-              );
+              dispatch(setMessageInfosInState(generateMessages('review-content-empty')));
               showMessages();
             }
           }}
@@ -158,9 +174,7 @@ function ViewerPost() {
               id="review-text"
               maxLength="500"
               value={reviewText}
-              onChange={(event) =>
-                dispatch(getReviewContent(event.target.value, "reviewContent"))
-              }
+              onChange={(event) => dispatch(getReviewContent(event.target.value, 'reviewContent'))}
               placeholder="500 caractères max"
             />
           </fieldset>

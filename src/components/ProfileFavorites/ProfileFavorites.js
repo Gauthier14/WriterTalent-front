@@ -1,16 +1,12 @@
-import { Link } from "react-router-dom";
-import {
-  BsBalloonHeartFill,
-  BsFillHandThumbsUpFill,
-  BsEyeFill,
-} from "react-icons/bs";
-import { FcReading } from "react-icons/fc"; // read
-import { ImCross } from "react-icons/im";
+import { Link } from 'react-router-dom';
+import { BsBalloonHeartFill, BsFillHandThumbsUpFill, BsEyeFill } from 'react-icons/bs';
+import { FcReading } from 'react-icons/fc'; // read
+import { ImCross } from 'react-icons/im';
 
-import "./ProfileFavorites.scss";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getAllFavoriteUserPostsFromApi } from "../../actions/posts";
+import './ProfileFavorites.scss';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllFavoriteUserPostsFromApi, removeUserPost } from '../../actions/posts';
 
 function ProfileFavorites() {
   const dispatch = useDispatch();
@@ -28,9 +24,21 @@ function ProfileFavorites() {
             <ul>
               {favoritePosts.map((post) => (
                 <li key={post.id}>
-                  <div className="delete-btn">
-                    <ImCross className="delete-icon" size={30} />
-                  </div>
+
+                  <ImCross
+                    className="delete-icon"
+                    size={30}
+                    style={{
+                      backgroundColor: 'red',
+                      padding: '0.5em',
+                      color: '#fff',
+                      borderRadius: '50%',
+                      cursor: 'pointer',
+                    }}
+                    onClick={() => dispatch(removeUserPost(post.id, 'favorites'))}
+                  />
+
+
                   <Link to={`/post/read/${post.id}`}>
                     <h3>
                       {post.title} <FcReading size={30} />

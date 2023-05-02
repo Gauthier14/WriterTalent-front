@@ -1,4 +1,3 @@
-/* eslint-disable comma-dangle */
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { useParams } from "react-router";

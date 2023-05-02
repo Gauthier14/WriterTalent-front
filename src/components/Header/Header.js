@@ -1,12 +1,11 @@
-import "./Header.scss";
-// import axios from "axios";
-import { GiBookshelf } from "react-icons/gi";
+import './Header.scss';
+import { GiBookshelf } from 'react-icons/gi';
 
-import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
-import { setToggleMenu } from "../../actions/menu";
-import logo from "../../assets/images/logo.png";
-import NavMenu from "../NavMenu/NavMenu";
+import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { setToggleMenu } from '../../actions/menu';
+import logo from '../../assets/images/logo.png';
+import NavMenu from '../NavMenu/NavMenu';
 
 function Header() {
   const dispatch = useDispatch();

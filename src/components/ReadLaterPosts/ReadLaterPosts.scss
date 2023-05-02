@@ -19,7 +19,7 @@
     justify-content: center;
 
     .my-later-scripts {
-      height: 40em;
+      height: fit-content;
       background-color: #cec9c9;
       padding: 1em;
       border-radius: 1em;
@@ -97,6 +97,37 @@
                 color: white;
               }
             }
+          }
+        }
+        .delete-btn {
+          background-color: #c23d3d;
+          border-radius: $radius-btn;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          width: fit-content;
+          padding:0.2em;
+        
+          .delete-text {
+            color: #fff;
+            font-size: 1.2rem;
+            margin-left: $sm-padding-all;
+          }
+        
+          .delete-icon {
+            background-color: #fff;
+            color: #c23d3d;
+            font-size: 1.2rem;
+            padding: $sm-padding-all;
+            border-radius: 50%;
+          }
+          &:hover, &:focus {
+            box-shadow: 0 0 0 2px #fff, 0 0 0 4px #c23d3d;
+          }
+          &:focus {
+            outline: none;
           }
         }
       }
