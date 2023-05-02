@@ -14,7 +14,7 @@ function EditorForm() {
     const { options } = event.target;
     const selectedOptions = [];
     if (options) {
-      for (let x = 0; x < options.length; x + 1) {
+      for (let x = 0; x < options.length; x += 1) {
         if (options[x].selected) {
           selectedOptions.push(options[x].value);
         }

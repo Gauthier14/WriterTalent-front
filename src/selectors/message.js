@@ -6,9 +6,9 @@
  * @param {Number} Delay - Delay to show messages
  */
 export function showMessages(delay = 5000) {
-  document.querySelector(".messages").style.display = "block";
+  document.querySelector('.messages').style.display = 'block';
   window.setTimeout(() => {
-    document.querySelector(".messages").style.display = "none";
+    document.querySelector('.messages').style.display = 'none';
   }, delay);
 }
 
@@ -20,129 +20,126 @@ export function showMessages(delay = 5000) {
 export function generateMessages(dataType) {
   const message = {};
   switch (dataType) {
-    case "login-success":
-      message.text = "Vous êtes à présent connecté !";
-      message.class = "success";
+    case 'login-success':
+      message.text = 'Vous êtes à présent connecté !';
+      message.class = 'success';
       break;
-    case "user-disconnect":
+    case 'user-disconnect':
+      message.text = 'Le temps de la session de connexion est écoulé, veuillez vous reconnecter !';
+      message.class = 'warning';
+      break;
+    case 'login-fail':
+      message.text = 'Connexion impossible, veuillez réessayer !';
+      message.class = 'warning';
+      break;
+    case 'login-infos':
+      message.text = "Nous n'avons pas pus récupérer vos informations de connexion !";
+      message.class = 'warning';
+      break;
+    case 'login-input-empty':
+      message.text = 'Vérifiez que tous les champs soient remplis';
+      message.class = 'warning';
+      break;
+    case 'review-content-empty':
+      message.text = 'Votre commentaire est vide';
+      message.class = 'warning';
+      break;
+    case 'not-connected-viewer':
+      message.text = 'Vous devez être connecté pour effectuer cette action';
+      message.class = 'warning';
+      break;
+    case 'register-success':
       message.text =
-        "Le temps de la session de connexion est écoulé, veuillez vous reconnecter !";
-      message.class = "warning";
+        'Votre compte a été créé avec succès, vous allez être redirigé vers la page de connexion';
+      message.class = 'success';
       break;
-    case "login-fail":
-      message.text = "Connexion impossible, veuillez réessayer !";
-      message.class = "warning";
-      break;
-    case "login-infos":
-      message.text =
-        "Nous n'avons pas pus récupérer vos informations de connexion !";
-      message.class = "warning";
-      break;
-    case "login-input-empty":
-      message.text = "Vérifiez que tous les champs soient remplis";
-      message.class = "warning";
-      break;
-    case "review-content-empty":
-      message.text = "Votre commentaire est vide";
-      message.class = "warning";
-      break;
-    case "register-success":
-      message.text =
-        "Votre compte a été créé avec succès, vous allez être redirigé vers la page de connexion";
-      message.class = "success";
-      break;
-    case "register-fail":
+    case 'register-fail':
       message.text =
         "Votre compte n'a pas été créé, veuillez vérifiez les information saisies, puis réessayez !";
-      message.class = "warning";
+      message.class = 'warning';
       break;
-    case "register-input-empty":
-      message.text =
-        "Vérifiez que tous les champs sont remplis et avec les bonnes valeurs";
-      message.class = "warning";
+    case 'register-input-empty':
+      message.text = 'Vérifiez que tous les champs sont remplis et avec les bonnes valeurs';
+      message.class = 'warning';
       break;
-    case "all-authors":
+    case 'all-authors':
       message.text =
         "La liste des auteurs n'a pas pu être récupérée, Problème de connexion avec L'API !";
-      message.class = "warning";
+      message.class = 'warning';
       break;
-    case "genres":
+    case 'genres':
       message.text =
         "La liste des genres n'a pas pu être récupérée, Problème de connexion avec L'API !";
-      message.class = "warning";
+      message.class = 'warning';
       break;
-    case "univers":
+    case 'univers':
       message.text =
         "La liste des univers n'a pas pu être récupérée, Problème de connexion avec L'API !";
-      message.class = "warning";
+      message.class = 'warning';
       break;
-    case "posts":
-      message.text =
-        "Nous n'avons pas pu récupérer les écrits, problème de connexion au serveur";
-      message.class = "warning";
+    case 'posts':
+      message.text = "Nous n'avons pas pu récupérer les écrits, problème de connexion au serveur";
+      message.class = 'warning';
       break;
-    case "my-posts":
-      message.text =
-        "Nous n'avons pas pu récupérer vos écrits, problème de connexion au serveur";
-      message.class = "warning";
+    case 'my-posts':
+      message.text = "Nous n'avons pas pu récupérer vos écrits, problème de connexion au serveur";
+      message.class = 'warning';
       break;
-    case "favorite-posts":
+    case 'favorite-posts':
       message.text =
         "Nous n'avons pas pu récupérer vos écrits favoris, problème de connexion au serveur";
-      message.class = "warning";
+      message.class = 'warning';
       break;
-    case "awaiting-posts":
+    case 'awaiting-posts':
       message.text =
         "Nous n'avons pas pu récupérer vos écrits en attente de publication, problème de connexion au serveur";
-      message.class = "warning";
+      message.class = 'warning';
       break;
-    case "recent-posts":
+    case 'recent-posts':
       message.text =
         "Nous n'avons pas pu récupérer les nouveautés, problème de connexion au serveur";
-      message.class = "warning";
+      message.class = 'warning';
       break;
-    case "published-posts":
+    case 'published-posts':
       message.text =
         "Nous n'avons pas pu récupérer vos écrits publiés, problème de connexion au serveur";
-      message.class = "warning";
+      message.class = 'warning';
       break;
-    case "most-liked-posts":
+    case 'most-liked-posts':
       message.text =
         "Nous n'avons pas pu récupérer les écrits les plus aimés, problème de connexion au serveur";
-      message.class = "warning";
+      message.class = 'warning';
       break;
-    case "read-later-posts":
+    case 'read-later-posts':
       message.text =
         "Nous n'avons pas pu récupérer vos écrits à lire plus tard, problème de connexion au serveur";
-      message.class = "warning";
+      message.class = 'warning';
       break;
-    case "saved-posts":
+    case 'saved-posts':
       message.text =
         "Nous n'avons pas pu récupérer vos écrits sauvegardés, problème de connexion au serveur";
-      message.class = "warning";
+      message.class = 'warning';
 
       break;
-    case "post":
-      message.text =
-        "Nous n'avons pas pu récupérer l'écrit, problème de connexion au serveur";
-      message.class = "warning";
+    case 'post':
+      message.text = "Nous n'avons pas pu récupérer l'écrit, problème de connexion au serveur";
+      message.class = 'warning';
       break;
-    case "review-sent":
-      message.text = "Votre commentaire a été pris en compte.";
-      message.class = "success";
+    case 'review-sent':
+      message.text = 'Votre commentaire a été pris en compte.';
+      message.class = 'success';
       break;
-    case "review-not-sent":
-      message.text =
-        "Votre commentaire n'a pas été créé, problème de connexion au serveur !.";
-      message.class = "warning";
+    case 'review-not-sent':
+      message.text = "Votre commentaire n'a pas été créé, problème de connexion au serveur !.";
+      message.class = 'warning';
       break;
-    case "post-saved":
-      message.text = "Votre écrit a été sauvegardé.";
-      message.class = "success";
+    case 'post-saved':
+      message.text = 'Votre écrit a été sauvegardé.';
+      message.class = 'success';
       break;
-    case "post-not-saved":
+    case 'post-not-saved':
       message.text = "Nous n'avons pas pus sauvegarder votre écrit !.";
-      message.class = "warning";
+      message.class = 'warning';
       break;
     default:
       break;
