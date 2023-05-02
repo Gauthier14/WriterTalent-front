@@ -1,6 +1,4 @@
 import PropTypes from "prop-types";
-import { useEffect } from "react";
-import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 const AuthorItem = ({ username, id }) => (

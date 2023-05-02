@@ -1,25 +1,14 @@
-/* eslint-disable react/require-default-props */
-import PropTypes from "prop-types";
-import "./BookElement.scss";
-import { BsFillHandThumbsUpFill, BsEyeFill } from "react-icons/bs";
-import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
-import Button from "../Button/Button";
-import { convertDraftToHtml, convertHtmlToText } from "../../selectors/viewer";
-import { incrementPostNbViews } from "../../actions/posts";
+import PropTypes from 'prop-types';
+import './BookElement.scss';
+import { BsFillHandThumbsUpFill, BsEyeFill } from 'react-icons/bs';
+import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { incrementPostNbViews } from '../../actions/posts';
 
 function BookElement({
-  id,
-  title,
-  link,
-  user,
-  nbLikes,
-  nbViews,
-  genre,
-  categories,
-  content,
+  id, title, link, user, nbLikes, nbViews, genre, categories, content,
 }) {
-  const extract = "";
+  const extract = '';
   /* if (content !== undefined) {
     extract = convertHtmlToText(convertDraftToHtml(content)).slice(0, 200);
     console.log(extract);
@@ -39,10 +28,10 @@ function BookElement({
         </span>
       </p>
       <button
-      className="read"
+        className="read"
         type="button"
         onClick={() => {
-          console.log("incrémentation nb views");
+          console.log('incrémentation nb views');
           dispatch(incrementPostNbViews(id));
         }}
       >

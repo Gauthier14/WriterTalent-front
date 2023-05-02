@@ -1,21 +1,14 @@
-/* eslint-disable comma-dangle */
-import "./NavMenu.scss";
-import { useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
-import { ImCross } from "react-icons/im";
-import { useDispatch, useSelector } from "react-redux";
-
-import {
-  setToggleMenu,
-  getCategoriesFromApi,
-  getGenresFromApi,
-} from "../../actions/menu";
-import { setEditPostInState } from "../../actions/editor";
-import MenuItem from "./MenuItem";
-import DropMenuItem from "./DropMenuItem";
-import { manageSessionStorage } from "../../selectors/user";
-import WriterButton from "../WriterButton/WriterButton";
-import { logout } from "../../actions/user";
+import './NavMenu.scss';
+import { useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { ImCross } from 'react-icons/im';
+import { useDispatch, useSelector } from 'react-redux';
+import { setToggleMenu, getCategoriesFromApi, getGenresFromApi } from '../../actions/menu';
+import MenuItem from './MenuItem';
+import DropMenuItem from './DropMenuItem';
+import { manageSessionStorage } from '../../selectors/user';
+import WriterButton from '../WriterButton/WriterButton';
+import { logout } from '../../actions/user';
 
 function NavMenu() {
   const { pathname } = useLocation();
@@ -24,7 +17,7 @@ function NavMenu() {
   const categories = useSelector((state) => state.menu.categories);
   const menuVisibility = useSelector((state) => state.menu.visible);
   const checkLogin = useSelector((state) => state.user.checkLogin);
-  const isLogged = Boolean(manageSessionStorage("get", "logged"));
+  const isLogged = Boolean(manageSessionStorage('get', 'logged'));
 
   useEffect(() => {
     dispatch(getGenresFromApi());
@@ -34,7 +27,7 @@ function NavMenu() {
   }, []);
 
   return (
-    <nav className={!menuVisibility ? "menu-wrap" : "menu-wrap menu-wrap-hide"}>
+    <nav className={!menuVisibility ? 'menu-wrap' : 'menu-wrap menu-wrap-hide'}>
       <ImCross
         className="close-btn"
         size={30}
@@ -84,14 +77,8 @@ function NavMenu() {
             <Link to="#"> Profil </Link>
             <ul className="drop-menu">
               <DropMenuItem label="Favoris" pathname="/user/posts/favorites" />
-              <DropMenuItem
-                label="Mes écrits"
-                pathname="/user/posts/my-posts"
-              />
-              <DropMenuItem
-                label="Lire plus tard"
-                pathname="/user/posts/to-read"
-              />
+              <DropMenuItem label="Mes écrits" pathname="/user/posts/my-posts" />
+              <DropMenuItem label="Lire plus tard" pathname="/user/posts/to-read" />
             </ul>
           </li>
         ) : (
@@ -118,7 +105,7 @@ function NavMenu() {
         )}
       </ul>
 
-      {isLogged && pathname !== "/edit" && <WriterButton />}
+      {isLogged && pathname !== '/edit' && <WriterButton />}
     </nav>
   );
 }

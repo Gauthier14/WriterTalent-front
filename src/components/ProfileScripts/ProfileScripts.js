@@ -1,25 +1,24 @@
-import { Link } from "react-router-dom";
-import { MdPublishedWithChanges } from "react-icons/md"; // published
-import { GrInProgress } from "react-icons/gr"; // awaiting
-import { RiDraftFill } from "react-icons/ri"; // draft
-// import { FaPenNib } from "react-icons/fa"; // write
-import { FcReading } from "react-icons/fc"; // read
-import { BsFillHandThumbsUpFill, BsEyeFill } from "react-icons/bs";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { Link } from 'react-router-dom';
+import { MdPublishedWithChanges } from 'react-icons/md'; // published
+import { GrInProgress } from 'react-icons/gr'; // awaiting
+import { RiDraftFill } from 'react-icons/ri'; // draft
+import { FcReading } from 'react-icons/fc'; // read
+import { BsFillHandThumbsUpFill, BsEyeFill } from 'react-icons/bs';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   getAllAwaitingUserPostsFromApi,
   getAllSavedUserPostsFromApi,
   getAllUserPublishedPostsFromApi,
   removeUserPost,
-} from "../../actions/posts";
+} from '../../actions/posts';
 
-import "./ProfileScripts.scss";
-import { manageSessionStorage } from "../../selectors/user";
+import './ProfileScripts.scss';
+import { manageSessionStorage } from '../../selectors/user';
 
 function ProfileScripts() {
   const dispatch = useDispatch();
-  const userId = Number(manageSessionStorage("get", "user_id"));
+  const userId = Number(manageSessionStorage('get', 'user_id'));
   const publishedPosts = useSelector((state) => state.posts.userPublishedPosts);
   const savedPosts = useSelector((state) => state.posts.userSavedPosts);
   const awatingPosts = useSelector((state) => state.posts.userAwaitingPosts);
@@ -46,14 +45,14 @@ function ProfileScripts() {
                   <li key={post.id}>
                     <span
                       onClick={() => {
-                        dispatch(removeUserPost(post.id, "published"));
+                        dispatch(removeUserPost(post.id, 'published'));
                       }}
                       style={{
-                        backgroundColor: "red",
-                        padding: "0.5em",
-                        color: "#fff",
-                        borderRadius: "50%",
-                        cursor: "pointer",
+                        backgroundColor: 'red',
+                        padding: '0.5em',
+                        color: '#fff',
+                        borderRadius: '50%',
+                        cursor: 'pointer',
                       }}
                     >
                       supprimer
@@ -139,14 +138,14 @@ function ProfileScripts() {
                   <li key={post.id}>
                     <span
                       onClick={() => {
-                        dispatch(removeUserPost(post.id, "saved"));
+                        dispatch(removeUserPost(post.id, 'saved'));
                       }}
                       style={{
-                        backgroundColor: "red",
-                        padding: "0.5em",
-                        color: "#fff",
-                        borderRadius: "50%",
-                        cursor: "pointer",
+                        backgroundColor: 'red',
+                        padding: '0.5em',
+                        color: '#fff',
+                        borderRadius: '50%',
+                        cursor: 'pointer',
                       }}
                     >
                       supprimer

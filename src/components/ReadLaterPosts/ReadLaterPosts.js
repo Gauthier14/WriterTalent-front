@@ -1,22 +1,19 @@
-import { Link } from "react-router-dom";
-import { BsFillHandThumbsUpFill, BsEyeFill } from "react-icons/bs";
-import { ImCross } from "react-icons/im";
-import { MdWatchLater } from "react-icons/md";
-import { FcReading } from "react-icons/fc"; // read
+import { Link } from 'react-router-dom';
+import { BsFillHandThumbsUpFill, BsEyeFill } from 'react-icons/bs';
+import { ImCross } from 'react-icons/im';
+import { MdWatchLater } from 'react-icons/md';
+import { FcReading } from 'react-icons/fc'; // read
 
-import "./ReadLaterPosts.scss";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  getAllReadLaterUserPostsFromApi,
-  removeUserPost,
-} from "../../actions/posts";
+import './ReadLaterPosts.scss';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllReadLaterUserPostsFromApi, removeUserPost } from '../../actions/posts';
 
 function ReadLaterPosts() {
   const dispatch = useDispatch();
   const readLaterPosts = useSelector((state) => state.posts.userReadLaterPosts);
   useEffect(() => {
-    dispatch(getAllReadLaterUserPostsFromApi(localStorage.getItem("user_id")));
+    dispatch(getAllReadLaterUserPostsFromApi(localStorage.getItem('user_id')));
   }, []);
 
   return (
@@ -33,13 +30,13 @@ function ReadLaterPosts() {
                     className="delete-icon"
                     size={30}
                     style={{
-                      backgroundColor: "red",
-                      padding: "0.5em",
-                      color: "#fff",
-                      borderRadius: "50%",
-                      cursor: "pointer",
+                      backgroundColor: 'red',
+                      padding: '0.5em',
+                      color: '#fff',
+                      borderRadius: '50%',
+                      cursor: 'pointer',
                     }}
-                    onClick={() => dispatch(removeUserPost(post.id, "toread"))}
+                    onClick={() => dispatch(removeUserPost(post.id, 'toread'))}
                   />
                   <Link to={`/post/read/${post.id}`}>
                     <h3>

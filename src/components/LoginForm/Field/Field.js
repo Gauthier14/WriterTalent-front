@@ -1,8 +1,8 @@
 /* eslint-disable object-curly-newline */
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
 // == Import : local
-import "./Field.scss";
+import './Field.scss';
 
 // == Composant
 const Field = ({ value, type, name, placeholder, onChange }) => {
@@ -13,7 +13,7 @@ const Field = ({ value, type, name, placeholder, onChange }) => {
   const inputId = `field-${name}`;
 
   return (
-    <div className={value.length > 0 ? "field field--has-content" : "field"}>
+    <div className={value.length > 0 ? 'field field--has-content' : 'field'}>
       <input
         // React - state
         value={value}
@@ -43,8 +43,8 @@ Field.propTypes = {
 
 // Valeurs par défaut pour les props
 Field.defaultProps = {
-  value: "",
-  type: "text",
+  value: '',
+  type: 'text',
 };
 
 // == Export

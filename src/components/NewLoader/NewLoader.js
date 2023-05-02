@@ -1,5 +1,4 @@
-/* eslint-disable quotes */
-import "./NewLoader.scss";
+import './NewLoader.scss';
 
 function Loader() {
   return (
@@ -31,12 +30,6 @@ function Loader() {
           <li />
         </ul>
       </div>
-      <a
-        className="dribbble"
-        href="https://dribbble.com/shots/7199149-Book-Loader"
-        target="_blank"
-        rel="noreferrer"
-      />
     </main>
   );
 }

@@ -1,7 +1,7 @@
-import { BsArrowBarUp } from "react-icons/bs";
-import Button from "../Button/Button";
-import "./Footer.scss";
-import { scrollToTop } from "../../selectors/pages";
+import { BsArrowBarUp } from 'react-icons/bs';
+import Button from '../Button/Button';
+import { scrollToTop } from '../../selectors/pages';
+import './Footer.scss';
 
 function Footer() {
   return (
