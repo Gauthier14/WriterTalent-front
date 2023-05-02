@@ -203,7 +203,6 @@ const postsMiddleware = (store) => (next) => (action) => {
         .then((response) => {
           console.log(response);
           store.dispatch(setRandomPostInState(response.data));
-          store.dispatch(setPostLoaded());
         })
         .catch((error) => {
           console.log(error);
