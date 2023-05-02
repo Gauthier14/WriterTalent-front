@@ -1,6 +1,3 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable comma-dangle */
-/* eslint-disable brace-style */
 import axios from 'axios';
 import { convertToRaw } from 'draft-js';
 import { SAVE_NEW_POST, UPDATE_POST, ASK_FOR_PUBLICATION } from '../actions/editor';

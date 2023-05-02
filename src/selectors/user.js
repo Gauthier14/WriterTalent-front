@@ -9,12 +9,12 @@
  */
 export const manageSessionStorage = (action = null, key, value = null) => {
   switch (action) {
-    case "set":
+    case 'set':
       sessionStorage.setItem(key, value);
       break;
-    case "get":
+    case 'get':
       return sessionStorage.getItem(key);
-    case "remove":
+    case 'remove':
       sessionStorage.removeItem(key);
       break;
     default:
@@ -22,4 +22,12 @@ export const manageSessionStorage = (action = null, key, value = null) => {
   }
 };
 
-export const checkLoginStatus = (logStatus) => Boolean(logStatus);
+let hasReturnedTrue = false;
+
+export function returnTrueOnce() {
+  if (!hasReturnedTrue) {
+    hasReturnedTrue = true;
+    return true;
+  }
+  return false;
+}

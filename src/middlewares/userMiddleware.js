@@ -3,6 +3,7 @@
 /* eslint-disable quotes */
 
 import axios from 'axios';
+import { manageSessionStorage, returnTrueOnce } from '../selectors/user';
 import {
   LOGIN_USER,
   GET_ALL_AUTHORS,
@@ -12,12 +13,17 @@ import {
   setAllAthorsInState,
   logout,
 } from '../actions/user';
-import { manageSessionStorage } from '../selectors/user';
 import { showMessages, generateMessages } from '../selectors/message';
 import { setMessageInfosInState } from '../actions/messages';
 
 const userMiddleware = (store) => (next) => (action) => {
   const token = manageSessionStorage('get', 'token');
+  const isLogged = Boolean(manageSessionStorage('get', 'logged'));
+  console.log(Date.now() - Number(manageSessionStorage('get', 'session-start')));
+  /* if (isLogged && Date.now() - Number(manageSessionStorage('get', 'session-start')) < 5000) {
+    console.log('deconnect');
+    store.dispatch(logout());
+  } */
   switch (action.type) {
     case LOGIN_USER:
       axios
@@ -29,6 +35,7 @@ const userMiddleware = (store) => (next) => (action) => {
           console.log(response);
           manageSessionStorage('set', 'token', response.data.token);
           manageSessionStorage('set', 'logged', true);
+          manageSessionStorage('set', 'session-start', Date.now());
           store.dispatch(getTextFieldLogin('', 'email'));
           store.dispatch(getTextFieldLogin('', 'password'));
           store.dispatch(getUserInfosFromApi());
