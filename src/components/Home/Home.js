@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Button from '../Button/Button';
@@ -52,13 +53,14 @@ function Home() {
         </section>
         <section className="right">
           <div className="bestRead">
-            <Button
-              label="Surprenez-moi !"
-              link={`/post/read/${randomPost}`}
+            <Link
+              to={`/post/read/${randomPost}`}
               onClick={() => {
-                dispatch(incrementPostNbViews(id));
+                dispatch(incrementPostNbViews(randomPost));
               }}
-            />
+            >
+              Suprenez moi !
+            </Link>
             <h2>Les plus aimés</h2>
           </div>
           <ul>

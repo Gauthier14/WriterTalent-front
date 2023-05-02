@@ -60,14 +60,12 @@ const viewerMiddleware = (store) => (next) => (action) => {
         )
         .then((response) => {
           console.log(response);
-          store.dispatch(setMessageInfosInState(generateMessages('review-sent')));
-          showMessages();
           store.dispatch(getReadPostFromApi(action.postId));
           store.dispatch(getReviewContent('', 'reviewContent'));
         })
         .catch((error) => {
           console.log(error);
-          store.dispatch(setMessageInfosInState(generateMessages('review-not-sent')));
+          store.dispatch(setMessageInfosInState(generateMessages('not-connected-viewer')));
           showMessages();
         });
       break;
@@ -86,14 +84,14 @@ const viewerMiddleware = (store) => (next) => (action) => {
         )
         .then((response) => {
           console.log(response);
-          store.dispatch(setMessageInfosInState(generateMessages('review-sent')));
+          store.dispatch(setMessageInfosInState(generateMessages('')));
           showMessages();
           store.dispatch(getReadPostFromApi(action.postId));
           store.dispatch(getReviewContent('', 'reviewContent'));
         })
         .catch((error) => {
           console.log(error);
-          store.dispatch(setMessageInfosInState(generateMessages('review-not-sent')));
+          store.dispatch(setMessageInfosInState(generateMessages('not-connected-viewer')));
           showMessages();
         });
       break;
@@ -111,14 +109,14 @@ const viewerMiddleware = (store) => (next) => (action) => {
         )
         .then((response) => {
           console.log(response);
-          store.dispatch(setMessageInfosInState(generateMessages('review-sent')));
+          store.dispatch(setMessageInfosInState(generateMessages('')));
           showMessages();
           store.dispatch(getReadPostFromApi(action.postId));
           store.dispatch(getReviewContent('', 'reviewContent'));
         })
         .catch((error) => {
           console.log(error);
-          store.dispatch(setMessageInfosInState(generateMessages('review-not-sent')));
+          store.dispatch(setMessageInfosInState(generateMessages('not-connected-viewer')));
           showMessages();
         });
       break;
