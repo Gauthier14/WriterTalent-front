@@ -1,4 +1,4 @@
-@import "src/styles/_vars.scss";
+@import 'src/styles/_vars.scss';
 
 .home-main {
   display: flex;
@@ -29,7 +29,7 @@
     }
     .left {
       padding: 2em;
-      background: url("./src/assets/images/main.jpeg") no-repeat center;
+      background: url('./src/assets/images/main.jpeg') no-repeat center;
       background-size: cover;
       display: flex;
       flex-direction: column;
@@ -52,6 +52,7 @@
         -webkit-backdrop-filter: blur(1px);
         backdrop-filter: blur(1px);
         border-radius: 0.3em;
+        box-shadow: $box-shadow;
         @media screen and (min-width: 820px) {
           font-size: 2.3em;
         }
@@ -67,7 +68,7 @@
       width: 100%;
       display: flex;
       border-radius: 1em;
-      padding: 0.5em ;
+      padding: 0.5em;
       flex-direction: column;
       justify-content: center;
       box-sizing: border-box;
@@ -90,79 +91,82 @@
           font-size: 1.5em;
           margin-top: 0.5em;
         }
-        a{
-          backdrop-filter: blur(10px);
-    background-color: #000;
-    border: none;
-    border-radius: 0.5em;
-    -webkit-box-shadow: 0 0 1.5em rgba(0,0,0,.7);
-    box-shadow: 0 0 1.5em rgba(0,0,0,.7);
-    color: #fff;
-    cursor: pointer;
-    font-size: 1.2rem;
-    padding: 0.3em;
-    max-width: fit-content
-}
-        }
-      }
-
-      ul {
-        padding: 1em;
-        background-color: $bg-primary;
-        list-style: none;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        border-radius: inherit;
-        & > * {
-          margin-bottom: 0.6em;
-        }
-        li {
-          display: flex;
-          justify-content: space-between;
-          flex-direction: column;
-          align-items: center;
-          border-bottom-width: thick;
-          border-bottom: $text-dark-color 1px solid;
-          width: 100%;
-          & > * {
-            margin-bottom: 0.5em;
-          }
-          h3 {
-            display: inline-block;
-            vertical-align: middle;
-            font-size: 1.3rem;
-            text-align: center;
-          }
-          p {
-            display: flex;
-            align-items: center;
-            flex-wrap: wrap;
-            padding-bottom: 1em;
-            justify-content: center;
-          }
-          &:last-child p {
-            border-bottom: none;
-          }
-          span {
-            display: inline-block;
-            vertical-align: middle;
-            font-size: 1rem;
-            margin: 0em 0.3em 0em 0.3em;
-            padding: 0.3em 0.7em;
-            background-color: $bg-genre;
-            border-radius: 0.5em;
-            color: #ffffff;
-          }
-          .category {
-            background-color: $bg-category;
-          }
-          .nbLikes {
-            background-color: $bg-likes;
-            border-radius: 50%;
+        a {
+          background-color: $bg-dark;
+          border: none;
+          border-radius: $radius-btn;
+          box-shadow: $box-shadow;
+          color: $text-light-color;
+          cursor: pointer;
+          font-size: 1.2rem;
+          padding: $sm-padding-all;
+          max-width: fit-content;
+          margin: $sm-margin-all;
+          &:hover {
+            background-color: #bdbd74;
+            font-style: 1.3em;
+            color: #000;
           }
         }
       }
     }
-  }
 
+    ul {
+      padding: 1em;
+      background-color: $bg-primary;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border-radius: inherit;
+      & > * {
+        margin-bottom: 0.6em;
+      }
+      li {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        align-items: center;
+        border-bottom-width: thick;
+        border-bottom: $text-dark-color 1px solid;
+        width: 100%;
+        & > * {
+          margin-bottom: 0.5em;
+        }
+        h3 {
+          display: inline-block;
+          vertical-align: middle;
+          font-size: 1.3rem;
+          text-align: center;
+        }
+        p {
+          display: flex;
+          align-items: center;
+          flex-wrap: wrap;
+          padding-bottom: 1em;
+          justify-content: center;
+        }
+        &:last-child p {
+          border-bottom: none;
+        }
+        span {
+          display: inline-block;
+          vertical-align: middle;
+          font-size: 1rem;
+          margin: 0em 0.3em 0em 0.3em;
+          padding: 0.3em 0.7em;
+          background-color: $bg-genre;
+          border-radius: 0.5em;
+          color: #ffffff;
+        }
+        .category {
+          background-color: $bg-category;
+        }
+        .nbLikes {
+          background-color: $bg-likes;
+          border-radius: 50%;
+        }
+      }
+    }
+  }
+}
