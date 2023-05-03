@@ -1,4 +1,4 @@
-@import "src/styles/_vars.scss";
+@import 'src/styles/_vars.scss';
 .menu-wrap {
   padding: 1em;
   grid-area: menu;
@@ -84,6 +84,7 @@
     }
     .drop-menu-item {
       width: 100%;
+      margin-bottom: 0.3em;
       a {
         color: #555;
         padding: 0.4em 1em;

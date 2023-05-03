@@ -98,17 +98,6 @@ function ProfileScripts() {
                     <h3>
                       {post.title} <FcReading size={30} />
                     </h3>
-                    <div className="views-likes">
-                      <span className="nbLikes">
-                        <BsFillHandThumbsUpFill />
-                        {post.nbLikes}
-                      </span>
-                      <span className="nbViews">
-                        <BsEyeFill />
-                        {post.nbViews}
-                      </span>
-                    </div>
-
                     <span className="genre" key={post.genre.id}>
                       {post.genre.name}
                     </span>

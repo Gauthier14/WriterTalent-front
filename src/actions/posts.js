@@ -217,8 +217,9 @@ export const setInfosPostToReadInState = (readPostStatusInfos) => ({
  * @param {Array} reviews
  */
 
-export const setPostLoaded = () => ({
+export const setPostLoaded = (status) => ({
   type: SET_POST_LOADED,
+  status: status,
 });
 
 export const getNumberOfPublishedPostsAuthorFromApi = (userId) => ({

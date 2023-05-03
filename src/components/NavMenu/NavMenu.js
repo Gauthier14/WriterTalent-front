@@ -16,13 +16,11 @@ function NavMenu() {
   const genres = useSelector((state) => state.menu.genres);
   const categories = useSelector((state) => state.menu.categories);
   const menuVisibility = useSelector((state) => state.menu.visible);
-  const checkLogin = useSelector((state) => state.user.checkLogin);
   const isLogged = Boolean(manageSessionStorage('get', 'logged'));
   const isAdmin = manageSessionStorage('get', 'role') === 'ROLE_ADMIN';
-
   useEffect(() => {
     dispatch(getGenresFromApi());
-  }, [checkLogin]);
+  }, [isAdmin]);
   useEffect(() => {
     dispatch(getCategoriesFromApi());
   }, []);

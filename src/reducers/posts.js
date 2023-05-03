@@ -78,7 +78,7 @@ const reducer = (state = initialState, action = {}) => {
     case 'SET_POST_LOADED':
       return {
         ...state,
-        loaded: true,
+        loaded: action.status,
       };
     case 'SET_INFOS_READ_POST_STATUS':
       return {

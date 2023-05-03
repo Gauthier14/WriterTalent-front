@@ -1,85 +1,5 @@
-// /* eslint-disable brace-style */
-// /* eslint-disable operator-linebreak */
-// /* eslint-disable import/prefer-default-export */
-// import { convertFromRaw } from 'draft-js';
-// import draftToHtml from 'draftjs-to-html';
+/* eslint-disable prefer-template */
 
-// /**
-//  * @param {String} Date - Email of new user to register a new account
-//  * @return {Boolean}
-//  */
-
-// export const convertStringDate = (stringDate) => {
-//   const date = new Date(Date.parse(stringDate));
-//   const options = {
-//     weekday: 'long',
-//     year: 'numeric',
-//     month: 'long',
-//     day: 'numeric',
-//   };
-//   return date.toLocaleDateString('fr-FR', options);
-// };
-
-// /**
-//  * @param {String} content text content of post
-//  * @param {Number} wordsPerPage number of words for one page
-//  * @param {Number} currentPage number of current page
-//  * @returns pages for viewer post
-//  */
-// export const renderedContent = (content, wordsPerPage, currentPage) => {
-//   // const newContent = JSON.stringify(draftToHtml(convertFromRaw(JSON.parse(content)))); A MODIFIER ICI
-//   const words = newContent.split('</p>');
-//   const startIndex = (currentPage - 1) * wordsPerPage;
-//   const endIndex = startIndex + wordsPerPage;
-//   const pageWords = words.slice(startIndex, endIndex);
-//   // Check if the last word on the current page is cut off
-//   const lastWord = pageWords[pageWords.length - 1];
-//   const isLastWordCut = !lastWord.endsWith('.') && !lastWord.endsWith(',');
-//   if (isLastWordCut) {
-//     // If it is cut off, find the beginning of the next word
-//     const nextWordIndex = content.indexOf(lastWord, startIndex + wordsPerPage);
-//     if (nextWordIndex !== -1) {
-//       const nextWord = content.slice(nextWordIndex, content.indexOf(' ', nextWordIndex));
-//       pageWords[pageWords.length - 1] += nextWord;
-//     }
-//   }
-//   return pageWords.join('</p>');
-// };
-
-// export const convertDraftToHtml = (draftJsonObject) => {
-//   const htmlContent = draftToHtml(JSON.parse(draftJsonObject));
-//   return <div dangerouslySetInnerHTML={{ __html: htmlContent }} />;
-//   /* import {
-//     convertToRaw,
-//   } from 'draft-js';
-//   const blocks = convertToRaw(editorState.getCurrentContent()).blocks;
-//   const value = blocks.map(block => (!block.text.trim() && '\n') || block.text).join('\n'); */
-// };
-
-// export const convertHtmlToText = (htmlCode) => htmlCode.textContent;
-
-// /* export function splitHtmlString(htmlString, charLimit) {
-//   JSON.stringify(draftToHtml(convertFromRaw(JSON.parse(content)))
-//   const result = [];
-//   let startIndex = 0;
-//   while (startIndex < htmlString.length) {
-//     let endIndex = startIndex + charLimit;
-//     let partialHtml = htmlString.substring(startIndex, endIndex);
-//     const lastTagIndex = partialHtml.lastIndexOf('>');
-//     if (lastTagIndex !== -1 && lastTagIndex >= endIndex - 10) {
-//       endIndex = lastTagIndex + 1;
-//       partialHtml = htmlString.substring(startIndex, endIndex);
-//     }
-//     result.push(partialHtml);
-//     startIndex = endIndex;
-//   }
-//   return result;
-// } */
-
-
-/* eslint-disable brace-style */
-/* eslint-disable operator-linebreak */
-/* eslint-disable import/prefer-default-export */
 import { convertFromRaw } from 'draft-js';
 import draftToHtml from 'draftjs-to-html';
 
@@ -99,44 +19,10 @@ export const convertStringDate = (stringDate) => {
   return date.toLocaleDateString('fr-FR', options);
 };
 
-/**
- * @param {String} content text content of post
- * @param {Number} wordsPerPage number of words for one page
- * @param {Number} currentPage number of current page
- * @returns pages for viewer post
- */
-export const renderedContent = (content, wordsPerPage, currentPage) => {
-  const newContent = draftToHtml(convertFromRaw(JSON.parse(content)));
-  const words = newContent.split(' ');
-  const startIndex = (currentPage - 1) * wordsPerPage;
-  const endIndex = startIndex + wordsPerPage;
-  const pageWords = words.slice(startIndex, endIndex);
-
-  // Check if the last word on the current page is cut off
-  const lastWord = pageWords[pageWords.length - 1];
-  const isLastWordCut = !lastWord.endsWith('.') && !lastWord.endsWith(',');
-
-  if (isLastWordCut) {
-    // If it is cut off, find the beginning of the next word
-    const nextWordIndex = newContent.indexOf(lastWord, startIndex + wordsPerPage);
-    if (nextWordIndex !== -1) {
-      const nextWord = newContent.slice(nextWordIndex, newContent.indexOf(' ', nextWordIndex));
-      pageWords[pageWords.length - 1] += nextWord;
-    }
-  }
-
-  // Check if the content has more than 200 words
-  if (words.length > wordsPerPage) {
-    // If it has more than 200 words, add an ellipsis to the end of the page content
-    pageWords.push('...');
-  }
-
-  return pageWords.join(' ');
-};
-
 export const convertDraftToHtml = (draftJsonObject) => {
   const htmlContent = draftToHtml(JSON.parse(draftJsonObject));
-  return <div dangerouslySetInnerHTML={{ __html: htmlContent }} />;
+  return htmlContent;
+  // return <div dangerouslySetInnerHTML={{ __html: htmlContent }} />;
 };
 
 export const convertHtmlToText = (htmlCode) => htmlCode.textContent;
@@ -158,3 +44,29 @@ export const convertHtmlToText = (htmlCode) => htmlCode.textContent;
   }
   return result;
 } */
+
+export function splitHTML(html) {
+  // Utiliser une expression régulière pour diviser le code HTML après chaque balise </p>
+  const parts = html.split(/<\/p>/);
+
+  // Supprimer la dernière partie si elle est vide (car la balise </p> est souvent
+  // suivie d'une ligne vide)
+  if (parts[parts.length - 1] === '') {
+    parts.pop();
+  }
+
+  // Ajouter la balise </p> à chaque partie, car elle a été supprimée lors du découpage
+  return parts.map((part) => part + '</p>');
+}
+
+export function groupByFive(array) {
+  const groupedArray = [];
+  for (let i = 0; i < array.length; i += 5) {
+    // Utiliser la méthode slice pour extraire un groupe de 5 éléments du tableau
+    const group = array.slice(i, i + 5);
+    // Ajouter le groupe au nouveau tableau
+    // group.join('');
+    groupedArray.push(group.join(''));
+  }
+  return groupedArray;
+}

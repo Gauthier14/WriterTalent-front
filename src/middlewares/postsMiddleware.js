@@ -198,7 +198,7 @@ const postsMiddleware = (store) => (next) => (action) => {
           .then((response) => {
             console.log(response);
             store.dispatch(setReadPostInState(response.data));
-            store.dispatch(setPostLoaded());
+            // store.dispatch(setPostLoaded(true));
             if (token) {
               store.dispatch(getInfosPostToReadFromApi(response.data.id));
             }
@@ -207,6 +207,9 @@ const postsMiddleware = (store) => (next) => (action) => {
             console.log(error);
             store.dispatch(setMessageInfosInState(generateMessages('post', error.message)));
             showMessages();
+          })
+          .finally(() => {
+            // store.dispatch(setPostLoaded(true));
           });
       } else {
         axios

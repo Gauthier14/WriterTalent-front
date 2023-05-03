@@ -13,6 +13,8 @@ import { MdFavoriteBorder, MdFavorite } from 'react-icons/md';
 import { BiFoodMenu } from 'react-icons/bi';
 import { AiOutlineRead, AiFillClockCircle } from 'react-icons/ai';
 
+import { convertFromRaw } from 'draft-js';
+import draftToHtml from 'draftjs-to-html';
 import {
   addPostToFavoriteList,
   addPostToReadLaterList,
@@ -24,7 +26,13 @@ import {
 } from '../../actions/viewer';
 import { getReadPostFromApi } from '../../actions/posts';
 import NewLoader from '../NewLoader/NewLoader';
-import { convertDraftToHtml, convertStringDate } from '../../selectors/viewer';
+import {
+  convertDraftToHtml,
+  convertStringDate,
+  renderedContent,
+  splitHTML,
+  groupByFive,
+} from '../../selectors/viewer';
 import { setMessageInfosInState } from '../../actions/messages';
 import { generateMessages, showMessages } from '../../selectors/message';
 import { manageSessionStorage } from '../../selectors/user';
@@ -35,7 +43,6 @@ function ViewerPost() {
   const currentPage = useSelector((state) => state.viewer.currentPage);
   const reviewText = useSelector((state) => state.viewer.reviewContent);
   const postToRead = useSelector((state) => state.posts.postToRead);
-  const loaded = useSelector((state) => state.posts.loaded);
   const PostToReadStatus = useSelector((state) => state.posts.infosPostToReadStatus);
   const isLogged = Boolean(manageSessionStorage('get', 'logged'));
   const { title, content, nbViews, user, reviews, id: postId } = postToRead;
@@ -51,16 +58,26 @@ function ViewerPost() {
   const handleClickPage = (pageNumber) => {
     dispatch(changePage(pageNumber));
   };
-  if (loaded) {
-    convertDraftToHtml(content);
+
+  const paragraphsPerPage = 5;
+  let htmlContent = '';
+  let pageCount = '';
+  if (postToRead.content !== '{"article en chargement"}') {
+    // const startIndex = (currentPage - 1) * wordsPerPage;
+    // const endIndex = startIndex + wordsPerPage;
+    // const pageWords = words.slice(startIndex, endIndex);
+    // console.log(startIndex, endIndex, pageWords);
+    // console.log(splitHTML(convertDraftToHtml(content)));
+    const paragraphs = convertDraftToHtml(content).split(/<\/p>/);
+    pageCount = Math.ceil(paragraphs.length / paragraphsPerPage);
+    console.log(pageCount);
+    console.log();
+    htmlContent = convertDraftToHtml(content);
   }
-  const words = content.split(' ');
-  const wordsPerPage = 200;
-  const pageCount = Math.ceil(words.length / wordsPerPage);
 
   return (
     <main>
-      {loaded ? (
+      {postToRead.content !== '{"article en chargement"}' ? (
         <>
           <div className="viewer-body">
             <div className="viewer-header">
@@ -90,8 +107,7 @@ function ViewerPost() {
               </nav>
             </aside>
             <section className={!isVisible ? 'main' : 'main main-toggled'}>
-              {/* renderedContent(convertDraftToHtml(content), 200, currentPage) */}
-              {convertDraftToHtml(content)}
+              <div dangerouslySetInnerHTML={{ __html: htmlContent }} />
             </section>
           </div>
           <div className="post-infos">
