@@ -63,7 +63,9 @@ const viewerMiddleware = (store) => (next) => (action) => {
         .catch((error) => {
           console.log(error);
           store.dispatch(
-            setMessageInfosInState(generateMessages('not-connected-viewer', error.message)),
+            setMessageInfosInState(
+              generateMessages('not-connected-viewer', error.response.statusText),
+            ),
           );
           showMessages();
         });

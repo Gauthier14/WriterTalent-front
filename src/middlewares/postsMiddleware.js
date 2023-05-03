@@ -188,25 +188,44 @@ const postsMiddleware = (store) => (next) => (action) => {
         });
       break;
     case GET_READ_POST_FROM_API:
-      axios
-        .get(`http://localhost:8000/api/post/${action.postId}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        })
-        .then((response) => {
-          console.log(response);
-          store.dispatch(setReadPostInState(response.data));
-          store.dispatch(setPostLoaded());
-          if (token) {
-            store.dispatch(getInfosPostToReadFromApi(response.data.id));
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-          store.dispatch(setMessageInfosInState(generateMessages('post', error.message)));
-          showMessages();
-        });
+      if (token) {
+        axios
+          .get(`http://localhost:8000/api/post/${action.postId}`, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          })
+          .then((response) => {
+            console.log(response);
+            store.dispatch(setReadPostInState(response.data));
+            store.dispatch(setPostLoaded());
+            if (token) {
+              store.dispatch(getInfosPostToReadFromApi(response.data.id));
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+            store.dispatch(setMessageInfosInState(generateMessages('post', error.message)));
+            showMessages();
+          });
+      } else {
+        axios
+          .get(`http://localhost:8000/api/post/${action.postId}`)
+          .then((response) => {
+            console.log(response);
+            store.dispatch(setReadPostInState(response.data));
+            store.dispatch(setPostLoaded());
+            if (token) {
+              store.dispatch(getInfosPostToReadFromApi(response.data.id));
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+            store.dispatch(setMessageInfosInState(generateMessages('post', error.message)));
+            showMessages();
+          });
+      }
+
       break;
 
     case GET_RANDOM_POST_FROM_API:

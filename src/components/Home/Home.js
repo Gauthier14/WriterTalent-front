@@ -59,7 +59,7 @@ function Home() {
                 dispatch(incrementPostNbViews(randomPost));
               }}
             >
-              Suprenez moi !
+              Surprenez moi !
             </Link>
             <h2>Les plus aimés</h2>
           </div>
