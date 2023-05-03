@@ -1,10 +1,8 @@
-/* eslint-disable react/jsx-curly-newline */
-/* eslint-disable brace-style */
-/* eslint-disable implicit-arrow-linebreak */
-/* eslint-disable object-curly-newline */
-/* eslint-disable comma-dangle */
-/* eslint-disable operator-linebreak */
 import './ViewerPost.scss';
+
+import {
+  Routes, Route, useLocation, Navigate,
+} from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { useParams } from 'react-router';
@@ -12,9 +10,6 @@ import { BsFillHandThumbsUpFill, BsEyeFill, BsHandThumbsUp } from 'react-icons/b
 import { MdFavoriteBorder, MdFavorite } from 'react-icons/md';
 import { BiFoodMenu } from 'react-icons/bi';
 import { AiOutlineRead, AiFillClockCircle } from 'react-icons/ai';
-
-import { convertFromRaw } from 'draft-js';
-import draftToHtml from 'draftjs-to-html';
 import {
   addPostToFavoriteList,
   addPostToReadLaterList,
@@ -29,7 +24,6 @@ import NewLoader from '../NewLoader/NewLoader';
 import {
   convertDraftToHtml,
   convertStringDate,
-  renderedContent,
   splitHTML,
   groupByFive,
 } from '../../selectors/viewer';
@@ -45,8 +39,12 @@ function ViewerPost() {
   const postToRead = useSelector((state) => state.posts.postToRead);
   const PostToReadStatus = useSelector((state) => state.posts.infosPostToReadStatus);
   const isLogged = Boolean(manageSessionStorage('get', 'logged'));
-  const { title, content, nbViews, user, reviews, id: postId } = postToRead;
-  const { like, favorite, readLater, nbLikes } = PostToReadStatus;
+  const {
+    title, content, nbViews, user, reviews, id: postId,
+  } = postToRead;
+  const {
+    like, favorite, readLater, nbLikes,
+  } = PostToReadStatus;
 
   // let reviewsReversed = "";
 
@@ -62,15 +60,17 @@ function ViewerPost() {
   const paragraphsPerPage = 5;
   let htmlContent = '';
   let pageCount = '';
+  let pages = [];
   if (postToRead.content !== '{"article en chargement"}') {
     // const startIndex = (currentPage - 1) * wordsPerPage;
     // const endIndex = startIndex + wordsPerPage;
     // const pageWords = words.slice(startIndex, endIndex);
     // console.log(startIndex, endIndex, pageWords);
-    // console.log(splitHTML(convertDraftToHtml(content)));
+    console.log();
     const paragraphs = convertDraftToHtml(content).split(/<\/p>/);
     pageCount = Math.ceil(paragraphs.length / paragraphsPerPage);
     htmlContent = convertDraftToHtml(content);
+    pages = groupByFive(splitHTML(convertDraftToHtml(content)));
   }
 
   return (
@@ -105,7 +105,12 @@ function ViewerPost() {
               </nav>
             </aside>
             <section className={!isVisible ? 'main' : 'main main-toggled'}>
-              <div dangerouslySetInnerHTML={{ __html: htmlContent }} />
+              {pages.map((page, index) => (
+                <div
+                  className={index + 1 === currentPage ? 'active' : ''}
+                  dangerouslySetInnerHTML={{ __html: page }}
+                />
+              ))}
             </section>
           </div>
           <div className="post-infos">
@@ -176,7 +181,8 @@ function ViewerPost() {
                 e.preventDefault();
                 if (reviewText !== '') {
                   dispatch(sendReview(postId));
-                } else {
+                }
+                else {
                   dispatch(setMessageInfosInState(generateMessages('review-content-empty')));
                   showMessages();
                 }
@@ -190,9 +196,7 @@ function ViewerPost() {
                   id="review-text"
                   maxLength="500"
                   value={reviewText}
-                  onChange={(event) =>
-                    dispatch(getReviewContent(event.target.value, 'reviewContent'))
-                  }
+                  onChange={(event) => dispatch(getReviewContent(event.target.value, 'reviewContent'))}
                   placeholder="500 caractères max"
                 />
               </fieldset>

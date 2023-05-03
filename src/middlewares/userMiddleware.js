@@ -14,7 +14,6 @@ import { setMessageInfosInState } from '../actions/messages';
 
 const userMiddleware = (store) => (next) => (action) => {
   const token = manageSessionStorage('get', 'token');
-
   switch (action.type) {
     case LOGIN_USER:
       axios
