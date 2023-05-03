@@ -1,8 +1,6 @@
 import './ViewerPost.scss';
 
-import {
-  Routes, Route, useLocation, Navigate,
-} from 'react-router-dom';
+import { Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { useParams } from 'react-router';
@@ -39,12 +37,8 @@ function ViewerPost() {
   const postToRead = useSelector((state) => state.posts.postToRead);
   const PostToReadStatus = useSelector((state) => state.posts.infosPostToReadStatus);
   const isLogged = Boolean(manageSessionStorage('get', 'logged'));
-  const {
-    title, content, nbViews, user, reviews, id: postId,
-  } = postToRead;
-  const {
-    like, favorite, readLater, nbLikes,
-  } = PostToReadStatus;
+  const { title, content, nbViews, user, reviews, id: postId } = postToRead;
+  const { like, favorite, readLater, nbLikes } = PostToReadStatus;
 
   // let reviewsReversed = "";
 
@@ -89,7 +83,6 @@ function ViewerPost() {
               <h2>{user.username}</h2>
             </div>
             <aside className={!isVisible ? 'sidebar' : 'sidebar sidebar-toggled'}>
-              <h3>Pages...</h3>
               <nav>
                 <ul>
                   {Array.from({ length: pageCount }, (_, i) => (
@@ -181,8 +174,7 @@ function ViewerPost() {
                 e.preventDefault();
                 if (reviewText !== '') {
                   dispatch(sendReview(postId));
-                }
-                else {
+                } else {
                   dispatch(setMessageInfosInState(generateMessages('review-content-empty')));
                   showMessages();
                 }
@@ -196,7 +188,9 @@ function ViewerPost() {
                   id="review-text"
                   maxLength="500"
                   value={reviewText}
-                  onChange={(event) => dispatch(getReviewContent(event.target.value, 'reviewContent'))}
+                  onChange={(event) =>
+                    dispatch(getReviewContent(event.target.value, 'reviewContent'))
+                  }
                   placeholder="500 caractères max"
                 />
               </fieldset>
