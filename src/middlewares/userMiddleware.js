@@ -34,9 +34,7 @@ const userMiddleware = (store) => (next) => (action) => {
         // eslint-disable-next-line no-unused-vars
         .catch((error) => {
           console.log(error);
-          store.dispatch(
-            setMessageInfosInState(generateMessages('login-fail', error.response.data.message)),
-          );
+          store.dispatch(setMessageInfosInState(generateMessages('login-fail', error.message)));
           showMessages();
         });
       break;

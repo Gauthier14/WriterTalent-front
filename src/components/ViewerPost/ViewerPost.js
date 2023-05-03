@@ -53,7 +53,7 @@ function ViewerPost() {
     dispatch(changePage(pageNumber));
   };
 
-  const paragraphsPerPage = 6;
+  const paragraphsPerPage = 5;
   let pageCount = '';
   let pages = [];
   if (postToRead.content !== '{"article en chargement"}') {

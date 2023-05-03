@@ -14,9 +14,9 @@ function Register() {
   const email = useSelector((state) => state.register.email);
   const password = useSelector((state) => state.register.password);
   const isValidPassword = validatePassword(password);
+  const showPassword = useSelector((state) => state.register.showPassword);
   const passwordAgain = useSelector((state) => state.register.passwordAgain);
-  const passwordShown = useSelector((state) => state.register.passwordShown);
-  const passwordAgainShown = useSelector((state) => state.register.passwordAgainShown);
+  const showPasswordAgain = useSelector((state) => state.register.showPasswordAgain);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -73,7 +73,7 @@ function Register() {
             Mot de passe :
             <div className="input-field">
               <input
-                type="password"
+                type={showPassword ? 'text' : 'password'}
                 placeholder="Entrez votre mot de passe"
                 id="password"
                 name="password"
@@ -83,16 +83,16 @@ function Register() {
                   dispatch(getTextFieldRegister(event.target.value, 'password'));
                 }}
               />
-              {passwordShown ? (
+              {showPassword ? (
                 <AiFillEye
                   onClick={() => {
-                    dispatch(togglePasswordShown('passwordShown'));
+                    dispatch(togglePasswordShown('showPassword'));
                   }}
                 />
               ) : (
                 <AiFillEyeInvisible
                   onClick={() => {
-                    dispatch(togglePasswordShown('passwordShown'));
+                    dispatch(togglePasswordShown('showPassword'));
                   }}
                 />
               )}
@@ -103,7 +103,7 @@ function Register() {
             Confirmez votre mot de passe :
             <div className="input-field">
               <input
-                type={passwordAgainShown ? 'text' : 'password'}
+                type={showPasswordAgain ? 'text' : 'password'}
                 placeholder="Confirmez votre mot de passe"
                 id="passwordAgain"
                 name="passwordAgain"
@@ -113,16 +113,16 @@ function Register() {
                   dispatch(getTextFieldRegister(event.target.value, 'passwordAgain'));
                 }}
               />
-              {passwordAgainShown ? (
+              {showPasswordAgain ? (
                 <AiFillEye
                   onClick={() => {
-                    dispatch(togglePasswordShown('passwordAgainShown'));
+                    dispatch(togglePasswordShown('showPasswordAgain'));
                   }}
                 />
               ) : (
                 <AiFillEyeInvisible
                   onClick={() => {
-                    dispatch(togglePasswordShown('passwordAgainShown'));
+                    dispatch(togglePasswordShown('showPasswordAgain'));
                   }}
                 />
               )}

@@ -35,7 +35,7 @@ function App() {
   const messages = useSelector((state) => state.messages.messages);
   const registerOk = messages.find(
     (msg) => msg.text
-      === 'Votre compte a été créé avec succès, vous allez être redirigé vers la page de connexion',
+      === 'Votre compte a été créé avec succès ! Vous allez être redirigé vers la page de connexion.',
   );
 
   useEffect(() => {

@@ -1,4 +1,4 @@
-@import "src/styles/_vars.scss";
+@import 'src/styles/_vars.scss';
 
 .user-connexion {
   max-width: 70%;
@@ -12,6 +12,7 @@
     flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
+    border-radius: $radius-box;
     h2 {
       max-width: fit-content; // deactivates the entire width of the element
       text-align: center;

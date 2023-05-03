@@ -33,14 +33,7 @@ const LoginForm = ({
           Se connecter
         </button>
         <button type="submit" className="login-form-button">
-          <Link
-            to="/register"
-            onClick={() => {
-              dispatch(setToggleMenu());
-            }}
-          >
-            Pas de compte ?
-          </Link>
+          <Link to="/register">Pas de compte ?</Link>
         </button>
 
         {/* <button type="submit" className="login-form-button">
