@@ -70,8 +70,6 @@ function ViewerPost() {
     // console.log(splitHTML(convertDraftToHtml(content)));
     const paragraphs = convertDraftToHtml(content).split(/<\/p>/);
     pageCount = Math.ceil(paragraphs.length / paragraphsPerPage);
-    console.log(pageCount);
-    console.log();
     htmlContent = convertDraftToHtml(content);
   }
 
