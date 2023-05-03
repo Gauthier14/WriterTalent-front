@@ -73,7 +73,7 @@ function Register() {
             Mot de passe :
             <div className="input-field">
               <input
-                type={password ? 'text' : 'password'}
+                type="password"
                 placeholder="Entrez votre mot de passe"
                 id="password"
                 name="password"
@@ -86,13 +86,13 @@ function Register() {
               {passwordShown ? (
                 <AiFillEye
                   onClick={() => {
-                    dispatch(togglePasswordShown('password'));
+                    dispatch(togglePasswordShown('passwordShown'));
                   }}
                 />
               ) : (
                 <AiFillEyeInvisible
                   onClick={() => {
-                    dispatch(togglePasswordShown('password'));
+                    dispatch(togglePasswordShown('passwordShown'));
                   }}
                 />
               )}
