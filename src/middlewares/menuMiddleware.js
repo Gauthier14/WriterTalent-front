@@ -22,7 +22,7 @@ const menuMiddleware = (store) => (next) => (action) => {
         })
         .catch((error) => {
           console.log(error);
-          store.dispatch(setMessageInfosInState(generateMessages('genres')));
+          store.dispatch(setMessageInfosInState(generateMessages('genres', error.message)));
           showMessages();
         });
       break;
@@ -35,7 +35,7 @@ const menuMiddleware = (store) => (next) => (action) => {
         })
         .catch((error) => {
           console.log(error);
-          store.dispatch(setMessageInfosInState(generateMessages('univers')));
+          store.dispatch(setMessageInfosInState(generateMessages('univers', error.message)));
           showMessages();
         });
       break;

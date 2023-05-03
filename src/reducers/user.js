@@ -23,9 +23,19 @@ const reducer = (state = initialState, action = {}) => {
       manageSessionStorage('remove', 'token');
       manageSessionStorage('remove', 'user_id');
       manageSessionStorage('remove', 'username');
-      manageSessionStorage('set', 'logged', '');
+      manageSessionStorage('remove', 'logged');
       manageSessionStorage('remove', 'session-start');
+      manageSessionStorage('remove', 'role');
       return state;
+    case 'LOGIN_SUCCESS':
+      manageSessionStorage('set', 'token', action.token);
+      manageSessionStorage('set', 'logged', true);
+      manageSessionStorage('set', 'session-start', Date.now());
+      return {
+        ...state,
+        email: '',
+        password: '',
+      };
     default:
       return state;
   }

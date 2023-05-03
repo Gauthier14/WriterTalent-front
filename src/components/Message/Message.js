@@ -1,24 +1,23 @@
 /* eslint-disable react/no-array-index-key */
-/* eslint-disable object-curly-newline */
-import PropTypes from 'prop-types';
+import PropTypes, { shape, string } from 'prop-types';
 import './Message.scss';
 
-const Message = ({ messages, statusText }) => (
+const Message = ({ messages }) => (
   <div className="messages">
     {messages.map((msg, index) => (
       <div className={`message ${msg.class}`} key={index}>
-        <span>{statusText}</span>
+        <span>{msg.serverMsg}</span>
         <p>{msg.text}</p>
       </div>
     ))}
   </div>
 );
 Message.propTypes = {
-  messages: PropTypes.array,
-  statusText: PropTypes.string,
-};
-Message.defaultProps = {
-  messages: [],
-  statusText: 'Message',
+  messages: PropTypes.arrayOf(
+    shape({
+      text: string,
+      serverMsg: string,
+    }),
+  ).isRequired,
 };
 export default Message;

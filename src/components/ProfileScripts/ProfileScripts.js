@@ -6,6 +6,7 @@ import { FcReading } from 'react-icons/fc'; // read
 import { BsFillHandThumbsUpFill, BsEyeFill } from 'react-icons/bs';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { ImCross } from 'react-icons/im';
 import {
   getAllAwaitingUserPostsFromApi,
   getAllSavedUserPostsFromApi,
@@ -43,10 +44,9 @@ function ProfileScripts() {
               <ul>
                 {publishedPosts.map((post) => (
                   <li key={post.id}>
-                    <span
-                      onClick={() => {
-                        dispatch(removeUserPost(post.id, 'published'));
-                      }}
+                    <ImCross
+                      className="delete-icon"
+                      size={30}
                       style={{
                         backgroundColor: 'red',
                         padding: '0.5em',
@@ -54,9 +54,8 @@ function ProfileScripts() {
                         borderRadius: '50%',
                         cursor: 'pointer',
                       }}
-                    >
-                      supprimer
-                    </span>
+                      onClick={() => dispatch(removeUserPost(post.id, 'published'))}
+                    />
                     <Link to={`/post/read/${post.id}`}>
                       <h3>
                         {post.title} <FcReading size={30} />
@@ -96,7 +95,6 @@ function ProfileScripts() {
               <ul>
                 {awatingPosts.map((post) => (
                   <li key={post.id}>
-
                     <h3>
                       {post.title} <FcReading size={30} />
                     </h3>
@@ -136,10 +134,9 @@ function ProfileScripts() {
               <ul>
                 {savedPosts.map((post) => (
                   <li key={post.id}>
-                    <span
-                      onClick={() => {
-                        dispatch(removeUserPost(post.id, 'saved'));
-                      }}
+                    <ImCross
+                      className="delete-icon"
+                      size={30}
                       style={{
                         backgroundColor: 'red',
                         padding: '0.5em',
@@ -147,9 +144,8 @@ function ProfileScripts() {
                         borderRadius: '50%',
                         cursor: 'pointer',
                       }}
-                    >
-                      supprimer
-                    </span>
+                      onClick={() => dispatch(removeUserPost(post.id, 'saved'))}
+                    />
                     <Link to={`/edit/${post.id}`}>
                       <h3>
                         {post.title} <FcReading size={30} />

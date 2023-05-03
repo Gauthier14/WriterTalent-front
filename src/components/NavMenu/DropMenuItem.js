@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setToggleMenu } from '../../actions/menu';
 
-const DropMenuItem = ({ pathname, label }) => {
+const DropMenuItem = ({ pathname, label, target }) => {
   const dispatch = useDispatch();
   return (
     <li className="drop-menu-item">
@@ -13,6 +13,7 @@ const DropMenuItem = ({ pathname, label }) => {
         onClick={() => {
           dispatch(setToggleMenu());
         }}
+        target={target}
       >
         {label}
       </Link>
@@ -23,6 +24,10 @@ const DropMenuItem = ({ pathname, label }) => {
 DropMenuItem.propTypes = {
   pathname: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
+  target: PropTypes.string,
+};
+DropMenuItem.defaultProps = {
+  target: '',
 };
 
 export default DropMenuItem;

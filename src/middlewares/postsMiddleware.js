@@ -1,3 +1,4 @@
+/* eslint-disable no-case-declarations */
 /* eslint-disable no-unused-vars */
 /* eslint-disable comma-dangle */
 /* eslint-disable brace-style */
@@ -56,7 +57,9 @@ const postsMiddleware = (store) => (next) => (action) => {
         })
         .catch((error) => {
           console.log(error);
-          store.dispatch(setMessageInfosInState(generateMessages('published-posts')));
+          store.dispatch(
+            setMessageInfosInState(generateMessages('published-posts', error.message)),
+          );
           showMessages();
         });
       break;
@@ -74,7 +77,9 @@ const postsMiddleware = (store) => (next) => (action) => {
         })
         .catch((error) => {
           console.log(error);
-          store.dispatch(setMessageInfosInState(generateMessages('read-later-posts')));
+          store.dispatch(
+            setMessageInfosInState(generateMessages('read-later-posts', error.message)),
+          );
           showMessages();
         });
       break;
@@ -92,7 +97,7 @@ const postsMiddleware = (store) => (next) => (action) => {
         })
         .catch((error) => {
           console.log(error);
-          store.dispatch(setMessageInfosInState(generateMessages('saved-posts')));
+          store.dispatch(setMessageInfosInState(generateMessages('saved-posts', error.message)));
           showMessages();
         });
       break;
@@ -106,7 +111,7 @@ const postsMiddleware = (store) => (next) => (action) => {
         })
         .catch((error) => {
           console.log(error);
-          store.dispatch(setMessageInfosInState(generateMessages('recent-posts')));
+          store.dispatch(setMessageInfosInState(generateMessages('recent-posts', error.message)));
           showMessages();
         });
       break;
@@ -124,7 +129,7 @@ const postsMiddleware = (store) => (next) => (action) => {
         })
         .catch((error) => {
           console.log(error);
-          store.dispatch(setMessageInfosInState(generateMessages('favorite-posts')));
+          store.dispatch(setMessageInfosInState(generateMessages('favorite-posts', error.message)));
           showMessages();
         });
       break;
@@ -143,7 +148,7 @@ const postsMiddleware = (store) => (next) => (action) => {
         })
         .catch((error) => {
           console.log(error);
-          store.dispatch(setMessageInfosInState(generateMessages('awaiting-posts')));
+          store.dispatch(setMessageInfosInState(generateMessages('awaiting-posts', error.message)));
           showMessages();
         });
       break;
@@ -163,7 +168,7 @@ const postsMiddleware = (store) => (next) => (action) => {
         })
         .catch((error) => {
           console.log(error);
-          store.dispatch(setMessageInfosInState(generateMessages('posts')));
+          store.dispatch(setMessageInfosInState(generateMessages('posts', error.message)));
           showMessages();
         });
       break;
@@ -176,13 +181,19 @@ const postsMiddleware = (store) => (next) => (action) => {
         })
         .catch((error) => {
           console.log(error);
-          store.dispatch(setMessageInfosInState(generateMessages('most-liked-posts')));
+          store.dispatch(
+            setMessageInfosInState(generateMessages('most-liked-posts', error.message)),
+          );
           showMessages();
         });
       break;
     case GET_READ_POST_FROM_API:
       axios
-        .get(`http://localhost:8000/api/post/${action.postId}`)
+        .get(`http://localhost:8000/api/post/${action.postId}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
         .then((response) => {
           console.log(response);
           store.dispatch(setReadPostInState(response.data));
@@ -193,7 +204,7 @@ const postsMiddleware = (store) => (next) => (action) => {
         })
         .catch((error) => {
           console.log(error);
-          store.dispatch(setMessageInfosInState(generateMessages('post')));
+          store.dispatch(setMessageInfosInState(generateMessages('post', error.message)));
           showMessages();
         });
       break;
@@ -207,7 +218,7 @@ const postsMiddleware = (store) => (next) => (action) => {
         })
         .catch((error) => {
           console.log(error);
-          store.dispatch(setMessageInfosInState(generateMessages('post')));
+          store.dispatch(setMessageInfosInState(generateMessages('post', error.message)));
           showMessages();
         });
       break;
@@ -219,7 +230,7 @@ const postsMiddleware = (store) => (next) => (action) => {
         })
         .catch((error) => {
           console.log(error);
-          store.dispatch(setMessageInfosInState(generateMessages('post')));
+          store.dispatch(setMessageInfosInState(generateMessages('post', error.message)));
           showMessages();
         });
       break;
@@ -235,7 +246,7 @@ const postsMiddleware = (store) => (next) => (action) => {
           store.dispatch(setInfosPostToReadInState(response.data));
         })
         .catch((error) => {
-          store.dispatch(setMessageInfosInState(generateMessages('post')));
+          store.dispatch(setMessageInfosInState(generateMessages('post', error.message)));
           showMessages();
         });
       break;
@@ -251,6 +262,8 @@ const postsMiddleware = (store) => (next) => (action) => {
         })
         .catch((error) => {
           console.log(error);
+          store.dispatch(setMessageInfosInState(generateMessages('post', error.message)));
+          showMessages();
         });
       break;
     case REMOVE_USER_POST:
@@ -291,6 +304,8 @@ const postsMiddleware = (store) => (next) => (action) => {
         })
         .catch((error) => {
           console.log(error);
+          store.dispatch(setMessageInfosInState(generateMessages('post', error.message)));
+          showMessages();
         });
       break;
     default:

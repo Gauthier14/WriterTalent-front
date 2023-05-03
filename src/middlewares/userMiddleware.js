@@ -1,17 +1,13 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable comma-dangle */
-/* eslint-disable quotes */
-
 import axios from 'axios';
-import { manageSessionStorage, returnTrueOnce } from '../selectors/user';
+import { manageSessionStorage } from '../selectors/user';
 import {
   LOGIN_USER,
   GET_ALL_AUTHORS,
   GET_USER_INFOS_FROM_API,
-  getTextFieldLogin,
   getUserInfosFromApi,
   setAllAthorsInState,
   logout,
+  loginSuccess,
 } from '../actions/user';
 import { showMessages, generateMessages } from '../selectors/message';
 import { setMessageInfosInState } from '../actions/messages';
@@ -28,19 +24,20 @@ const userMiddleware = (store) => (next) => (action) => {
         })
         .then((response) => {
           console.log(response);
-          manageSessionStorage('set', 'token', response.data.token);
-          manageSessionStorage('set', 'logged', true);
-          manageSessionStorage('set', 'session-start', Date.now());
-          store.dispatch(getTextFieldLogin('', 'email'));
-          store.dispatch(getTextFieldLogin('', 'password'));
+          store.dispatch(loginSuccess(response.data.token));
           store.dispatch(getUserInfosFromApi());
           store.dispatch(setMessageInfosInState(generateMessages('login-success')));
           showMessages();
+          window.setTimeout(() => {
+            store.dispatch(logout());
+          }, 3600000);
         })
         // eslint-disable-next-line no-unused-vars
         .catch((error) => {
           console.log(error);
-          store.dispatch(setMessageInfosInState(generateMessages('login-fail')));
+          store.dispatch(
+            setMessageInfosInState(generateMessages('login-fail', error.response.data.message)),
+          );
           showMessages();
         });
       break;
@@ -56,6 +53,7 @@ const userMiddleware = (store) => (next) => (action) => {
           console.log(response);
           manageSessionStorage('set', 'user_id', response.data.id);
           manageSessionStorage('set', 'username', response.data.username);
+          manageSessionStorage('set', 'role', response.data.roles[0]);
           window.setTimeout(() => {
             store.dispatch(logout());
             store.dispatch(setMessageInfosInState(generateMessages('user-disconnect')));
@@ -64,7 +62,7 @@ const userMiddleware = (store) => (next) => (action) => {
         })
         .catch((error) => {
           console.log(error);
-          store.dispatch(setMessageInfosInState(generateMessages('login-infos')));
+          store.dispatch(setMessageInfosInState(generateMessages('login-infos', error.message)));
           showMessages();
         });
       break;
@@ -77,7 +75,7 @@ const userMiddleware = (store) => (next) => (action) => {
         })
         .catch((error) => {
           console.log(error);
-          store.dispatch(setMessageInfosInState(generateMessages('all-authors')));
+          store.dispatch(setMessageInfosInState(generateMessages('all-authors', error.message)));
           showMessages();
         });
       break;

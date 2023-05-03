@@ -1,7 +1,3 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable comma-dangle */
-/* eslint-disable brace-style */
-
 import axios from 'axios';
 import { getReadPostFromApi, getInfosPostToReadFromApi } from '../actions/posts';
 import {
@@ -41,7 +37,9 @@ const viewerMiddleware = (store) => (next) => (action) => {
         })
         .catch((error) => {
           console.log(error);
-          store.dispatch(setMessageInfosInState(generateMessages('review-not-sent')));
+          store.dispatch(
+            setMessageInfosInState(generateMessages('review-not-sent', error.message)),
+          );
           showMessages();
         });
       break;
@@ -64,7 +62,9 @@ const viewerMiddleware = (store) => (next) => (action) => {
         })
         .catch((error) => {
           console.log(error);
-          store.dispatch(setMessageInfosInState(generateMessages('not-connected-viewer')));
+          store.dispatch(
+            setMessageInfosInState(generateMessages('not-connected-viewer', error.message)),
+          );
           showMessages();
         });
       break;
@@ -88,7 +88,9 @@ const viewerMiddleware = (store) => (next) => (action) => {
         })
         .catch((error) => {
           console.log(error);
-          store.dispatch(setMessageInfosInState(generateMessages('not-connected-viewer')));
+          store.dispatch(
+            setMessageInfosInState(generateMessages('not-connected-viewer', error.message)),
+          );
           showMessages();
         });
       break;
@@ -111,7 +113,9 @@ const viewerMiddleware = (store) => (next) => (action) => {
         })
         .catch((error) => {
           console.log(error);
-          store.dispatch(setMessageInfosInState(generateMessages('not-connected-viewer')));
+          store.dispatch(
+            setMessageInfosInState(generateMessages('not-connected-viewer', error.message)),
+          );
           showMessages();
         });
       break;

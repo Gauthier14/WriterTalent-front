@@ -71,58 +71,28 @@ function Register() {
           </label>
           <label htmlFor="password">
             Mot de passe :
-            <input
-              type="text"
-              placeholder="Entrez votre nom d'utilisateur"
-              id="username"
-              name="username"
-              required
-              value={username}
-              onChange={(event) => {
-                dispatch(getTextFieldRegister(event.target.value, 'username'));
-              }}
-            />
-          </label>
-
-          <label htmlFor="email">
-            Email :
-            <input
-              type="email"
-              placeholder="Entrez une adresse mail valide"
-              id="email"
-              name="email"
-              required
-              value={email}
-              onChange={(event) => {
-                dispatch(getTextFieldRegister(event.target.value, 'email'));
-              }}
-            />
-          </label>
-
-          <label htmlFor="password">
-            Mot de passe :
-            <input
-              type={passwordShown ? 'text' : 'password'}
-              placeholder="Entrez votre mot de passe"
-              id="password"
-              name="password"
-              required
-              value={password}
-              onChange={(event) => {
-                dispatch(getTextFieldRegister(DOMPurify.sanitize(event.target.value), 'password'));
-              }}
-            />
             <div className="input-field">
+              <input
+                type={password ? 'text' : 'password'}
+                placeholder="Entrez votre mot de passe"
+                id="password"
+                name="password"
+                required
+                value={password}
+                onChange={(event) => {
+                  dispatch(getTextFieldRegister(event.target.value, 'password'));
+                }}
+              />
               {passwordShown ? (
                 <AiFillEye
                   onClick={() => {
-                    dispatch(togglePasswordShown('passwordShown'));
+                    dispatch(togglePasswordShown('password'));
                   }}
                 />
               ) : (
                 <AiFillEyeInvisible
                   onClick={() => {
-                    dispatch(togglePasswordShown('passwordShown'));
+                    dispatch(togglePasswordShown('password'));
                   }}
                 />
               )}
@@ -131,18 +101,18 @@ function Register() {
 
           <label htmlFor="passwordAgain">
             Confirmez votre mot de passe :
-            <input
-              type={passwordAgainShown ? 'text' : 'password'}
-              placeholder="Confirmez votre mot de passe"
-              id="passwordAgain"
-              name="passwordAgain"
-              required
-              value={passwordAgain}
-              onChange={(event) => {
-                dispatch(getTextFieldRegister(event.target.value, 'passwordAgain'));
-              }}
-            />
             <div className="input-field">
+              <input
+                type={passwordAgainShown ? 'text' : 'password'}
+                placeholder="Confirmez votre mot de passe"
+                id="passwordAgain"
+                name="passwordAgain"
+                required
+                value={passwordAgain}
+                onChange={(event) => {
+                  dispatch(getTextFieldRegister(event.target.value, 'passwordAgain'));
+                }}
+              />
               {passwordAgainShown ? (
                 <AiFillEye
                   onClick={() => {

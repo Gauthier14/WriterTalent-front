@@ -1,12 +1,11 @@
-@import "src/styles/_vars.scss";
+@import 'src/styles/vars';
 
 .profile-scripts {
   padding: 2em;
-
+  flex-grow: 1;
   h1 {
     font-size: 3em;
     text-align: center;
-    margin-top: 0;
     margin-bottom: 1em;
   }
 

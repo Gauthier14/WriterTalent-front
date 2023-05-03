@@ -18,6 +18,7 @@ function NavMenu() {
   const menuVisibility = useSelector((state) => state.menu.visible);
   const checkLogin = useSelector((state) => state.user.checkLogin);
   const isLogged = Boolean(manageSessionStorage('get', 'logged'));
+  const isAdmin = manageSessionStorage('get', 'role') === 'ROLE_ADMIN';
 
   useEffect(() => {
     dispatch(getGenresFromApi());
@@ -76,9 +77,15 @@ function NavMenu() {
           <li className="menu-item">
             <Link to="#"> Profil </Link>
             <ul className="drop-menu">
-              <DropMenuItem label="Favoris" pathname="/user/posts/favorites" />
+              <DropMenuItem label="mes lectures" pathname="/user/posts/my-reads" />
               <DropMenuItem label="Mes écrits" pathname="/user/posts/my-posts" />
-              <DropMenuItem label="Lire plus tard" pathname="/user/posts/to-read" />
+              {isAdmin && (
+                <DropMenuItem
+                  label="Backoffice"
+                  pathname="http://localhost:8000/login"
+                  target="_blank"
+                />
+              )}
             </ul>
           </li>
         ) : (

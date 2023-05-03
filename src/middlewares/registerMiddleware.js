@@ -22,7 +22,7 @@ const registerMiddleware = (store) => (next) => (action) => {
         })
         .catch((error) => {
           console.log(error);
-          store.dispatch(setMessageInfosInState(generateMessages('register-fail')));
+          store.dispatch(setMessageInfosInState(generateMessages('register-fail', error.message)));
           showMessages();
         });
       break;

@@ -34,7 +34,7 @@ const editorMiddleware = (store) => (next) => (action) => {
         })
         .catch((error) => {
           console.log(error);
-          store.dispatch(setMessageInfosInState(generateMessages('post-not-saved')));
+          store.dispatch(setMessageInfosInState(generateMessages('post-not-saved', error.message)));
           showMessages();
         });
       break;
@@ -64,7 +64,7 @@ const editorMiddleware = (store) => (next) => (action) => {
         })
         .catch((error) => {
           console.log(error);
-          store.dispatch(setMessageInfosInState(generateMessages('post-not-saved')));
+          store.dispatch(setMessageInfosInState(generateMessages('post-not-saved', error.message)));
           showMessages();
         });
       break;
@@ -87,7 +87,7 @@ const editorMiddleware = (store) => (next) => (action) => {
         })
         .catch((error) => {
           console.log(error);
-          store.dispatch(setMessageInfosInState(generateMessages('post-not-saved')));
+          store.dispatch(setMessageInfosInState(generateMessages('post-not-saved', error.message)));
           showMessages();
         });
       break;

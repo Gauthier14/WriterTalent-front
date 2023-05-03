@@ -25,10 +25,8 @@ import ViewerPost from '../ViewerPost/ViewerPost';
 import TextEditorModif from '../TextEditorModif/TextEditorModif';
 import AuthorPosts from '../AuthorPosts/AuthorPosts';
 import ProfileScripts from '../ProfileScripts/ProfileScripts';
-import ProfileFavorites from '../ProfileFavorites/ProfileFavorites';
-import ReadLaterPosts from '../ReadLaterPosts/ReadLaterPosts';
+import ProfileReads from '../ProfileReads/ProfileReads';
 import UserConnexion from '../UserConnexion/UserConnexion';
-import { manageSessionStorage } from '../../selectors/user';
 import { scrollToTop } from '../../selectors/pages';
 import Message from '../Message/Message';
 
@@ -86,9 +84,8 @@ function App() {
         <Route path="/genre/:id/posts" element={<GenreList />} />
         <Route path="/category/:id/posts" element={<CategoryList />} />
         <Route path="/posts/author/:id" element={<AuthorPosts />} />
-        <Route path="/user/posts/favorites" element={<ProfileFavorites />} />
+        <Route path="/user/posts/my-reads" element={<ProfileReads />} />
         <Route path="/user/posts/my-posts" element={<ProfileScripts />} />
-        <Route path="/user/posts/to-read" element={<ReadLaterPosts />} />
         <Route path="/authors" element={<AuthorList />} />
         <Route path="/edit" element={<TextEditor />} />
         <Route path="/edit/:id" element={<TextEditorModif />} />

@@ -7,7 +7,7 @@ const reducer = (state = initialState, action = {}) => {
     state.messages = [];
   }
   switch (action.type) {
-    case "SET_MESSAGE_INFOS":
+    case 'SET_MESSAGE_INFOS':
       return {
         ...state,
         messages: [...state.messages, action.newMessage],

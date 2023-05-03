@@ -1,4 +1,4 @@
-@import 'src/styles/_vars.scss';
+@import 'src/styles/vars';
 
 .register {
   margin: 2em auto;
@@ -6,13 +6,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  @media screen and (min-width: 820px) {
-    h1 {
-      font-size: calc(1em + 5vw);
-    }
-  }
+  font-size: calc(1em + 0.5vw);
   .form-container {
-    min-width: 80%;
+    min-width: 90vw;
     display: flex;
     flex-direction: column;
     background-color: $bg-form;
@@ -25,66 +21,60 @@
     }
     h2 {
       text-align: center;
-      font-size: 1.5em;
+      font-size: calc(1em + 1.3vw);
       margin-bottom: 1em;
-      @media screen and (min-width: 820px) {
-        font-size: calc(1em + 5vw);
-      }
     }
-
     form {
-      opacity: none;
       display: flex;
       flex-direction: column;
       justify-content: space-evenly;
+      input {
+        padding: $sm-padding-all;
+        outline: none;
+        border: none;
+        border-radius: $radius-btn;
+        &:focus {
+          background-color: #ccc;
+        }
+      }
       label {
         display: flex;
         flex-direction: column;
         align-items: baseline;
+        margin-bottom: $md-margin-all;
         @media screen and (min-width: 820px) {
           flex-direction: column;
           justify-content: space-between;
           flex-direction: row;
         }
-        input {
-          max-width: 100%;
-          margin: 1em 0;
+        #username,
+        #email {
+          margin-top: $sm-margin-all;
+          width: 100%;
           @media screen and (min-width: 820px) {
-            max-width: 60%;
+            width: 50%;
           }
         }
-        input[type='password'] {
-          padding: 1vh;
-          border: 0.1em black solid;
-          border-radius: 3px;
-          background-color: #f2f2f2;
-          margin-bottom: 1em;
-          flex-grow: 1;
-        }
-        input[type='text'] {
-          padding: 1vh;
-          border: 0.1em black solid;
-          border-radius: 3px;
-          background-color: #f2f2f2;
-          margin-bottom: 1em;
-          flex-grow: 1;
-        }
-        input[type='email'] {
-          padding: 1vh;
-          border: 0.1em black solid;
-          border-radius: 3px;
-          background-color: #f2f2f2;
-        }
-      }
-      .input-field {
-        display: flex;
-        align-items: center;
-        position: relative;
-        svg {
-          position: absolute;
-          right: 1em;
-          top: 0.5em;
-          cursor: pointer;
+        .input-field {
+          position: relative;
+          width: 100%;
+          @media screen and (min-width: 820px) {
+            width: 50%;
+            input {
+              width: 100%;
+            }
+          }
+          #password,
+          #passwordAgain {
+            margin-top: $sm-margin-all;
+            width: 100%;
+          }
+          svg {
+            position: absolute;
+            right: 1em;
+            top: 0.6em;
+            cursor: pointer;
+          }
         }
       }
     }

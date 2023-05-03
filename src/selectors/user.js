@@ -1,6 +1,7 @@
 /* eslint-disable consistent-return */
 /* eslint-disable default-param-last */
 /* eslint-disable import/prefer-default-export */
+import { Navigate } from 'react-router';
 /**
  *
  * @param {String} action Use 'set' to set item and 'remove' to remove item
@@ -31,3 +32,7 @@ export function returnTrueOnce() {
   }
   return false;
 }
+
+export const redirection = (link) => {
+  <Navigate to={link} />;
+};
