@@ -1,32 +1,12 @@
-<<<<<<< HEAD
 import { AiFillEyeInvisible, AiFillEye } from 'react-icons/ai';
 import PasswordChecklist from 'react-password-checklist';
 import { useDispatch, useSelector } from 'react-redux';
+import DOMPurify from 'dompurify';
 import './Register.scss';
 import { getTextFieldRegister, submitRegister, togglePasswordShown } from '../../actions/register';
 import { validateEmail, validatePassword } from '../../selectors/register';
 import { showMessages, generateMessages } from '../../selectors/message';
 import { setMessageInfosInState } from '../../actions/messages';
-=======
-/* eslint-disable brace-style */
-/* eslint-disable comma-dangle */
-/* eslint-disable operator-linebreak */
-/* eslint-disable jsx-a11y/label-has-associated-control */
-/* eslint-disable quotes */
-import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
-import PasswordChecklist from "react-password-checklist";
-import { useDispatch, useSelector } from "react-redux";
-import "./Register.scss";
-import {
-  getTextFieldRegister,
-  submitRegister,
-  togglePasswordShown,
-} from "../../actions/register";
-import { validateEmail, validatePassword } from "../../selectors/register";
-import { showMessages, generateMessages } from "../../selectors/message";
-import { setMessageInfosInState } from "../../actions/messages";
-import DOMPurify from 'dompurify';
->>>>>>> security
 
 function Register() {
   const dispatch = useDispatch();
@@ -61,34 +41,36 @@ function Register() {
       <section className="form-container">
         <h2>FORMULAIRE D'INSCRIPTION</h2>
         <form onSubmit={handleSubmit}>
-          <label htmlFor="username">Nom d'utilisateur :
-          <input
-            type="text"
-            placeholder="Entrez votre nom d'utilisateur"
-            id="username"
-            name="username"
-            required
-            value={DOMPurify.sanitize(username)}
-            onChange={(event) => {
-              dispatch(getTextFieldRegister(event.target.value, "username"));
-            }}
-          />
-            </label>
-          <label htmlFor="email">Email :
-          <input
-            type="email"
-            placeholder="Entrez une adresse mail valide"
-            id="email"
-            name="email"
-            required
-            value={DOMPurify.sanitize(email)}
-            onChange={(event) => {
-              dispatch(getTextFieldRegister(event.target.value, "email"));
-            }}
-          />
+          <label htmlFor="username">
+            Nom d'utilisateur :
+            <input
+              type="text"
+              placeholder="Entrez votre nom d'utilisateur"
+              id="username"
+              name="username"
+              required
+              value={DOMPurify.sanitize(username)}
+              onChange={(event) => {
+                dispatch(getTextFieldRegister(event.target.value, 'username'));
+              }}
+            />
           </label>
-          <div className="input-field">
-          <label htmlFor="password">Mot de passe :
+          <label htmlFor="email">
+            Email :
+            <input
+              type="email"
+              placeholder="Entrez une adresse mail valide"
+              id="email"
+              name="email"
+              required
+              value={DOMPurify.sanitize(email)}
+              onChange={(event) => {
+                dispatch(getTextFieldRegister(event.target.value, 'email'));
+              }}
+            />
+          </label>
+          <label htmlFor="password">
+            Mot de passe :
             <input
               type="text"
               placeholder="Entrez votre nom d'utilisateur"
@@ -127,7 +109,7 @@ function Register() {
               required
               value={password}
               onChange={(event) => {
-                dispatch(getTextFieldRegister(DOMPurify.sanitize(event.target.value), "password"));
+                dispatch(getTextFieldRegister(DOMPurify.sanitize(event.target.value), 'password'));
               }}
             />
             <div className="input-field">
