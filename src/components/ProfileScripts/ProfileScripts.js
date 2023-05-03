@@ -99,13 +99,13 @@ function ProfileScripts() {
                       {post.title} <FcReading size={30} />
                     </h3>
                     <div className="views-likes">
-                      <span className="nbViews">
-                        <BsFillHandThumbsUpFill />
-                        {post.nbViews}
-                      </span>
                       <span className="nbLikes">
-                        <BsEyeFill />
+                        <BsFillHandThumbsUpFill />
                         {post.nbLikes}
+                      </span>
+                      <span className="nbViews">
+                        <BsEyeFill />
+                        {post.nbViews}
                       </span>
                     </div>
 
