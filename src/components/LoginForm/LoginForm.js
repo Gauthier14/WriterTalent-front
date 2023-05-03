@@ -1,4 +1,3 @@
-/* eslint-disable object-curly-newline */
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
@@ -8,7 +7,9 @@ import Field from './Field/Field';
 import './LoginForm.scss';
 import { setToggleMenu } from '../../actions/menu';
 
-const LoginForm = ({ email, password, changeField, handleLogin }) => {
+const LoginForm = ({
+  email, password, changeField, handleLogin,
+}) => {
   const dispatch = useDispatch();
   const handleSubmit = (evt) => {
     evt.preventDefault();
