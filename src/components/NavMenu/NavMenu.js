@@ -80,7 +80,7 @@ function NavMenu() {
               {isAdmin && (
                 <DropMenuItem
                   label="Backoffice"
-                  pathname="http://localhost:8000/login"
+                  pathname="http://kyllian-g-server.eddi.cloud:8443/login"
                   target="_blank"
                 />
               )}

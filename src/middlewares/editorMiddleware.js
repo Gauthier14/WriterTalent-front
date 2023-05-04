@@ -11,7 +11,7 @@ const editorMiddleware = (store) => (next) => (action) => {
     case SAVE_NEW_POST:
       axios
         .post(
-          'http://localhost:8000/api/post',
+          'http://kyllian-g-server.eddi.cloud:8443/api/post',
           {
             content: JSON.stringify(
               convertToRaw(store.getState().editor.editorState.getCurrentContent()),
@@ -41,7 +41,7 @@ const editorMiddleware = (store) => (next) => (action) => {
     case UPDATE_POST:
       axios
         .put(
-          `http://localhost:8000/api/post/${action.postId}`,
+          `http://kyllian-g-server.eddi.cloud:8443/api/post/${action.postId}`,
           {
             content: JSON.stringify(
               convertToRaw(store.getState().editor.editorState.getCurrentContent()),
@@ -71,7 +71,7 @@ const editorMiddleware = (store) => (next) => (action) => {
     case ASK_FOR_PUBLICATION:
       axios
         .put(
-          `http://localhost:8000/api/post/${action.postId}/awaiting`,
+          `http://kyllian-g-server.eddi.cloud:8443/api/post/${action.postId}/awaiting`,
           {},
           {
             headers: {

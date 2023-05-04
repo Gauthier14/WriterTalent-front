@@ -17,7 +17,7 @@ const userMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
     case LOGIN_USER:
       axios
-        .post('http://localhost:8000/api/login_check', {
+        .post('http://kyllian-g-server.eddi.cloud:8443/api/login_check', {
           username: store.getState().user.email,
           password: store.getState().user.password,
         })
@@ -37,7 +37,7 @@ const userMiddleware = (store) => (next) => (action) => {
       break;
     case GET_USER_INFOS_FROM_API:
       axios
-        .get('http://localhost:8000/api/user/get', {
+        .get('http://kyllian-g-server.eddi.cloud:8443/api/user/get', {
           headers: {
             // nom du header: valeur
             Authorization: `Bearer ${token}`,
@@ -56,7 +56,7 @@ const userMiddleware = (store) => (next) => (action) => {
       break;
     case GET_ALL_AUTHORS:
       axios
-        .get('http://localhost:8000/api/users/authors')
+        .get('http://kyllian-g-server.eddi.cloud:8443/api/users/authors')
         .then((response) => {
           console.log(response);
           store.dispatch(setAllAthorsInState(response.data));

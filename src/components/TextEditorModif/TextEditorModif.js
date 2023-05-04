@@ -35,7 +35,7 @@ function TextEditorModif() {
   useEffect(() => {
     const token = manageSessionStorage('get', 'token');
     axios
-      .get(`http://localhost:8000/api/post/awaiting/${id}`, {
+      .get(`http://kyllian-g-server.eddi.cloud:8443/api/post/awaiting/${id}`, {
         headers: {
           // nom du header: valeur
           Authorization: `Bearer ${token}`,
