@@ -64,7 +64,9 @@
       }
 
       &:hover {
-        background-color: $bg-hover-btn;
+        //background-color: $bg-hover-btn;
+        background: linear-gradient(#bdbd74, #000);
+        color: $text-light-color;
         transform: scale(1.1);
         .drop-menu {
           display: block;
