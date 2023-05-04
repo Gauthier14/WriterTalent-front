@@ -62,8 +62,13 @@
         color: #000;
         display: block;
       }
-      &:hover .drop-menu {
-        display: block;
+
+      &:hover {
+        background-color: $bg-hover-btn;
+        transform: scale(1.1);
+        .drop-menu {
+          display: block;
+        }
       }
     }
   }
@@ -97,5 +102,44 @@
         transform: scale(1.2);
       }
     }
+  }
+}
+
+@keyframes hoverBtn {
+  0% {
+    background: radial-gradient(
+      circle at 100%,
+      #333,
+      #333 50%,
+      #eee 75%,
+      #333 100%
+    );
+  }
+  30% {
+    background: radial-gradient(
+      circle at 100%,
+      #333,
+      #333 50%,
+      #eee 75%,
+      #333 100%
+    );
+  }
+  72% {
+    background: radial-gradient(
+      circle at 100%,
+      #333,
+      #333 50%,
+      #eee 75%,
+      #333 100%
+    );
+  }
+  100% {
+    background: radial-gradient(
+      circle at 100%,
+      #333,
+      #333 50%,
+      #eee 75%,
+      #333 100%
+    );
   }
 }
