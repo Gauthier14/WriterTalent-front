@@ -61,9 +61,9 @@ export function splitHTML(html) {
 
 export function groupByFive(array) {
   const groupedArray = [];
-  for (let i = 0; i < array.length; i += 5) {
+  for (let i = 0; i < array.length; i += 10) {
     // Utiliser la méthode slice pour extraire un groupe de 5 éléments du tableau
-    const group = array.slice(i, i + 5);
+    const group = array.slice(i, i + 10);
     // Ajouter le groupe au nouveau tableau
     // group.join('');
     groupedArray.push(group.join(''));
