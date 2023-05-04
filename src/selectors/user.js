@@ -42,7 +42,6 @@ export const disconnectUser = () => {
   manageSessionStorage('remove', 'user_id');
   manageSessionStorage('remove', 'username');
   manageSessionStorage('remove', 'logged');
-  manageSessionStorage('remove', 'session-start');
   manageSessionStorage('remove', 'role');
 };
 
@@ -50,4 +49,5 @@ export const setUserInfosInSession = (userId, username, role) => {
   manageSessionStorage('set', 'user_id', userId);
   manageSessionStorage('set', 'username', username);
   manageSessionStorage('set', 'role', role);
+  manageSessionStorage('set', 'logged', true);
 };

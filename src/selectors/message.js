@@ -175,9 +175,12 @@ export function generateMessages(dataType, serverMsg = 'Message') {
   return message;
 }
 
-export const checkRegisterSuccess = (messages) => {
-  messages.find(
-    (msg) => msg.text
-      === 'Votre compte a été créé avec succès ! Vous allez être redirigé vers la page de connexion.',
-  );
-};
+export const checkRegisterSuccess = (messages) => messages.find((msg) => {
+  if (
+    msg.text
+      === 'Votre compte a été créé avec succès ! Vous allez être redirigé vers la page de connexion.'
+  ) {
+    return true;
+  }
+  return false;
+});

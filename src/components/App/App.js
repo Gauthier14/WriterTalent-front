@@ -1,6 +1,5 @@
-import {
-  Routes, Route, useLocation, Navigate,
-} from 'react-router-dom';
+/* eslint-disable react/jsx-wrap-multilines */
+import { Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { BsArrowBarUp } from 'react-icons/bs';
 import { useEffect } from 'react';
@@ -21,7 +20,6 @@ import CategoryList from '../CategoryList/CategoryList';
 import RecentPosts from '../RecentPosts/RecentPosts';
 import TextEditor from '../TextEditor/TextEditor';
 import ViewerPost from '../ViewerPost/ViewerPost';
-// import ViewerPostCopy from "../ViewerPost-copy/ViewerPost-copy";
 import TextEditorModif from '../TextEditorModif/TextEditorModif';
 import AuthorPosts from '../AuthorPosts/AuthorPosts';
 import ProfileScripts from '../ProfileScripts/ProfileScripts';
@@ -30,11 +28,13 @@ import UserConnexion from '../UserConnexion/UserConnexion';
 import { scrollToTop } from '../../selectors/pages';
 import Message from '../Message/Message';
 import { checkRegisterSuccess } from '../../selectors/message';
+import { manageSessionStorage } from '../../selectors/user';
 
 function App() {
   const { pathname } = useLocation();
   const messages = useSelector((state) => state.messages.messages);
   const registerOk = checkRegisterSuccess(messages);
+  const isLogged = Boolean(manageSessionStorage('get', 'token'));
 
   useEffect(() => {
     scrollToTop();
@@ -47,37 +47,37 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route
           path="/charte"
-          element={(
+          element={
             <SinglePage>
               <Charte />
             </SinglePage>
-          )}
+          }
         />
         <Route path="/nouveautes" element={<RecentPosts />} />
         <Route path="/register" element={registerOk ? <Navigate to="/login" /> : <Register />} />
         <Route
           path="/mentions-legales"
-          element={(
+          element={
             <SinglePage>
               <MentionsLegales />
             </SinglePage>
-          )}
+          }
         />
         <Route
           path="/qui-sommes-nous"
-          element={(
+          element={
             <SinglePage>
               <QuiSommesNous />
             </SinglePage>
-          )}
+          }
         />
         <Route
           path="/nous-contacter"
-          element={(
+          element={
             <SinglePage>
               <NousContacter />
             </SinglePage>
-          )}
+          }
         />
         <Route path="/genre/:id/posts" element={<GenreList />} />
         <Route path="/category/:id/posts" element={<CategoryList />} />
@@ -87,8 +87,7 @@ function App() {
         <Route path="/authors" element={<AuthorList />} />
         <Route path="/edit" element={<TextEditor />} />
         <Route path="/edit/:id" element={<TextEditorModif />} />
-
-        <Route path="/login" element={<UserConnexion />} />
+        <Route path="/login" element={isLogged ? <Navigate to="/" /> : <UserConnexion />} />
         <Route path="/post/read/:id" element={<ViewerPost />} />
 
         <Route path="*" element={<Page404 />} />

@@ -6,7 +6,6 @@ import {
   GET_USER_INFOS_FROM_API,
   getUserInfosFromApi,
   setAllAthorsInState,
-  logout,
   loginSuccess,
 } from '../actions/user';
 import { showMessages, generateMessages } from '../selectors/message';
@@ -27,9 +26,6 @@ const userMiddleware = (store) => (next) => (action) => {
           store.dispatch(getUserInfosFromApi());
           store.dispatch(setMessageInfosInState(generateMessages('login-success')));
           showMessages();
-          window.setTimeout(() => {
-            store.dispatch(logout());
-          }, 3600000);
         })
         // eslint-disable-next-line no-unused-vars
         .catch((error) => {

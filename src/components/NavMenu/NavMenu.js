@@ -75,7 +75,7 @@ function NavMenu() {
           <li className="menu-item">
             <Link to="#"> Profil </Link>
             <ul className="drop-menu">
-              <DropMenuItem label="mes lectures" pathname="/user/posts/my-reads" />
+              <DropMenuItem label="Mes lectures" pathname="/user/posts/my-reads" />
               <DropMenuItem label="Mes écrits" pathname="/user/posts/my-posts" />
               {isAdmin && (
                 <DropMenuItem
