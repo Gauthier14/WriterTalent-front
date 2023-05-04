@@ -2,7 +2,7 @@ import {
   Routes, Route, useLocation, Navigate,
 } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-
+import { BsArrowBarUp } from 'react-icons/bs';
 import { useEffect } from 'react';
 import Header from '../Header/Header';
 import Home from '../Home/Home';
@@ -95,6 +95,13 @@ function App() {
       </Routes>
 
       <Footer />
+
+      <BsArrowBarUp
+        className="scroll-button"
+        onClick={() => {
+          scrollToTop();
+        }}
+      />
     </div>
   );
 }

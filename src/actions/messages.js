@@ -1,8 +1,8 @@
 // annuaire des actions
 
 // --- action types ---
-export const SET_MESSAGE_INFOS = "SET_MESSAGE_INFOS";
-export const CLEAN_MESSAGES = "CLEAN_MESSAGES";
+export const SET_MESSAGE_INFOS = 'SET_MESSAGE_INFOS';
+export const CLEAN_MESSAGES = 'CLEAN_MESSAGES';
 
 // --- action creators ---
 /**

@@ -1,3 +1,5 @@
+/* eslint-disable react/no-danger */
+/* eslint-disable react/no-array-index-key */
 import './ViewerPost.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
@@ -58,7 +60,6 @@ function ViewerPost() {
   let pages = [];
   if (postToRead.content !== '{"article en chargement"}') {
     const paragraphs = convertDraftToHtml(content).split(/<\/span>/);
-    console.log(paragraphs);
     pageCount = Math.ceil(paragraphs.length / paragraphsPerPage);
     pages = groupByFive(splitHTML(convertDraftToHtml(content)));
   }
@@ -102,50 +103,68 @@ function ViewerPost() {
         </section>
       </div>
       <div className="post-infos">
-        <span onClick={() => dispatch(likePost(postId))}>
-          {like ? (
-            <BsFillHandThumbsUpFill
-              size={25}
-              style={{ marginRight: '0.5em', color: 'rgba(123, 182, 149, 0.9)' }}
-            />
-          ) : (
-            <BsHandThumbsUp size={25} style={{ marginRight: '0.5em' }} />
-          )}
-          {nbLikes}
-        </span>
-        <span
-          className="read-later-container"
-          onClick={() => dispatch(addPostToReadLaterList(postId))}
-        >
-          {readLater ? (
-            <>
-              <AiOutlineRead size={35} />
-              <AiFillClockCircle size={25} color="green" />
-            </>
-          ) : (
-            <>
-              <AiOutlineRead size={35} />
-              <AiFillClockCircle size={25} color="#000" />
-            </>
-          )}
-        </span>
-        {favorite ? (
-          <MdFavorite
-            size={35}
-            color="red"
-            onClick={() => dispatch(addPostToFavoriteList(postId))}
-          />
+        {isLogged ? (
+          <>
+            <span onClick={() => dispatch(likePost(postId))}>
+              {like ? (
+                <BsFillHandThumbsUpFill
+                  size={25}
+                  style={{ marginRight: '0.5em', color: 'rgba(123, 182, 149, 0.9)' }}
+                />
+              ) : (
+                <BsHandThumbsUp size={25} style={{ marginRight: '0.5em' }} />
+              )}
+              {nbLikes}
+            </span>
+            <span
+              className="read-later-container"
+              onClick={() => dispatch(addPostToReadLaterList(postId))}
+            >
+              {readLater ? (
+                <>
+                  <AiOutlineRead size={35} />
+                  <AiFillClockCircle size={25} color="green" />
+                </>
+              ) : (
+                <>
+                  <AiOutlineRead size={35} />
+                  <AiFillClockCircle size={25} color="#000" />
+                </>
+              )}
+            </span>
+            {favorite ? (
+              <MdFavorite
+                size={35}
+                color="red"
+                onClick={() => dispatch(addPostToFavoriteList(postId))}
+              />
+            ) : (
+              <MdFavoriteBorder
+                size={35}
+                color="red"
+                onClick={() => dispatch(addPostToFavoriteList(postId))}
+              />
+            )}
+            <span>
+              <BsEyeFill style={{ marginRight: '0.5em' }} />
+              {nbViews}
+            </span>
+          </>
         ) : (
-          <MdFavoriteBorder
-            size={35}
-            color="red"
-            onClick={() => dispatch(addPostToFavoriteList(postId))}
-          />
+          <>
+            <span onClick={() => dispatch(likePost(postId))}>
+              <BsFillHandThumbsUpFill
+                size={25}
+                style={{ marginRight: '0.5em', color: 'rgba(123, 182, 149, 0.9)' }}
+              />
+              {nbLikes}
+            </span>
+            <span>
+              <BsEyeFill style={{ marginRight: '0.5em' }} />
+              {nbViews}
+            </span>
+          </>
         )}
-        <span>
-          <BsEyeFill style={{ marginRight: '0.5em' }} />
-          {nbViews}
-        </span>
       </div>
       <section className="reviews">
         <h2>Commentaires</h2>

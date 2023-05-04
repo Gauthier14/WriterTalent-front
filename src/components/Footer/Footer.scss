@@ -1,6 +1,6 @@
-@import "src/styles/vars";
+@import 'src/styles/vars';
 footer {
-  background: url("./src/assets/images/main.jpeg") no-repeat center;
+  background: url('./src/assets/images/main.jpeg') no-repeat center;
   background-size: cover;
   position: relative;
   display: flex;
@@ -17,19 +17,5 @@ footer {
     max-width: fit-content;
     backdrop-filter: blur(0.5px);
     -webkit-backdrop-filter: blur(1px);
-  }
-  .scroll-button {
-    position: absolute;
-    bottom: 0.3em;
-    right: 0.3em;
-    color: aliceblue;
-    display: inline-block;
-    padding: 0.1em;
-    font-weight: bold;
-    font-size: 2em;
-    background-color: $text-dark-color;
-    border-radius: 0.2em;
-    cursor: pointer;
-    z-index: 5;
   }
 }
