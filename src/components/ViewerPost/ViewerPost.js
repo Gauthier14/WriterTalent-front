@@ -37,12 +37,8 @@ function ViewerPost() {
   const postToRead = useSelector((state) => state.posts.postToRead);
   const PostToReadStatus = useSelector((state) => state.posts.infosPostToReadStatus);
   const isLogged = Boolean(manageSessionStorage('get', 'logged'));
-  const {
-    title, content, nbViews, user, reviews, id: postId,
-  } = postToRead;
-  const {
-    like, favorite, readLater, nbLikes,
-  } = PostToReadStatus;
+  const { title, content, nbViews, user, reviews, id: postId } = postToRead;
+  const { like, favorite, readLater, nbLikes } = PostToReadStatus;
 
   // let reviewsReversed = "";
 
@@ -59,7 +55,7 @@ function ViewerPost() {
   let pageCount = '';
   let pages = [];
   if (postToRead.content !== '{"article en chargement"}') {
-    const paragraphs = convertDraftToHtml(content).split(/<\/span>/);
+    const paragraphs = convertDraftToHtml(content).split(/<\/p>/);
     pageCount = Math.ceil(paragraphs.length / paragraphsPerPage);
     pages = groupByFive(splitHTML(convertDraftToHtml(content)));
   }
@@ -188,8 +184,7 @@ function ViewerPost() {
             e.preventDefault();
             if (reviewText !== '') {
               dispatch(sendReview(postId));
-            }
-            else {
+            } else {
               dispatch(setMessageInfosInState(generateMessages('review-content-empty')));
               showMessages();
             }

@@ -22,6 +22,7 @@ function EditorForm() {
       dispatch(getEditorSelectedCategories(selectedOptions));
     }
   };
+
   return (
     <div className="editor-form">
       <div className="left-edit-form">

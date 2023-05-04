@@ -6,12 +6,30 @@ import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import './TextEditor.scss';
 import { saveNewPost, updateEditor } from '../../actions/editor';
 import Toolbar from '../../selectors/editor';
+import { setMessageInfosInState } from '../../actions/messages';
+import { generateMessages, showMessages } from '../../selectors/message';
 
 function TextEditor() {
   const dispatch = useDispatch();
   const editorState = useSelector((state) => state.editor.editorState);
+  const postTitle = useSelector((state) => state.editor.title);
+  const genreSelected = useSelector((state) => state.editor.genre);
+  const categSelected = useSelector((state) => state.editor.categories);
   const onEditorStateChange = (editorState) => {
     dispatch(updateEditor(editorState));
+  };
+  const handleSubmit = () => {
+    if (postTitle !== '' && genreSelected !== '' && categSelected !== []) {
+      dispatch(
+        saveNewPost(
+          // draftToHtml(convertToRaw(editorState.getCurrentContent()))
+          editorState.getCurrentContent(),
+        ),
+      );
+    } else {
+      dispatch(setMessageInfosInState(generateMessages('login-input-empty')));
+      showMessages();
+    }
   };
   return (
     <main className="editor">
@@ -26,27 +44,10 @@ function TextEditor() {
       />
       {/* <textarea value={draftToHtml(convertToRaw(editorState.getCurrentContent()))} /> */}
       <div className="buttons-group">
-        <button
-          type="button"
-          className="editor-button"
-          onClick={() => {
-            dispatch(
-              saveNewPost(
-                // draftToHtml(convertToRaw(editorState.getCurrentContent()))
-                editorState.getCurrentContent(),
-              ),
-            );
-          }}
-        >
+        <button type="button" className="editor-button" onClick={() => {}}>
           Sauvegarder
         </button>
-        <button
-          type="button"
-          className="editor-button"
-          onClick={() => {
-            dispatch();
-          }}
-        >
+        <button type="button" className="editor-button" onClick={handleSubmit}>
           Demande de publication
         </button>
       </div>
