@@ -10,7 +10,7 @@ const registerMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
     case SUBMIT_REGISTER:
       axios
-        .post('http://localhost:8000/api/user/new', {
+        .post('http://kyllian-g-server.eddi.cloud:8443/api/user/new', {
           username: store.getState().register.username,
           password: store.getState().register.password,
           email: store.getState().register.email,
