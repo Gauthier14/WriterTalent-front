@@ -1,4 +1,4 @@
-@import "src/styles/_vars.scss";
+@import 'src/styles/_vars.scss';
 
 .book-post {
   position: relative;
@@ -30,6 +30,9 @@
   & > * {
     margin: 1em auto;
   }
+  h2 {
+    font-size: calc(0.7 * 4vw);
+  }
   &:hover .cover {
     -webkit-transition: all 0.5s;
     transition: all 0.5s;
@@ -44,18 +47,21 @@
     display: flex;
     justify-content: space-evenly;
     span {
-      background-color: $bg-likes;
+      background-color: $bg-category;
       padding: 0.5em;
       border-radius: 0.3em;
       display: inline-flex;
       gap: 1em;
       align-items: center;
+      &:first-child {
+        background-color: $bg-genre;
+      }
     }
   }
-  .read{
+  .read {
     width: 3em;
     background-color: #000;
-    color:#fff;
+    color: #fff;
     padding: 0.3em;
     border-radius: 0.5em;
     cursor: pointer;
@@ -63,10 +69,10 @@
     border: none;
     backdrop-filter: blur(10px);
     box-shadow: 0 0 1.5em rgba(0, 0, 0, 0.7);
-    &:hover{
+    &:hover {
       transform: scale(1.1);
-      background-color: rgb(189,189,116);
-      color:#000
+      background-color: rgb(189, 189, 116);
+      color: #000;
     }
   }
   .cover {
@@ -95,7 +101,7 @@
     -webkit-box-pack: center;
     -ms-flex-pack: center;
     justify-content: center;
- 
+
     & > * {
       margin: 0.5em;
     }
@@ -109,16 +115,13 @@
       justify-content: center;
 
       .tag {
-        background-color: $bg-genre;
+        background-color: $bg-category;
         padding: 0.3em;
         border-radius: 0.3em;
         margin: $sm-margin-all;
         text-align: center;
         &:first-child {
           background-color: $bg-genre;
-        }
-        &:last-child {
-          background-color: $bg-category;
         }
       }
     }

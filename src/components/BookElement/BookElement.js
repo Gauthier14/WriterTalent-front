@@ -5,9 +5,7 @@ import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { incrementPostNbViews } from '../../actions/posts';
 
-function BookElement({
-  id, title, link, user, nbLikes, nbViews, genre, categories, content,
-}) {
+function BookElement({ id, title, link, user, nbLikes, nbViews, genre, categories, content }) {
   const extract = '';
   /* if (content !== undefined) {
     extract = convertHtmlToText(convertDraftToHtml(content)).slice(0, 200);
@@ -40,8 +38,10 @@ function BookElement({
         </button>
       </Link>
       <div className="cover">
-        <p className="author">{user.username}</p>
         <h2>{title}</h2>
+        <p>
+          Écrit par <span className="author">{user.username}</span>
+        </p>
         <div className="tags">
           <span className="tag">{genre.name}</span>
           {categories.map((category) => (
