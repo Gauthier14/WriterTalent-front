@@ -1,5 +1,5 @@
 /* eslint-disable quotes */
-import { manageSessionStorage } from '../selectors/user';
+import { disconnectUser, manageSessionStorage } from '../selectors/user';
 
 export const initialState = {
   email: '',
@@ -20,17 +20,10 @@ const reducer = (state = initialState, action = {}) => {
         authors: action.authorList,
       };
     case 'LOGOUT':
-      manageSessionStorage('remove', 'token');
-      manageSessionStorage('remove', 'user_id');
-      manageSessionStorage('remove', 'username');
-      manageSessionStorage('remove', 'logged');
-      manageSessionStorage('remove', 'session-start');
-      manageSessionStorage('remove', 'role');
+      disconnectUser();
       return state;
     case 'LOGIN_SUCCESS':
       manageSessionStorage('set', 'token', action.token);
-      manageSessionStorage('set', 'logged', true);
-      manageSessionStorage('set', 'session-start', Date.now());
       return {
         ...state,
         email: '',

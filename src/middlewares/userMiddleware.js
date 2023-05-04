@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { manageSessionStorage } from '../selectors/user';
+import { manageSessionStorage, setUserInfosInSession } from '../selectors/user';
 import {
   LOGIN_USER,
   GET_ALL_AUTHORS,
@@ -48,14 +48,7 @@ const userMiddleware = (store) => (next) => (action) => {
         })
         .then((response) => {
           console.log(response);
-          manageSessionStorage('set', 'user_id', response.data.id);
-          manageSessionStorage('set', 'username', response.data.username);
-          manageSessionStorage('set', 'role', response.data.roles[0]);
-          window.setTimeout(() => {
-            store.dispatch(logout());
-            store.dispatch(setMessageInfosInState(generateMessages('user-disconnect')));
-            showMessages();
-          }, 3600000);
+          setUserInfosInSession(response.data.id, response.data.username, response.data.roles[0]);
         })
         .catch((error) => {
           console.log(error);

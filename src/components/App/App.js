@@ -29,14 +29,12 @@ import ProfileReads from '../ProfileReads/ProfileReads';
 import UserConnexion from '../UserConnexion/UserConnexion';
 import { scrollToTop } from '../../selectors/pages';
 import Message from '../Message/Message';
+import { checkRegisterSuccess } from '../../selectors/message';
 
 function App() {
   const { pathname } = useLocation();
   const messages = useSelector((state) => state.messages.messages);
-  const registerOk = messages.find(
-    (msg) => msg.text
-      === 'Votre compte a été créé avec succès ! Vous allez être redirigé vers la page de connexion.',
-  );
+  const registerOk = checkRegisterSuccess(messages);
 
   useEffect(() => {
     scrollToTop();
