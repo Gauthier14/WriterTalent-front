@@ -1,3 +1,5 @@
+/* eslint-disable brace-style */
+/* eslint-disable no-shadow */
 import { useParams } from 'react-router';
 import { useEffect } from 'react';
 import { Editor } from 'react-draft-wysiwyg';
@@ -19,11 +21,16 @@ import {
 import Toolbar, { getCategoriesIds } from '../../selectors/editor';
 import NewLoader from '../NewLoader/NewLoader';
 import { manageSessionStorage } from '../../selectors/user';
+import { setMessageInfosInState } from '../../actions/messages';
+import { generateMessages, showMessages } from '../../selectors/message';
 
 function TextEditorModif() {
   const dispatch = useDispatch();
   const loaded = useSelector((state) => state.editor.loaded);
   const editorState = useSelector((state) => state.editor.editorState);
+  const postTitle = useSelector((state) => state.editor.title);
+  const genreSelected = useSelector((state) => state.editor.genre);
+  const categSelected = useSelector((state) => state.editor.categories);
   const { id } = useParams();
   useEffect(() => {
     const token = manageSessionStorage('get', 'token');
@@ -53,6 +60,22 @@ function TextEditorModif() {
   const onEditorStateChange = (editorState) => {
     dispatch(updateEditor(editorState));
   };
+  const handleSubmit = () => {
+    if (postTitle !== '' && genreSelected !== '' && categSelected !== []) {
+      dispatch(updatePost(id));
+    } else {
+      dispatch(setMessageInfosInState(generateMessages('login-input-empty')));
+      showMessages();
+    }
+  };
+  const handleSubmitToPublish = () => {
+    if (postTitle !== '' && genreSelected !== '' && categSelected !== []) {
+      dispatch(askForPublication(id));
+    } else {
+      dispatch(setMessageInfosInState(generateMessages('login-input-empty')));
+      showMessages();
+    }
+  };
 
   return loaded ? (
     <main className="editor">
@@ -75,11 +98,7 @@ function TextEditorModif() {
           type="button"
           className="editor-button"
           onClick={() => {
-            dispatch(
-              updatePost(id),
-              // draftToHtml(convertToRaw(editorState.getCurrentContent()))
-              // contentState
-            );
+            handleSubmit();
           }}
         >
           Sauvegarder
@@ -88,7 +107,7 @@ function TextEditorModif() {
           type="button"
           className="editor-button"
           onClick={() => {
-            dispatch(askForPublication(id));
+            handleSubmitToPublish();
           }}
         >
           Demande de publication

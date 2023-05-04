@@ -20,17 +20,13 @@ function TextEditor() {
   };
   const handleSubmit = () => {
     if (postTitle !== '' && genreSelected !== '' && categSelected !== []) {
-      dispatch(
-        saveNewPost(
-          // draftToHtml(convertToRaw(editorState.getCurrentContent()))
-          editorState.getCurrentContent(),
-        ),
-      );
+      dispatch(saveNewPost());
     } else {
       dispatch(setMessageInfosInState(generateMessages('login-input-empty')));
       showMessages();
     }
   };
+
   return (
     <main className="editor">
       <EditorForm />
@@ -44,11 +40,14 @@ function TextEditor() {
       />
       {/* <textarea value={draftToHtml(convertToRaw(editorState.getCurrentContent()))} /> */}
       <div className="buttons-group">
-        <button type="button" className="editor-button" onClick={() => {}}>
+        <button
+          type="button"
+          className="editor-button"
+          onClick={() => {
+            handleSubmit();
+          }}
+        >
           Sauvegarder
-        </button>
-        <button type="button" className="editor-button" onClick={handleSubmit}>
-          Demande de publication
         </button>
       </div>
     </main>

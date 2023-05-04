@@ -82,12 +82,14 @@ const editorMiddleware = (store) => (next) => (action) => {
         )
         .then((response) => {
           console.log(response);
-          store.dispatch(setMessageInfosInState(generateMessages('post-saved')));
+          store.dispatch(setMessageInfosInState(generateMessages('post-submited')));
           showMessages();
         })
         .catch((error) => {
           console.log(error);
-          store.dispatch(setMessageInfosInState(generateMessages('post-not-saved', error.message)));
+          store.dispatch(
+            setMessageInfosInState(generateMessages('post-not-submited', error.message)),
+          );
           showMessages();
         });
       break;
