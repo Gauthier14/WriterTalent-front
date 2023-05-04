@@ -10,6 +10,7 @@ import {
 } from '../actions/user';
 import { showMessages, generateMessages } from '../selectors/message';
 import { setMessageInfosInState } from '../actions/messages';
+import { getCategoriesFromApi } from '../actions/menu';
 
 const userMiddleware = (store) => (next) => (action) => {
   const token = manageSessionStorage('get', 'token');
@@ -44,6 +45,7 @@ const userMiddleware = (store) => (next) => (action) => {
         })
         .then((response) => {
           console.log(response);
+          store.dispatch(getCategoriesFromApi());
           setUserInfosInSession(response.data.id, response.data.username, response.data.roles[0]);
         })
         .catch((error) => {

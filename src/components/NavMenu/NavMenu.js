@@ -20,7 +20,7 @@ function NavMenu() {
   const isAdmin = manageSessionStorage('get', 'role') === 'ROLE_ADMIN';
   useEffect(() => {
     dispatch(getGenresFromApi());
-  }, [isAdmin, isLogged]);
+  }, [isAdmin]);
   useEffect(() => {
     dispatch(getCategoriesFromApi());
   }, []);
