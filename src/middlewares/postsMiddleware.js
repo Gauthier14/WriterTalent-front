@@ -38,6 +38,7 @@ import {
   getAllSavedUserPostsFromApi,
   getAllReadLaterUserPostsFromApi,
   getReadPostFromApi,
+  getAllUserPublishedPostsFromApi,
 } from '../actions/posts';
 import { showMessages, generateMessages } from '../selectors/message';
 import { setMessageInfosInState } from '../actions/messages';
@@ -45,6 +46,7 @@ import { manageSessionStorage } from '../selectors/user';
 
 const postsMiddleware = (store) => (next) => (action) => {
   const token = manageSessionStorage('get', 'token');
+  const userId = manageSessionStorage('get', 'user_id');
   switch (action.type) {
     case GET_ALL_USER_PUBLISHED_POSTS_FROM_API:
       axios
@@ -315,11 +317,8 @@ const postsMiddleware = (store) => (next) => (action) => {
               store.dispatch(getAllReadLaterUserPostsFromApi());
               break;
             case 'published':
-              store.dispatch(
-                setAllUserPublishedPostsInState(manageSessionStorage('get', 'user_id')),
-              );
+              store.dispatch(getAllUserPublishedPostsFromApi(userId));
               break;
-
             default:
               break;
           }

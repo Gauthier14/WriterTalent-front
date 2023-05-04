@@ -19,7 +19,7 @@ function TextEditor() {
     dispatch(updateEditor(editorState));
   };
   const handleSubmit = () => {
-    if (postTitle !== '' && genreSelected !== '' && categSelected !== []) {
+    if (postTitle !== '' && genreSelected !== '' && categSelected.length > 0) {
       dispatch(saveNewPost());
     } else {
       dispatch(setMessageInfosInState(generateMessages('login-input-empty')));
