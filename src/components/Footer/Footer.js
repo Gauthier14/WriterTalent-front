@@ -1,28 +1,33 @@
-import Button from '../Button/Button';
+import { useState } from 'react';
+import { FaDiscord } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 import './Footer.scss';
 
 function Footer() {
+  const [showLinks, setShowLinks] = useState(false);
+  const handleClick = () => {
+    setShowLinks(!showLinks);
+  };
   return (
     <footer>
-      <Button
-        label="Mentions Légales"
-        link="/mentions-legales"
-        bgColor="rgba(255, 255, 255, 0.466)"
-        color="#000"
-      />
-      <Button
-        label="Qui sommes-nous ?"
-        link="/qui-sommes-nous"
-        bgColor="rgba(255, 255, 255, 0.466)"
-        color="#000"
-      />
-      <Button
-        label="Nous contacter"
-        link="/nous-contacter"
-        bgColor="rgba(255, 255, 255, 0.466)"
-        color="#000"
-      />
-      <span>© WriterTalent, 2023</span>
+      <div className={showLinks ? 'link-group' : 'link-group-hide'}>
+        <Link to="/mentions-legales" onClick={handleClick}>
+          Mentions Légales
+        </Link>
+        <Link label="" to="/qui-sommes-nous" onClick={handleClick}>
+          Qui sommes-nous ?
+        </Link>
+        <Link to="/nous-contacter" onClick={handleClick}>
+          Nous contacter
+        </Link>
+      </div>
+      <span onClick={handleClick}>Liens utiles</span>
+      <div className="copy-social">
+        <span>© WriterTalent, 2023</span>
+        <Link to="https://discord.gg/3mr9nudVQj" target="_blank">
+          <FaDiscord size={30} color="#fff" />
+        </Link>
+      </div>
     </footer>
   );
 }

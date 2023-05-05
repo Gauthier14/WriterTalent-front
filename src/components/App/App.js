@@ -96,6 +96,7 @@ function App() {
       <Footer />
 
       <BsArrowBarUp
+        size={30}
         className="scroll-button"
         onClick={() => {
           scrollToTop();

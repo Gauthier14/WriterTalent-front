@@ -2,34 +2,64 @@
 footer {
   background: url('./src/assets/images/main.jpeg') no-repeat center;
   background-size: cover;
-  position: relative;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-between;
+  position: relative;
   border-radius: 0.8em 0.8em 0 0;
   padding: 1em;
+  height: 7em;
+  font-size: 0.8em;
   @media screen and (min-width: 820px) {
-    flex-direction: row;
+    font-size: 1em;
   }
-  & > * {
-    margin: 0.5rem;
-    max-width: fit-content;
-    backdrop-filter: blur(0.5px);
-    -webkit-backdrop-filter: blur(1px);
-  }
-  span{
-    backdrop-filter: blur(10px);
-    border: none;
-    border-radius: 0.5em;
-    -webkit-box-shadow: 0 0 1.5em rgba(0,0,0,.7);
-    box-shadow: 0 0 1.5em rgba(0,0,0,.7);
-    font-size: 1.2rem;
-    padding:0.5em;
-    color: #694216;
-    @media screen and (min-width: 820px) {
-      color: $text-dark-color
+
+  .link-group {
+    background-color: #fff;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    top: -5em;
+    justify-content: space-between;
+    text-align: center;
+    border-radius: $radius-btn;
+    &-hide {
+      display: none;
+    }
+    a {
+      padding: $sm-padding-all;
+      &:hover {
+        background-color: $bg-hover-btn;
+        cursor: pointer;
+        border-radius: inherit;
+      }
     }
   }
-  
+
+  span {
+    border-radius: $radius-btn;
+    background-color: $bg-primary;
+    box-shadow: $box-shadow;
+    padding: $sm-padding-all;
+    font-weight: 700;
+    width: fit-content;
+    &:nth-child(2) {
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+  .copy-social {
+    display: flex;
+    justify-content: center;
+    height: auto;
+    position: relative;
+    span {
+      width: fit-content;
+    }
+    svg {
+      position: absolute;
+      right: 0em;
+    }
+  }
 }
