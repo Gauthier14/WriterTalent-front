@@ -64,8 +64,7 @@
       }
 
       &:hover {
-        //background-color: $bg-hover-btn;
-        background: linear-gradient(#bdbd74, #000);
+        background: #bdbd74;
         color: $text-light-color;
         transform: scale(1.1);
         .drop-menu {
@@ -104,44 +103,5 @@
         transform: scale(1.2);
       }
     }
-  }
-}
-
-@keyframes hoverBtn {
-  0% {
-    background: radial-gradient(
-      circle at 100%,
-      #333,
-      #333 50%,
-      #eee 75%,
-      #333 100%
-    );
-  }
-  30% {
-    background: radial-gradient(
-      circle at 100%,
-      #333,
-      #333 50%,
-      #eee 75%,
-      #333 100%
-    );
-  }
-  72% {
-    background: radial-gradient(
-      circle at 100%,
-      #333,
-      #333 50%,
-      #eee 75%,
-      #333 100%
-    );
-  }
-  100% {
-    background: radial-gradient(
-      circle at 100%,
-      #333,
-      #333 50%,
-      #eee 75%,
-      #333 100%
-    );
   }
 }
