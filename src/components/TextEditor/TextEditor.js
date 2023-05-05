@@ -1,8 +1,8 @@
-/* eslint-disable no-shadow */
 import { Editor } from 'react-draft-wysiwyg';
 import { useDispatch, useSelector } from 'react-redux';
 import EditorForm from '../EditorForm/EditorForm';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import DOMPurify from 'dompurify';
 import './TextEditor.scss';
 import { saveNewPost, updateEditor } from '../../actions/editor';
 import Toolbar from '../../selectors/editor';
@@ -27,18 +27,20 @@ function TextEditor() {
     }
   };
 
+  const sanitizedContent = DOMPurify.sanitize(editorState.getCurrentContent().getPlainText());
+
   return (
     <main className="editor">
       <EditorForm />
       <Editor
-        // toolbarOnFocus
+        // To secure the Editor component with DOMPurify, you can use its sanitize function to sanitize any HTML content before rendering it.
         editorState={editorState}
         wrapperClassName="demo-wrapper"
         editorClassName="demo-editor"
         onEditorStateChange={onEditorStateChange}
         toolbar={Toolbar}
+        contentState={sanitizedContent}
       />
-      {/* <textarea value={draftToHtml(convertToRaw(editorState.getCurrentContent()))} /> */}
       <div className="buttons-group">
         <button
           type="button"
