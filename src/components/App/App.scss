@@ -17,6 +17,7 @@
   backdrop-filter: blur(10px);
   box-shadow: 0 0 1.5em rgba(0, 0, 0, 0.7);
   position: relative;
+  overflow-x: hidden;
   .scroll-button {
     position: fixed;
     bottom: 2.2em;
