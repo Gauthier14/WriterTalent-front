@@ -13,7 +13,9 @@
   margin: auto;
   font-size: 1em;
   min-height: 100vh;
-  background-color: $bg-app;
+  // background-color: $bg-app;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 1.5em rgba(0, 0, 0, 0.7);
   position: relative;
   .scroll-button {
     position: fixed;

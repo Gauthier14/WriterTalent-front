@@ -62,8 +62,14 @@
         color: #000;
         display: block;
       }
-      &:hover .drop-menu {
-        display: block;
+
+      &:hover {
+        background: #bdbd74;
+        color: $text-light-color;
+        transform: scale(1.1);
+        .drop-menu {
+          display: block;
+        }
       }
     }
   }
@@ -83,6 +89,7 @@
       top: 1.6em;
     }
     .drop-menu-item {
+      z-index: 11;
       width: 100%;
       margin-bottom: 0.3em;
       a {

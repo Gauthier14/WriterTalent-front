@@ -1,6 +1,7 @@
-@import "src/styles/_vars.scss";
+@import 'src/styles/_vars.scss';
 
 .single-page {
+  margin: 3em 1em;
   section {
     background-color: $bg-text;
     border-radius: 0.5em;

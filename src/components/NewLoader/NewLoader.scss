@@ -1,5 +1,5 @@
 .book {
-  --color: #000;
+  --color: #fff;
   --duration: 6.8s;
   width: 40px;
   height: 20px;
@@ -23,7 +23,7 @@
       background: var(--color);
       position: absolute;
       &:before {
-        content: "";
+        content: '';
         width: 48px;
         height: 4px;
         border-radius: 2px;

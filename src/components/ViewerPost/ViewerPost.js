@@ -110,7 +110,7 @@ function ViewerPost() {
               ) : (
                 <BsHandThumbsUp size={25} style={{ marginRight: '0.5em' }} />
               )}
-              {nbLikes}
+              {nbLikes || 0}
             </span>
             <span
               className="read-later-container"
@@ -143,7 +143,7 @@ function ViewerPost() {
             )}
             <span>
               <BsEyeFill style={{ marginRight: '0.5em' }} />
-              {nbViews}
+              {nbViews || 0}
             </span>
           </>
         ) : (
@@ -153,11 +153,11 @@ function ViewerPost() {
                 size={25}
                 style={{ marginRight: '0.5em', color: 'rgba(123, 182, 149, 0.9)' }}
               />
-              {nbLikes}
+              {nbLikes || 0}
             </span>
             <span>
               <BsEyeFill style={{ marginRight: '0.5em' }} />
-              {nbViews}
+              {nbViews || 0}
             </span>
           </>
         )}

@@ -1,4 +1,4 @@
-@import "src/styles/_vars.scss";
+@import 'src/styles/_vars.scss';
 
 .type-writer {
   position: absolute;
@@ -21,12 +21,11 @@
     background-color: #bdbd74;
     font-style: 1.3em;
     color: #000;
-    
+
     svg {
       transform: rotate(360deg) scale(1.2);
       color: #000;
       transition: 1s;
-     
     }
     span {
       display: block;
