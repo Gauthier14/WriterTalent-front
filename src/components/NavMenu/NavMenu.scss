@@ -62,6 +62,10 @@
         color: #000;
         display: block;
       }
+      &:hover {
+        background-color: #bdbd74;
+        transform: scale(1.2);
+      }
       &:hover .drop-menu {
         display: block;
       }
