@@ -10,7 +10,9 @@ function RecentPosts() {
   useEffect(() => {
     dispatch(getRecentPostsFromApi());
   }, []);
-  return (
+  return recentPosts !== {} ? (
+    <PageList posts={recentPosts} />
+  ) : (
     <div>
       <NewLoader />
     </div>
