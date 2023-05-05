@@ -22,6 +22,7 @@ function Footer() {
         bgColor="rgba(255, 255, 255, 0.466)"
         color="#000"
       />
+      <span>© WriterTalent, 2023</span>
     </footer>
   );
 }
